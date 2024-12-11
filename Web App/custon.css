@@ -152,11 +152,9 @@ body , html {
     background-size: cover;
     /*background-image:  url("./profile/Home_img.jpg");*/
     animation:backAn 50s infinite;
-    height:750px;
+    height:70vh;
     width:  100%;
     padding-bottom: 40px;
-    margin-bottom:0.5%;
-
 }
 
 
@@ -305,7 +303,7 @@ body , html {
 
 /* --------------------------------------------------------------------------------------------------*/
 .recommended_container{
-    height: auto;
+    height: 30vh;
     width:  100%;
 
 }
@@ -335,7 +333,7 @@ body , html {
 
 .movie-list-item {
   height: 90%;
-  width: auto;
+  width: 25px;
   display: flex;
   align-items: center;
   margin-right: 30px;
@@ -407,7 +405,7 @@ position: absolute;
   transform: translateY(-50%);
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: 40px;
   cursor: pointer;
   z-index: 10;
   left: 10px;
@@ -419,7 +417,7 @@ position: absolute;
   transform: translateY(-50%);
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: 40px;
   cursor: pointer;
   z-index: 10;
   right: 10px;
