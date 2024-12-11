@@ -307,8 +307,7 @@ body , html {
 
 /* --------------------------------------------------------------------------------------------------*/
 .recommended_container{
-background-color: red;
-    height: 400px;
+    height: auto;
     width:  100%;
 
 }
@@ -342,18 +341,16 @@ background-color: red;
   display: flex;
   align-items: center;
   margin-right: 30px;
-  position: relative;
-
+  border-radius: 10px 10px 10px 10px;
 }
 
-.movie-list-item:hover .movie-list-item-img {
 
-  transform: scale(1.2);
+.movie-list-item:hover .movie-list-item-img {
+  transform: scale(1.1);
   margin: 0 30px;
   filter: brightness(0.5);
-  z-index: 10;
-
-
+  position: relative;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3); /* Adds a shadow */
 }
 
 
