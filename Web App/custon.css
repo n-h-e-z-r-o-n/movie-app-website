@@ -334,15 +334,24 @@ background-color: red;
   height: auto;;
   transform: translateX(0);
   transition: all 1s ease-in-out;
+
 }
 
 .movie-list-item {
+  height: 60px;
+  display: flex;
+  align-items: center;
   height: 50%;
+  background-color: yellow;
   margin-right: 30px;
   position: relative;
+  justify-content: center; /* Center horizontally */
+    align-items: center; /* Align items vertically within the container */
+
 }
 
 .movie-list-item:hover .movie-list-item-img {
+
   transform: scale(1.2);
   margin: 0 30px;
   opacity: 0.5;
