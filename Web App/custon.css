@@ -152,7 +152,7 @@ body , html {
     background-size: cover;
     /*background-image:  url("./profile/Home_img.jpg");*/
     animation:backAn 50s infinite;
-    height: 80vw;
+    height:700px;
     width:  100%;
     padding-bottom: 40px;
     margin-bottom:0.5%;
@@ -327,6 +327,8 @@ background-color: red;
 }
 
 .movie-list {
+  height: 100%;
+  width: 100%;
   display: flex;
   align-items: center;
   height: auto;;
@@ -335,7 +337,7 @@ background-color: red;
 }
 
 .movie-list-item {
-  height: 80%;
+  height: 50%;
   margin-right: 30px;
   position: relative;
 }
