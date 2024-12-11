@@ -36,13 +36,15 @@ body , html {
 
 .Nav_container {
   flex: 1;
-
+  background-color: green;
+  align-items: center; /* Align items vertically within the container */
 
 }
 
 .logo_ {
     background: linear-gradient(135deg,  var(--Brand_Color)  10%, transparent 50%);
     height: 100%;
+    align-items: center; /* Align items vertically within the container */
 }
 
 .logo_text {
@@ -52,6 +54,10 @@ body , html {
     text-decoration: none;
     margin-left: 5px;
     animation: logo_flicker 2s infinite;
+    justify-content: center;
+    align-items: center; /* Align items vertically within the container */
+
+    background-color:yellow;
 }
 
 
@@ -77,7 +83,7 @@ body , html {
 
 
 .search_container {
-
+    background-color: blue;
     flex: 1;
     height: 100%;
     width:  50%;
@@ -217,7 +223,7 @@ background-color: red;
 }
 .details_h2{
   font-family: "Jost", sans-serif;
-  font-size: 2em;
+  font-size: 3em;
   font-weight: 700;
   text-align: left;
   line-height: 44px;
@@ -229,12 +235,12 @@ background-color: red;
 }
 .details_p{
   font-family: "Jost", sans-serif;
-  font-size: 20px;
+  font-size: 1em;
   font-weight: 700;
   text-align: left;
   line-height: 33px;
   text-align: left;
-  color: var(--Brand_Color);
+  color: var(--global-color-fg:);
   text-transform: uppercase;
   transition: 0.7s ease;
   display: none;
