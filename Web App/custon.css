@@ -152,7 +152,7 @@ body , html {
     background-size: cover;
     /*background-image:  url("./profile/Home_img.jpg");*/
     animation:backAn 50s infinite;
-    height: 50%;
+    height: 50vw;
     width:  100%;
     padding-bottom: 40px;
 }
@@ -175,30 +175,30 @@ body , html {
    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 /* padding-bottom: 10px:
- background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+ ;
 */
 .slider-container{
   background-color: yellow;
   width: 100%;
   height: 91%;
-
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
 }
 .slider-images{
   display: flex;
   justify-content: space-between;
-
+  height: 100%;
   align-items: center;
   border-radius: 5px;
 }
 .slider-images img{
   width: 100%;
-  height: 100%;
+  height: 90%;
   object-fit: cover;
   border-radius: 50px;
 
