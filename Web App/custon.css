@@ -36,7 +36,6 @@ body , html {
 
 .Nav_container {
   flex: 1;
-  background-color: green;
   align-items: center; /* Align items vertically within the container */
 
 }
@@ -45,6 +44,7 @@ body , html {
     background: linear-gradient(135deg,  var(--Brand_Color)  10%, transparent 50%);
     height: 100%;
     align-items: center; /* Align items vertically within the container */
+    display: flex;
 }
 
 .logo_text {
@@ -56,8 +56,6 @@ body , html {
     animation: logo_flicker 2s infinite;
     justify-content: center;
     align-items: center; /* Align items vertically within the container */
-
-    background-color:yellow;
 }
 
 
@@ -83,7 +81,6 @@ body , html {
 
 
 .search_container {
-    background-color: blue;
     flex: 1;
     height: 100%;
     width:  50%;
@@ -95,7 +92,7 @@ body , html {
 
 .search_input {
 
-    height: 2s0%;
+    height: 50%;
     width:  100%;
     padding: 10px;
     font-size: 16px;
@@ -124,7 +121,6 @@ body , html {
 }
 
 .profile-container {
-
   flex: 1;
   display: flex;
   align-items: center;
@@ -206,15 +202,6 @@ background-color: red;
   transition: 0.7s ease;
   margin: 4px;
 }
-
-
-
-
-
-/*/.slider-images .slider-img:nth-child(4), .slider-images .slider-img:nth-child(6), .slider-images .slider-img:nth-child(5){
-  height: 665px;
-} */
-
 
 .details{
   position: absolute;
