@@ -152,7 +152,7 @@ body , html {
     background-size: cover;
     /*background-image:  url("./profile/Home_img.jpg");*/
     animation:backAn 50s infinite;
-    height:700px;
+    height:auto;
     width:  100%;
     padding-bottom: 40px;
     margin-bottom:0.5%;
@@ -332,6 +332,7 @@ body , html {
   align-items: center;
   transform: translateX(0);
   transition: all 1s ease-in-out;
+     overflow: scroll;
 
 }
 
@@ -341,9 +342,15 @@ body , html {
   display: flex;
   align-items: center;
   margin-right: 30px;
-  border-radius: 10px 10px 10px 10px;
 }
 
+.movie-list-item-img {
+  transition: all 1s ease-in-out;
+  width: 270px;
+  height: 100%;
+  object-fit: fill;
+  border-radius: 10px 10px 10px 10px;
+}
 
 .movie-list-item:hover .movie-list-item-img {
   transform: scale(1.1);
@@ -362,14 +369,7 @@ body , html {
   opacity: 1;
 }
 
-.movie-list-item-img {
-  transition: all 1s ease-in-out;
-  width: 270px;
-  height: 100%;
-  object-fit: fill;
-  border-radius: 1px;
 
-}
 
 
 
@@ -403,16 +403,6 @@ body , html {
 }
 
 
-.arrow {
-  position: absolute;
-  top: 80%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  z-index: 10;
-}
 
 .larrow {
 position: absolute;
