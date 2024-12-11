@@ -152,7 +152,7 @@ body , html {
     background-size: cover;
     /*background-image:  url("./profile/Home_img.jpg");*/
     animation:backAn 50s infinite;
-    height: 770px;
+    height: 80vw;
     width:  100%;
     padding-bottom: 40px;
     margin-bottom:0.5%;
@@ -185,7 +185,8 @@ body , html {
   height:100%;
   width:100%;
   align-items: center;
-  border-radius: 5px;
+  border-radius: 2px;
+  overflow: hidden;
 }
 .slider-images img{
   width: 100%;
@@ -211,7 +212,7 @@ body , html {
 }
 .details_h2{
   font-family: "Jost", sans-serif;
-  font-size: 3em;
+  font-size: 20px;
   font-weight: 700;
   text-align: left;
   line-height: 44px;
