@@ -9,6 +9,7 @@
 
 }
 
+
 body , html {
   box-sizing: border-box;
   margin: 0;
@@ -147,13 +148,7 @@ body , html {
 }
 /* ------------------------------------------------------------------------ */
 
-@media (min-width: 1024px) { /* Styles for screens 1024px wide and larger */
-    --trending_container:  500px; 
-}
 
-@media (max-width: 768px) { /* Styles for screens 768px wide and smaller */
-    --trending_container:  300px;
-}
 
 
 
