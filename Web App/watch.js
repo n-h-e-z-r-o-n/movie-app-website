@@ -1,5 +1,51 @@
-//https://vidsrc.xyz/embed/
-const watch_frame_link_eb = 'https://vidsrc.to/embed/';
+
+const Movies_API_URL =   "https://api.themoviedb.org/3/discover/movie?&api_key=6bfaa39b0a3a25275c765dcaddc7dae7";
+const TVs_API_URL =   "https://api.themoviedb.org/3/discover/tv?&api_key=6bfaa39b0a3a25275c765dcaddc7dae7";
+
+const watch_info = document.getElementById("watch_info");
+const watch_Frame = document.getElementById("watch_Frame");
+
+const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
+const watch_frame_link_eb = 'https://vidsrc.to/embed/'; //https://vidsrc.xyz/embed/
+
+
+let episodes = {};
+let show_id = 1;
+
+
+ // ============================ Extract the search term from URL parameters ===========================================
+
+
+const params = getQueryParams();
+ if (params) {
+   const watch_id = params['id'];
+   const watch_type = params['type'];
+  //Search_Results_SHOW(watch_id, watch_type);
+   show_id = watch_id;
+   SHOW_INFOs(watch_id, watch_type);
+   Suggestion_Show();
+
+ } else { }
+
+
+
+// Function to get URL parameters
+ function getQueryParams() {
+     const params = {};
+     const queryString = window.location.search.substring(1);
+     const regex = /([^&=]+)=([^&]*)/g;
+     let m;
+     while (m = regex.exec(queryString)) {
+         params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+     }
+     return params;
+ }
+
+
+
+
+//==============================================================================
+
 
 
 // Function to compare a given date with today
@@ -30,12 +76,7 @@ document.addEventListener("fullscreenchange", function() {
 });
 //------------------------------------------------------------------------------
 
-const watch_info = document.getElementById("watch_info");
-const watch_Frame = document.getElementById("watch_Frame");
 
-const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
-let episodes = {};
-let show_id = 1;
 
 async function SHOW_INFOs(id, type) {
   const res = await fetch(`https://api.themoviedb.org/3/${type}/${id}&?api_key=6bfaa39b0a3a25275c765dcaddc7dae7`);
@@ -249,8 +290,7 @@ form.addEventListener("submit", (e) => {
 });
 
 // ---------------------------------------------------------------------------------------------------------------
-const Movies_API_URL =   "https://api.themoviedb.org/3/discover/movie?&api_key=6bfaa39b0a3a25275c765dcaddc7dae7";
-const TVs_API_URL =   "https://api.themoviedb.org/3/discover/tv?&api_key=6bfaa39b0a3a25275c765dcaddc7dae7";
+
 const recomed_R_div =  document.getElementById("recomed_R_div");
 
 
@@ -309,47 +349,13 @@ function Suggestion_Search(movies) {
     `;
     // Add event listener to open another page when clicked
     movieItem.addEventListener("click", () => {
-         window.location.href = "watch_page.html?id=" + id + "&type="+type;
+         window.location.href = "watch.html?id=" + id + "&type="+type;
        });
     recomed_R_div.appendChild(movieItem);
   });
 }
 
 //---------------------------------------------------------------------------------------------------------------------
-
-
-// Function to get URL parameters
- function getQueryParams() {
-     const params = {};
-     const queryString = window.location.search.substring(1);
-     const regex = /([^&=]+)=([^&]*)/g;
-     let m;
-     while (m = regex.exec(queryString)) {
-         params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
-     }
-     return params;
- }
-
-
-
-
-
-
- // Extract the search term from URL parameters
- const params = getQueryParams();
- console.log(params);
-
- if (params) {
-   const watch_id = params['id'];
-   const watch_type = params['type'];
-
-  //Search_Results_SHOW(watch_id, watch_type);
-   show_id = watch_id;
-   SHOW_INFOs(watch_id, watch_type);
-   Suggestion_Show();
-
-
- } else { }
 
 
 
@@ -393,4 +399,4 @@ function Suggestion_Search(movies) {
              });
              episodeList.appendChild(li);
            });
-       }
+ }

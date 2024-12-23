@@ -63,8 +63,8 @@ function Search_Results_SHOW(movies) {
              <div class="box-img">
                 <img class="img-on" src="${IMG_PATH + poster_path}" alt="">
                 <div class="box-img-button">
-                     <div class="button_style">&#9654;</div>
-                     <div class="button_style">+</div>
+                     <div class="button_style1">&#9654;</div>
+                     <div class="button_style2">+</div>
                 </div>
             </div>
             <div class="box_title">${title}</div>
@@ -79,12 +79,32 @@ function Search_Results_SHOW(movies) {
 
     `;
     // Add event listener to open another page when clicked
-    movieItem.addEventListener("click", () => {
-         window.location.href = "watch_page.html?id=" + id + "&type="+type;
+    //movieItem.addEventListener("click", () => {
+    //window.location.href = "watch_page.html?id=" + id + "&type="+type;
+
+    const boxImg = movieItem.querySelector(".box-img");
+    boxImg.addEventListener("click", () => {
+    window.location.href = "watch.html?id=" + id + "&type="+type;
+
+
+    const FaveButton = movieItem.querySelector(".button_style2");
+    FaveButton.addEventListener("click", () => {
+    event.stopPropagation(); // Prevent the click from propagating to the boxImg event
+    AddToFav(movie); // Replace 'yourFunction' with the function you want to call
+    });
+
+    const PlayT = movieItem.querySelector(".button_style1");
+    PlayT.addEventListener("click", () => {
+    event.stopPropagation(); // Prevent the click from propagating to the boxImg event
+    PlayTrailer(movie); // Replace 'yourFunction' with the function you want to call
+    });
+
+
        });
     search_R_div.appendChild(movieItem);
   });
 }
+
 
 // Function to get URL parameters
  function getQueryParams() {
@@ -106,3 +126,31 @@ function Search_Results_SHOW(movies) {
    document.getElementById('result_text').innerText = `SEARCH RESULTS      :  ${searchTerm}`;
    SearchShows(SEARCH_MOVIE_API + searchTerm, SEARCH_TV_API+searchTerm);    // code to fetch and display search results here
  } else { }
+
+
+//===================================================================================================
+
+
+function AddToFav(movie){
+    console.log("Fav :" , movie);
+    console.log("Fav :" , typeof(movie));
+
+    const Fave = localStorage.getItem('Favorites');
+    if(Fave === null){
+        localStorage.setItem("Favorites", JSON.stringify([movie]));
+    } else {
+        const parsedFav = JSON.parse(Fave);
+        parsedFav.push(movie);
+
+        const uniqueMovies = parsedFav.filter((movie, index, self) =>
+          index === self.findIndex(m => m.id === movie.id)
+        );
+
+        localStorage.setItem("Favorites", JSON.stringify(uniqueMovies));
+    }
+}
+
+
+function PlayTrailer(movie){
+    console.log("Trailer :" , movie);
+}
