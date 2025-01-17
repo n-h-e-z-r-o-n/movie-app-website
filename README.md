@@ -1,6 +1,7 @@
 # FilmFusion (movie & TV Shows app)
 This desktop application allows users to watch movies and TV shows on their computer. It provides a user-friendly interface for browsing, searching, and streaming media content.
-Live Website:  [View](https://movionyx.com)
+
+- Live Website:  [VIEW](https://movionyx.com)
 ## Installation
 - version 1 : Windows os platform(2024)  : [DOWNLOAD](https://github.com/ice-black/move-app/raw/main/APPS/FilmFusion.exe)
 
