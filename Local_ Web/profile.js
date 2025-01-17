@@ -1,5 +1,6 @@
 const search_R_div = document.getElementById("Favorites_Results");
 const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
+
 const Favorites_Data = localStorage.getItem('Favorites');
 
 console.log(Favorites_Data);
@@ -12,6 +13,7 @@ if(Favorites_Data === null){
      console.log(parsedMovies);
      Search_Results_SHOW(parsedMovies);
 }
+
 
 
 
@@ -64,38 +66,3 @@ function Search_Results_SHOW(movies) {
     search_R_div.appendChild(movieItem);
   });
 }
-
-//=====================================================================================
-
-//======================================= Search ===================================================
-// FOR SEARCH SUBMIT
-const form = document.getElementById("searchForm");
-const search = document.getElementById("search_input");
-
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const searchTerm = search.value;
-  if (searchTerm && searchTerm !== "") {
-
-    search.value = "";
-    window.location.href = "S_Results.html?query=" + searchTerm; // Replace with the URL of the page you want to open
-  } else {
-
-  }
-});
-
-const searchButton = document.getElementById('toggle-search');
-const searchInput = document.querySelector('.search-input');
-const icon = document.getElementById("id_search_icon");
-
-searchButton.addEventListener('click', () => {
-searchInput.classList.toggle('active');
-
-// Toggle the icon between "search" and "close"
-if (searchInput.classList.contains('active')) {
-icon.innerHTML = '&#10060;'; // Close icon
-} else {
-icon.innerHTML = '&#128269;'; // Search icon
-}
-});
-//===================================================================================================

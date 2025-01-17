@@ -1,30 +1,4 @@
-const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
-
-const more_div = document.getElementById("moreUl");
-const headers = {
-"accept": "application/json",
-"Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZjliMmUyN2MxYTZiYzMyMzNhZjE4MzJmNGFjYzg1MCIsIm5iZiI6MTcxOTY3NDUxNy4xOTYsInN1YiI6IjY2ODAyNjk1ZWZhYTI1ZjBhOGE4NGE3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RTms-g8dzOl3WwCeJ7WNLq3i2kXxl3T7gOTa8POcxcw"
-};
-
-const params = getQueryParams();  // Extract the search term from URL parameters
-const items = Array.from({length: 500}, (_, i) => `Item ${i + 1}`);
-const itemsPerPage = 5;
-const maxVisiblePages = 5;
-let currentPage = 1;
-
-
-if (params['query'] === 'show'){
-  console.log("DISP show");
-  Latest_shows(1);
-  renderPagination();// Initial render
-}
-else{
-  Latest_Movies(1);
-  renderPagination();// Initial render
-}
-
-
-// =================================== Function to get URL parameters ===================================
+// Function to get URL parameters
  function getQueryParams() {
      const params = {};
      const queryString = window.location.search.substring(1);
@@ -36,9 +10,10 @@ else{
      return params;
  }
 
+ const params = getQueryParams();  // Extract the search term from URL parameters
 
 
-//===================================================================================================
+
  // FOR SEARCH SUBMIT -----------------------------------------------------------------
  const form = document.getElementById("searchForm");
  const search = document.getElementById("search_input");
@@ -54,28 +29,14 @@ else{
 
    }
  });
+//------------------------------------------------------------------------------
+const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
 
-
-const searchButton = document.getElementById('toggle-search');
-const searchInput = document.querySelector('.search-input');
-const icon = document.getElementById("id_search_icon");
-
-searchButton.addEventListener('click', () => {
-searchInput.classList.toggle('active');
-
-// Toggle the icon between "search" and "close"
-if (searchInput.classList.contains('active')) {
-icon.innerHTML = '&#10060;'; // Close icon
-} else {
-icon.innerHTML = 'Q'; // Search icon
-}
-});
-
-//===================================================================================================
+const more_div = document.getElementById("moreUl");
 
 
 async function Latest_shows(page) {
-  let res = await fetch(`https://vidsrc.xyz/episodes/latest/page-${page}.json`,  {"accept": "application/json",});
+  let res = await fetch(`https://vidsrc.xyz/episodes/latest/page-${page}.json`);
   let data = await res.json();
   let hold = [];
   let data_json = [];
@@ -97,7 +58,7 @@ async function Latest_shows(page) {
   let id_prev = 0;
   for (let i = 0; i < 15; i++) {
         try{
-            let res2 = await fetch(`https://api.themoviedb.org/3/tv/${data_json[i]['tmdb_id']}&?`, {headers});
+            let res2 = await fetch(`https://api.themoviedb.org/3/tv/${data_json[i]['tmdb_id']}&?api_key=6bfaa39b0a3a25275c765dcaddc7dae7`);
             let data2 = await res2.json();
             let  seasons_episode = '';
             if(`${data2['poster_path']}` !== `undefined`){
@@ -123,7 +84,7 @@ async function Latest_shows(page) {
 async function Latest_Movies(page) {
   let count = 1;
   let data_json = [];
-  let res = await fetch(`https://vidsrc.xyz/movies/latest/page-${page}.json`,  {"accept": "application/json",});
+  let res = await fetch(`https://vidsrc.xyz/movies/latest/page-${page}.json`);
   let data = await res.json();
   data_json = data_json.concat(data['result']) ;
   let data2;
@@ -131,7 +92,7 @@ async function Latest_Movies(page) {
 
 
   for (let i = 0; i < data_json.length; i++) {
-    let res2 = await fetch(`https://api.themoviedb.org/3/movie/${data_json[i]['tmdb_id']}&?`,  {headers});
+    let res2 = await fetch(`https://api.themoviedb.org/3/movie/${data_json[i]['tmdb_id']}&?api_key=6bfaa39b0a3a25275c765dcaddc7dae7`);
     data2 = await res2.json();
 
     hold.push({poster_path:data2['poster_path'], release_date:data2['release_date'], vote_average:data2['vote_average'], original_title:data2['title'], original_name:data2['original_name'],  id:data2['id'], runtime:data2['runtime']});
@@ -193,7 +154,10 @@ function Suggestion_Search(movies) {
 }
 
 //==================================================================================
-
+const items = Array.from({length: 500}, (_, i) => `Item ${i + 1}`);
+const itemsPerPage = 5;
+const maxVisiblePages = 5;
+let currentPage = 1;
 
 function renderPagination() {
   const pagination = document.getElementById('pagination');
@@ -243,4 +207,13 @@ function goToPage(page) {
   renderPagination();
 }
 // =============================================================================
-
+if (params['query'] === 'show'){
+  console.log("DISP show");
+  Latest_shows(1);
+  renderPagination();// Initial render
+}
+else{
+  console.log("DISP movies");
+  Latest_Movies(1);
+  renderPagination();// Initial render
+}

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FilmFusion</title>
+    <link rel="icon" href="profile/tx.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+    <link rel="stylesheet" type="text/css" href="./custon.css" />
+    <style id="dynamic-css"></style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+                      <div class="trending_container" id="trending_container">
+
+                        <header class = "nav_bar" >
+                            <div class="Nav_container">
+                                      <div class="logo_">
+                                       <a class="logo_text">&#9778; </a>
+                                      </div>
+                            </div>
+
+                            <form id="searchForm" class="search_container">
+                            <input class="search_input" id="search_input" type="text" placeholder="Search">
+                            </form>
+                            <div class="profile-container" >
+                                <div class="profile-text-container" >
+                                        <div class="profile-picture">
+                                              <a  href="profile.html" style="width: 40px; height: 40px;"> </a>
+                                        </div>
+                                </div>
+                            </div>
+                        </header>
+
+
+ <!---------Feature Section ------------------------------------------------------------------------------------------------------------>
+
+                        <div class="slider-container">
+
+                            <div class="slider-images" id="sliderUl">
+                              <!--
+                               <div class="slider-img" >
+                                 <img src="https://static.fmovies24.to/i/f/f5/1328b97f4f7b956d76ea94406a2d2754.jpg" />
+                                 <div class="details">
+                                   <h2 class="details_h2">Mike</h2>
+                                   <p class="details_p">web3 Developer</p>
+                                 </div>
+                               </div>
+                               <div class="slider-img" >
+                                 <img src="https://image.tmdb.org/t/p/w1280/iADOJ8Zymht2JPMoy3R7xceZprc.jpg" />
+                                 <div class="details">
+                                   <h2 class="details_h2">Mike</h2>
+                                   <p class="details_p">web3 Developer</p>
+                                 </div>
+                               </div>
+                               <div class="slider-img">
+                                 <img src="https://image.tmdb.org/t/p/w1280/gKkl37BQuKTanygYQG1pyYgLVgf.jpg" />
+                                 <div class="details">
+                                   <h2 class="details_h2">samite</h2>
+                                   <p class="details_p">wordpress Developer</p>
+                                 </div>
+                               </div>
+                               <div class="slider-img">
+                                 <img src="https://image.tmdb.org/t/p/w1280/2H1TmgdfNtsKlU9jKdeNyYL5y8T.jpg" />
+                                 <div class="details">
+                                   <h2 class="details_h2">hashi</h2>
+                                   <p class="details_p">java Developer</p>
+                                 </div>
+                               </div>
+                               <div class="slider-img active">
+                                 <img src="https://image.tmdb.org/t/p/w1280/xbKFv4KF3sVYuWKllLlwWDmuZP7.jpg" />
+                                 <div class="details">
+                                   <h2 class="details_h2">kaity</h2>
+                                   <p class="details_p">web Developer</p>
+                                 </div>
+                               </div>
+                               <div class="slider-img">
+                                 <img src="https://image.tmdb.org/t/p/w1280/lW6IHrtaATxDKYVYoQGU5sh0OVm.jpg" />
+                                 <div class="details">
+                                   <h2 class="details_h2">lauren</h2>
+                                   <p class="details_p">php Developer</p>
+                                 </div>
+                               </div>
+                               <div class="slider-img">
+                                 <img src="https://image.tmdb.org/t/p/w1280/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg" alt="6" />
+                                 <div class="details">
+                                   <h2 class="details_h2">ryan</h2>
+                                   <p class="details_p">seo Developer</p>
+                                 </div>
+                               </div>
+                               <div class="slider-img">
+                                 <img src="https://image.tmdb.org/t/p/w1280/kDp1vUBnMpe8ak4rjgl3cLELqjU.jpg" alt="7" />
+                                 <div class="details">
+                                   <h2 class="details_h2">dakes</h2>
+                                   <p class="details_p">sql Developer</p>
+                                 </div>
+                               </div>
+                               <div class="slider-img">
+                                 <img src="https://static.fmovies24.to/i/1/18/ed1d4a6ba7e58cb84ef65b5feb78a46f.jpg" alt="7" />
+                                 <div class="details">
+                                   <h2 class="details_h2">dakes</h2>
+                                   <p class="details_p">sql Developer</p>
+                                 </div>
+                               </div>
+                               -->
+                             </div>
+
+                       </div>
+                     </div>
+
+<!---------Trending Section ------------------------------------------------------------------------------------------------------------>
+                     <div class="recommended_container" >
+                        <div class="movie-list-container">
+\                                  <button class="larrow"> &#x21a9; </button> <!-- Left Arrow -->
+                                  <div class="movie-list" id="TrendingUl">
+                                      <!--
+                                      <div class="movie-list-item">
+                                          <img class="movie-list-item-img" src="img/1.jpeg" alt="">
+                                          <button class="movie-list-item-button">Watch</button>
+                                      </div>
+                                      -->
+                                  </div>
+                                  <button class="rarrow"> &#x21aa; </button> <!-- Right Arrow -->
+                          </div>
+
+                    </div>
+
+<!---------movie Section ------------------------------------------------------------------------------------------------------------>
+
+                    <div class="grid_container" >
+                       <div class="show_title_section" >
+                         <h3 class="text_container">Latest Movies  </h3>
+                         <a href="view-more.html?query=movie" class="glowing-btn">&#x21f2;</a>
+                       </div>
+                       <!-- Movies container  -->
+                       <div class="movies-container" id="movieUl">
+                        <!--
+                             <div class="box">
+                                 <div class="box-img">
+                                    <img class="img-on" src="https://image.tmdb.org/t/p/w1280/1keE9oReldd7QmG8epHoY23jQXv.jpg" alt="">
+                                    <div class="box-img-button">
+                                         <div class="button_style">▶</div>
+                                         <div class="button_style" style="background-color: black;">+</div>
+                                    </div>
+                                 </div>
+                                 <div class="box_title">100 Degrees Below Zero</div>
+                                 <div class="container_span">
+                                       <div style="display:flex;">
+                                            <div class="badge-type"> mv </div>
+                                            <div class="badge-type_year">2013 </div>
+                                       </div>
+                                       <div class="badge-type_text"> 88 min</div>
+                                       <div class="badge-type_rating"> ★  4.4 </div>
+                                 </div>
+                              </div>
+                        -->
+
+                       </div>
+
+                       <div class="show_more">
+                             <div class="show_more_1">
+                             <button id="moreMovieButton" onclick="more_movie()" data-state="show-more">Show More &#x21b4;</button>
+                             </div>
+                       </div>
+
+                      </div>
+
+
+<!---------TV Section ------------------------------------------------------------------------------------------------------------>
+
+
+
+                    <div class="grid_container" >
+                       <div class="show_title_section" >
+                         <h3 class="text_container">Latest TV Series  </h3>
+                         <a href="view-more.html?query=show" class="glowing-btn">&#x21f2;</a>
+                       </div>
+                       <div class="movies-container" id="seriesUl">
+
+                       </div>
+
+                       <div class="show_more">
+                             <div class="show_more_1">
+                             <button id="moretvButton" onclick="more_series()" data-state="show-more">Show More &#x21b4;</button>
+                             </div>
+                       </div>
+                    </div>
+
+ <!-- footer section --------------------------------------------------------------------------------------------------------->
+
+   <div class="footer">
+    <div class="footer-content">
+        <div class="footer-section about">
+            <h3>About FilmFusion</h3>
+            <p>
+                Your one-stop platform for discovering and tracking movies and TV shows.
+                We provide schedules and embedded video links hosted by third-party servers.
+            </p>
+        </div>
+
+        <div class="footer-section links">
+            <h3>Quick Links</h3>
+
+                <li class="footer_Link_Hover"><a href="#home">Home</a></li>
+                <li class="footer_Link_Hover"><a href="#movies">Movies</a></li>
+                <li class="footer_Link_Hover"><a href="#tv-shows">TV Shows</a></li>
+                <li class="footer_Link_Hover"><a href="#contact">Contact Us</a></li>
+
+        </div>
+
+    </div>
+
+    <div class="footer-disclaimer">
+        <p  class="footer-disclaimer_text">
+            This site, <strong class="footer-disclaimer_text">FilmFusion</strong>, does not produce or broadcast channels, TV shows, or audiovisual content.
+            We simply distribute embedded videos hosted by third-party servers and international TV coverage schedules.
+            For complaints, contact the respective content owners.
+            <br> <br> <br>&copy; 2024 FilmFusion. All rights reserved.
+        </p>
+    </div>
+</div>
+
+
+
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="script.js"></script>
+</html>

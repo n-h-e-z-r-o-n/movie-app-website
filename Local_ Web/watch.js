@@ -8,33 +8,15 @@ const watch_Frame = document.getElementById("watch_Frame");
 const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
 const watch_frame_link_eb = 'https://vidsrc.to/embed/'; //https://vidsrc.xyz/embed/
 
-const headers = {
-"accept": "application/json",
-"Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZjliMmUyN2MxYTZiYzMyMzNhZjE4MzJmNGFjYzg1MCIsIm5iZiI6MTcxOTY3NDUxNy4xOTYsInN1YiI6IjY2ODAyNjk1ZWZhYTI1ZjBhOGE4NGE3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RTms-g8dzOl3WwCeJ7WNLq3i2kXxl3T7gOTa8POcxcw"
-};
 
 let episodes = {};
 let show_id = 1;
 
-//=================================== Override the window.open function to block popups
-window.open = function() {
-  console.warn('Popup blocked!');
-  return null; // Prevent the popup
-};
-
-document.addEventListener('click', (e) => {
-  const target = e.target.closest('a');
-  if (target && target.target === '_blank') {
-    e.preventDefault(); // Block the new tab or redirect
-    console.warn('External redirect blocked:', target.href);
-  }
-});
 
  // ============================ Extract the search term from URL parameters ===========================================
 
 
 const params = getQueryParams();
-
  if (params) {
    const watch_id = params['id'];
    const watch_type = params['type'];
@@ -44,6 +26,7 @@ const params = getQueryParams();
    Suggestion_Show();
 
  } else { }
+
 
 
 // Function to get URL parameters
@@ -96,7 +79,7 @@ document.addEventListener("fullscreenchange", function() {
 
 
 async function SHOW_INFOs(id, type) {
-  const res = await fetch(`https://api.themoviedb.org/3/${type}/${id}&?`,   {headers});
+  const res = await fetch(`https://api.themoviedb.org/3/${type}/${id}&?api_key=6bfaa39b0a3a25275c765dcaddc7dae7`);
   const data = await res.json();
   Search_Results_SHOW(id, type, data);
 
@@ -172,27 +155,10 @@ function Search_Results_SHOW(imdb, type, info_data) {
 
                       </div>
                 `;
-                                console.log(`${watch_frame_link_eb}${type}/${imdb}`);
 
-                //const iframe = document.getElementById('myIframe');
-                // Dynamically update the iframe's src
-                //iframe.src = `${watch_frame_link_eb}${type}/${imdb}`;
-
-                watch_Frame.innerHTML = `<iframe  class="iframe_watch"   id="watch-frame" onerror="iframeLoadError()" src='${watch_frame_link_eb}${type}/${imdb}'  frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>`; // https://vidsrc.to
+                watch_Frame.innerHTML = `<iframe  class="iframe_watch"  id="watch-frame" onerror="iframeLoadError()" src='${watch_frame_link_eb}${type}/${imdb}'  frameborder="0" allow="autoplay" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>`; // https://vidsrc.to
                 //watch_Frame.innerHTML = `<iframe  class="iframe_watch"  id="watch-frame" onerror="iframeLoadError()" src="https://vidsrc.xyz/embed/${type}/${imdb}"  frameborder="0" allow="autoplay" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>`; //https://vidsrc.net/api/
                 //watch_Frame.innerHTML = `<iframe  class="iframe_watch"  id="watch-frame" src="https://multiembed.mov/?video_id=${imdb}&tmdb=1"  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>`;
-
-                var iframe = document.getElementById("watch-frame");
-                var iframeLoaded = 0;
-                var originalUrl = `${watch_frame_link_eb}${type}/${imdb}`;
-                iframe.onload = function () {
-                  iframeLoaded++;
-                  if(iframeLoaded > 1) {
-                     iframeLoaded = 0;
-                     iframe.setAttribute(originalUrl);
-                  }
-                };
-
 
 
 }else{
@@ -242,7 +208,7 @@ function Search_Results_SHOW(imdb, type, info_data) {
 
         </div>
   `;
-  watch_Frame.innerHTML = `<iframe  class="iframe_watch" sandbox="allow-scripts allow-same-origin"  id="watch-frame" onerror="iframeLoadError()" src="${watch_frame_link_eb}${type}/${imdb}"  frameborder="0" allow="autoplay" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>`;
+  watch_Frame.innerHTML = `<iframe  class="iframe_watch" id="watch-frame" onerror="iframeLoadError()" src="${watch_frame_link_eb}${type}/${imdb}"  frameborder="0" allow="autoplay" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>`;
 
 
 
@@ -307,8 +273,6 @@ function Search_Results_SHOW(imdb, type, info_data) {
 
 }
 }
-
-//======================================= Search ===================================================
 // FOR SEARCH SUBMIT-----------------------------------------------------------------------------------------------------------
 const form = document.getElementById("searchForm");
 const search = document.getElementById("search_input");
@@ -324,24 +288,6 @@ form.addEventListener("submit", (e) => {
 
   }
 });
-
-
-const searchButton = document.getElementById('toggle-search');
-const searchInput = document.querySelector('.search-input');
-const icon = document.getElementById("id_search_icon");
-
-searchButton.addEventListener('click', () => {
-searchInput.classList.toggle('active');
-
-// Toggle the icon between "search" and "close"
-if (searchInput.classList.contains('active')) {
-icon.innerHTML = '&#10060;'; // Close icon
-} else {
-icon.innerHTML = 'Q'; // Search icon
-}
-});
-
-
 
 // ---------------------------------------------------------------------------------------------------------------
 

@@ -1,37 +1,3 @@
-const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
-const SEARCH_MOVIE_API = "https://api.themoviedb.org/3/search/movie?&query=";
-const SEARCH_TV_API = "https://api.themoviedb.org/3/search/tv?&query=";
-
-const headers = {
-"accept": "application/json",
-"Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZjliMmUyN2MxYTZiYzMyMzNhZjE4MzJmNGFjYzg1MCIsIm5iZiI6MTcxOTY3NDUxNy4xOTYsInN1YiI6IjY2ODAyNjk1ZWZhYTI1ZjBhOGE4NGE3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RTms-g8dzOl3WwCeJ7WNLq3i2kXxl3T7gOTa8POcxcw"
-};
-
-const search_R_div = document.getElementById("Search_Results");
-
- // Extract the search term from URL parameters
- const params = getQueryParams();
- const searchTerm = params['query'];
-
- if (searchTerm) {
-   document.getElementById('result_text').innerText = `SEARCH RESULTS      :  ${searchTerm}`;
-   SearchShows(SEARCH_MOVIE_API + searchTerm, SEARCH_TV_API+searchTerm);    // code to fetch and display search results here
- } else { }
-
-
-// =========================================Function to get URL parameters ============================================
- function getQueryParams() {
-     const params = {};
-     const queryString = window.location.search.substring(1);
-     const regex = /([^&=]+)=([^&]*)/g;
-     let m;
-     while (m = regex.exec(queryString)) {
-         params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
-     }
-     return params;
- }
-
-//======================================= Search ===================================================
 // FOR SEARCH SUBMIT
 const form = document.getElementById("searchForm");
 const search = document.getElementById("search_input");
@@ -48,34 +14,19 @@ form.addEventListener("submit", (e) => {
   }
 });
 
-const searchButton = document.getElementById('toggle-search');
-const searchInput = document.querySelector('.search-input');
-const icon = document.getElementById("id_search_icon");
 
-searchButton.addEventListener('click', () => {
-searchInput.classList.toggle('active');
+const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
+const SEARCH_MOVIE_API = "https://api.themoviedb.org/3/search/movie?api_key=6bfaa39b0a3a25275c765dcaddc7dae7&query=";
+const SEARCH_TV_API = "https://api.themoviedb.org/3/search/tv?api_key=6bfaa39b0a3a25275c765dcaddc7dae7&query=";
 
-// Toggle the icon between "search" and "close"
-if (searchInput.classList.contains('active')) {
-icon.innerHTML = '&#10060;'; // Close icon
-} else {
-icon.innerHTML = 'Q'; // Search icon
-}
-});
-
-//======================================= ===================================================
-
-
+const search_R_div = document.getElementById("Search_Results");
 
 
 async function SearchShows(url, url2) {
-  const res1 = await fetch(url, {headers});
+  const res1 = await fetch(url);
   const data1 = await res1.json();
 
-  const response = await fetch(url, { headers });
-  const data = await response.json();
-
-  const res2 = await fetch(url2, {headers});
+  const res2 = await fetch(url2);
   const data2 = await res2.json();
   //console.log("show ", data1['results']);
   console.log("mvovie ", data2['results']);
@@ -155,7 +106,26 @@ function Search_Results_SHOW(movies) {
 }
 
 
+// Function to get URL parameters
+ function getQueryParams() {
+     const params = {};
+     const queryString = window.location.search.substring(1);
+     const regex = /([^&=]+)=([^&]*)/g;
+     let m;
+     while (m = regex.exec(queryString)) {
+         params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+     }
+     return params;
+ }
 
+ // Extract the search term from URL parameters
+ const params = getQueryParams();
+ const searchTerm = params['query'];
+
+ if (searchTerm) {
+   document.getElementById('result_text').innerText = `SEARCH RESULTS      :  ${searchTerm}`;
+   SearchShows(SEARCH_MOVIE_API + searchTerm, SEARCH_TV_API+searchTerm);    // code to fetch and display search results here
+ } else { }
 
 
 //===================================================================================================
@@ -184,6 +154,3 @@ function AddToFav(movie){
 function PlayTrailer(movie){
     console.log("Trailer :" , movie);
 }
-
-//====================================================================
-
