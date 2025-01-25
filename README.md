@@ -3,7 +3,8 @@ This desktop application allows users to watch movies and TV shows on their comp
 
 - Live Website:  [VIEW](https://movionyx.com)
 ## Installation
-- Version 2.0    Windows os platform(2024)  : [DOWNLOAD](https://github.com/n-h-e-z-r-o-n/movie-app-website/raw/refs/heads/main/Source_code/MoviOnyx.zip)
+Latest version (2.0)
+- Version 2.0    Windows os platform(2025)  : [DOWNLOAD](https://github.com/n-h-e-z-r-o-n/movie-app-website/raw/refs/heads/main/Source_code/MoviOnyx.zip)
 - version 1.0 : Windows os platform(2024)  : [DOWNLOAD](https://github.com/ice-black/move-app/raw/main/APPS/FilmFusion.exe)
 
 - Prototype 1.0 : Windows os platform(2023)  : [ DOWNLOAD ](https://github.com/ice-black/move-app/raw/main/APPS/TX%20movies%20(0.0.1).exe)
