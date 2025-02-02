@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 public class MainActivity extends AppCompatActivity {
+    private WebView webView;
+    private GestureDetectorCompat gestureDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,11 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed(); // Exit app if no history
         }
     }
+
+
+
+
+
 
 
 
