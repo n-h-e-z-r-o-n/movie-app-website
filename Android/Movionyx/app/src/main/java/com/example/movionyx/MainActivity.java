@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                if (url.startsWith("https://movionyx.com")) {
+                if (url.startsWith("https://movionyx")) {
                     return false; // Allow loading
                 } else {
                     Toast.makeText(MainActivity.this, "Redirect Blocked!", Toast.LENGTH_SHORT).show();
