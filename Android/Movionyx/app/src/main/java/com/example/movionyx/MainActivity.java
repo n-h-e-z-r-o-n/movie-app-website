@@ -51,10 +51,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        WebView webView = findViewById(R.id.xvr);
+        webView.saveState(outState);
+    }
 
-
-
-
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        WebView webView = findViewById(R.id.xvr);
+        webView.restoreState(savedInstanceState);
+    }
 
 
 
