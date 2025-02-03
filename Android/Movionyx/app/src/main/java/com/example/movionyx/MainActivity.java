@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
         webSettings.setJavaScriptEnabled(true); // Enable JavaScript if needed
         webSettings.setDomStorageEnabled(true); // Enable local storage if needed
+        webSettings.setMediaPlaybackRequiresUserGesture(false); // Allow auto-play videos
+
         webView.setWebViewClient(new WebViewClient()); // Ensures links open in WebView
 
         //webView.loadUrl("https://movionyx.com"); // Replace with your URL
@@ -38,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         webView.loadUrl("https://movionyx.com"); // Change to your website
-
     }
 
     @Override
