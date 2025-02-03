@@ -64,4 +64,20 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+
+        super.onSaveInstanceState(outState);
+        webView.saveState(outState); // Save WebView state
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (webView.canGoBack()) {
+            webView.goBack(); // Go back in WebView history
+        } else {
+            super.onBackPressed(); // Exit app if no history
+        }
+    }
+
 }
