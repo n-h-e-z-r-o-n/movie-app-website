@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
 
         //webView.loadUrl("https://movionyx.com"); // Replace with your URL
 
+        webView.setWebChromeClient(new CustomWebChromeClient(MainActivity.this)); // Ensures links open in WebView
+
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
