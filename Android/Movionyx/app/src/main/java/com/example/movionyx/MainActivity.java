@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.VideoView;
 import android.webkit.WebViewClient;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         WebView webView = findViewById(R.id.xvr);
+        VideoView fullScreenContainer = findViewById(R.id.fullscreen_container);
+
+
+
         WebSettings webSettings = webView.getSettings();
 
         webSettings.setJavaScriptEnabled(true); // Enable JavaScript if needed
@@ -30,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         webView.setWebViewClient(new WebViewClient() {
 
-            
+
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 if (url.startsWith("https://movionyx.com")) {
