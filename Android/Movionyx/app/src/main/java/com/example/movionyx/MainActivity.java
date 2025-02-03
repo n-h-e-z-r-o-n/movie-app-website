@@ -24,11 +24,13 @@ public class MainActivity extends AppCompatActivity {
         webSettings.setJavaScriptEnabled(true); // Enable JavaScript if needed
         webSettings.setDomStorageEnabled(true); // Enable local storage if needed
         webSettings.setMediaPlaybackRequiresUserGesture(false); // Allow auto-play videos
-
         webView.setWebViewClient(new WebViewClient()); // Ensures links open in WebView
 
         //webView.loadUrl("https://movionyx.com"); // Replace with your URL
+
         webView.setWebViewClient(new WebViewClient() {
+
+            
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 if (url.startsWith("https://movionyx.com")) {
