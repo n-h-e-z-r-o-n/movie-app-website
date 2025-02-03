@@ -29,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
         webSettings.setJavaScriptEnabled(true); // Enable JavaScript if needed
         webSettings.setDomStorageEnabled(true); // Enable local storage if needed
         webSettings.setMediaPlaybackRequiresUserGesture(false); // Allow auto-play videos
+
+        webView.getSettings().setAllowFileAccess(false);
+        webView.getSettings().setAllowContentAccess(false);
         webView.setWebViewClient(new WebViewClient()); // Ensures links open in WebView
 
         //webView.loadUrl("https://movionyx.com"); // Replace with your URL
