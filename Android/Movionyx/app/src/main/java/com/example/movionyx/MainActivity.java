@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         WebView webView = findViewById(R.id.xvr);
-        VideoView fullScreenContainer = findViewById(R.id.fullscreen_container);
+
 
 
 
