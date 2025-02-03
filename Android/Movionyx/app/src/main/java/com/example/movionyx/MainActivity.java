@@ -34,8 +34,6 @@ public class MainActivity extends AppCompatActivity {
         //webView.loadUrl("https://movionyx.com"); // Replace with your URL
 
         webView.setWebViewClient(new WebViewClient() {
-
-
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 if (url.startsWith("https://movionyx.com")) {
