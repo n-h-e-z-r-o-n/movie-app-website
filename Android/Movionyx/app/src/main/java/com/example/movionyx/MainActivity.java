@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         WebSettings webSettings = webView.getSettings();     // getting web settings.
-
         webSettings.setJavaScriptEnabled(true); // Enable JavaScript if needed
         webSettings.setDomStorageEnabled(true); // Enable local storage if needed
         webSettings.setMediaPlaybackRequiresUserGesture(false); // Allow auto-play videos
