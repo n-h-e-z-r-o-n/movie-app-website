@@ -13,11 +13,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:layout_editor_absoluteY="0dp">
 
-        <VideoView
-            android:id="@+id/fullscreenContainer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_x="154dp"
-            android:layout_y="66dp" />
     </WebView>
+
+    <FrameLayout
+        android:id="@+id/fullscreenContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
