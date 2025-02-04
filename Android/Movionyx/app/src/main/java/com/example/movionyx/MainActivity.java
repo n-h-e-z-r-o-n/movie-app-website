@@ -4,10 +4,15 @@ import android.os.Bundle;
 import android.widget.Toast;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.widget.VideoView;
 import android.webkit.WebViewClient;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+
+
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.NetworkCapabilities;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -36,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
         //webView.loadUrl("https://movionyx.com"); // Replace with your URL
 
         webView.setWebChromeClient(new CustomWebChromeClient(MainActivity.this)); // Ensures links open in WebView
-
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -48,7 +52,13 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        webView.loadUrl("https://movionyx.com"); // Change to your website
+        //webView.loadUrl("https://movionyx.com"); // Change to your website
+
+        if (isNetworkAvailable()) {
+            webView.loadUrl("https://movionyx.com");
+        } else {
+            loadOfflinePage();
+        }
     }
 
 
@@ -70,6 +80,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager != null) {
+            NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+            return networkInfo != null && networkInfo.isConnected();
+        }
+        return false;
+    }
 
-
+    private void loadOfflinePage() {
+        //webView.loadUrl("file:///android_asset/offline.html");
+        //Toast.makeText(this, "No internet connection!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, "No internet connection!", Toast.LENGTH_LONG).show();
+    }
 }
