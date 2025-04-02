@@ -1,0 +1,995 @@
+
+:root {
+--global-color-bg:  hsl(222, 25%, 10%)  ; /* #050301     #1D2951  #003153  #0F0404;*/
+--global-color-fg: white ;
+--color_theme:  hsl(186 100% 69%);
+--section_header_color: #020403; /*#1B1B1B;*/
+--Brand_Color:   #00BFFF;
+--Brand_Image:  linear-gradient(to bottom, rgba(0,0,0,0), var(--global-color-bg)), url("./Assets/xr.jpg");
+}
+
+body , html {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  height: 100%;
+  width: 100%;
+  background-color : var(--global-color-bg);
+}
+
+
+
+/*=================================================================================================================== */
+
+
+.Info_container {
+  position: absolute;
+  z-index: 1;
+  top: 32px;
+  left: 3%;
+  background: #272322;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  -webkit-border-radius: 20px;
+  transform: translateZ(0);
+  overflow: hidden;
+  will-change: width, height;
+  -webkit-will-change: width, height;
+  cursor: pointer;
+  transition: 0.6s cubic-bezier(.17,1,.33,1);
+  backdrop-filter: blur(201px);
+  background-color:  var(--global-color-bg);
+  font-size: 2em;
+  display: none;
+
+}
+
+
+
+.Info_container.active {
+  width: 94%;
+  height: auto;
+  aspect-ratio: 1;
+  transition: 1s cubic-bezier(.17,1,.33,1);
+  cursor: auto;
+  background-color:  var(--global-color-bg);
+  box-shadow: 0 1px 20px var(--Brand_Color);
+  font-size: 1em;
+
+}
+
+.Info_container_toggle {
+  position: absolute;
+  z-index: 1;
+  top: 0px;
+  left: 0px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  opacity: 1;
+  cursor: pointer;
+  transition: 0.2s all;
+  backdrop-filter: blur(24000px);
+  background-color:  var(--global-color-bg);
+  color: var(--global-color-fg);
+  font-size: 0.9em;
+  font-family: 'Times New Roman';
+}
+
+.Info_container.active .Info_container_toggle {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(24000px);
+  transform: rotate(45deg);
+  color: red;
+  font-size: 2em;
+  font-family: 'Cooper Black';
+}
+
+
+
+.Info_container_toggle_content {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  display: none;
+  transform: scale(0.8);
+  transform-origin: top left;
+  transition: transform 1s cubic-bezier(.16,.61,.23,1);
+  overflow:scroll;
+  flex-wrap: wrap;
+  padding-bottom: 60px;
+  backdrop-filter: blur(24000px);
+  margin-bottom: 5px;
+}
+
+.Info_container.active .Info_container_toggle_content {
+  display: flex;
+}
+
+.Info_container.active .Info_container_toggle_content {
+  transform: scale(1);
+}
+
+.Info_container_toggle_content_image{
+      width:100%;
+      height:250px;
+      background-repeat: no-repeat;
+
+
+}
+
+.Info_container_toggle_content_headline{
+          display: flex;
+          width: 94%;
+          margin: auto;
+          padding-bottom: 10px;
+}
+
+.Info_container_toggle_content_headline .title{
+      display: flex;
+      font-size: 1.5em;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Consolas';
+}
+
+.Info_container_toggle_content_headline .rating{
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-left: auto;
+          color: gray;
+          font-family: 'Courier New';
+          font-size: 1em;
+}
+
+
+.Info_container_toggle_content_PG{
+          display: flex;
+          width: 94%;
+          color: gray;
+          font-family: 'Courier New';
+          margin: auto;
+          padding-bottom: 10px;
+}
+
+.Info_container_toggle_content_SHOW_SUMMARY{
+    display: flex;
+    width: 54%;
+    font-family: 'Calibri Light';
+    color: var(--global-color-fg);
+
+    font-size: 1em;
+    padding-bottom: 10px;
+    text-align: justify;
+    margin-left: 3%;
+    margin-right: auto;
+
+}
+
+.Info_container_show_data {
+   display: flex;
+   width: auto;
+   margin: auto;
+   align-items: center;
+   width: 96%;
+   gap: 1.5%;
+   margin-bottom: 5%;
+   z-index: 1000;
+}
+
+.Info_container_toggle_content_elements{
+    display: flex;
+    width: 94%;
+    margin: auto;
+    padding-bottom: 10px;
+    color: gray;
+    font-size: 1em;
+
+}
+
+.watch_image_s {
+      height: 40%;
+      width:  25%;
+      object-fit: fit;
+      filter: brightness(100%);
+      border-radius: 10px 10px 10px 10px;
+      transition: all 0.2s;
+      background-position: center;
+      margin-right: 2%;
+      margin-left: auto;
+      margin-top: 2%;
+      margin-bottom: 2%;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+}
+
+
+
+
+/* ================================================================================================================== */
+/* ================================================================================================================== */
+
+
+.uuux {
+    width:  100%;
+    /*height: 70vh;*/
+    padding-top: 85px;
+
+    background: linear-gradient(to bottom, rgba(0,0,0,0), var(--global-color-bg)), url("./Assets/watch_page_1.jpg");
+    background-size: 100%;
+    background-size: cover;
+    object-fit: fit;
+
+    backdrop-filter: blur(5px);
+    image-rendering = 'high-quality';
+    isolation: isolate;
+    /*
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    */
+    animation:backAn_ 100s infinite;
+}
+
+@keyframes backAn_{
+  0%   { background-size:100% }
+  50%   { background-size:150% }
+  100%   { background-size:100% }
+}
+
+
+
+.watch_container{
+    /*height: 98%;*/
+    width:  80%;
+    aspect-ratio: 16 / 9;
+    max-height: 1800px;
+    max-width: 2800px;
+    background-color: #050301;
+    box-sizing: border-box;
+    background-position: center;
+    background-size: cover;
+    box-shadow: 2px 3px 12px rgba(0, 0, 0, .4);
+    position: relative;
+
+    margin: auto;
+     margin-bottom: 0px;
+}
+
+
+
+.poster_container {
+  width: 65%;
+  height: 100%;
+
+}
+
+.container_d1 {
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 10;
+  bottom: 7%;
+  left: 4%;
+  color: var(--global-color-fg);
+  text-align: center;
+  justify-content: left;
+  outline: none;
+  gap: 10%;
+  background: transparent;
+
+ }
+
+
+.watch_Now_btn{
+  border: 1px solid white;
+  border-radius: 4px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  outline: none;
+  box-shadow: 0 0 10px rgba(0,0,0,.5);
+  transition: all .3s;
+  white-space: nowrap;
+  font-size: 0.95em;
+  padding: 5% 5%;
+  background: transparent;
+
+}
+
+.watch_Now_btn:hover {
+  background: white;
+  color: var(--Brand_Color);
+  box-shadow: 0 0 10px white;
+  mix-blend-mode: screen;
+
+}
+
+
+.Favorite_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+
+  color: white;
+  background: transparent;
+  padding: 5%;
+  text-align: center;
+  outline: none;
+  box-shadow: 0 0 10px rgba(0,0,0,.5);
+  transition: all .2s;
+  font-size: 1.5em;
+}
+
+.Favorite_btn:hover {
+  background: white;
+  color: red;
+  box-shadow: 0 0 10px white;
+  mix-blend-mode: screen;
+}
+.Favorite_btn i{
+  color: white;
+ }
+.Favorite_btn:hover *{
+  color: red;
+ }
+
+.cancel_watch{
+   z-index: 1000;
+   position: absolute;
+   top: 0;
+   right: 0;
+   display: none;
+   align-items: center;
+   justify-content: center;
+   color: white;
+   height: 40px;
+   width: 40px;
+   border-radius: 50%;
+   font-size: 1.5em;
+   font-family: 'Segoe Script';
+   transition: 1s cubic-bezier(.17,1,.33,1);
+   margin-bottom: auto;
+   background: transparent;
+   animation: cancel_flicker 2s infinite;
+}
+
+.cancel_watch:hover {
+   color: red;
+}
+
+
+/* =========================================================================================================== */
+.info_section {
+  position: absolute;
+  width: 40%;
+  height: 100%;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
+  overflow: scroll;
+  y-scroll: hidden;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.info_section::-webkit-scrollbar {
+    display: none;
+}
+
+
+.watch_image {
+      height: 40%;
+      width:  60%;
+      object-fit: fit;
+      filter: brightness(100%);
+      border-radius: 10px 10px 10px 10px;
+      transition: all 0.2s;
+      background-position: center;
+      margin-right: 2%;
+      margin-left: auto;
+      margin-top: 2%;
+      margin-bottom: 2%;
+}
+
+.Show_title {
+    font-family: "Castellar";
+    text-align: right;
+    color: white;
+    font-size: 1.5em;
+    animation: fadeIn 3s infinite;
+    margin-left: auto;
+    margin-right: 3%;
+    margin-bottom: 2%;
+    max-width: 80%;
+}
+
+
+.Show_Summary{
+  max-width: 50%;
+  color: white;
+  font-family: "Agency FB";
+  font-size: 0.9em;
+  letter-spacing: 1px;
+  text-align: right;
+  margin-right: 3%;
+  text-overflow: ellipsis;
+  margin-left: auto;
+  margin-bottom: 5%;
+}
+
+.show_data{
+   height: 0%;
+   margin-left: auto;
+   display: flex;
+   align-items: center;
+   justify-content: flex-end;
+   margin-right: 3%;
+   gap: 1%;
+   margin-bottom: 2%;
+}
+.show_type{
+   border-radius: 5%;
+   color: gray;
+   padding: 1%;
+   white-space: nowrap;
+   font-family: "Arial Black";
+   font-size: 1em;
+}
+.show_pg {
+   border-radius: 5%;
+   background-color: var(--Brand_Color);
+   color: var(--global-color-fg);
+   padding: 1%;
+   white-space: nowrap;
+   font-family: "Arial Black";
+   font-size: 1em;
+}
+
+.show_HD{
+   border-radius: 5%;
+   background-color: gray;
+   color: var(--global-color-bg);
+   padding: 1%;
+   white-space: nowrap;
+   font-family: "Arial Black";
+   font-size: 1em;
+}
+.show_MIN{
+   border-radius: 5%;
+   background-color: green;
+   color: white;
+   padding: 1%;
+   white-space: nowrap;
+   font-family: "Arial Black";
+   font-size: 1em;
+}
+
+
+.show_rating{
+   border-radius: 5%;
+   background-color: #FFD700;
+   color: black;
+   padding: 1%;
+   white-space: nowrap;
+   font-family: "Arial Black";
+   font-size: 1em;
+}
+.show_Premiered{
+   border-radius: 5%;
+   border: 1px solid gray;
+   color: gray;
+   padding: 1%;
+   white-space: nowrap;
+
+}
+
+.show_genres {
+    font-family: "Courier New";
+    text-align: right;
+    color: var(--global-color-fg);
+    font-size: 0.85em;
+    margin-left: auto;
+    margin-right: 3%;
+    margin-bottom: 2%;
+    text-overflow: ellipsis;
+    opacity: 0.5;
+}
+
+.show_production{
+    width: 60%;
+    font-family: "Courier New";
+    text-align: right;
+    color: var(--global-color-fg);
+    font-size: 0.85em;
+    margin-left: auto;
+    margin-right: 3%;
+    margin-bottom: 2%;
+    text-overflow: ellipsis;
+    opacity: 0.5;
+}
+
+
+.watch_Frame{
+    top: 0;
+    z-index: 20;
+    position: absolute;
+    background-color: black;
+    color: gray;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    display: none;
+    justify-content: center;
+    background: black;
+    border: 0px solid black;
+}
+
+
+
+
+.iframe_watch {
+    width: 100%;
+    height: 100%;
+    border: 0px solid black;
+}
+
+
+/* ================================================================================================================== */
+/* ================================================================================================================== */
+
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}
+
+
+/* ================================================================================================================== */
+/* ================================================================================================================== */
+
+.seasons{
+    width:  80%;
+    height: 350px;
+    max-width: 2800px;
+    max-height: 360px;
+
+     display: none;
+     align-item: center;
+     margin-left: auto;
+     margin-right: auto;
+     margin-top: 1%;
+}
+
+
+
+.seasons_container {
+    width: 20%;
+    min-width: 190px;
+    height: 100%;
+    position: relative;
+}
+
+
+.Selected_Season {
+     width: auto;
+     height:20px;
+     font-size: 1em;
+     font-family: cursive;
+     display: flex;
+     align-items: center;
+     text-align: center;
+     justify-content: center;
+     cursor: pointer;
+     color: var(--global-color-fg);
+     border: 0px solid var(--global-color-fg);
+     border-radius: 2px;
+
+     margin-left: auto;
+     margin-right: auto;
+     margin-bottom: 5%;
+     margin-top: 2%;
+}
+
+.Selected_Season_img{
+   width: 190px;
+   height: 240px;
+
+   align-item: center;
+   text-align: center;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+
+
+.season-selector {
+   width : 100%;
+   z-index: 1;
+   position: absolute;
+   background: transparent;
+   backdrop-filter: blur(11px);
+   max-height:300px;
+   overflow: scroll;
+   box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.5);
+   overflow-x: hidden;
+   display: none;
+
+}
+
+
+
+
+ .season-selector div {
+      width: 180px;
+      padding-left: 30px;
+      font-size: 1em;
+      font-family: 'Times New Roman';
+      margin:auto;
+      width: 100%;
+      color: var(--global-color-fg);
+      white-space: nowrap;
+        text-overflow: ellipsis;
+        display: block;
+}
+
+.season-selector div:hover {
+    padding-left: 40px;
+    transition: all 0.2s ease;
+}
+
+
+
+
+
+.episodes_container {
+
+    width: auto;
+    min-width: 50%;
+    height: 100%;
+    display: flex;
+    margin-left: 2%;
+    align-items: center;
+    justify-content: center;
+
+
+}
+
+
+.episodes {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    overflow:scroll;
+}
+
+
+
+.episodes_each {
+    width: auto;
+    height: 8%;
+    padding: 1% 1%;
+    margin: 1%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+    border: 0.1px solid transparent;
+    text-align: center;
+    font-size: 1em;
+    font-family: cursive;
+    white-space: nowrap;
+    color: var(--global-color-fg);
+}
+
+.episodes_each:hover {
+    border: 0.1px solid var(--Brand_Color);
+}
+
+.episodes_each_not_out {
+   opacity: 0.4;
+}
+
+.episodes_each_not_out:hover {
+    border: 0.1px solid gray;
+}
+
+
+.episodes_each_select{
+   background-color: var(--Brand_Color);
+}
+
+/* ------------------------------------------------------------------------------------------------------------*/
+/* ------------------------------------------------------------------------------------------------------------*/
+
+.watch_recommendation {
+  height: auto;
+  width:   96%;
+  padding-top: 20px;
+  margin-left: 2%;
+  margin-right: 2%;
+
+}
+
+.REM_container {
+  height: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-item: center;
+  justify-content: center;
+  overflow: hidden;
+  padding-bottom:60px;
+}
+
+.REM_container .box {
+  position: relative;
+  width: 275px;
+  height: 330px;
+  background: transparent;
+  transition: 0.5s;
+  transform-style: preserve-3d;
+  overflow: hidden;
+  margin-right: 15px;
+  margin-top: 45px;
+  border-radius: 10px;
+}
+.REM_container:hover .box {
+  transform: rotateY(0.2deg);
+}
+.REM_container .box:hover ~ .box {
+  transform: rotateY(-0.2deg);
+}
+.REM_container .box:hover {
+  transform: rotateY(0deg) scale(1.25);
+  box-shadow: 0 25px 40px rgba(0,0,0,0.5);
+}
+.REM_container .box .imgBx {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.REM_container .box .imgBx:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg,var(--Brand_Color), black);
+  z-index: 1;
+  opacity: 0;
+  transition: 0.5s;
+  mix-blend-mode: multiply;
+}
+
+.REM_container .box:hover .imgBx:before {
+  opacity: 1;
+}
+.REM_container .box .imgBx img {
+
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.REM_container .box .content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: flex;
+  padding: 20px;
+  align-items: flex-end;
+  box-sizing: border-box;
+}
+.REM_container .box .content h2 {
+  color: #fff;
+  transition: 0.5s;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  font-size: 20px;
+  transform: translateY(200px);
+  transition-delay: 0.3s;
+}
+.REM_container .box:hover .content h2 {
+  transform: translateY(0px);
+}
+.REM_container .box .content p {
+  color: #fff;
+  transition: 0.5s;
+  font-size: 10px;
+  transform: translateY(200px);
+  transition-delay: 0.4s;
+}
+.REM_container .box:hover .content p {
+  transform: translateY(0px);
+}
+/*------------------------------------------------------------------------------------------------------------*/
+
+@keyframes cancel_flicker {
+  0%, 100% {
+    color: red;
+    text-shadow: 0 0 5px red, 0 0 10px red, 0 0 20px red;
+  }
+  50% {
+    color: red;
+    text-shadow: 0 0 2px red, 0 0 5px red;
+  }
+  25%, 75% {
+    color: red;
+    text-shadow: none;
+  }
+}
+
+/*------------------------------------------------------------------------------------------------------------*/
+
+@media (max-width: 968px) {
+
+   .uuux {
+    padding-top: 80px;
+    width:  100%;
+    /*height: 35vh;*/
+    }
+
+
+  .watch_container{
+      width:  94%;
+      aspect-ratio: 16 / 9;
+      border: 0px solid;
+  }
+
+  .poster_container {
+      width: 100%;
+      height: 100%;
+  }
+
+  .watch_Frame{
+    top: 0;
+    z-index: 20;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: none;
+    border: 0px solid;
+  }
+  .seasons{
+    width:  100%;
+    height: 290px;
+    max-width: 2800px;
+    max-height: 300px;
+    display: none;
+    margin-top: 1%;
+  }
+  .seasons_container {
+    width: 20%;
+    min-width: 120px;
+    height: 100%;
+    position: relative;
+  }
+  .Selected_Season_img{
+   width:  110px;
+   height: 180px;
+   align-item: center;
+   text-align: center;
+   margin-left: auto;
+   margin-right: auto;
+   border-radius: 5px;
+  }
+
+  .episodes {
+    height: 70%;
+  }
+  .episodes_each {
+    font-size: .85em;
+  }
+
+   .info_section{
+     display: none;
+   }
+
+  .Info_container {
+     display: flex;
+  }
+
+
+
+
+
+    .cancel_watch{
+        position: fixed;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background: var(--global-color-bg);
+        color: var(--global-color-fg);
+        width: 50px;
+        height: 50px;
+        left: 18%;
+        top: 32px;
+        font-size: 1.5em;
+        -webkit-border-radius: 20px;
+        font-family: 'Segoe Script';
+        backdrop-filter: blur(201px);
+        transition: 1s cubic-bezier(.17,1,.33,1);
+    }
+
+
+
+   .REM_container .box {
+        position: relative;
+        width: 190px;
+        height: 250px;
+        background: transparent;
+        transition: 0.5s;
+        transform-style: preserve-3d;
+        overflow: hidden;
+        border-radius: 5px;
+        margin: auto;
+        margin-top: 9px;
+        margin-bottom: 9px;
+   }
+
+    .REM_container .box:hover {
+      transform: rotateY(0deg);
+      box-shadow: 0 25px 40px var(--Brand_Color);
+
+    }
+
+}
+
+/* =================================================================================================================== */
+
+.ad-banner, .ad-sidebar, iframe[src*="ads.com"] {
+  display: none !important;
+}
+
+.no-select { /*prevent users from selecting or highlighting text within the elements*/
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* Internet Explorer/Edge */
+    user-select: none;         /* Standard syntax */
+
+}
+
+
+
+
+
+
+
+
+
+
+

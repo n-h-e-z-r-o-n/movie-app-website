@@ -1,0 +1,71 @@
+
+.Favorites_Container{
+    height: auto;
+    width:  100%;
+    padding-bottom: 60px;
+    margin-top: 88px;
+    background: transparent;
+
+}
+.bar_section {
+  display: flex;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 100%;
+  gap:20%;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.text_container{
+   font-family: cursive;
+   font-size: 1em;
+   background: transparent;
+   color: var(--global-color-fg);
+ }
+.text_container:hover{
+  color: var(--Brand_Color);
+}
+
+
+.Watch_List_container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    gap: auto;
+    background: transparent;
+}
+
+
+.remove_fave {
+  position: absolute;
+  right: 3.5%;
+  font-family: cursive;
+  color: gray;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1;
+  font-weight: 900;
+}
+
+.remove_fave:hover{
+  color: red;
+  animation: pulse_glow 1.5s infinite ease-in-out;
+
+}
+
+/* Smoother animation with consistent glow */
+@keyframes pulse_glow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    text-shadow: 0 0 8px rgba(255, 0, 0, 0.8);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+    text-shadow: 0 0 12px rgba(255, 0, 0, 1);
+  }
+}

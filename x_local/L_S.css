@@ -1,0 +1,311 @@
+:root {
+--global-color-bg:   #050301     ; /* #1D2951  #003153  #0F0404;*/
+--global-color-fg: white ;
+--color_theme:  hsl(186 100% 69%);
+--section_header_color: #020403; /*#1B1B1B;*/
+--Brand_Color:   #00BFFF;
+}
+
+body , html {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color : var(--global-color-bg);
+  background: var(--global-color-bg);
+  Background:  url("./Assets/L_S.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  Background-size:  cover;
+}
+
+*{
+  color: var(--global-color-fg);
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  -webkit-backdrop-filter: blur(240px); /* Add this line */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
+
+
+
+
+.Login_container {
+  display: block;
+  height: 50%;
+  min-height: 350px;
+  aspect-ratio: 1;
+  padding: 40px;
+  padding-top: 80px;
+  box-sizing: border-box;
+  background: rgba(57, 89, 116, 0.8);
+  box-shadow: 1px 1px 10px 1px #000000, 8px 8px 0px 0px #344454, 12px 12px 10px 0px #000000;
+  box-shadow: 1px 1px 4px 0px #000000, 8px 8px 0px 0px #a2703f, 9px 9px 4px 0px #000000, 16px 16px 0px 0px rgba(172, 65, 31, 0.5), 17px 17px 7px 1px #000000;
+  position: relative;
+}
+
+.logo{
+
+   height:65px;
+   aspect-ratio: 21/9;
+   border-radius: 0%;
+   position: absolute;
+   background: inherit;
+   z-index: 100;
+   top: -30px;
+   left: 0;
+   transform: translateX(-50%);
+   left: 50%;
+   backdrop-filter: blur(240px);
+   background:  url("./Assets/text_logo.png");
+   background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+}
+
+
+.Login_container .input_form{
+   width: 100%;
+   height: 15%;
+   display: flex;
+   outline: none;
+   align-items: center;
+   justify-content: center;
+   font-size: 1.5em;
+   font-family: 'sans-serif';
+   margin-bottom: 5%;
+   border-radius: 10px;
+   background: transparent;
+   backdrop-filter: blur(240px);
+   border: 0.5px solid rgba(57, 89, 116, 0.8);
+   padding-left: 2%;
+}
+
+.Login_container .input_form:focus {
+    border-color: var(--Brand_Color); /* Assuming this is a CSS variable defined elsewhere */
+    color: var(--global-color-fg); /* Assuming this is a CSS variable defined elsewhere */
+    cursor: pointer;
+}
+
+.Login_btn{
+   width: 100%;
+   height: 15%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 1.5em;
+   font-family: 'Georgia';
+   margin-bottom: 5%;
+   margin-top: 15%;
+   border-radius: 10px;
+   background: rgba(57, 89, 116, 0.8);
+   backdrop-filter: blur(240px);
+   border: 1px solid rgba(57, 89, 116, 0.8);
+   padding-left: 2%;
+   user-select: none;
+  }
+
+
+
+.Login_others{
+        user-select: none;
+        color: gray;
+        margin-bottom: 1%;
+        margin-top: 1%;
+        font-size: 1em;
+        font-family: ' ';
+        color: #a2703f;
+}
+
+.Register_container {
+  display: none;
+  height: 50%;
+   min-height: 350px;
+  aspect-ratio: 1;
+  padding: 40px;
+  box-sizing: border-box;
+  background: rgba(162, 112, 63, 0.8) ;
+  /*box-shadow: 1px 1px 10px 1px #000000, 8px 8px 0px 0px #344454, 12px 12px 10px 0px #000000;*/
+  box-shadow: 1px 1px 4px 0px #000000, 8px 8px 0px 0px rgba(57, 89, 116, 0.8), 9px 9px 4px 0px #000000, 16px 16px 0px 0px  rgba(172, 65, 31, 0.5) , 17px 17px 7px 1px #000000;
+  position: relative;
+}
+
+.Register_container .input_form{
+   width: 100%;
+   height: 15%;
+   outline: none;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 1.5em;
+   font-family: ' ';
+   margin-bottom: 2%;
+   border-radius: 10px;
+   background: transparent;
+   backdrop-filter: blur(240px);
+   border: 1px solid rgba(162, 112, 63, 0.8);
+   padding-left: 2%;
+}
+
+
+.Sign_up_btn{
+   width: 100%;
+   height: 15%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 1.5em;
+   font-family: 'Georgia';
+   margin-bottom: 4%;
+   margin-top: 4%;
+   border-radius: 10px;
+   background: rgba(162, 112, 63, 0.8);
+   backdrop-filter: blur(240px);
+   border: 1px solid rgba(162, 112, 63, 1);
+   padding-left: 2%;
+   user-select: none;
+  }
+
+ .Sign_up_others{
+    user-select: none;
+    color: gray;
+     margin-bottom: 1%;
+     margin-top: 1%;
+     font-size: 1em;
+     font-wight: 400px;
+     font-family: 'Candara';
+     color: rgba(57, 89, 116, 0.8);
+  }
+
+
+ .Forgot_password_container  {
+  display: none;
+  height: 50%;
+   min-height: 350px;
+  aspect-ratio: 1;
+  padding: 40px;
+  padding-top: 80px;
+  box-sizing: border-box;
+  background: rgba(172, 65, 31, 0.8) ;
+  /*box-shadow: 1px 1px 10px 1px #000000, 8px 8px 0px 0px #344454, 12px 12px 10px 0px #000000;*/
+  box-shadow: 1px 1px 4px 0px #000000, 8px 8px 0px 0px rgba(57, 89, 116, 0.8), 9px 9px 4px 0px #000000, 16px 16px 0px 0px  rgb(162, 112, 63) , 17px 17px 7px 1px #000000;
+  position: relative;
+}
+
+.Forgot_password_container .input_form{
+   width: 100%;
+   height: 15%;
+   display: flex;
+   outline: none;
+   align-items: center;
+   justify-content: center;
+   font-size: 1.5em;
+   font-family: ' ';
+   margin-bottom: 10%;
+   border-radius: 10px;
+   background: transparent;
+   backdrop-filter: blur(240px);
+   border: 1px solid rgba(172, 65, 31, 0.5);
+   padding-left: 2%;
+}
+
+.Forgot_password_btn{
+   width: 100%;
+   height: 15%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 1.5em;
+   font-family: 'Georgia';
+   margin-bottom: 4%;
+   margin-top: 4%;
+   border-radius: 10px;
+   background: rgb(172, 65, 31);
+   backdrop-filter: blur(240px);
+   border: 1px solid rgb(172, 65, 31);
+   padding-left: 2%;
+   user-select: none;
+  }
+
+.Forgot_password_others {
+     user-select: none;
+     color: gray;
+     margin-bottom: 1%;
+     margin-top: 1%;
+     font-size: 1em;
+     font-wight: 400px;
+     font-family: 'Candara';
+     color: rgba(57, 89, 116, 0.8);
+  }
+
+.shift_container{
+  position: absolute;
+  bottom: 2.5%;
+}
+.error {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: 0.95em;
+    color:  #420D09;
+    font-family: '';
+}
+
+.loading_active{
+      background: linear-gradient(-190deg, transparent 50%, #005A92 50%);
+      background-size: 200% 100%;
+      background-position: right;
+      transition: background-position 20s linear;
+}
+
+
+  /*==========    SMALL DEVICES    ================================================================  = */
+
+
+@media (max-width: 968px) {
+
+
+    body , html {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color : var(--global-color-bg);
+      background: var(--global-color-bg);
+      Background:  url("./Assets/L_S_2.jpg");
+      background-repeat: no-repeat;
+      background-position: right;
+      Background-size:  cover;
+    }
+    .Login_container {
+      display: block;
+      height: auto;
+      width: 90%;
+    }
+    .Forgot_password_container {
+      height: auto;
+      width: 90%;
+    }
+    .Register_container {
+      height: auto;
+      width: 90%;
+    }
+}
+
