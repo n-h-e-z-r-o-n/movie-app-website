@@ -169,7 +169,7 @@ function Search_Results_SHOW(movies) {
     `;
     // Add event listener to open another page when clicked
     movieItem.addEventListener("click", () => {
-         window.location.href = "watch_page.html?id=" + id + "&type="+r_type;
+         window.location.href = "watch.html?id=" + id + "&type="+r_type;
        });
 
     const FaveButton = movieItem.querySelector(".remove_fave");
