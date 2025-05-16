@@ -57,6 +57,13 @@
     padding: 20px; /* Recommended for container spacing */
     box-sizing: border-box; /* Ensures padding doesn't affect width */
 }
+.profile_section_1{
+     width: 600px;
+     height: 100%;
+     background: green;
+     margin: auto;
+
+}
 
 .massages_container {
     display: flex;
