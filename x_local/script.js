@@ -1,9 +1,21 @@
+/*
+function loadCSS(filePath) {
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.type = "text/css";
+    link.href = filePath;
+    document.head.appendChild(link);
+}
 
-
-
+loadCSS("./shared.css");
+loadCSS("./custon.css");
+loadCSS("./NavBar.css");
+*/
 //========================Access Details ==================================================================
 
-const Movies_API_URL =   "https://api.themoviedb.org/3/discover/movie?";
+let  Movies_API_URL =   "https://api.themoviedb.org/3/discover/movie?";
+
+
 let Trending_API_URL =   "https://api.themoviedb.org/3/trending/all/day?primary_release_year=2025"
 const popular = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1'
 const top_rated  =  'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1'
@@ -14,7 +26,7 @@ const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
 
 
 
-const headers = {
+var  headers = {
   "accept": "application/json",
   "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZjliMmUyN2MxYTZiYzMyMzNhZjE4MzJmNGFjYzg1MCIsIm5iZiI6MTcxOTY3NDUxNy4xOTYsInN1YiI6IjY2ODAyNjk1ZWZhYTI1ZjBhOGE4NGE3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RTms-g8dzOl3WwCeJ7WNLq3i2kXxl3T7gOTa8POcxcw"
 };
@@ -306,7 +318,7 @@ function AutoScroll_TRENDING() {
 
         // Add event listeners to each right arrow
         arrowsRight.addEventListener("click", () => {
-              console.log("arrowsRight");
+              //console.log("arrowsRight");
               stopAutoScroll();
               movieLists.scrollBy({
                     left: scrollAmount,
@@ -473,32 +485,54 @@ function Slider_Display(movies, show_type) {
 
 
 async function Latest_Movies(event, page, type) {
-  try{
-    const choiceSelect = event.target;
-    const choiceDivs = document.querySelectorAll('.show_title_section_movie button');
-    choiceDivs.forEach(div => div.classList.remove('selected_glow'));
-    choiceSelect.classList.add('selected_glow');
-  } catch{console.log();}
 
   let count = 1;
   let data_json = [];
 
   while (count <= page) {
+      /*
       let res = await fetch(`https://vidsrc.xyz/movies/latest/page-${page}.json`, {"accept": "application/json",});
       let data = await res.json();
-      //console.log(data['result']);
+      console.log(data['result']);
       data_json = data_json.concat(data['result']) ;
+      */
+        let url = `https://yts.mx/api/v2/list_movies.json?page=${page}&limit=50&sort_by=year`
+        let response = await fetch(url);
+        let data = await response.json();
+        console.log("Shown data", data.data.movies);
+        data_json = data_json.concat(data.data.movies) ;
+
+
       count++;
       break;
     }
 
   let hold = [];
+  console.log(data_json.length)
   for (let i = 0; i < data_json.length; i++) {
 
-     let res2 = await fetch(`https://api.themoviedb.org/3/movie/${data_json[i]['tmdb_id']}?`, {headers});
-     let data2 = await res2.json();
-     hold.push({poster_path:data2['poster_path'], release_date:data2['release_date'], vote_average:data2['vote_average'], title:data2['title'], id:data2['id'], runtime:data2['runtime']});
-     showMovies([{poster_path:data2['poster_path'], release_date:data2['release_date'], vote_average:data2['vote_average'], title:data2['title'], id:data2['id'], runtime:data2['runtime']}]);
+
+     /*
+     medium_cover_image
+     rating
+     runtime
+     small_cover_image
+     title_english
+     */
+     let data;
+     while(true){
+        try{
+             let res = await fetch(`https://api.themoviedb.org/3/movie/${data_json[i]['imdb_code']}/external_ids`, {headers});
+             data = await res.json();
+             //console.log(data.id)
+             break
+         }catch(error){
+            await sleep(1050);
+         }
+     }
+
+     hold.push({poster_path:data_json[i]['medium_cover_image'], release_date:data_json[i]['year'], vote_average:data_json[i]['rating'], title:data_json[i]['title_english'], id:data.id, runtime:data_json[i]['runtime']});
+     showMovies([{poster_path:data_json[i]['medium_cover_image'], release_date:data_json[i]['year'], vote_average:data_json[i]['rating'], title:data_json[i]['title_english'], id:data.id, runtime:data_json[i]['runtime']}]);
   }
   Let_Movies_CK = hold;
   movie_div.innerHTML = "";
@@ -506,9 +540,13 @@ async function Latest_Movies(event, page, type) {
 }
 
 
+async function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 
-function showMovies(movies) {
+
+async function showMovies(movies) {
   movies.forEach((movie) => {
     let { title, poster_path, id, vote_average, overview, release_date, runtime } = movie;
     if(!id){
@@ -520,13 +558,11 @@ function showMovies(movies) {
     }
     const movieItem = document.createElement("div");
     movieItem.classList.add("box");
-    let  updatedString = release_date.substring(0, 4);;
-
     movieItem.innerHTML = `
         <!-- box-1  -->
 
              <div class="box-img">
-                <img class="img-on" src="${IMG_PATH + poster_path}" alt="">
+                <img class="img-on" src="${poster_path}" alt="">
                 <div class="box-img-button">
                      <div class="button_style1"></div>
                      <div class="button_style2"></div>
@@ -536,7 +572,7 @@ function showMovies(movies) {
             <div class="container_span">
                <div style="display:flex;">
                     <div  class="badge-type"> mv </div>
-                    <div class="badge-type_year">${updatedString} </div>
+                    <div class="badge-type_year">${release_date} </div>
                </div>
                <div class="badge-type_text"> ${runtime} min</div>
                <div  class="badge-type_rating"> &starf;  ${vote_average} </div>
@@ -544,7 +580,12 @@ function showMovies(movies) {
     `;
 
     const boxImg = movieItem.querySelector(".box-img");
-        boxImg.addEventListener("click", () => {
+        boxImg.addEventListener("click", async() => {
+        /*
+        let res = await fetch(`https://api.themoviedb.org/3/movie/${id}/external_ids`, {headers});
+        let data = await res.json();
+        console.log(data)
+        */
         window.location.href = "watch.html?id=" + id + "&type=movie";
     });
 
@@ -774,18 +815,41 @@ async function more_movie(){
             console.log(  '====',localStorage.getItem('movie_currentPage'))
 
             let data_json = [];
-
+            /*
             let res = await fetch(`https://vidsrc.xyz/movies/latest/page-${movie_currentPage}.json`,    {"accept": "application/json",});
             let data = await res.json();
             data_json = data_json.concat(data['result']) ;
+             */
+
+            let url = `https://yts.mx/api/v2/list_movies.json?page=${movie_currentPage}&limit=50&sort_by=year`
+            const response = await fetch(url);
+            const data = await response.json();
+            console.log("Shown data", data.data.movies);
+            data_json = data_json.concat(data.data.movies) ;
 
             let hold = [];
             for (let i = 0; i < data_json.length; i++) {
+                     /*
+                     medium_cover_image
+                     rating
+                     runtime
+                     small_cover_image
+                     title_english
+                     */
+                     let data;
+                     while(true){
+                        try{
+                             let res = await fetch(`https://api.themoviedb.org/3/movie/${data_json[i]['imdb_code']}/external_ids`, {headers});
+                             data = await res.json();
+                             //console.log(data.id)
+                             break
+                         }catch(error){
+                            await sleep(1050);
+                         }
+                     }
 
-            let res2 = await fetch(`https://api.themoviedb.org/3/movie/${data_json[i]['tmdb_id']}?`, {headers});
-            let data2 = await res2.json();
-            hold.push({poster_path:data2['poster_path'], release_date:data2['release_date'], vote_average:data2['vote_average'], title:data2['title'], id:data2['id'], runtime:data2['runtime']});
-            showMovies([{poster_path:data2['poster_path'], release_date:data2['release_date'], vote_average:data2['vote_average'], title:data2['title'], id:data2['id'], runtime:data2['runtime']}])
+                     hold.push({poster_path:data_json[i]['medium_cover_image'], release_date:data_json[i]['year'], vote_average:data_json[i]['rating'], title:data_json[i]['title_english'], id:data.id, runtime:data_json[i]['runtime']});
+                     showMovies([{poster_path:data_json[i]['medium_cover_image'], release_date:data_json[i]['year'], vote_average:data_json[i]['rating'], title:data_json[i]['title_english'], id:data.id, runtime:data_json[i]['runtime']}]);
             }
             button.innerHTML = "Show More &#x21b4;";
             button.setAttribute('data-state', 'show-more');

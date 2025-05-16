@@ -1,37 +1,51 @@
-
 const search_R_div = document.getElementById("Favorites_Results");
 const logout_btn = document.getElementById("logout_btn");
+
+const xr = document.getElementById("Account_btn");
+const xr2 = document.getElementById("Account_btnT");
+xr.style.pointerEvents = 'none';
+xr2.style.pointerEvents = 'none';
+
+
 const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
-let Favorites_Data = localStorage.getItem('Favorites');
-let U_ID = sessionStorage.getItem("U_ID");
+
+let U_ID = localStorage.getItem("U_ID");
 
 
-
-
-//console.log('U_ID :', U_ID)
-//console.log('Favorites_Data :', Favorites_Data)
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-if(U_ID){
-  getUserFavorites(Search_Results_SHOW)
-}else{
-  User_logout();
-}
-
-
-
-//let uniqueMovies = '[{"poster_path":"/bfQkqoPXUrWLxDmt71LYWp5A2uZ.jpg","release_date":"2023-10-05","vote_average":7.4,"title":"Terrestrial Verses","id":1112545,"runtime":77},{"poster_path":"/bHRPrOqLEfuTs65SJaycioH3D8v.jpg","release_date":"2024-11-01","vote_average":0,"title":"October 8","id":1383461,"runtime":100},{"poster_path":"/o8ebppnru8hDxlgCFaLSMomhhlS.jpg","release_date":"2025-03-14","vote_average":7.5,"title":"The Actor","id":800367,"runtime":98},{"poster_path":"/bkbmInoAnEaMH4oxpXAXWwKr8Kd.jpg","release_date":"2025-03-26","vote_average":6.9,"title":"A Working Man","id":1197306,"runtime":116}]';
-//Search_Results_SHOW(JSON.parse(uniqueMovies))
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 logout_btn.addEventListener("click", function() {
-      User_logout()
+        sessionStorage.clear();
+
+        localStorage.removeItem('U_ID')
+        localStorage.removeItem('user_email')
+        localStorage.removeItem('user_name')
+        localStorage.removeItem('user_watchlist')
+        localStorage.removeItem('user_massages')
+
+        window.location.href = "index.html";
 });
+
+if(U_ID){
+  getUserFavorites(Search_Results_SHOW)
+}else{
+  logout_btn.click();
+}
+
+
+
+async function getUserFavorites(passed_function) {
+
+    let watchlist = localStorage.getItem('user_watchlist');
+
+    if(watchlist){
+      let watchlist_array = JSON.parse(watchlist);
+      console.log(watchlist_array)
+      passed_function(watchlist_array);
+      console.log('fave')
+    }
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -40,7 +54,7 @@ function Search_Results_SHOW(movies) {
   console.log(movies);
   search_R_div.innerHTML = "";
   movies.forEach((movie) => {
-    const { title, original_name, poster_path, id, vote_average, overview, release_date, first_air_date , runtime, S_info} = movie;
+    let { title, original_name, poster_path, id, vote_average, overview, release_date, first_air_date , runtime, S_info} = movie;
     //console.log(movie);
     //console.log('\n original_title: ', title, '\n original_name: ', original_name, '\n poster_path: ', poster_path, '\n id: ', id, '\n vote_average: ', vote_average, '\n overview: ', overview, '\n release_date: ', release_date, '\n first_air_date: ', first_air_date , '\n runtime: ', runtime, '\n S_info: ', S_info);
 
@@ -51,7 +65,7 @@ function Search_Results_SHOW(movies) {
     let r_type;
     if (title) {
        Box_title = title;
-       date =  release_date ? release_date.substring(0, 4) : null;
+       date = release_date && typeof release_date === 'string' ? release_date.substring(0, 4) : release_date;
        type = "mv";
        r_type= 'movie'
        info = `${runtime} min` ;
@@ -65,13 +79,17 @@ function Search_Results_SHOW(movies) {
         info =  S_info ? S_info : null;
     }
 
+    if(!poster_path.startsWith('https')){
+        poster_path = IMG_PATH + poster_path
+    }
+
     const movieItem = document.createElement("div");
     movieItem.classList.add("box");
     movieItem.innerHTML = `
 
              <div class="box-img">
                 <div class='remove_fave'>X</div>
-                <img class="img-on" src="${IMG_PATH + poster_path}" alt="">
+                <img class="img-on" src="${poster_path}" alt="">
             </div>
             <div class="box_title">${Box_title}</div>
             <div class="container_span">
@@ -101,3 +119,34 @@ function Search_Results_SHOW(movies) {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+ async function RemoveFromFav(itemIdToRemove, passed_function){
+
+    let saved_Favorites_Data = JSON.parse(localStorage.getItem('user_watchlist'));
+
+    saved_Favorites_Data = saved_Favorites_Data.filter(movie => movie.id !== itemIdToRemove);
+
+    passed_function(saved_Favorites_Data);
+
+    localStorage.setItem("user_watchlist", JSON.stringify(saved_Favorites_Data));
+
+    let email = localStorage.getItem('user_email');
+    let watchlist_new =  JSON.stringify(saved_Favorites_Data);
+
+    const response = await fetch('Database/database.php', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+          },
+    body: `action=updateWatchlist&email=${encodeURIComponent(email)}&watchlist=${encodeURIComponent(watchlist_new)}`
+    });
+
+    const data = await response.json();
+
+    //console.log(data.massage)
+
+
+
+
+ }

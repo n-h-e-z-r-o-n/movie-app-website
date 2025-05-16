@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="./NavBar.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body >
+<body>
 <div class="no-select">
  <!--------- Navigation bar  ------------------------------------------------------------------------------------------------------------>
 
@@ -126,6 +126,57 @@
                 <div class="trailer_div_cancel" id="trailer_div_cancel">X</div>
                 <div class="trailer_div_iframe" id="trailer_div_iframe"> </div>
             </div>
+
+<!--  Login/SignUp section --------------------------------------------------------------------------------------------------------->
+
+<div class="Login_container" id="Login_container">
+        <div class="login_cancel"></div>
+
+        <div class="Login_container_header">
+                <div class="" id="">Login</div>
+                <div class=""  id="Register" style="opacity: 0.3;" >Sign Up</div>
+        </div>
+        <input id="login_username" autocomplete="off" class="input_form" type="text" placeholder="email" required>
+        <input id="login_password" class="input_form" type="password" placeholder="Password" required>
+        <div class="error" id="login_error_display"></div>
+	    <div  class="Login_btn" id="loginForm">Login</div>
+        <hr>
+        <div class="shift_container">
+                <div class="Login_others" id="Forgot_password">Forgot password</div>
+        </div>
+</div>
+
+
+<div class="Register_container" id="Register_container">
+        <div class="login_cancel"></div>
+        <div class="Login_container_header">
+                <div class="" id="login_change" style="opacity: 0.3;">Login</div>
+                <div class="" >Sign Up</div>
+        </div>
+        <input  id="sign_up_Name_" autocomplete="off" class="input_form" type="text" placeholder="Full Name" required>
+        <input  id="sign_up_email_" autocomplete="off" class="input_form" type="text" placeholder="Email address" required>
+        <input id='sign_up_password_' class="input_form" type="password" placeholder="Password" required>
+        <input  id='sign_up_password_confirm' class="input_form" type="password" placeholder="Confirm Password" required>
+
+        <div class="error" id="signup_error_display"></div>
+        <div  class="Sign_up_btn" id="signUpForm">Sign Up</div>
+        <hr>
+        <div class="shift_container">
+        </div>
+</div>
+
+<div class="Forgot_password_container" id="Forgot_password_container">
+        <div class="login_cancel"></div>
+        <input  id="reset_email_" autocomplete="off" class="input_form" type="text" placeholder="Email address" required>
+        <div class="error" id="Forgot_display"></div>
+
+	    <div  class="Forgot_password_btn" id="forget_p_form">Submit</div>
+        <hr>
+        <div class="shift_container">
+                <div class="Login_others" id="login_change1">Login</div>
+        </div>
+</div>
+
 
  <!--------- Section ------------------------------------------------------------------------------------------------------------>
 
@@ -575,13 +626,15 @@
 </div>
 
 
+<!--
+
 <script src="./Back_end/nav.php"></script>
 <script src="./Back_end/script.php"></script>
+-->
 
-<!--
 <script  src="./NavBar.js"></script>
 <script src="./script.js"></script>
--->
+
 
 
 </body>

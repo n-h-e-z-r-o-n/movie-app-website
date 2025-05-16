@@ -1,6 +1,6 @@
 
-let User_Saved_state = sessionStorage.getItem("U_ID");
-const headers = {
+
+var  headers = {
   "accept": "application/json",
   "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZjliMmUyN2MxYTZiYzMyMzNhZjE4MzJmNGFjYzg1MCIsIm5iZiI6MTcxOTY3NDUxNy4xOTYsInN1YiI6IjY2ODAyNjk1ZWZhYTI1ZjBhOGE4NGE3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RTms-g8dzOl3WwCeJ7WNLq3i2kXxl3T7gOTa8POcxcw"
 };
@@ -94,7 +94,7 @@ const HomeNav_btnT = document.getElementById("HomeNav_btnT");
 const Movie_btnT = document.getElementById("Movie_btnT");
 const TVSeries_btnT = document.getElementById("TVSeries_btnT");
 
-const Account_btnT = document.getElementById("Account_btnT");
+
 const Genre_divT = document.getElementById("Genre_divT");
 const Anime_btnT = document.getElementById("Anime_btnT");
 
@@ -109,13 +109,7 @@ TVSeries_btnT.addEventListener("click", function() {
    window.location.href = "view-more.html?query=show";
 });
 
-Account_btnT.addEventListener("click", function() {
-    if (User_Saved_state) {
-        window.location.href = "profile.html";
-    }else {
-        window.location.href = "L_S.html";
-    }
-});
+
 
 
 
@@ -171,7 +165,6 @@ genreElements.forEach((genreElement) => {
 const HomeNav_btn = document.getElementById("HomeNav_btn");
 const Movie_btn = document.getElementById("Movie_btn");
 const TVSeries_btn = document.getElementById("TVSeries_btn");
-const Account_btn = document.getElementById("Account_btn");
 const Anime_btn = document.getElementById("Anime_btn");
 const Reload_btn = document.getElementById("Reload_btn");
 
@@ -189,33 +182,6 @@ TVSeries_btn.addEventListener("click", function() {
 Anime_btn.addEventListener("click", function() {
    window.location.href = "anime.html";
 });
-
-Account_btn.addEventListener("click", function() {
-
-    let savedState = sessionStorage.getItem("U_ID");
-    if (savedState) {
-        window.location.href = "Favorites.html";
-    }else {
-        window.location.href = "L_S.html";
-    }
-});
-
-
-let savedState = sessionStorage.getItem("U_ID");
-if (savedState) {
-     Account_btnT.innerHTML = '';
-     Account_btnT.style.background = `url('./Assets/cat.png')`;
-     Account_btnT.style.backgroundSize = '100% 100%';
-     Account_btnT.style.backgroundPosition = 'center';
-     Account_btnT.style.backgroundRepeat = 'no-repeat';
-
-     Account_btn.innerHTML = '';
-     Account_btn.style.background = `url('./Assets/cat.png')`;
-     Account_btn.style.backgroundSize = '100% 100%';
-     Account_btn.style.backgroundPosition = 'center';
-     Account_btn.style.backgroundRepeat = 'no-repeat';
-}
-
 
 Reload_btn.addEventListener("click", function() {
    window.location.href = "";
@@ -359,11 +325,10 @@ async function PlayTrailer(id_play, type){
 
 
 async function AddToFav(movie){
-     const Fave = localStorage.getItem('Favorites');
-     console.log("Fav :" , Fave);
-     console.log("Fav :" , !Fave);
+    const Fave = localStorage.getItem('user_watchlist');
+    //console.log(Fave)
     if(!Fave){
-        localStorage.setItem("Favorites", JSON.stringify([movie]));
+        localStorage.setItem("user_watchlist", JSON.stringify([movie]));
     } else {
         const parsedFav = JSON.parse(Fave);
         parsedFav.push(movie);
@@ -371,7 +336,23 @@ async function AddToFav(movie){
         const uniqueMovies = parsedFav.filter((movie, index, self) =>
           index === self.findIndex(m => m.id === movie.id)
         );
-        localStorage.setItem("Favorites", JSON.stringify(uniqueMovies));
+        localStorage.setItem("user_watchlist", JSON.stringify(uniqueMovies));
+
+
+        let email = localStorage.getItem('user_email');
+        let watchlist_new =  JSON.stringify(uniqueMovies);
+
+        const response = await fetch('Database/database.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+              },
+        body: `action=updateWatchlist&email=${encodeURIComponent(email)}&watchlist=${encodeURIComponent(watchlist_new)}`
+        });
+
+        const data = await response.json();
+
+        //console.log(data.massage)
     }
 }
 
@@ -531,9 +512,261 @@ checkAndClearLocalStorage();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+var Login_container  = document.getElementById("Login_container");
+ Login_container.style.display = 'block';
+var Register_container  = document.getElementById("Register_container");
+var Forgot_password_container  = document.getElementById("Forgot_password_container");
+
+var Register  = document.getElementById("Register");
+var Forgot_password  = document.getElementById("Forgot_password");
+var login_change  = document.getElementById("login_change");
+var login_change1  = document.getElementById("login_change1");
+
+
+Register.addEventListener("click", function() {
+        Register_container.style.display = 'block';
+        Login_container.style.display = 'none';
+});
+
+
+login_change.addEventListener("click", function() {
+        Register_container.style.display = 'none';
+        Login_container.style.display = 'block';
+});
+
+
+Forgot_password.addEventListener("click", function() {
+        Login_container.style.display = 'none';
+        Forgot_password_container.style.display = 'block';
+
+});
+
+login_change1.addEventListener("click", function() {
+        Forgot_password_container.style.display = 'none';
+        Login_container.style.display = 'block';
+
+});
+
+
+
+const cancelButtons = document.querySelectorAll('.login_cancel'); // Selects ALL elements with class
+cancelButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        Login_container.style.display = 'none';
+        Forgot_password_container.style.display = 'none';
+        Register_container.style.display = 'none';
+    });
+});
+
+
+const Account_btn = document.getElementById("Account_btn");
+const Account_btnT = document.getElementById("Account_btnT");
+
+const handle_account = function() {
+    let savedState = localStorage.getItem("U_ID");
+    console.log('savedState', savedState)
+    if (savedState) {
+        window.location.href = "profile.html";
+        Login_container.style.display = 'none';
+    }else {
+        Login_container.style.display = 'block';
+    }
+};
+Account_btn.addEventListener("click", handle_account)
+Account_btnT.addEventListener("click", handle_account)
+
+let savedState = localStorage.getItem("U_ID");
+if (savedState) {
+     Account_btnT.innerHTML = '';
+     Account_btnT.style.background = `url('./Assets/cat.png')`;
+     Account_btnT.style.backgroundSize = '100% 100%';
+     Account_btnT.style.backgroundPosition = 'center';
+     Account_btnT.style.backgroundRepeat = 'no-repeat';
+
+     Account_btn.innerHTML = '';
+     Account_btn.style.background = `url('./Assets/cat.png')`;
+     Account_btn.style.backgroundSize = '100% 100%';
+     Account_btn.style.backgroundPosition = 'center';
+     Account_btn.style.backgroundRepeat = 'no-repeat';
+}
+
+// Login Form --------------------------------------------------------------------------------------------------------
+
+
+document.getElementById('loginForm').addEventListener('click', async function(e) {
+            e.preventDefault();
+            const btn = e.target
+            //btn.classList.add('loading_active');
+
+            const email = document.getElementById('login_username').value.trim();
+            const password = document.getElementById('login_password').value.trim();
+            const messageDiv = document.getElementById('login_error_display');
+
+            messageDiv.classList.add('loading_active');
+
+            console.log(email)
+            console.log(password)
+
+            const response = await fetch('Database/database.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                  },
+            body: `action=login&email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
+            });
+
+            const data = await response.json();
+            if(data.massage === 'Invalid password'){
+                 messageDiv.innerHTML =  'Invalid password'
+                 messageDiv.classList.remove('loading_active');
+
+            }else if (data.massage === 'User not found'){
+                 messageDiv.innerHTML =  'User not found'
+                 messageDiv.classList.remove('loading_active');
+            } else {
+                console.log('Login :', data);
+
+                let user_info = data.massage;
+                localStorage.setItem('U_ID', user_info.email)
+                localStorage.setItem('user_email', user_info.email)
+                localStorage.setItem('user_name', user_info.name)
+                localStorage.setItem('user_watchlist', user_info.watchlist)
+                localStorage.setItem('user_massages', user_info.Messages)
+
+                Account_btnT.innerHTML = '';
+                Account_btnT.style.background = `url('./Assets/cat.png')`;
+                Account_btnT.style.backgroundSize = '100% 100%';
+                Account_btnT.style.backgroundPosition = 'center';
+                Account_btnT.style.backgroundRepeat = 'no-repeat';
+
+                Account_btn.innerHTML = '';
+                Account_btn.style.background = `url('./Assets/cat.png')`;
+                Account_btn.style.backgroundSize = '100% 100%';
+                Account_btn.style.backgroundPosition = 'center';
+                Account_btn.style.backgroundRepeat = 'no-repeat';
+                messageDiv.classList.remove('loading_active');
+                Login_container.style.display = 'none';
+            }
+ });
+
+document.getElementById('signUpForm').addEventListener('click', async function(e) {
+            e.preventDefault();
+
+             // Get form elements
+            const sign_up_Name_ = document.getElementById('sign_up_Name_').value.trim();
+            const sign_up_email_ = document.getElementById('sign_up_email_').value.trim();
+            const sign_up_password_ = document.getElementById('sign_up_password_').value.trim();
+            const sign_up_password_confirm = document.getElementById('sign_up_password_confirm').value.trim();
+            const messageDiv = document.getElementById('signup_error_display');
+
+                // Clear previous messages
+            messageDiv.textContent = '';
+            messageDiv.className = 'error-message';
+
+            // Basic validation
+            if (!sign_up_Name_ || !sign_up_email_ || !sign_up_password_ || !sign_up_password_confirm) {
+               messageDiv.textContent = 'All fields are required';
+               return;
+            }
+
+            if (!isValidEmail(sign_up_email_)) {
+                messageDiv.textContent = 'Please enter a valid email address';
+                return;
+            }
+
+            if (sign_up_password_ !== sign_up_password_confirm) {
+               messageDiv.textContent = 'Passwords do not match';
+               return;
+            }
+
+            const response = await fetch('Database/database.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                  },
+            body: `action=register&name=${encodeURIComponent(sign_up_Name_)}&email=${encodeURIComponent(sign_up_email_)}&password=${encodeURIComponent(sign_up_password_)}`
+            });
+
+            const data = await response.json();
+            console.log('signUp :', data);
+
+            messageDiv.textContent = data.massage;
+
+            let user_info = data.massage;
+            if(data.massage === 'User added successfully'){
+                localStorage.setItem('U_ID', sign_up_email_)
+                localStorage.setItem('user_email', sign_up_email_)
+                localStorage.setItem('user_name', sign_up_Name_)
+                localStorage.setItem('user_watchlist', '[]')
+                localStorage.setItem('user_massages', '[]')
+
+                Account_btnT.innerHTML = '';
+                Account_btnT.style.background = `url('./Assets/cat.png')`;
+                Account_btnT.style.backgroundSize = '100% 100%';
+                Account_btnT.style.backgroundPosition = 'center';
+                Account_btnT.style.backgroundRepeat = 'no-repeat';
+
+                Account_btn.innerHTML = '';
+                Account_btn.style.background = `url('./Assets/cat.png')`;
+                Account_btn.style.backgroundSize = '100% 100%';
+                Account_btn.style.backgroundPosition = 'center';
+                Account_btn.style.backgroundRepeat = 'no-repeat';
+                messageDiv.classList.remove('loading_active');
+                Register_container.style.display = 'none';
+            }
+
+});
+
+function isValidEmail(email) {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+
+
+document.getElementById('forget_p_form').addEventListener('click', async function(e) {
+            e.preventDefault();
+
+             // Get form elements
+            const sign_up_email_ = document.getElementById('reset_email_').value.trim();
+            const messageDiv = document.getElementById('Forgot_display');
+
+            messageDiv.textContent = '';
+            messageDiv.className = 'error-message';
+
+            // Basic validation
+            if (!sign_up_email_ ) {
+               messageDiv.textContent = 'All fields are required';
+               return;
+            }
+
+            if (!isValidEmail(sign_up_email_)) {
+                messageDiv.textContent = 'Please enter a valid email address';
+                return;
+            }
+
+
+            const response = await fetch('Database/database.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                  },
+            body: `action=register&name=${encodeURIComponent(sign_up_Name_)}&email=${encodeURIComponent(sign_up_email_)}&password=${encodeURIComponent(sign_up_password_)}`
+            });
+
+            const data = await response.json();
+            console.log('reset :', data);
+
+            messageDiv.textContent = data.massage;
+
+});
+
+
 ///////////////////////////// Disable Right Click + Inspect Element ////////////////////////////////////////////////////
 
-
+/*
 document.addEventListener("contextmenu", (e) => e.preventDefault());
 document.addEventListener("keydown", (e) => {
   if (e.ctrlKey && (e.key === "u" || e.key === "U")) {
@@ -556,7 +789,6 @@ setInterval(function() {
     } catch(e) {}
 }, 1000)
 
-/*
 */
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

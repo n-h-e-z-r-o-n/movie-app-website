@@ -127,6 +127,48 @@
                 <div class="trailer_div_cancel" id="trailer_div_cancel">X</div>
                 <div class="trailer_div_iframe" id="trailer_div_iframe"> </div>
             </div>
+
+            <!--  Login/SignUp section --------------------------------------------------------------------------------------------------------->
+
+            <div class="Login_container" id="Login_container">
+                    <div class="login_cancel"></div>
+                    <input id="login_username" autocomplete="off" class="input_form" type="text" placeholder="Username" required>
+                    <input id="login_password" class="input_form" type="password" placeholder="Password" required>
+                    <div class="error" id="login_error_display"></div>
+                    <div  class="Login_btn" id="loginForm">Login</div>
+                    <div class="shift_container">
+                            <div class="Login_others" id="Register">Register</div>
+                            <div class="Login_others" id="Forgot_password">Forgot password</div>
+                    </div>
+            </div>
+
+
+            <div class="Register_container" id="Register_container">
+                    <div class="login_cancel"></div>
+                    <input  autocomplete="off" class="input_form" type="text" placeholder="Full Name" required>
+                    <input  autocomplete="off" class="input_form" type="text" placeholder="Email address" required>
+                    <input class="input_form" type="password" placeholder="Password" required>
+                    <input class="input_form" type="password" placeholder="Confirm Password" required>
+
+                    <div class="error" id="signup_error_display"></div>
+                    <div  class="Sign_up_btn">Sign Up</div>
+                    <div class="shift_container">
+                            <div class="Login_others" id="login_change">Login</div>
+                    </div>
+            </div>
+
+            <div class="Forgot_password_container" id="Forgot_password_container">
+                    <div class="login_cancel"></div>
+                    <input  autocomplete="off" class="input_form" type="text" placeholder="Email address" required>
+
+                    <div class="error" id="Forgot_display"></div>
+
+                    <div  class="Forgot_password_btn">Submit</div>
+                    <div class="shift_container">
+                            <div class="Login_others" id="login_change1">Login</div>
+                    </div>
+            </div>
+
 <!--------- Section ------------------------------------------------------------------------------------------------------------>
 
 
@@ -135,13 +177,18 @@
 
              <div class="Favorites_Container" >
                        <div class="bar_section" >
-                         <div class="text_container" style="color: var(--Brand_Color);"> &#128153; Watch List </div>
-                         <!-- div class="text_container"> profile </div -->
+                         <div class="text_container" id="show_profile"> profile </div>
+                         <div class="text_container" id="show_messages"> massages </div>
+                         <div class="text_container" id="show_watchlist" style="color: var(--Brand_Color);"> &#128153; Watch List </div>
                          <div class="text_container" id="logout_btn"> &#9762; Logout </div>
                        </div>
                        <div class="Watch_List_container" id="Favorites_Results">
 
                        </div>
+                       <div class="profile_container" id="profile_container">
+
+                       </div>
+
              </div>
 
 
@@ -153,14 +200,12 @@
 
 </div>
 </body>
-
-<script src="./Back_end/Fire.php"></script>
+<!--
 <script src="./Back_end/nav.php"></script>
 <script src="./Back_end/profile.php"></script>
+-->
 
-<!--
-<script  src="Fire.js"></script>
 <script src="NavBar.js"></script>
 <script src="profile.js"></script>
--->
+
 </html>

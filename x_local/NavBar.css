@@ -73,7 +73,7 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     display: block;
-    font-family: cursive;
+    font-family: "Calibri";
     font-weight: 500;
 }
 
@@ -542,8 +542,10 @@
 }
 
 .Terms_Box {
-      height: 50%;
+      width: 50%;
+      max-width: 500px;
       aspect-ratio: 1;
+
       background-color: rgba(57, 89, 116, 0.9); /* Green overlay */
       border-radius: 10px;
       box-shadow: inset 2px -2px 20px var(--global-color-fg);
@@ -738,6 +740,277 @@ Terms_Details_content::-webkit-scrollbar {
   }
 }
 
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+.login_cancel{
+
+   height:50px;
+   aspect-ratio: 1;
+   border-radius: 50%;
+   position: absolute;
+   background: inherit;
+   z-index: 100;
+   top: -20px;
+   transform: translateX(-50%);
+   right: 0;
+   backdrop-filter: blur(240px);
+   background:  url("./Assets/cancel.png");
+   background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+}
+.Login_container_header{
+   display: flex;
+   gap: 15px;
+   font-family: 'Jost', sans-serif;
+   font-weight: bold;
+   opacity: 0.5;
+   margin-bottom: 30px;
+   margin-top: 20px;
+
+
+}
+
+.Login_container {
+  position: fixed;
+  display: none;
+  height: auto;
+  max-height: 400px;
+  aspect-ratio: 1;
+  padding: 40px;
+  padding-top: 5px;
+  box-sizing: border-box;
+  background: rgba(57, 89, 116, 1);
+  box-shadow: 1px 1px 10px 1px #000000, 8px 8px 0px 0px #344454, 12px 12px 10px 0px #000000;
+  box-shadow: 1px 1px 4px 0px #000000, 8px 8px 0px 0px #a2703f, 9px 9px 4px 0px #000000, 16px 16px 0px 0px rgba(172, 65, 31, 0.5), 17px 17px 7px 1px #000000;
+  z-index: 1000;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.input_form::placeholder {
+    font-size: 0.5em;
+    color: #999;
+    opacity: 0.5;
+}
+.input_form::-moz-placeholder { /* Firefox 19+ */
+    font-size: 0.5em;
+    color: #999;
+    opacity: 0.5;
+}
+.input_form:-ms-input-placeholder { /* IE 10+ */
+    font-size: 0.5em;
+    color: #999;
+    opacity: 0.5;
+}
+.Login_container .input_form{
+   width: 100%;
+   height: 15%;
+   display: flex;
+   outline: none;
+   align-items: center;
+   justify-content: center;
+   font-size: 1.5em;
+   font-family: 'sans-serif';
+   margin-bottom: 5%;
+   border-radius: 10px;
+   background: transparent;
+   backdrop-filter: blur(240px);
+   border: 0.5px solid #003153;
+   padding-left: 2%;
+}
+
+.Login_container .input_form:focus {
+    border-color: var(--Brand_Color); /* Assuming this is a CSS variable defined elsewhere */
+    color: var(--global-color-fg); /* Assuming this is a CSS variable defined elsewhere */
+    cursor: pointer;
+}
+
+.Login_btn{
+   width: 100%;
+   height: 18%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 1.5em;
+   font-family: 'Georgia';
+   margin-bottom: 5%;
+   margin-top: 15%;
+   border-radius: 0.9em;
+   background: #003153;
+   backdrop-filter: blur(240px);
+   padding-left: 2%;
+   user-select: none;
+}
+.Login_btn:hover{
+      background:  #1C352D;
+}
+
+
+
+
+
+.Register_container {
+  display: none;
+  height: auto;
+  max-height: 400px;
+  aspect-ratio: 1;
+  padding: 40px;
+  box-sizing: border-box;
+  background: rgba(162, 112, 63) ;
+  /*box-shadow: 1px 1px 10px 1px #000000, 8px 8px 0px 0px #344454, 12px 12px 10px 0px #000000;*/
+  box-shadow: 1px 1px 4px 0px #000000, 8px 8px 0px 0px rgba(57, 89, 116, 0.8), 9px 9px 4px 0px #000000, 16px 16px 0px 0px  rgba(172, 65, 31, 0.5) , 17px 17px 7px 1px #000000;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+.Register_container .input_form{
+   width: 100%;
+   height: 15%;
+   outline: none;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 1.5em;
+   font-family: ' ';
+   margin-bottom: 2%;
+   border-radius: 10px;
+   background: transparent;
+   backdrop-filter: blur(240px);
+   border: 1px solid  #6F4E37;
+   padding-left: 2%;
+}
+
+.Register_container .input_form:focus {
+    border-color: var(--Brand_Color); /* Assuming this is a CSS variable defined elsewhere */
+    color: var(--global-color-fg); /* Assuming this is a CSS variable defined elsewhere */
+    cursor: pointer;
+}
+
+.Sign_up_btn{
+   width: 100%;
+   height: 18%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 1.5em;
+   font-family: 'Georgia';
+   margin-bottom: 4%;
+   margin-top: 4%;
+   border-radius: 10px;
+   background: #6F4E37 ;
+   backdrop-filter: blur(240px);
+   padding-left: 2%;
+   user-select: none;
+  }
+.Sign_up_btn:hover{
+  background: #C2B280;
+}
+
+
+
+
+ .Forgot_password_container  {
+  display: none;
+  height: auto;
+  max-height: 450px;
+  aspect-ratio: 1;
+  padding: 40px;
+  padding-top: 80px;
+  box-sizing: border-box;
+  background: rgb(172, 65, 31) ;
+  /*box-shadow: 1px 1px 10px 1px #000000, 8px 8px 0px 0px #344454, 12px 12px 10px 0px #000000;*/
+  box-shadow: 1px 1px 4px 0px #000000, 8px 8px 0px 0px rgba(57, 89, 116, 0.8), 9px 9px 4px 0px #000000, 16px 16px 0px 0px  rgb(162, 112, 63) , 17px 17px 7px 1px #000000;
+    position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+.Forgot_password_container .input_form{
+   width: 100%;
+   height: 18%;
+   display: flex;
+   outline: none;
+   align-items: center;
+   justify-content: center;
+   font-size: 1.5em;
+   font-family: ' ';
+   margin-bottom: 10%;
+   border-radius: 10px;
+   background: transparent;
+   backdrop-filter: blur(240px);
+   border: 1px solid  #420D09;
+   padding-left: 2%;
+}
+
+.Forgot_password_btn{
+   width: 100%;
+   height: 15%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 1.5em;
+   font-family: 'Georgia';
+   margin-bottom: 4%;
+   margin-top: 4%;
+   border-radius: 10px;
+   background:  #420D09;
+   backdrop-filter: blur(240px);
+   padding-left: 2%;
+   user-select: none;
+  }
+
+
+  .Login_others{
+        user-select: none;
+        margin: auto;
+        font-size: 1em;
+        font-family: Georgia, serif;
+        color: white;
+        opacity: 0.5;
+        cursor: pointer;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+  }
+
+
+
+.Login_others:hover{
+   color: var(--Brand_Color);
+}
+
+.shift_container{
+   margin: auto;
+}
+
+.error {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 2%;
+    font-size: 0.95em;
+    color:  #420D09;
+    font-family: '';
+}
+
+.loading_active{
+      background: linear-gradient(-90deg, transparent 50%, green 50%);
+      background-size: 200% 100%;
+      background-position: right;
+      transition: background-position 20s linear;
+}
+
+
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /*/======= Small Screens ======================================================================================================= */
@@ -754,17 +1027,32 @@ Terms_Details_content::-webkit-scrollbar {
 
 
           .Terms_Box {
-              width:  350px;
-              height: 500px;
-              background-color: rgba(0,191,255, 0.2);
-              border-radius: 10px;
-              box-shadow: inset 2px -2px 20px var(--global-color-fg);
-              transition: 1s cubic-bezier(.17,1,.33,1);
+              width:  95%;
           }
          .trailer_div {
               width: 90%;
           }
+
+        .Login_container {
+          height: auto;
+          width: 85%;
+          min-height: 0px;
+        }
+        .Forgot_password_container {
+          height: auto;
+          width: 85%;
+          min-height: 0px;
+        }
+        .Register_container {
+          height: auto;
+          width: 85%;
+          min-height: 0px;
+        }
+        .Login_others{
+           font-size: 1em;
+        }
 }
+
 
 /* =================== others ====================================================================================*/
 

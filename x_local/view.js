@@ -61,26 +61,42 @@ async function Latest_Movies(event, type) {
 
   let count = 1
   let data_json = []
-  while (count <= 1) {
-      let res = await fetch(`https://vidsrc.xyz/movies/latest/page-${count}.json`, {"accept": "application/json",});
-      let data = await res.json();
-      //console.log(data['result']);
-      data_json = data_json.concat(data['result']) ;
-      count++;
-      //break;
-    }
 
-  currentPage = count - 1;
+    let url = `https://yts.mx/api/v2/list_movies.json?page=${count}&limit=50&sort_by=year`
+    let response = await fetch(url);
+    let data = await response.json();
+    console.log("Shown data", data.data.movies);
+    data_json = data_json.concat(data.data.movies) ;
+
+  currentPage = count;
   localStorage.setItem('movie_view_currentPage', `${currentPage}`);
 
   let hold = [];
   for (let i = 0; i < data_json.length; i++) {
 
-     let res2 = await fetch(`https://api.themoviedb.org/3/movie/${data_json[i]['tmdb_id']}?`, {headers});
-     let data2 = await res2.json();
-     hold.push({poster_path:data2['poster_path'], release_date:data2['release_date'], vote_average:data2['vote_average'], title:data2['title'], id:data2['id'], runtime:data2['runtime']});
-     showMovies([{poster_path:data2['poster_path'], release_date:data2['release_date'], vote_average:data2['vote_average'], title:data2['title'], id:data2['id'], runtime:data2['runtime']}]);
-  }
+
+     /*
+     medium_cover_image
+     rating
+     runtime
+     small_cover_image
+     title_english
+     */
+     let data;
+     while(true){
+        try{
+             let res = await fetch(`https://api.themoviedb.org/3/movie/${data_json[i]['imdb_code']}/external_ids`, {headers});
+             data = await res.json();
+             //console.log(data.id)
+             break
+         }catch(error){
+            await sleep(1500);
+         }
+     }
+
+     hold.push({poster_path:data_json[i]['medium_cover_image'], release_date:data_json[i]['year'], vote_average:data_json[i]['rating'], title:data_json[i]['title_english'], id:data.id, runtime:data_json[i]['runtime']});
+     showMovies([{poster_path:data_json[i]['medium_cover_image'], release_date:data_json[i]['year'], vote_average:data_json[i]['rating'], title:data_json[i]['title_english'], id:data.id, runtime:data_json[i]['runtime']}]);
+    }
 
   localStorage.setItem("view_movie", JSON.stringify(hold));
 
@@ -88,6 +104,9 @@ async function Latest_Movies(event, type) {
   showMovies(hold);
 }
 
+async function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 function showMovies(movies) {
   movies.forEach((movie) => {
@@ -102,13 +121,12 @@ function showMovies(movies) {
 
     const movieItem = document.createElement("div");
     movieItem.classList.add("box");
-    let  updatedString = release_date.substring(0, 4);;
 
     movieItem.innerHTML = `
         <!-- box-1  -->
 
              <div class="box-img">
-                <img class="img-on" src="${IMG_PATH + poster_path}" alt="">
+                <img class="img-on" src="${poster_path}" alt="">
                 <div class="box-img-button">
                      <div class="button_style1"></div>
                      <div class="button_style2"></div>
@@ -118,7 +136,7 @@ function showMovies(movies) {
             <div class="container_span">
                <div style="display:flex;">
                     <div  class="badge-type"> mv </div>
-                    <div class="badge-type_year">${updatedString} </div>
+                    <div class="badge-type_year">${release_date} </div>
                </div>
                <div class="badge-type_text"> ${runtime} min</div>
                <div  class="badge-type_rating"> &starf;  ${vote_average} </div>
@@ -157,25 +175,49 @@ async function more_movie(){
             button.textContent = "Loading...";
             button.setAttribute('data-state', 'loading');
 
-            let currentPage = parseInt(localStorage.getItem('movie_view_currentPage')) || 2;
+            let currentPage = parseInt(localStorage.getItem('movie_view_currentPage')) || 1;
             currentPage = currentPage + 1;
             localStorage.setItem('movie_view_currentPage', `${currentPage}`);
             console.log(  '====', currentPage)
 
             let data_json = [];
-
-            let res = await fetch(`https://vidsrc.xyz/movies/latest/page-${currentPage}.json`,    {"accept": "application/json",});
+            /*
+            let res = await fetch(`https://vidsrc.xyz/movies/latest/page-${movie_currentPage}.json`,    {"accept": "application/json",});
             let data = await res.json();
             data_json = data_json.concat(data['result']) ;
+             */
+
+            let url = `https://yts.mx/api/v2/list_movies.json?page=${currentPage}&limit=50&sort_by=year`
+            const response = await fetch(url);
+            const data = await response.json();
+            console.log("Shown data", data.data.movies);
+            data_json = data_json.concat(data.data.movies) ;
 
             let hold = [];
             for (let i = 0; i < data_json.length; i++) {
 
-            let res2 = await fetch(`https://api.themoviedb.org/3/movie/${data_json[i]['tmdb_id']}?`, {headers});
-            let data2 = await res2.json();
-            hold.push({poster_path:data2['poster_path'], release_date:data2['release_date'], vote_average:data2['vote_average'], title:data2['title'], id:data2['id'], runtime:data2['runtime']});
-            showMovies([{poster_path:data2['poster_path'], release_date:data2['release_date'], vote_average:data2['vote_average'], title:data2['title'], id:data2['id'], runtime:data2['runtime']}])
-            }
+                     /*
+                     medium_cover_image
+                     rating
+                     runtime
+                     small_cover_image
+                     title_english
+                     */
+                     let data;
+                     while(true){
+                        try{
+                             let res = await fetch(`https://api.themoviedb.org/3/movie/${data_json[i]['imdb_code']}/external_ids`, {headers});
+                             data = await res.json();
+                             //console.log(data.id)
+                             break
+                         }catch(error){
+                            await sleep(1050);
+                         }
+                     }
+
+                     hold.push({poster_path:data_json[i]['medium_cover_image'], release_date:data_json[i]['year'], vote_average:data_json[i]['rating'], title:data_json[i]['title_english'], id:data.id, runtime:data_json[i]['runtime']});
+                     showMovies([{poster_path:data_json[i]['medium_cover_image'], release_date:data_json[i]['year'], vote_average:data_json[i]['rating'], title:data_json[i]['title_english'], id:data.id, runtime:data_json[i]['runtime']}]);
+           }
             button.innerHTML = "Show More &#x21b4;";
             button.setAttribute('data-state', 'show-more');
 
@@ -264,7 +306,7 @@ function showTV(movies) {
         <!-- box-1  -->
 
             <div class="box-img">
-                <img class="img-on" src="${IMG_PATH + poster_path}" alt="">
+                <img class="img-on" src="${poster_path}" alt="">
                 <div class="box-img-button">
                      <div class="button_style1"></div>
                      <div class="button_style2"></div>

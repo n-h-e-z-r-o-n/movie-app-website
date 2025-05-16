@@ -2,26 +2,24 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const fetchMovieDetails = async () => {
-    const url = 'https://movie-download.p.rapidapi.com/details?url=https%3A%2F%2Ffmovies24-to.com%2Fmovies%2Firon-man-2-2010';
-    const options = {
-        method: 'GET',
-        headers: {
-            'x-rapidapi-host': 'movie-download.p.rapidapi.com',
-            'x-rapidapi-key': 'b43821ea2fmshb90a7eaf818b699p1d3857jsn09320c780f74'
-        }
-    };
 
-    try {
-        const response = await fetch(url, options);
-        const data = await response.json();
-        console.log(data);
-    } catch (error) {
-        console.error('Error:', error);
-    }
-};
 
-//fetchMovieDetails();
+  fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://nyaa.si/?f=0&c=1_2&q=jujutsu+kaisen'))
+    .then(response => response.json())
+    .then(data => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(data.contents, 'text/html');
+      const rows = doc.querySelectorAll('table.torrent-list tbody tr');
+
+      rows.forEach(row => {
+        const title = row.querySelector('td:nth-child(2) a:not(.comments)')?.textContent;
+        const magnet = row.querySelector('td:nth-child(3) a[href^="magnet"]')?.href;
+        console.log({ title, magnet });
+      });
+    });
+
+
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

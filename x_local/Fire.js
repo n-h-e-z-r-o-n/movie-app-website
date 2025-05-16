@@ -224,15 +224,6 @@ async function getUserFavorites(passed_function) {
     localStorage.removeItem('Favorites');
 }
 
- async function RemoveFromFav(itemIdToRemove, passed_function){
-    localStorage.removeItem('Favorites');
-    let saved_Favorites_Data = await get(ref(firebase_database, 'users/' + U_ID + '/favorites'));
-    saved_Favorites_Data = saved_Favorites_Data.val() || []
-
-    saved_Favorites_Data = saved_Favorites_Data.filter(movie => movie.id !== itemIdToRemove);
-    passed_function(saved_Favorites_Data);
-    saveUserProfile(saved_Favorites_Data);
- }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

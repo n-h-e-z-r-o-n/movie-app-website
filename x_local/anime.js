@@ -32,22 +32,22 @@ Show_More_F()
 
 function Search_Results_SHOW(movies) {
   movies.forEach((movie) => {
-    const { original_title, original_name, poster_path, id, vote_average, overview, release_date, first_air_date , runtime, S_info} = movie;
+    const { original_title, name, title, original_name, poster_path, id, vote_average, overview, release_date, first_air_date , runtime, S_info} = movie;
     //console.log(movie);
-    let title;
+    let title_;
     let type;
     let type_r;
     let Info;
 
     if (original_title === undefined) {
-       title = original_name;
+       title_ = name;
        date = first_air_date.substring(0, 4);
        type = "tv";
        type_r = "tv";
        info = ''; //S_info;
 
     } else {
-        title = original_title;
+        title_ = title;
         date = release_date.substring(0, 4);
         type = "mv";
         type_r = "movie"
@@ -64,7 +64,7 @@ function Search_Results_SHOW(movies) {
                      <div class="button_style2"></div>
                 </div>
             </div>
-            <div class="box_title">${title}</div>
+            <div class="box_title">${title_}</div>
             <div class="container_span">
                <div style="display:flex;">
                     <div  class="badge-type"> ${type} </div>

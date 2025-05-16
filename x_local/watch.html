@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>FilmFusion</title>
+    <title>Movionyx</title>
     <link rel="icon" href="Assets/Movionyx.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="./watch.css" />
-    <link rel="stylesheet" type="text/css" href="./cus-ton.css" />
-
     <link rel="stylesheet" type="text/css" href="./NavBar.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
+<body>
+
 <!--------- Navigation bar  ------------------------------------------------------------------------------------------------------------>
 
              <div class = "navbar_top" id="navbar" >
@@ -122,51 +120,62 @@
 
              <div class="Terms_Container" id="Terms_Container">  </div>
 
-             <!--  trailer section --------------------------------------------------------------------------------------------------------->
+ <!--  trailer section --------------------------------------------------------------------------------------------------------->
 
             <div class="trailer_div" id="trailer_div">
                 <div class="trailer_div_cancel" id="trailer_div_cancel">X</div>
                 <div class="trailer_div_iframe" id="trailer_div_iframe"> </div>
             </div>
+<!--  Login/SignUp section --------------------------------------------------------------------------------------------------------->
+
+<div class="Login_container" id="Login_container">
+        <div class="login_cancel"></div>
+        <input id="login_username" autocomplete="off" class="input_form" type="text" placeholder="Username" required>
+        <input id="login_password" class="input_form" type="password" placeholder="Password" required>
+        <div class="error" id="login_error_display"></div>
+	    <div  class="Login_btn">Login</div>
+        <div class="shift_container">
+                <div class="Login_others" id="Register">Register</div>
+                <div class="Login_others" id="Forgot_password">Forgot password</div>
+        </div>
+</div>
+
+
+<div class="Register_container" id="Register_container">
+        <div class="login_cancel"></div>
+        <input  autocomplete="off" class="input_form" type="text" placeholder="Full Name" required>
+        <input  autocomplete="off" class="input_form" type="text" placeholder="Email address" required>
+        <input class="input_form" type="password" placeholder="Password" required>
+        <input class="input_form" type="password" placeholder="Confirm Password" required>
+
+        <div class="error" id="signup_error_display"></div>
+        <div  class="Sign_up_btn">Sign Up</div>
+        <div class="shift_container">
+                <div class="Login_others" id="login_change">Login</div>
+        </div>
+</div>
+
+<div class="Forgot_password_container" id="Forgot_password_container">
+        <div class="login_cancel"></div>
+        <input  autocomplete="off" class="input_form" type="text" placeholder="Email address" required>
+
+        <div class="error" id="Forgot_display"></div>
+
+	    <div  class="Forgot_password_btn">Submit</div>
+        <div class="shift_container">
+                <div class="Login_others" id="login_change1">Login</div>
+        </div>
+</div>
+
 
  <!--------- Section ------------------------------------------------------------------------------------------------------------>
 
+<div class="no-select"  id="no_select" >
 <!----  watch container section -------------------------------- -------------------------------------------------------------------------------- -->
 
-<body>
-
-                 <div class="Info_container no-select">
-                        <div class="Info_container_toggle" id="Info_toggle_text">  <i class="fa fa-info-circle" aria-hidden="true"></i> </div>
-                        <div class="Info_container_toggle_content">
-
-                            <div class="Info_container_toggle_content_image" id="back_img1">  </div>
-                            <div class="Info_container_toggle_content_headline">
-                                <div class="title" id="Show_title_S"> Bat Man </div>
-                            </div>
-                            <div class="Info_container_toggle_content_PG" id="show_genres_s">
-                                 Adventure, Drama, Sci-Fi,
-                            </div>
-                            <div class="Info_container_toggle_content_SHOW_SUMMARY" id="Show_SUMMARY_S">
-                                 He must discover the reason behind a nefarious global plot before the true mastermind has the entire world seeing red.
-                            </div>
-                            <div class="Info_container_show_data">
-                                    <div class="show_pg" id="show_pg_s"></div>
-                                    <div class="show_HD" id="show_HD_s"> </div>
-                                    <div class="show_MIN" ID="show_MIN_s"></div>
-                                    <div class="show_rating" id="show_rating_s"></div>
-                                    <div class="show_Premiered" ID="show_Premiered_s"> </div>
-                                    <div class="show_type" id="show_type_s"> </div>
-                            </div>
-
-                            <div class="Info_container_toggle_content_elements" id="Show_Production_s">
-                              Marvel Studios, Kevin Feige Productions,
-                            </div>
-                            <div class="watch_image_s" id="poster_image_s"> </div>
 
 
-                        </div>
 
-                 </div>
 
 
 
@@ -204,34 +213,69 @@
                       </div>
                  </div>
 
-
-
-
-
-
 <!----  seasons info   section -------------------------------- -------------------------------------------------------------------------------- -->
 
+               <div class="season_info_hold">
+                   <div class="hold_s">
+                       <div class="season_info_hold_season_container_navigation">
+                           <div class="rarrow" id="rarrow">   &#11208  </div>
+                           <div class="larrow" id="larrow">   &#11207 </div>
+                       </div>
+                       <div  class="season_info_hold_season_container" id="season-selector1">
 
-                <div class="seasons" id="season_c">
-                      <div class="seasons_container" id="seasons_container">
-                           <div class="Selected_Season">  </div>
+                       </div>
+                   </div>
 
-                            <div class="season-selector" id="season-selector">
-                               <!--
-                                <div data-season="season1" onclick="selectSeason(event)">Season 1</div>
-                                <div data-season="season2" onclick="selectSeason(event)">Season 2</div>
-                                <div data-season="season3" onclick="selectSeason(event)">Season 3</div>
-                              -->
+                   <div class="seasons" id="season_c">
+
+                          <div class="seasons_container" id="seasons_container">
+                                <div class="Selected_Season">  </div>
+                                <div class="Selected_Season_img" id="Selected_Season_img"> </div>
+                          </div>
+
+                          <div class="episodes_container" id="episodes_container">
+                                <div id="episode-list" class="episodes"></div>
+                          </div>
+                    </div>
+               </div>
+
+<!----  Info Section -------------------------------- -------------------------------------------------------------------------------- -->
+
+               <div class="Info_container" id="Info_container">
+                        <div class="Info_container_toggle_content">
+
+                            <div class="Info_container_toggle_content_image" id="back_img1">  </div>
+
+                            <div class="Info_container_toggle_content_headline">
+                                <div class="Info_container_toggle_content_headline_title" id="Show_title_S"> Bat Man </div>
+                            </div>
+                            <div class="Info_container_toggle_content_PG" id="show_genres_s">
+                                 Adventure, Drama, Sci-Fi,
                             </div>
 
-                            <div class="Selected_Season_img" id="Selected_Season_img"> </div>
-                            <div class="Selected_Season_overview" id="Selected_Season_overview"> </div>
+                            <div class="Info_container_show_data">
+                                    <div class="show_pg" id="show_pg_s"></div>
+                                    <div class="show_HD" id="show_HD_s"> </div>
+                                    <div class="show_MIN" ID="show_MIN_s"></div>
+                                    <div class="show_rating" id="show_rating_s"></div>
+                                    <div class="show_Premiered" ID="show_Premiered_s"> </div>
+                                    <div class="show_type" id="show_type_s"> </div>
+                            </div>
 
-                      </div>
-                      <div class="episodes_container" id="episodes_container">
-                            <div id="episode-list" class="episodes"></div>
-                      </div>
-                </div>
+                            <div class="Info_container_toggle_content_SHOW_SUMMARY" id="Show_SUMMARY_S">
+                            </div>
+
+                            <div class="Info_container_toggle_content_elements" id="Show_Production_s">
+                              Marvel Studios, Kevin Feige Productions,
+                            </div>
+
+                            <div class="watch_image_s" id="poster_image_s"> </div>
+
+                        </div>
+               </div>
+
+
+
 
 <!----  watch recommendation  section -------------------------------- -------------------------------------------------------------------------------- -->
 
@@ -240,7 +284,7 @@
 
 
 
-                  <div class="watch_recommendation">
+               <div class="watch_recommendation">
                     <div class="show_title_section" >  <h1 class="text_container"> </h1></div>
 
                     <div class="REM_container" id="recommendation_R_div">
@@ -296,20 +340,24 @@
                     </div>
                     -->
 
-                  </div>
-
-
-
+               </div>
             </div>
+
+
+
+</div>>
+
+
+
+
+<script src="NavBar.js"></script>
+<script src="watch.js"></script>
+<!--
 
 <script src="./Back_end/nav.php"></script>
 <script src="./Back_end/watch.php"></script>
-
-<!--
-<script src="NavBar.js"></script>
-<script src="watch.js"></script>
 -->
-    </body>
+</body>
 
 
-    </html>
+</html>

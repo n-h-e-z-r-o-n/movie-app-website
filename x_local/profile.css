@@ -38,6 +38,14 @@
     background: transparent;
 }
 
+.profile_container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    flex: 1 1;
+    gap: auto;
+    background: red;
+}
 
 .remove_fave {
   position: absolute;
