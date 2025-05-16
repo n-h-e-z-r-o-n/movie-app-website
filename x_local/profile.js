@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.getElementById("E_M_A").innerHTML = localStorage.getItem('user_email')
 document.getElementById("Y_N").innerHTML = localStorage.getItem('user_name')
-document.getElementById("J_D").innerHTML = localStorage.getItem('user_email')
+document.getElementById("J_D").innerHTML = localStorage.getItem('user_joined')
 
 
 

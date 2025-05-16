@@ -635,6 +635,7 @@ document.getElementById('loginForm').addEventListener('click', async function(e)
                 localStorage.setItem('user_name', user_info.name)
                 localStorage.setItem('user_watchlist', user_info.watchlist)
                 localStorage.setItem('user_massages', user_info.Messages)
+                localStorage.setItem('user_joined', user_info.created_at)
 
                 Account_btnT.innerHTML = '';
                 Account_btnT.style.background = `url('./Assets/cat.png')`;
@@ -702,6 +703,7 @@ document.getElementById('signUpForm').addEventListener('click', async function(e
                 localStorage.setItem('user_name', sign_up_Name_)
                 localStorage.setItem('user_watchlist', '[]')
                 localStorage.setItem('user_massages', '[]')
+
 
                 Account_btnT.innerHTML = '';
                 Account_btnT.style.background = `url('./Assets/cat.png')`;
