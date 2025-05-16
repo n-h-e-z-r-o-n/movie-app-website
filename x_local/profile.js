@@ -7,21 +7,30 @@ show_profile.addEventListener("click", function() {
           document.getElementById("profile_container").style.display = 'flex';
           document.getElementById("massages_container").style.display = 'none';
           document.getElementById("Watch_List_container").style.display = 'none';
-          show_profile.style.color = 'var(--Brand_Color)'
+
+          show_profile.style.color = 'var(--Brand_Color)';
+          show_messages.style.color = 'var(--global-color-fg)';
+          show_watchlist.style.color = 'var(--global-color-fg)';
 });
 
 show_messages.addEventListener("click", function() {
           document.getElementById("profile_container").style.display = 'none';
           document.getElementById("massages_container").style.display = 'flex';
           document.getElementById("Watch_List_container").style.display = 'none';
-          show_messages.style.color = 'var(--Brand_Color)'
+
+          show_messages.style.color = 'var(--Brand_Color)';
+          show_profile.style.color = 'var(--global-color-fg)';
+          show_watchlist.style.color = 'var(--global-color-fg)';
 });
 
 show_watchlist.addEventListener("click", function() {
           document.getElementById("profile_container").style.display = 'none';
           document.getElementById("massages_container").style.display = 'none';
           document.getElementById("Watch_List_container").style.display = 'flex';
-          show_watchlist.style.color = 'var(--Brand_Color)'
+
+          show_watchlist.style.color = 'var(--Brand_Color)';
+          show_messages.style.color = 'var(--global-color-fg)';
+          show_profile.style.color = 'var(--global-color-fg)';
 
 });
 
