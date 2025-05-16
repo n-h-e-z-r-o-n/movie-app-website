@@ -75,7 +75,9 @@ document.getElementById("Change_password").addEventListener("click", function() 
 
 });
 
-document.getElementById("C_P_SAVE").addEventListener("click", function() {
+document.getElementById("C_P_SAVE").addEventListener("click", async function(e)  {
+          e.preventDefault();
+
          let p_1 = document.getElementById('N_P_I').value.trim();
          let p_2 = document.getElementById('C_N_P_I').value.trim();
          messageDiv =  document.getElementById('profile_msm');
@@ -89,6 +91,7 @@ document.getElementById("C_P_SAVE").addEventListener("click", function() {
                messageDiv.textContent = 'Passwords do not match';
                return;
          }
+
         let user_email =  localStorage.getItem('user_email')
         const response = await fetch('Database/database.php', {
         method: 'POST',
@@ -97,6 +100,9 @@ document.getElementById("C_P_SAVE").addEventListener("click", function() {
               },
         body: `action=updatePass&password=${encodeURIComponent(p_1)}&email=${encodeURIComponent(user_email)}`
         });
+
+         const data = await response.json();
+         messageDiv.textContent = data.massage;
 
 
 

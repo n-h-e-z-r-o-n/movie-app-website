@@ -209,7 +209,7 @@ function requestPasswordReset($email) {
     }
 }
 
-function updatePass($$email) {
+function updatePass($password, $email) {
     global $db;
 
     try {
@@ -219,25 +219,19 @@ function updatePass($$email) {
         $stmt->execute();
 
         if ($stmt->fetch()) {
-            // Generate secure token and expiration (1 hour)
-            $token = bin2hex(random_bytes(32));
 
-            $hashedPassword = password_hash($token, PASSWORD_DEFAULT);
+
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
             // Store token in database
             $stmt = $db->prepare("UPDATE users SET password = :token WHERE email = :email");
             $stmt->bindValue(':token', $hashedPassword);
             $stmt->bindValue(':email', $email);
-            //$stmt->execute();
 
-            // Send email (pseudo-code - implement your email sending)
-            $subject = "Password Reset Request";
-            $message = "reset your password, Reset Code: $token";
-            mail($email, $subject, $message);
+            echo json_encode(['message' => 'Password Changed ']);
+
         }
 
-        // Always return the same message whether user exists or not
-        echo json_encode(['message' => 'If this email exists, a reset link has been sent']);
 
     } catch (PDOException $e) {
         echo json_encode(['message' => 'Database error']);
