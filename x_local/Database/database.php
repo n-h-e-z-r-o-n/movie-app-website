@@ -63,8 +63,6 @@ switch ($action) {
 // Function to add user
 function addUser($username, $email, $password, $watchlist, $Messages) {
     global $db;
-
-    // Hash the password before storing it
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
     try {
@@ -93,10 +91,10 @@ function addUser($username, $email, $password, $watchlist, $Messages) {
 // Example usage (commented out to avoid duplicates):
 // addUser('john_doe', 'h@gmail.com', '123456', '[]', '[]');
 
+
 // Function to get users
 function getUsers() {
     global $db;
-
     try {
         // Prepare and execute the SELECT query
         $stmt = $db->query("SELECT * FROM users");
@@ -115,8 +113,7 @@ function getUsers() {
     }
 }
 
-// Example usage to get users
-//getUsers();
+
 
 // Function to get a specific user's information based on email and password
 function LoginUser($email, $password) {
