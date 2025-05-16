@@ -76,16 +76,20 @@ document.getElementById("Change_password").addEventListener("click", function() 
 });
 
 document.getElementById("C_P_SAVE").addEventListener("click", function() {
-         let p_1 = document.getElementById('N_P_I').value.trim()
-         let p_2 = document.getElementById('C_N_P_I').value.trim()
-          if (!p_1 || !p_2) {
-               return;
-            }
-          if (sign_up_password_ !== sign_up_password_confirm) {
+         let p_1 = document.getElementById('N_P_I').value.trim();
+         let p_2 = document.getElementById('C_N_P_I').value.trim();
+         messageDiv =  document.getElementById('profile_msm');
 
+         if (!p_1 || !p_2 ) {
+               messageDiv.textContent = 'All two fields are required';
                return;
-          }
-          console.log("reset complete")
+         }
+
+         if (p_1 !== p_2) {
+               messageDiv.textContent = 'Passwords do not match';
+               return;
+         }
+
 
 
 });
