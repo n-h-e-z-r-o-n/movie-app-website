@@ -516,7 +516,7 @@ checkAndClearLocalStorage();
 
 
 var Login_container  = document.getElementById("Login_container");
- Login_container.style.display = 'block';
+//Login_container.style.display = 'block';
 var Register_container  = document.getElementById("Register_container");
 var Forgot_password_container  = document.getElementById("Forgot_password_container");
 
