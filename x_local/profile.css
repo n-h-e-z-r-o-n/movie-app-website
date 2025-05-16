@@ -84,12 +84,14 @@
    display: flex;
 
    margin-bottom: 20px;
-   background: white !important;
-   font-family: 'Courier New';
+   background: #C2D8D3 !important;
+   font-family: 'Poppins', sans-serif;
+   fo
    border-radius: 0.5em;
    color: black;
-   padding: 1%;
+   padding: 2%;
    align-items: center;
+   box-sizing: border-box;
 }
 
 
