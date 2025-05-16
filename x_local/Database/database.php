@@ -54,6 +54,15 @@ switch ($action) {
             requestPasswordReset($email);
             break;
 
+        case 'updatePass':
+            $password = $_POST['password'] ?? '';
+            $email = $_POST['email'] ?? '';
+
+            updatePass($password, $email);
+            break;
+
+
+
         default:
             echo json_encode(['massage' => 'Invalid action']);
 }
@@ -199,5 +208,42 @@ function requestPasswordReset($email) {
         echo json_encode(['message' => 'Database error']);
     }
 }
+
+function updatePass($$email) {
+    global $db;
+
+    try {
+        // Check if user exists (but don't reveal if they don't)
+        $stmt = $db->prepare("SELECT email FROM users WHERE email = :email");
+        $stmt->bindValue(':email', $email);
+        $stmt->execute();
+
+        if ($stmt->fetch()) {
+            // Generate secure token and expiration (1 hour)
+            $token = bin2hex(random_bytes(32));
+
+            $hashedPassword = password_hash($token, PASSWORD_DEFAULT);
+
+            // Store token in database
+            $stmt = $db->prepare("UPDATE users SET password = :token WHERE email = :email");
+            $stmt->bindValue(':token', $hashedPassword);
+            $stmt->bindValue(':email', $email);
+            //$stmt->execute();
+
+            // Send email (pseudo-code - implement your email sending)
+            $subject = "Password Reset Request";
+            $message = "reset your password, Reset Code: $token";
+            mail($email, $subject, $message);
+        }
+
+        // Always return the same message whether user exists or not
+        echo json_encode(['message' => 'If this email exists, a reset link has been sent']);
+
+    } catch (PDOException $e) {
+        echo json_encode(['message' => 'Database error']);
+    }
+}
+
+
 
 ?>

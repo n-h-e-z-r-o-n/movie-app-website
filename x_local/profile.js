@@ -89,6 +89,14 @@ document.getElementById("C_P_SAVE").addEventListener("click", function() {
                messageDiv.textContent = 'Passwords do not match';
                return;
          }
+        let user_email =  localStorage.getItem('user_email')
+        const response = await fetch('Database/database.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+              },
+        body: `action=updatePass&password=${encodeURIComponent(p_1)}&email=${encodeURIComponent(user_email)}`
+        });
 
 
 
