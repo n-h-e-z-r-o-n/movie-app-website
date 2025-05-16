@@ -607,8 +607,6 @@ document.getElementById('loginForm').addEventListener('click', async function(e)
 
             messageDiv.classList.add('loading_active');
 
-            console.log(email)
-            console.log(password)
 
             const response = await fetch('Database/database.php', {
             method: 'POST',

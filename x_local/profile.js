@@ -76,7 +76,17 @@ document.getElementById("Change_password").addEventListener("click", function() 
 });
 
 document.getElementById("C_P_SAVE").addEventListener("click", function() {
-         let p_1 = document.getElementById("N_P_I")..v
+         let p_1 = document.getElementById('N_P_I').value.trim()
+         let p_2 = document.getElementById('C_N_P_I').value.trim()
+          if (!p_1 || !p_2) {
+               return;
+            }
+          if (sign_up_password_ !== sign_up_password_confirm) {
+
+               return;
+          }
+          console.log("reset complete")
+
 
 });
 
