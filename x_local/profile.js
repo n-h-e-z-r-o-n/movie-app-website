@@ -72,7 +72,7 @@ document.getElementById("Change_password").addEventListener("click", function() 
         document.getElementById("C_P_SAVE").style.display = 'flex';
    }
    Change_password = !Change_password;
-   
+
 });
 
 

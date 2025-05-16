@@ -94,6 +94,26 @@
    box-sizing: border-box;
 }
 
+.C_P_SAVE{
+   height: 55px;
+   width: 80%;
+   margin: 10px;
+   margin-left: auto;
+   margin-right: auto;
+   display: flex;
+
+   margin-bottom: 20px;
+   background: var(--Brand_Color) !important;
+   font-family: 'Poppins', sans-serif;
+   font-size: 1.3em;
+   border-radius: 0.5em;
+   color: black;
+   padding: 2%;
+   align-items: center;
+   justify-content: center;
+   box-sizing: border-box;
+}
+
 
 .massages_container {
     display: flex;
