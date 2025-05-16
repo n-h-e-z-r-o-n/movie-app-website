@@ -1,4 +1,36 @@
-const search_R_div = document.getElementById("Favorites_Results");
+
+const show_profile = document.getElementById("show_profile");
+const show_messages = document.getElementById("show_messages");
+const show_watchlist = document.getElementById("show_watchlist");
+
+show_profile.addEventListener("click", function() {
+          document.getElementById("profile_container").style.display = 'flex';
+          document.getElementById("massages_container").style.display = 'none';
+          document.getElementById("Watch_List_container").style.display = 'none';
+          show_profile.style.color = 'var(--Brand_Color)'
+});
+
+show_messages.addEventListener("click", function() {
+          document.getElementById("profile_container").style.display = 'none';
+          document.getElementById("massages_container").style.display = 'flex';
+          document.getElementById("Watch_List_container").style.display = 'none';
+          show_messages.style.color = 'var(--Brand_Color)'
+});
+
+show_watchlist.addEventListener("click", function() {
+          document.getElementById("profile_container").style.display = 'none';
+          document.getElementById("massages_container").style.display = 'none';
+          document.getElementById("Watch_List_container").style.display = 'flex';
+          show_watchlist.style.color = 'var(--Brand_Color)'
+
+});
+
+
+
+
+
+
+const search_R_div = document.getElementById("Watch_List_container");
 const logout_btn = document.getElementById("logout_btn");
 
 const xr = document.getElementById("Account_btn");

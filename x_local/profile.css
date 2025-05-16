@@ -1,16 +1,7 @@
-
-.Favorites_Container{
-    height: auto;
-    width:  100%;
-    padding-bottom: 60px;
-    margin-top: 88px;
-    background: transparent;
-
-}
 .bar_section {
   display: flex;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 90px;
+  padding-bottom: 4px;
   width: 100%;
   gap:20%;
   justify-content: center;
@@ -28,23 +19,55 @@
   color: var(--Brand_Color);
 }
 
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+.Favorites_Container{
+    width:  100%;
+    height: 95%;
+    background: blue;
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    flex: 1;
+
+}
+
+
 
 .Watch_List_container {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
     height: auto;
-    gap: auto;
-    background: transparent;
+    gap: 20px; /* Changed from 'auto' - gap needs specific value */
+    background: green;
+    flex: 1 1 1; /* Added missing third value */
+    padding: 20px; /* Recommended for container spacing */
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
 }
 
 .profile_container {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    flex: 1 1;
-    gap: auto;
+    height: auto;
+    gap: 20px; /* Changed from 'auto' - gap needs specific value */
     background: red;
+    flex: 1 1 1; /* Added missing third value */
+    padding: 20px; /* Recommended for container spacing */
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+
+.massages_container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    gap: 20px; /* Changed from 'auto' - gap needs specific value */
+    background: yellow;
+    flex: 1 1 1; /* Added missing third value */
+    padding: 20px; /* Recommended for container spacing */
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
 }
 
 .remove_fave {
