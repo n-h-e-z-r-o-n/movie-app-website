@@ -102,7 +102,13 @@ document.getElementById("C_P_SAVE").addEventListener("click", async function(e) 
         });
 
          const data = await response.json();
-         messageDiv.textContent = data.massage;
+
+
+         messageDiv.textContent = data.message;
+         if(data.message === "Password Changed "){
+            document.getElementById('N_P_I').value = ''
+            document.getElementById('C_N_P_I').value = ''
+         }
 
 
 
