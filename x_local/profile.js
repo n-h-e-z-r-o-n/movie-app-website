@@ -55,8 +55,26 @@ document.getElementById("E_M_A").innerHTML = localStorage.getItem('user_email')
 document.getElementById("Y_N").innerHTML = localStorage.getItem('user_name')
 document.getElementById("J_D").innerHTML = localStorage.getItem('user_joined')
 
-document.getElementById("Change_password")
-Change_password
+let Change_password = false;
+document.getElementById("Change_password").addEventListener("click", function() {
+
+   if(Change_password){
+       document.getElementById("N_P").style.display = 'none';
+        document.getElementById("N_P_I").style.display = 'none';
+        document.getElementById("C_N_P").style.display = 'none';
+        document.getElementById("C_N_P_I").style.display = 'none';
+        document.getElementById("C_P_SAVE").style.display = 'none';
+   }else{
+     document.getElementById("N_P").style.display = 'flex';
+        document.getElementById("N_P_I").style.display = 'flex';
+        document.getElementById("C_N_P").style.display = 'flex';
+        document.getElementById("C_N_P_I").style.display = 'flex';
+        document.getElementById("C_P_SAVE").style.display = 'flex';
+   }
+   Change_password = !Change_password;
+   
+});
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
