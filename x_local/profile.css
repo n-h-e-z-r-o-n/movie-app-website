@@ -81,11 +81,15 @@
    margin: 10px;
    margin-left: auto;
    margin-right: auto;
+   display: flex;
 
    margin-bottom: 20px;
    background: white !important;
    font-family: 'Courier New';
    border-radius: 0.5em;
+   color: black;
+   padding: 1%;
+   align-items: center;
 }
 
 
