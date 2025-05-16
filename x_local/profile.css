@@ -65,6 +65,23 @@
 
 }
 
+.profile_section_1_head{
+    opacity: 0.7;
+   font-family: 'Courier New';
+   margin: auto;
+   width: 80%;
+}
+
+.profile_section_1_input{
+   height: 55px;
+   width: 80%;
+   margin: auto;
+   background: white !important;
+   font-family: 'Courier New';
+   border-radius: 0.5em;
+}
+
+
 .massages_container {
     display: flex;
     flex-wrap: wrap;
