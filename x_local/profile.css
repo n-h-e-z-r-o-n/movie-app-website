@@ -101,7 +101,7 @@
     width: 100%;
     height: auto;
     gap: 20px; /* Changed from 'auto' - gap needs specific value */
-    background: yellow;
+    background: transparent;
     flex: 1 1 1; /* Added missing third value */
     padding: 20px; /* Recommended for container spacing */
     box-sizing: border-box; /* Ensures padding doesn't affect width */
