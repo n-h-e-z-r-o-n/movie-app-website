@@ -701,6 +701,8 @@ document.getElementById('signUpForm').addEventListener('click', async function(e
                 localStorage.setItem('user_name', sign_up_Name_)
                 localStorage.setItem('user_watchlist', '[]')
                 localStorage.setItem('user_massages', '[]')
+                const currentDate = new Date();
+                localStorage.setItem('user_joined', currentDate.toString());
 
 
                 Account_btnT.innerHTML = '';

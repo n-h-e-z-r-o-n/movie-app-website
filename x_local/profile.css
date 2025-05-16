@@ -59,13 +59,11 @@
 }
 .profile_section_1{
      width: 600px;
-     height: 80%;
+     height: auto;
      background: ;
      margin: auto;
      padding: 5%;
      box-shadow: 1px 12px 25px rgb(128 128 128 / 9%);
-
-
 }
 
 .profile_section_1_head{
