@@ -329,7 +329,7 @@ async function AddToFav(movie){
     let email = localStorage.getItem('user_email');
     let notification = localStorage.getItem('user_massages') || '[]';
 
-    try{
+
           let S_info =  movie.S_info;
           let id =  movie.id
           let numbers = [1,1] //S_info.match(/\d+/g).map(Number);
@@ -337,7 +337,7 @@ async function AddToFav(movie){
           //console.log(numbers);
 
           if(notification){
-                const parsed_notification = JSON.parse(notification);
+                const parsed_notification = JSON.parse(notification) || JSON.parse(`[${notification}]`);
                 parsed_notification.push(numbers);
 
 
@@ -361,7 +361,7 @@ async function AddToFav(movie){
             const data_note = await response_note.json();
             console.log(data_note.massage)
 
-    } catch(error){    }
+    try{} catch(error){    }
 
     if(!Fave){
         localStorage.setItem("user_watchlist", JSON.stringify([movie]));
