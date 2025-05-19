@@ -1,4 +1,6 @@
 RewriteEngine On
+Options -Indexes
+
 
 # 1. Redirect /file.html to /file (301 SEO redirect)
 RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
