@@ -62,7 +62,7 @@ function Search_Results_SHOW(movies) {
 
   search_R_div.innerHTML = "";
   movies.forEach((movie) => {
-    let { original_title, original_name, poster_path, id, vote_average, overview, release_date, first_air_date , runtime, S_info} = movie;
+    let { original_title, original_name, name, poster_path, id, vote_average, overview, release_date, first_air_date , runtime, S_info} = movie;
     console.log(movie);
     let title;
     let type;
@@ -70,7 +70,7 @@ function Search_Results_SHOW(movies) {
     let Info;
 
     if (original_title === undefined) {
-       title = original_name;
+       title = name || original_name;
        date = first_air_date.substring(0, 4);
        type = "tv";
        type_r = "tv";

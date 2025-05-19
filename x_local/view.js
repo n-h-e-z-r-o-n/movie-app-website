@@ -116,7 +116,7 @@ function showMovies(movies) {
     }
 
     if (poster_path === null){
-        poster_path ='/nHj7dPNMM2QheZEDb2f7FxlBhUK.jpg';
+        return;
     }
 
     const movieItem = document.createElement("div");
@@ -274,9 +274,9 @@ async function Latest_episode(event) {
                   seasons_episode =  `SS ${data2['number_of_seasons']} / ESP ${data2['number_of_episodes']}`;
                 }
 
-                hold.push({poster_path:data2['poster_path'], first_air_date:data2['first_air_date'], vote_average:data2['vote_average'], original_name:data2['original_name'], id:data2['id'], S_info: seasons_episode});
+                hold.push({poster_path:data2['poster_path'], first_air_date:data2['first_air_date'], vote_average:data2['vote_average'], original_name:data2['name'], id:data2['id'], S_info: seasons_episode});
                 id_prev = data2['id'];
-                showTV([{poster_path:data2['poster_path'], first_air_date:data2['first_air_date'], vote_average:data2['vote_average'], original_name:data2['original_name'], id:data2['id'], S_info: seasons_episode}]);
+                showTV([{poster_path:data2['poster_path'], first_air_date:data2['first_air_date'], vote_average:data2['vote_average'], original_name:data2['name'], id:data2['id'], S_info: seasons_episode}]);
             }
           }
         }finally{continue;}
@@ -296,7 +296,7 @@ function showTV(movies) {
     }
 
     if (poster_path === null){
-        poster_path ='/nHj7dPNMM2QheZEDb2f7FxlBhUK.jpg';
+        return;
     }
 
     let updatedString = first_air_date.substring(0, 4);
