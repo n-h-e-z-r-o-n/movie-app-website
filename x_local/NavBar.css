@@ -352,12 +352,12 @@
   height: auto;
   max-height: 300px;
   position: absolute;
-  
+
   box-sizing: border-box;
 
   transition: visibility 0s, opacity 0.3s ease-in-out;
   border-radius: 5px;
-  transform: translateX(-40%) translateY(60%);
+  transform: translateX(-40%) translateY(65%);
   z-index: 1000;
   -ms-overflow-style: none;
   scrollbar-width: none;

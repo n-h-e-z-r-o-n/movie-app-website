@@ -627,9 +627,9 @@ if (savedState) {
      Account_btn.style.backgroundRepeat = 'no-repeat';
 
      document.getElementById('notification_btnT').style.display = 'flex';
-     //notification_check();
-
+     notification_check();
 }
+
 
 // Login Form --------------------------------------------------------------------------------------------------------
 
@@ -805,6 +805,19 @@ document.getElementById('forget_p_form').addEventListener('click', async functio
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+let show_notification = false
+document.getElementById('notification_btnT').addEventListener('click', async function(e) {
+            e.preventDefault();
+            if(show_notification){
+               document.getElementById('notification_container').style.display = 'none';
+            }else{
+               document.getElementById('notification_container').style.display = 'flex';
+            }
+            show_notification = !show_notification;
+
+)};
+
+
 
 async function notification_check(){
     let notification_widget = document.getElementById('notification_container')
