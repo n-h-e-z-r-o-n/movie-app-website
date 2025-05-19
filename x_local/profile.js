@@ -262,7 +262,7 @@ function Search_Results_SHOW(movies) {
 
 
         let notification_track = JSON.parse(localStorage.getItem('user_massages') || '[]');
-        print(notification_track)
+        console.log(notification_track)
         notification_track = notification_track.filter(movie => movie[2] !== itemIdToRemove);
 
 
@@ -271,7 +271,7 @@ function Search_Results_SHOW(movies) {
         headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: `action=updateMassagelist&email=${encodeURIComponent(email)}&Messages=${encodeURIComponent(notification_track)}`
+        body: `action=updateMassagelist&email=${encodeURIComponent(email)}&Messages=${encodeURIComponent(JSON.stringify(notification_track))}`
         });
         localStorage.setItem("user_massages", JSON.stringify(notification_track));
     try{}catch(error){}

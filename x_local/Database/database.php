@@ -52,6 +52,8 @@ switch ($action) {
         case 'updateMassagelist':
             $email = $_POST['email'] ?? '';
             $Messages = $_POST['Messages'] ?? '[]';
+
+            //echo json_encode(['massage' => $Messages]);
             updateMassagelist($email, $Messages);
             break;
 
@@ -187,7 +189,7 @@ function updateMassagelist($email, $Messages) {
     try {
         // Prepare the update query
         $stmt = $db->prepare("UPDATE users SET Messages = :Messages WHERE email = :email");
-        $stmt->bindValue(':Messages', $watchlist);
+        $stmt->bindValue(':Messages', $Messages);
         $stmt->bindValue(':email', $email);
 
         // Execute the query
