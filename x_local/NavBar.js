@@ -328,8 +328,8 @@ async function AddToFav(movie){
     let Fave = localStorage.getItem('user_watchlist');
     let email = localStorage.getItem('user_email');
     let notification = localStorage.getItem('user_massages') || '[]';
-
-
+    //console.log(notification)
+    //console.log(localStorage.getItem('user_massages'))
           let S_info =  movie.S_info;
           let id =  movie.id
           let numbers = [1,1] //S_info.match(/\d+/g).map(Number);
