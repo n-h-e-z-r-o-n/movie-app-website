@@ -132,6 +132,7 @@ body , html {
     cursor: pointer;
     font-size: 1em;
     overflow: hidden;
+    transition: all 0.3s ease;
 }
 
 .button_style1::before {
@@ -141,11 +142,10 @@ body , html {
 .button_style2::before {
     content: "Add to Fav";
 }
-.
-.button_style3::before {
-    content: "ADDED";
-    background: green;
-    border: 1px solid green;
+
+.button_style3 {
+    display: 'none';
+    transition: all 0.3s ease;
 }
 
 .button_style2:hover {

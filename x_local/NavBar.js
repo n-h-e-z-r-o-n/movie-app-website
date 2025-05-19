@@ -326,6 +326,8 @@ async function PlayTrailer(id_play, type){
 
 
 async function AddToFav(movie, widget){
+
+    widget.classList.remove('button_style2');
     widget.classList.add('button_style3');
     return
     let Fave = localStorage.getItem('user_watchlist');

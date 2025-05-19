@@ -140,7 +140,6 @@
 .remove_fave:hover{
   color: red;
   animation: pulse_glow 1.5s infinite ease-in-out;
-
 }
 
 /* Smoother animation with consistent glow */
