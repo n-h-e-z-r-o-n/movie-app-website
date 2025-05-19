@@ -620,10 +620,10 @@ if (savedState) {
      Account_btnT.style.backgroundRepeat = 'no-repeat';
 
      Account_btn.innerHTML = '';
-     Account_btn.style.background = `url('./Assets/cat.png')`;
-     Account_btn.style.backgroundSize = '100% 100%';
-     Account_btn.style.backgroundPosition = 'center';
-     Account_btn.style.backgroundRepeat = 'no-repeat';
+     //Account_btn.style.background = `url('./Assets/cat.png')`;
+     //Account_btn.style.backgroundSize = '100% 100%';
+     //Account_btn.style.backgroundPosition = 'center';
+     //Account_btn.style.backgroundRepeat = 'no-repeat';
 
      document.getElementById('notification_btnT').style.display = 'flex';
      notification_check();
