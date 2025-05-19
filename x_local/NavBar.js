@@ -761,6 +761,8 @@ document.getElementById('signUpForm').addEventListener('click', async function(e
                 Account_btn.style.backgroundRepeat = 'no-repeat';
                 messageDiv.classList.remove('loading_active');
                 Register_container.style.display = 'none';
+                document.getElementById('notification_btnT').style.display = 'flex';
+
             }
 
 });
