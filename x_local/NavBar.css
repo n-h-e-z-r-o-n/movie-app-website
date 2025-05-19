@@ -502,8 +502,9 @@
 }
 
 .nav_tub{
-     background-color: ;
+     background-color: red;
      height: 80%;
+     aspect-ratio: 1;
      align-items: center;
      display: grid;
      justify-content: center;

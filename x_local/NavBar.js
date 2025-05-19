@@ -620,12 +620,11 @@ if (savedState) {
      Account_btnT.style.backgroundRepeat = 'no-repeat';
 
      Account_btn.innerHTML = '';
-
      Account_btn.style.background = `url('./Assets/account.png')`;
-     Account_btn.style.background = 'red';
      Account_btn.style.backgroundSize = '100% 100%';
      Account_btn.style.backgroundPosition = 'center';
      Account_btn.style.backgroundRepeat = 'no-repeat';
+     Account_btn.style.borderRadius = '50%';
 
      document.getElementById('notification_btnT').style.display = 'flex';
      notification_check();
