@@ -383,9 +383,7 @@ async function AddToFav(movie){
         },
         body: `action=updateWatchlist&email=${encodeURIComponent(email)}&watchlist=${encodeURIComponent(watchlist_new)}`
         });
-
         const data = await response.json();
-
         //console.log(data.massage)
     }
 }
