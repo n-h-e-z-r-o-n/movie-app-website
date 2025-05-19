@@ -257,15 +257,14 @@ function Search_Results_SHOW(movies) {
           },
     body: `action=updateWatchlist&email=${encodeURIComponent(email)}&watchlist=${encodeURIComponent(watchlist_new)}`
     });
-
     //const data = await response.json();
 
-
+     try{
         let notification_track = JSON.parse(localStorage.getItem('user_massages') || '[]');
         console.log(notification_track)
         notification_track = notification_track.filter(movie => movie[2] !== itemIdToRemove);
-        console.log(notification_track)
-        console.log(JSON.stringify(notification_track))
+        //console.log(notification_track)
+        //console.log(JSON.stringify(notification_track))
 
 
         let response_note = await fetch('Database/database.php', {
@@ -276,6 +275,6 @@ function Search_Results_SHOW(movies) {
         body: `action=updateMassagelist&email=${encodeURIComponent(email)}&Messages=${encodeURIComponent(JSON.stringify(notification_track))}`
         });
         localStorage.setItem("user_massages", JSON.stringify(notification_track));
-    try{}catch(error){}
+    }catch(error){console.log(error)}
 
  }
