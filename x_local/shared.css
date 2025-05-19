@@ -142,6 +142,12 @@ body , html {
     content: "Add to Fav";
 }
 
+.button_style3::before {
+    content: "ADDED";
+    background: green;
+    border: 1px solid var(--Brand_Color);
+}
+
 .button_style2:hover {
     color:   #DAA520;
     border: 1px solid #DAA520;
