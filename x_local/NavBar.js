@@ -335,8 +335,6 @@ async function AddToFav(movie){
           let numbers = [1,1] //S_info.match(/\d+/g).map(Number);
           numbers.push(id)
           //console.log(numbers);
-          console.log(S_info, ' ', id);
-
 
           if(notification){
                 const parsed_notification = JSON.parse(notification);
