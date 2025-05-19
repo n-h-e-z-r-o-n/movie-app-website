@@ -100,7 +100,7 @@ const Anime_btnT = document.getElementById("Anime_btnT");
 
 // Add click event listener
 HomeNav_btnT.addEventListener("click", function() {
-   window.location.href = "index.html";
+   window.location.href = "Home.html";
 });
 Movie_btnT.addEventListener("click", function() {
    window.location.href = "view-more.html?query=movie";
@@ -170,7 +170,7 @@ const Reload_btn = document.getElementById("Reload_btn");
 
 // Add click event listener
 HomeNav_btn.addEventListener("click", function() {
-   window.location.href = "index.html";
+   window.location.href = "Home.html";
 });
 Movie_btn.addEventListener("click", function() {
    window.location.href = "view-more.html?query=movie";
