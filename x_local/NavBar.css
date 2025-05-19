@@ -349,7 +349,7 @@
   flex-wrap: wrap;
   backdrop-filter: blur(2100px);
   width: 300px;
-  height: auto;
+  height: 300px;
   max-height: 300px;
   position: absolute;
 

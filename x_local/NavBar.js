@@ -808,6 +808,7 @@ document.getElementById('forget_p_form').addEventListener('click', async functio
 let show_notification = false
 document.getElementById('notification_btnT').addEventListener('click', async function(e) {
             e.preventDefault();
+
             if(show_notification){
                document.getElementById('notification_container').style.display = 'none';
             }else{
@@ -815,7 +816,7 @@ document.getElementById('notification_btnT').addEventListener('click', async fun
             }
             show_notification = !show_notification;
 
-)};
+});
 
 
 
