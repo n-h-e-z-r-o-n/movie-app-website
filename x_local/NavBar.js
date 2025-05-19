@@ -167,6 +167,7 @@ const Movie_btn = document.getElementById("Movie_btn");
 const TVSeries_btn = document.getElementById("TVSeries_btn");
 const Anime_btn = document.getElementById("Anime_btn");
 const Reload_btn = document.getElementById("Reload_btn");
+Reload_btn.style.display = 'none';
 
 // Add click event listener
 HomeNav_btn.addEventListener("click", function() {
@@ -689,6 +690,7 @@ document.getElementById('loginForm').addEventListener('click', async function(e)
                 Account_btn.style.backgroundSize = '100% 100%';
                 Account_btn.style.backgroundPosition = 'center';
                 Account_btn.style.backgroundRepeat = 'no-repeat';
+                Account_btn.style.borderRadius = '50%';
                 messageDiv.classList.remove('loading_active');
                 Login_container.style.display = 'none';
                 document.getElementById('notification_btnT').style.display = 'flex';
@@ -760,6 +762,8 @@ document.getElementById('signUpForm').addEventListener('click', async function(e
                 Account_btn.style.backgroundSize = '100% 100%';
                 Account_btn.style.backgroundPosition = 'center';
                 Account_btn.style.backgroundRepeat = 'no-repeat';
+                Account_btn.style.borderRadius = '50%';
+
                 messageDiv.classList.remove('loading_active');
                 Register_container.style.display = 'none';
                 document.getElementById('notification_btnT').style.display = 'flex';
