@@ -232,7 +232,6 @@ function requestPasswordReset($email) {
             mail($email, $subject, $message);
         }
 
-        // Always return the same message whether user exists or not
         echo json_encode(['message' => 'If this email exists, a reset link has been sent']);
 
     } catch (PDOException $e) {
