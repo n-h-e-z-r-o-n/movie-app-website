@@ -444,7 +444,7 @@ function Slider_Display(movies, show_type) {
               const movieItem = document.createElement("div");
               movieItem.classList.add("slider-img");
               movieItem.innerHTML = `
-                    <img src="${IMG_PATH + backdrop_path}" />
+                    <img src="${IMG_PATH + backdrop_path}" loading="lazy" >
                     <div class="details">
                       <h2 class="details_h2">${show_name}</h2>
                       <p class="details_p">&#9733; ${vote_average}</p>
@@ -459,7 +459,7 @@ function Slider_Display(movies, show_type) {
               const movieItem2 = document.createElement("div");
               movieItem2.classList.add("card");
               movieItem2.innerHTML = `
-                    <img class='card_img' src="${IMG_PATH + backdrop_path}" />
+                    <img class='card_img' src="${IMG_PATH + backdrop_path}" loading="lazy">
                     <div class="overlay_rate">&#9733; ${vote_average}</div>
                     <div class="overlay_title">${show_name}</dvi>
                     </div>
@@ -562,7 +562,7 @@ async function showMovies(movies) {
         <!-- box-1  -->
 
              <div class="box-img">
-                <img class="img-on" src="${poster_path}" alt="">
+                <img class="img-on" src="${poster_path}"  loading="lazy" alt="">
                 <div class="box-img-button">
                      <div class="button_style1"></div>
                      <div class="button_style2"></div>
@@ -696,7 +696,7 @@ function showTV(movies) {
         <!-- box-1  -->
 
             <div class="box-img">
-                <img class="img-on" src="${IMG_PATH + poster_path}" alt="">
+                <img class="img-on" src="${IMG_PATH + poster_path}" loading="lazy" alt="">
                 <div class="box-img-button">
                      <div class="button_style1"></div>
                      <div class="button_style2"></div>

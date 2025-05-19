@@ -209,7 +209,7 @@ function Search_Results_SHOW(movies) {
 
              <div class="box-img">
                 <div class='remove_fave'>X</div>
-                <img class="img-on" src="${poster_path}" alt="">
+                <img class="img-on" src="${poster_path}"  loading="lazy" alt="">
             </div>
             <div class="box_title">${Box_title}</div>
             <div class="container_span">
