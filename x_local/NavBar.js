@@ -327,9 +327,9 @@ async function PlayTrailer(id_play, type){
 async function AddToFav(movie){
     const Fave = localStorage.getItem('user_watchlist');
     let email = localStorage.getItem('user_email');
-    let  notification =  localStorage.getItem('user_massages');
+    let  notification =  localStorage.getItem('user_massages') || '[]';
 
-    try{
+
           let S_info =  movie.S_info;
           let id =  movie.id
           let numbers = [1,1] //S_info.match(/\d+/g).map(Number);
@@ -359,7 +359,7 @@ async function AddToFav(movie){
             body: `action=updateMassagelist&email=${encodeURIComponent(email)}&Messages=${encodeURIComponent(numbers)}`
             });
 
-    } catch(error){    }
+    try{} catch(error){    }
 
     if(!Fave){
         localStorage.setItem("user_watchlist", JSON.stringify([movie]));
