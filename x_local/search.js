@@ -63,7 +63,7 @@ function Search_Results_SHOW(movies) {
   search_R_div.innerHTML = "";
   movies.forEach((movie) => {
     let { original_title, original_name, poster_path, id, vote_average, overview, release_date, first_air_date , runtime, S_info} = movie;
-    //console.log(movie);
+    console.log(movie);
     let title;
     let type;
     let type_r;
@@ -86,7 +86,7 @@ function Search_Results_SHOW(movies) {
     }
 
     if (poster_path === null){
-        poster_path ='/nHj7dPNMM2QheZEDb2f7FxlBhUK.jpg';
+       return;
     }
 
 
