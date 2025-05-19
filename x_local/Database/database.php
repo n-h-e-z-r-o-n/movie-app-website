@@ -52,8 +52,6 @@ switch ($action) {
         case 'updateMassagelist':
             $email = $_POST['email'] ?? '';
             $Messages = $_POST['Messages'] ?? '[]';
-
-            //echo json_encode(['massage' => $Messages]);
             updateMassagelist($email, $Messages);
             break;
 
@@ -204,7 +202,7 @@ function updateMassagelist($email, $Messages) {
         echo json_encode(['massage' => 'Error updating Messages']);
     }
 }
-
+requestPasswordReset('h12@gmail.com');
 function requestPasswordReset($email) {
     global $db;
 
@@ -215,9 +213,7 @@ function requestPasswordReset($email) {
         $stmt->execute();
 
         if ($stmt->fetch()) {
-            // Generate secure token and expiration (1 hour)
             $token = bin2hex(random_bytes(32));
-
             $hashedPassword = password_hash($token, PASSWORD_DEFAULT);
 
             // Store token in database
