@@ -351,13 +351,15 @@ async function AddToFav(movie){
                    localStorage.setItem("user_massages", JSON.stringify([numbers]));
           }
 
-            let response = await fetch('Database/database.php', {
+            let response_note = await fetch('Database/database.php', {
             method: 'POST',
             headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: `action=updateMassagelist&email=${encodeURIComponent(email)}&Messages=${encodeURIComponent(numbers)}`
             });
+            const data_note = await response_note.json();
+            console.log(data_note.massage)
 
     try{} catch(error){    }
 
@@ -662,11 +664,13 @@ document.getElementById('loginForm').addEventListener('click', async function(e)
                 console.log('Login :', data);
 
                 let user_info = data.massage;
+                let not_t =  user_info.Messages || '[]';
+                let watch_fave = user_info.watchlist || '[]'
                 localStorage.setItem('U_ID', user_info.email)
                 localStorage.setItem('user_email', user_info.email)
                 localStorage.setItem('user_name', user_info.name)
-                localStorage.setItem('user_watchlist', user_info.watchlist)
-                localStorage.setItem('user_massages', user_info.Messages)
+                localStorage.setItem('user_watchlist', watch_fave)
+                localStorage.setItem('user_massages', not_t)
                 localStorage.setItem('user_joined', user_info.created_at)
 
                 Account_btnT.innerHTML = '';
@@ -834,7 +838,7 @@ async function notification_check(){
                    const response = await fetch(t_url, { headers });
                    const data = await response.json();
 
-                   console.log(parsed_notification[i]);
+                    console.log(parsed_notification[i]);
                     console.log(data);
                     let { name, poster_path, id , last_episode_to_air } = data;
 
@@ -883,7 +887,7 @@ async function notification_check(){
      }
 }
 
-notification_check()
+//notification_check()
 
 
 
