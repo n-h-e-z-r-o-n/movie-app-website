@@ -6,8 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="cc84c571-4efa-41b6-b298-1c0cbea8a6aa" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/x_local/Database/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/Database/database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/Home.html" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/Home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/x_local/NavBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/NavBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/S_Results.html" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/S_Results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/anime.html" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/anime.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/category.html" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/category.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/genre.html" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/genre.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/view-more.html" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/view-more.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/watch.html" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/watch.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

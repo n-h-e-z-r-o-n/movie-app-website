@@ -781,48 +781,12 @@ document.getElementById('forget_p_form').addEventListener('click', async functio
             messageDiv.className = 'error-message';
 
             // Basic validation
-            if (!sign_up_email_ ) {
-               messageDiv.textContent = 'All fields are required';
-               return;
-            }
-
-            if (!isValidEmail(
-document.getElementById('forget_p_form').addEventListener('click', async function(e) {
-            e.preventDefault();
-
-             // Get form elements
-            const reset_email_ = document.getElementById('reset_email_').value.trim();
-            const messageDiv = document.getElementById('Forgot_display');
-
-            messageDiv.textContent = '';
-            messageDiv.className = 'error-message';
-
-            // Basic validation
             if (!reset_email_ ) {
                messageDiv.textContent = 'All fields are required';
                return;
             }
 
             if (!isValidEmail(reset_email_)) {
-                messageDiv.textContent = 'Please enter a valid email address';
-                return;
-            }
-            console.log(reset_email_)
-
-            const response = await fetch('Database/database.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                  },
-            body: `action=requestPasswordReset&email=${encodeURIComponent(reset_email_)}`
-            });
-
-            const data = await response.json();
-            console.log('reset :', data);
-
-            messageDiv.textContent = data.massage;
-
-});)) {
                 messageDiv.textContent = 'Please enter a valid email address';
                 return;
             }

@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<!--------- Navigation bar  ------------------------------------------------------------------------------------------------------------>
+ <!--------- Navigation bar  ------------------------------------------------------------------------------------------------------------>
 
              <div class = "navbar_top" id="navbar" >
                         <div class="Nav_container">
@@ -48,6 +48,36 @@
                                 <input type="text" class="search-input" id="search_input_top" placeholder="Search...">
                             </div>
                         </div>
+
+                        <div class="notification_picture" id="notification_btnT" >
+                            <div class="notification_badge" id="notification_badge"></div>
+                            <i class="fa fa-bell"></i>
+                            <div class="notification_container" id="notification_container">
+
+                                <!--div class="notification_container_each">
+                                    <img class="notification_container_each_img">
+                                    <div class="notification_container_info">
+                                         <div class="notification_container_title">   </div>
+                                         <div class="notification_container_Details">  tttttttttt </div>
+                                    </div>
+                                </div>
+                                <div class="notification_container_each">
+                                    <img class="notification_container_each_img">
+                                    <div class="notification_container_info">
+                                         <div class="notification_container_title">   </div>
+                                         <div class="notification_container_Details">  tttttttttt </div>
+                                    </div>
+                                </div>
+                                    <div class="notification_container_each">
+                                    <img class="notification_container_each_img">
+                                    <div class="notification_container_info">
+                                         <div class="notification_container_title">   </div>
+                                         <div class="notification_container_Details">  tttttttttt </div>
+                                    </div>
+                                </div -->
+                            </div>
+                        </div>
+
                         <div class="profile-picture" id="Account_btnT" >  <i class="fa fa-user"></i> </div>
              </div>
 
@@ -120,22 +150,28 @@
 
              <div class="Terms_Container" id="Terms_Container">  </div>
 
- <!--  trailer section --------------------------------------------------------------------------------------------------------->
+             <!--  trailer section --------------------------------------------------------------------------------------------------------->
 
             <div class="trailer_div" id="trailer_div">
                 <div class="trailer_div_cancel" id="trailer_div_cancel">X</div>
                 <div class="trailer_div_iframe" id="trailer_div_iframe"> </div>
             </div>
+
 <!--  Login/SignUp section --------------------------------------------------------------------------------------------------------->
 
 <div class="Login_container" id="Login_container">
         <div class="login_cancel"></div>
-        <input id="login_username" autocomplete="off" class="input_form" type="text" placeholder="Username" required>
+
+        <div class="Login_container_header">
+                <div class="" id="">Login</div>
+                <div class=""  id="Register" style="opacity: 0.3;" >Sign Up</div>
+        </div>
+        <input id="login_username" autocomplete="off" class="input_form" type="text" placeholder="email" required>
         <input id="login_password" class="input_form" type="password" placeholder="Password" required>
         <div class="error" id="login_error_display"></div>
-	    <div  class="Login_btn">Login</div>
+	    <div  class="Login_btn" id="loginForm">Login</div>
+        <hr>
         <div class="shift_container">
-                <div class="Login_others" id="Register">Register</div>
                 <div class="Login_others" id="Forgot_password">Forgot password</div>
         </div>
 </div>
@@ -143,29 +179,34 @@
 
 <div class="Register_container" id="Register_container">
         <div class="login_cancel"></div>
-        <input  autocomplete="off" class="input_form" type="text" placeholder="Full Name" required>
-        <input  autocomplete="off" class="input_form" type="text" placeholder="Email address" required>
-        <input class="input_form" type="password" placeholder="Password" required>
-        <input class="input_form" type="password" placeholder="Confirm Password" required>
+        <div class="Login_container_header">
+                <div class="" id="login_change" style="opacity: 0.3;">Login</div>
+                <div class="" >Sign Up</div>
+        </div>
+        <input  id="sign_up_Name_" autocomplete="off" class="input_form" type="text" placeholder="Full Name" required>
+        <input  id="sign_up_email_" autocomplete="off" class="input_form" type="text" placeholder="Email address" required>
+        <input id='sign_up_password_' class="input_form" type="password" placeholder="Password" required>
+        <input  id='sign_up_password_confirm' class="input_form" type="password" placeholder="Confirm Password" required>
 
         <div class="error" id="signup_error_display"></div>
-        <div  class="Sign_up_btn">Sign Up</div>
+        <div  class="Sign_up_btn" id="signUpForm">Sign Up</div>
+        <hr>
         <div class="shift_container">
-                <div class="Login_others" id="login_change">Login</div>
         </div>
 </div>
 
 <div class="Forgot_password_container" id="Forgot_password_container">
         <div class="login_cancel"></div>
-        <input  autocomplete="off" class="input_form" type="text" placeholder="Email address" required>
-
+        <input  id="reset_email_" autocomplete="off" class="input_form" type="text" placeholder="Email address" required>
         <div class="error" id="Forgot_display"></div>
 
-	    <div  class="Forgot_password_btn">Submit</div>
+	    <div  class="Forgot_password_btn" id="forget_p_form">Submit</div>
+        <hr>
         <div class="shift_container">
                 <div class="Login_others" id="login_change1">Login</div>
         </div>
 </div>
+
 
 
  <!--------- Section ------------------------------------------------------------------------------------------------------------>
