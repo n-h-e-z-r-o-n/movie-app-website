@@ -144,7 +144,7 @@ logout_btn.addEventListener("click", function() {
         localStorage.removeItem('user_watchlist')
         localStorage.removeItem('user_massages')
 
-        window.location.href = "Home.htm";
+        window.location.href = "Home.html";
 });
 
 if(U_ID){
