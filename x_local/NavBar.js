@@ -356,7 +356,7 @@ async function AddToFav(movie){
             headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: `action=updateMassagelist&email=${encodeURIComponent(email)}&Messages=${encodeURIComponent(numbers)}`
+            body: `action=updateMassagelist&email=${encodeURIComponent(email)}&Messages=${encodeURIComponent(JSON.stringify(numbers))}`
             });
             const data_note = await response_note.json();
             console.log(data_note.massage)
