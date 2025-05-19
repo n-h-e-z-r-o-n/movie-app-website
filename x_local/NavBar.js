@@ -329,12 +329,12 @@ async function AddToFav(movie){
     let email = localStorage.getItem('user_email');
     let notification = localStorage.getItem('user_massages') || '[]';
 
-
+    try{
           let S_info =  movie.S_info;
           let id =  movie.id
-          let numbers = [1,1] //S_info.match(/\d+/g).map(Number);
+          let numbers = S_info.match(/\d+/g).map(Number); //[1,1]
           numbers.push(id)
-          //console.log(numbers);
+          console.log(numbers);
 
           if(notification){
                 //console.log(JSON.parse(`[${notification}]`));
@@ -362,7 +362,7 @@ async function AddToFav(movie){
             const data_note = await response_note.json();
             console.log(data_note.massage)
 
-    try{} catch(error){    }
+    } catch(error){  console.log(error)   }
 
     if(!Fave){
         localStorage.setItem("user_watchlist", JSON.stringify([movie]));
@@ -839,8 +839,8 @@ async function notification_check(){
                    const response = await fetch(t_url, { headers });
                    const data = await response.json();
 
-                    console.log(parsed_notification[i]);
-                    console.log(data);
+                    //console.log(parsed_notification[i]);
+                    //console.log(data);
                     let { name, poster_path, id , last_episode_to_air } = data;
 
                     let last_season = parsed_notification[i][0];

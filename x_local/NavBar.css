@@ -345,7 +345,7 @@
 }
 
 .notification_container{
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   backdrop-filter: blur(2100px);
   width: 300px;
