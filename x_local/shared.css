@@ -141,11 +141,11 @@ body , html {
 .button_style2::before {
     content: "Add to Fav";
 }
-
+.
 .button_style3::before {
     content: "ADDED";
     background: green;
-    border: 1px solid var(--Brand_Color);
+    border: 1px solid green;
 }
 
 .button_style2:hover {
