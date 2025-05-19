@@ -264,6 +264,8 @@ function Search_Results_SHOW(movies) {
         let notification_track = JSON.parse(localStorage.getItem('user_massages') || '[]');
         console.log(notification_track)
         notification_track = notification_track.filter(movie => movie[2] !== itemIdToRemove);
+        console.log(notification_track)
+        console.log(JSON.stringify(notification_track))
 
 
         let response_note = await fetch('Database/database.php', {

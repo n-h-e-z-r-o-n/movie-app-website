@@ -337,7 +337,8 @@ async function AddToFav(movie){
           //console.log(numbers);
 
           if(notification){
-                const parsed_notification = JSON.parse(notification) || JSON.parse(`[${notification}]`);
+                //console.log(JSON.parse(`[${notification}]`));
+                const parsed_notification =  JSON.parse(notification) ;
                 parsed_notification.push(numbers);
 
 
