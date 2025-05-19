@@ -202,7 +202,7 @@ function updateMassagelist($email, $Messages) {
         echo json_encode(['massage' => 'Error updating Messages']);
     }
 }
-requestPasswordReset('h12@gmail.com');
+
 function requestPasswordReset($email) {
     global $db;
 

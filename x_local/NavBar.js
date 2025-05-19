@@ -669,13 +669,13 @@ document.getElementById('loginForm').addEventListener('click', async function(e)
 
                 let user_info = data.massage;
                 let not_t =  user_info.Messages || '[]';
-                let watch_fave = user_info.watchlist || '[]'
-                localStorage.setItem('U_ID', user_info.email)
-                localStorage.setItem('user_email', user_info.email)
-                localStorage.setItem('user_name', user_info.name)
-                localStorage.setItem('user_watchlist', watch_fave)
-                localStorage.setItem('user_massages', not_t)
-                localStorage.setItem('user_joined', user_info.created_at)
+                let watch_fave = user_info.watchlist || '[]';
+                localStorage.setItem('U_ID', user_info.email);
+                localStorage.setItem('user_email', user_info.email);
+                localStorage.setItem('user_name', user_info.name);
+                localStorage.setItem('user_watchlist', watch_fave);
+                localStorage.setItem('user_massages', not_t);
+                localStorage.setItem('user_joined', user_info.created_at);
 
                 Account_btnT.innerHTML = '';
                 Account_btnT.style.background = `url('./Assets/cat.png')`;
@@ -690,6 +690,7 @@ document.getElementById('loginForm').addEventListener('click', async function(e)
                 Account_btn.style.backgroundRepeat = 'no-repeat';
                 messageDiv.classList.remove('loading_active');
                 Login_container.style.display = 'none';
+                document.getElementById('notification_btnT').style.display = 'flex';
             }
  });
 
