@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cc84c571-4efa-41b6-b298-1c0cbea8a6aa" name="Changes" comment="" />
+    <list default="true" id="cc84c571-4efa-41b6-b298-1c0cbea8a6aa" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/x_local/Assets/L_S.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/Assets/cat.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/Assets/chicken.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/Assets/panda.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/Assets/x.jpg" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
