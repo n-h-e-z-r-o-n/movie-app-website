@@ -400,7 +400,6 @@ let terms_FeedBack = localStorage.getItem('terms_FeedBack');
 if (terms_FeedBack !== null ){
        Terms_Container.style.display = "none";
 } else {
-
         Terms_Container.innerHTML =`
                   <div class="Terms_Box" id="Terms_Box">
                        <div class="Terms_Details">
