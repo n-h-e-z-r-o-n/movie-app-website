@@ -260,18 +260,20 @@ function Search_Results_SHOW(movies) {
 
     //const data = await response.json();
 
-    try{
-        let notification_track = JSON.parse(localStorage.getItem('user_massages'));
-        notification_track = notification_track.filter(movie => movie[2] !== itemIdToRemove);
-        localStorage.setItem("user_massages", JSON.stringify(notification_track));
 
-        let response = await fetch('Database/database.php', {
+        let notification_track = JSON.parse(localStorage.getItem('user_massages') || '[]');
+        print(notification_track)
+        notification_track = notification_track.filter(movie => movie[2] !== itemIdToRemove);
+
+
+        let response_note = await fetch('Database/database.php', {
         method: 'POST',
         headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: `action=updateMassagelist&email=${encodeURIComponent(email)}&Messages=${encodeURIComponent(notification_track)}`
         });
-    }catch(error){}
+        localStorage.setItem("user_massages", JSON.stringify(notification_track));
+    try{}catch(error){}
 
  }
