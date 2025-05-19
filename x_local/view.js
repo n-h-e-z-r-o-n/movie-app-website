@@ -2,8 +2,8 @@ const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
 const more_div = document.getElementById("moreUl");
 
 const headers = {
-"accept": "application/json",
-"Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZjliMmUyN2MxYTZiYzMyMzNhZjE4MzJmNGFjYzg1MCIsIm5iZiI6MTcxOTY3NDUxNy4xOTYsInN1YiI6IjY2ODAyNjk1ZWZhYTI1ZjBhOGE4NGE3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RTms-g8dzOl3WwCeJ7WNLq3i2kXxl3T7gOTa8POcxcw"
+    "accept": "application/json",
+    "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZjliMmUyN2MxYTZiYzMyMzNhZjE4MzJmNGFjYzg1MCIsIm5iZiI6MTcxOTY3NDUxNy4xOTYsInN1YiI6IjY2ODAyNjk1ZWZhYTI1ZjBhOGE4NGE3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RTms-g8dzOl3WwCeJ7WNLq3i2kXxl3T7gOTa8POcxcw"
 };
 
 const params = getQueryParams();  // Extract the search term from URL parameters
@@ -126,7 +126,7 @@ function showMovies(movies) {
         <!-- box-1  -->
 
              <div class="box-img">
-                <img class="img-on" src="${poster_path}" alt="">
+                <img class="img-on" src="${poster_path}" loading="lazy" alt="">
                 <div class="box-img-button">
                      <div class="button_style1"></div>
                      <div class="button_style2"></div>
@@ -306,7 +306,7 @@ function showTV(movies) {
         <!-- box-1  -->
 
             <div class="box-img">
-                <img class="img-on" src="${poster_path}" alt="">
+                <img class="img-on" src="$IMG_PATH{poster_path}" alt="" loading="lazy">
                 <div class="box-img-button">
                      <div class="button_style1"></div>
                      <div class="button_style2"></div>
@@ -321,13 +321,8 @@ function showTV(movies) {
                <div class="badge-type_text"> ${S_info} </div>
                <div  class="badge-type_rating"> &starf;  ${vote_average} </div>
             </div>
-
     `;
 
-    // Add event listener to open another page when clicked
-    //movieItem.addEventListener("click", () => {
-    //window.location.href = "watch.html?id=" + id + "&type=tv";
-    //
 
     const boxImg = movieItem.querySelector(".box-img");
     boxImg.addEventListener("click", () => {
@@ -398,8 +393,8 @@ async function more_series(){
                         seasons_episode =  `SS ${data2['number_of_seasons']} / ESP ${data2['number_of_episodes']}`;
                         }
 
-                      hold.push({poster_path:data2['poster_path'], first_air_date:data2['first_air_date'], vote_average:data2['vote_average'], original_name:data2['original_name'], id:data2['id'], S_info: seasons_episode});
-                      showTV([{poster_path:data2['poster_path'], first_air_date:data2['first_air_date'], vote_average:data2['vote_average'], original_name:data2['original_name'], id:data2['id'], S_info: seasons_episode}]);
+                      hold.push({poster_path:data2['poster_path'], first_air_date:data2['first_air_date'], vote_average:data2['vote_average'], original_name:data2['name'], id:data2['id'], S_info: seasons_episode});
+                      showTV([{poster_path:data2['poster_path'], first_air_date:data2['first_air_date'], vote_average:data2['vote_average'], original_name:data2['name'], id:data2['id'], S_info: seasons_episode}]);
                       id_prev = data2['id'];
                     }
                   }
