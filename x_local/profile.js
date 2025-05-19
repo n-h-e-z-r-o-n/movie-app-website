@@ -109,9 +109,6 @@ document.getElementById("C_P_SAVE").addEventListener("click", async function(e) 
             document.getElementById('N_P_I').value = ''
             document.getElementById('C_N_P_I').value = ''
          }
-
-
-
 });
 
 
@@ -245,19 +242,15 @@ function Search_Results_SHOW(movies) {
 
 
  async function RemoveFromFav(itemIdToRemove, passed_function){
+    let email = localStorage.getItem('user_email');
 
     let saved_Favorites_Data = JSON.parse(localStorage.getItem('user_watchlist'));
-
     saved_Favorites_Data = saved_Favorites_Data.filter(movie => movie.id !== itemIdToRemove);
-
     passed_function(saved_Favorites_Data);
-
     localStorage.setItem("user_watchlist", JSON.stringify(saved_Favorites_Data));
-
-    let email = localStorage.getItem('user_email');
     let watchlist_new =  JSON.stringify(saved_Favorites_Data);
 
-    const response = await fetch('Database/database.php', {
+    let response = await fetch('Database/database.php', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -265,11 +258,20 @@ function Search_Results_SHOW(movies) {
     body: `action=updateWatchlist&email=${encodeURIComponent(email)}&watchlist=${encodeURIComponent(watchlist_new)}`
     });
 
-    const data = await response.json();
+    //const data = await response.json();
 
-    //console.log(data.massage)
+    try{
+        let notification_track = JSON.parse(localStorage.getItem('user_massages'));
+        notification_track = notification_track.filter(movie => movie[2] !== itemIdToRemove);
+        localStorage.setItem("user_massages", JSON.stringify(notification_track));
 
-
-
+        let response = await fetch('Database/database.php', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `action=updateMassagelist&email=${encodeURIComponent(email)}&Messages=${encodeURIComponent(notification_track)}`
+        });
+    }catch(error){}
 
  }

@@ -49,6 +49,13 @@ switch ($action) {
             updateWatchlist($email, $watchlist);
             break;
 
+        case 'updateMassagelist':
+            $email = $_POST['email'] ?? '';
+            $Messages = $_POST['Messages'] ?? '[]';
+            updateMassagelist($email, $Messages);
+            break;
+
+
         case 'requestPasswordReset':
             $email = $_POST['email'] ?? '';
             requestPasswordReset($email);
@@ -174,6 +181,28 @@ function updateWatchlist($email, $watchlist) {
     }
 }
 
+function updateMassagelist($email, $Messages) {
+    global $db;
+
+    try {
+        // Prepare the update query
+        $stmt = $db->prepare("UPDATE users SET Messages = :Messages WHERE email = :email");
+        $stmt->bindValue(':Messages', $watchlist);
+        $stmt->bindValue(':email', $email);
+
+        // Execute the query
+        if ($stmt->execute()) {
+            if ($stmt->rowCount() > 0) {
+                echo json_encode(['massage' => 'Messages updated successfully']);
+            } else {
+                echo json_encode(['massage' => 'No user found with that ID']);
+            }
+        }
+    } catch (PDOException $e) {
+        echo json_encode(['massage' => 'Error updating Messages']);
+    }
+}
+
 function requestPasswordReset($email) {
     global $db;
 
@@ -227,12 +256,9 @@ function updatePass($password, $email) {
             $stmt = $db->prepare("UPDATE users SET password = :token WHERE email = :email");
             $stmt->bindValue(':token', $hashedPassword);
             $stmt->bindValue(':email', $email);
-
+            $stmt->execute();
             echo json_encode(['message' => 'Password Changed ']);
-
         }
-
-
     } catch (PDOException $e) {
         echo json_encode(['message' => 'Database error']);
     }

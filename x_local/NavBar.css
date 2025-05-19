@@ -286,9 +286,136 @@
     color: var(--global-color-fg);
     cursor: pointer;
 }
+/*================= notification_ ====================================================================================*/
+
+.notification_picture {
+  position: relative;
+  background-color: transparent;
+  min-width: 40px;
+  min-height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: auto;
+  border: 0.3px solid transparent;
+  backdrop-filter: blur(201px);
+  align-items: center;
+  justify-content: center;
+  display: flex;
+
+  font-size: 1.5em;
+  color: var(--global-color-fg);
+  cursor: pointer;
+}
+
+.notification_picture *{
+    color: var(--global-color-fg);
+}
 
 
+.notification_picture:hover {
+    border-color: var(--Brand_Color);
+}
 
+.notification_badge  {
+  position: absolute;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  background: red;
+  top: 7px;
+  right: 7px;
+  animation: pulse_glow 1s infinite ease-in-out;
+  font-size: 9px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes pulse_glow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    text-shadow: 0 0 8px rgba(255, 0, 0, 0.8);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.5);
+    text-shadow: 0 0 12px rgba(255, 0, 0, 1);
+  }
+}
+
+.notification_container{
+  display: flex;
+  flex-wrap: wrap;
+  backdrop-filter: blur(2100px);
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  padding: 5px;
+  box-sizing: border-box;
+
+  transition: visibility 0s, opacity 0.3s ease-in-out;
+  border-radius: 5px;
+  transform: translateX(-40%) translateY(60%);
+  z-index: 1000;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow: scroll;
+  gap:10px;
+}
+
+
+.notification_container_each{
+  width:100%;
+  height: 100px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.notification_container_each_img{
+   height: 90%;
+   width:  20%;
+
+   aspect-ratio: 9/12;
+   background: var(--Brand_Color);
+   margin-top: auto;
+   margin-bottom: auto;
+   margin-left: 4%;
+}
+
+.notification_container_info {
+      height: 90%;
+      width: 70%;
+      margin: auto;
+      margin-right: 4px;
+      overflow: hidden;
+
+}
+
+.notification_container_title{
+    width: 90%;
+    overflow: hidden;
+    max-height: 91%;
+    margin: auto;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    font-size: 0.7em;
+    font-family: cursive;
+}
+
+.notification_container_Details{
+    width: 90%;
+    overflow: hidden;
+    max-height: 91%;
+    margin: auto;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    font-size: 0.7em;
+    font-family: cursive;
+    color: gray;
+}
 
 
 /*================= Profile ====================================================================================*/
@@ -311,6 +438,7 @@
   color: var(--global-color-fg);
   cursor: pointer;
 }
+
 .profile-picture *{
     color: var(--global-color-fg);
 }

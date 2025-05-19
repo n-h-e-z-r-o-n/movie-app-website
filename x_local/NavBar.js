@@ -326,7 +326,43 @@ async function PlayTrailer(id_play, type){
 
 async function AddToFav(movie){
     const Fave = localStorage.getItem('user_watchlist');
-    //console.log(Fave)
+    let email = localStorage.getItem('user_email');
+    let  notification =  localStorage.getItem('user_massages');
+
+    try{
+          let S_info =  movie.S_info;
+          let id =  movie.id
+          let numbers = [1,1] //S_info.match(/\d+/g).map(Number);
+          numbers.push(id)
+          //console.log(numbers);
+          console.log(S_info, ' ', id);
+
+
+          if(notification){
+                const parsed_notification = JSON.parse(notification);
+                parsed_notification.push(numbers);
+
+
+                numbers = parsed_notification.filter((movie, index, self) =>
+                   index === self.findIndex(m => m[2] === movie[2])
+                );
+
+                console.log("uniqueMovies", numbers)
+                localStorage.setItem('user_massages', JSON.stringify(numbers))
+          } else{
+                   localStorage.setItem("user_massages", JSON.stringify([numbers]));
+          }
+
+            let response = await fetch('Database/database.php', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `action=updateMassagelist&email=${encodeURIComponent(email)}&Messages=${encodeURIComponent(numbers)}`
+            });
+
+    } catch(error){    }
+
     if(!Fave){
         localStorage.setItem("user_watchlist", JSON.stringify([movie]));
     } else {
@@ -338,15 +374,13 @@ async function AddToFav(movie){
         );
         localStorage.setItem("user_watchlist", JSON.stringify(uniqueMovies));
 
-
-        let email = localStorage.getItem('user_email');
         let watchlist_new =  JSON.stringify(uniqueMovies);
 
-        const response = await fetch('Database/database.php', {
+        let response = await fetch('Database/database.php', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-              },
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
         body: `action=updateWatchlist&email=${encodeURIComponent(email)}&watchlist=${encodeURIComponent(watchlist_new)}`
         });
 
@@ -591,6 +625,10 @@ if (savedState) {
      Account_btn.style.backgroundSize = '100% 100%';
      Account_btn.style.backgroundPosition = 'center';
      Account_btn.style.backgroundRepeat = 'no-repeat';
+
+     document.getElementById('notification_btnT').style.display = 'flex';
+     //notification_check();
+
 }
 
 // Login Form --------------------------------------------------------------------------------------------------------
@@ -764,6 +802,83 @@ document.getElementById('forget_p_form').addEventListener('click', async functio
             messageDiv.textContent = data.massage;
 
 });
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+async function notification_check(){
+    let notification_widget = document.getElementById('notification_container')
+    notification_widget.innerHTML = '';     // Clear previous notifications
+
+    let  notification =  localStorage.getItem('user_massages');
+    const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
+
+     if(notification){
+        const parsed_notification = JSON.parse(notification);
+        let notification_count = 0
+        for (let i = 0; i < parsed_notification.length; i++) {
+            try{
+                   let tv_id = parsed_notification[i][2]; // Assuming this is the TV show ID
+                   let t_url = `https://api.themoviedb.org/3/tv/${tv_id}?language=en-US`
+
+                   const response = await fetch(t_url, { headers });
+                   const data = await response.json();
+
+                   console.log(parsed_notification[i]);
+                    console.log(data);
+                    let { name, poster_path, id , last_episode_to_air } = data;
+
+                    let last_season = parsed_notification[i][0];
+                    let last_episode = parsed_notification[i][1];
+
+                    let new_season = last_episode_to_air.season_number;
+                    let new_episode = last_episode_to_air.episode_number;
+
+                    let Info = '';
+                    let episodeDiff = 0;
+                    if (new_season > last_season) {
+                        episodeDiff = new_episode;
+                        Info = `New Season (${new_season}) with ${episodeDiff} episodes`;
+                    } else if (new_season === last_season && new_episode > last_episode) {
+                        episodeDiff = new_episode - last_episode;
+                        Info = `${episodeDiff} New Episode${episodeDiff > 1 ? 's' : ''}`;
+                    } else {
+                      continue;
+                    }
+
+                    let movieItem = document.createElement("div");
+                    movieItem.classList.add("notification_container_each");
+                    movieItem.innerHTML = `
+                        <img class="notification_container_each_img" src="${IMG_PATH + poster_path}" alt="">
+                        <div class="notification_container_info">
+                              <div class="notification_container_title"> ${name}  </div>
+                              <div class="notification_container_Details"> ${Info} </div>
+                        </div>
+                    `;
+                    // Add event listener to open another page when clicked
+                    movieItem.addEventListener("click", () => {
+                          window.location.href = "watch.html?id=" + id + "&type=tv";
+                    });
+
+
+                    notification_widget.appendChild(movieItem);
+
+                    notification_count++
+                    document.getElementById('notification_badge').style.display = 'flex'
+                    document.getElementById('notification_badge').innerHTML = notification_count;
+
+            }catch(error){}
+        }
+
+     }
+}
+
+notification_check()
+
+
+
+
+
 
 
 ///////////////////////////// Disable Right Click + Inspect Element ////////////////////////////////////////////////////

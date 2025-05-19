@@ -134,6 +134,7 @@
   transition: all 0.3s ease;
   z-index: 1;
   font-weight: 900;
+  font-size: 1.5em;
 }
 
 .remove_fave:hover{
@@ -146,7 +147,7 @@
 @keyframes pulse_glow {
   0%, 100% {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(2);
     text-shadow: 0 0 8px rgba(255, 0, 0, 0.8);
   }
   50% {

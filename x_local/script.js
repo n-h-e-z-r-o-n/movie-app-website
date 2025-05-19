@@ -499,7 +499,7 @@ async function Latest_Movies(event, page, type) {
         let url = `https://yts.mx/api/v2/list_movies.json?page=${page}&limit=50&sort_by=year`
         let response = await fetch(url);
         let data = await response.json();
-        console.log("Shown data", data.data.movies);
+        //console.log("Shown data", data.data.movies);
         data_json = data_json.concat(data.data.movies) ;
 
 

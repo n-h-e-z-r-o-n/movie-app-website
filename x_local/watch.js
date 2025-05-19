@@ -11,7 +11,29 @@ loadCSS("./watch.css");
 loadCSS("./NavBar.css");
 */
 
+async function update_Notification(movie_info){
+    let {id, last_episode_to_air} = movie_info;
 
+    try{
+          let  notification =  localStorage.getItem('user_massages');
+          if(notification){
+                const parsed_notification = JSON.parse(notification);
+
+                let new_season = last_episode_to_air.season_number;
+                let new_episode = last_episode_to_air.episode_number;
+
+                const updatedMovies = parsed_notification.map(movie => {
+                  if (movie[2] === id) {
+                    return [new_season, new_episode, movie[2]];
+                  }
+                  return movie;
+                });
+                localStorage.setItem('user_massages', JSON.stringify(updatedMovies))
+          }
+
+    } catch(error){
+    }
+};
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -111,7 +133,7 @@ async function SHOW_INFOs(id, type) {
 
 
 async function Show_Info(info_data, type){
-    console.log(info_data)
+    //console.log(info_data)
     const no_select = document.getElementById("no_select");
     no_select.style.background = 'hsl(222, 25%, 10%)';
 
@@ -323,6 +345,7 @@ async function Watch_IFRAME(imdb, type, info_data) {
 
       }else{
               //console.log(info_data)
+              update_Notification(info_data)
               let se = info_data['seasons'];
               se = se.filter(se => se.air_date !== null);
               let con = ``;
@@ -337,27 +360,29 @@ async function Watch_IFRAME(imdb, type, info_data) {
 
 
               for (i ; i < se.length; i++) {
-                   let season_no = se[i]['season_number']
-                   let total_episodes = se[i]['episode_count']
-                   let season_poster_path = se[i]['poster_path']
-                   let season_id =  se[i]['id']
-                   let season_name = ''
-                   if(season_no === 0){
-                      season_name = se[i]['name']
-                   }else{
-                      season_name = `Season ${season_no}`
-                   }
-                   //con = con +  `<div data-season="season${i}" onclick="displayEpisodes(event, this, ${j}, ${se[i]['episode_count']}, '${encodeURIComponent(se[i]['poster_path'])}',  ${se[i]['id']}, '${se[i]['air_date']}', ${imdb})"> &#9678; ${se[i]['name']}</div> `;
-                   con1 = con1 +  `<div class="season_info_hold_season_container_each" data-season="season${i}" data-protect-styles="true"
-                                     onclick="displayEpisodes(event, this, ${season_no},
-                                                                      ${total_episodes},
-                                                                      '${encodeURIComponent(season_poster_path)}',
-                                                                      ${season_id},
-                                                                      '${se[i]['air_date']}',
-                                                                      ${imdb})">
-                                          <div class="season_info_hold_season_container_each_title">  ${season_name} </div>
-                                  </div> `;
 
+                   if(new Date() > new Date(se[i]['air_date'])){
+                       let season_no = se[i]['season_number']
+                       let total_episodes = se[i]['episode_count']
+                       let season_poster_path = se[i]['poster_path']
+                       let season_id =  se[i]['id']
+                       let season_name = ''
+                       if(season_no === 0){
+                          season_name = se[i]['name']
+                       }else{
+                          season_name = `Season ${season_no}`
+                       }
+                       //con = con +  `<div data-season="season${i}" onclick="displayEpisodes(event, this, ${j}, ${se[i]['episode_count']}, '${encodeURIComponent(se[i]['poster_path'])}',  ${se[i]['id']}, '${se[i]['air_date']}', ${imdb})"> &#9678; ${se[i]['name']}</div> `;
+                       con1 = con1 +  `<div class="season_info_hold_season_container_each" data-season="season${i}" data-protect-styles="true"
+                                         onclick="displayEpisodes(event, this, ${season_no},
+                                                                          ${total_episodes},
+                                                                          '${encodeURIComponent(season_poster_path)}',
+                                                                          ${season_id},
+                                                                          '${se[i]['air_date']}',
+                                                                          ${imdb})">
+                                              <div class="season_info_hold_season_container_each_title">  ${season_name} </div>
+                                      </div> `;
+                   }
               }
               i=i-1;
 
