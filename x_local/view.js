@@ -306,7 +306,7 @@ function showTV(movies) {
         <!-- box-1  -->
 
             <div class="box-img">
-                <img class="img-on" src="$IMG_PATH{poster_path}" alt="" loading="lazy">
+                <img class="img-on" src="${IMG_PATH+poster_path}" alt="" loading="lazy">
                 <div class="box-img-button">
                      <div class="button_style1"></div>
                      <div class="button_style2"></div>
