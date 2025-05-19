@@ -614,16 +614,18 @@ Account_btnT.addEventListener("click", handle_account)
 let savedState = localStorage.getItem("U_ID");
 if (savedState) {
      Account_btnT.innerHTML = '';
-     Account_btnT.style.background = `url('./Assets/cat.png')`;
+     Account_btnT.style.background = `url('./Assets/account.png')`;
      Account_btnT.style.backgroundSize = '100% 100%';
      Account_btnT.style.backgroundPosition = 'center';
      Account_btnT.style.backgroundRepeat = 'no-repeat';
 
      Account_btn.innerHTML = '';
-     //Account_btn.style.background = `url('./Assets/cat.png')`;
-     //Account_btn.style.backgroundSize = '100% 100%';
-     //Account_btn.style.backgroundPosition = 'center';
-     //Account_btn.style.backgroundRepeat = 'no-repeat';
+
+     Account_btn.style.background = `url('./Assets/account.png')`;
+     Account_btn.style.background = 'red';
+     Account_btn.style.backgroundSize = '100% 100%';
+     Account_btn.style.backgroundPosition = 'center';
+     Account_btn.style.backgroundRepeat = 'no-repeat';
 
      document.getElementById('notification_btnT').style.display = 'flex';
      notification_check();
@@ -678,13 +680,13 @@ document.getElementById('loginForm').addEventListener('click', async function(e)
                 localStorage.setItem('user_joined', user_info.created_at);
 
                 Account_btnT.innerHTML = '';
-                Account_btnT.style.background = `url('./Assets/cat.png')`;
+                Account_btnT.style.background = `url('./Assets/account.png')`;
                 Account_btnT.style.backgroundSize = '100% 100%';
                 Account_btnT.style.backgroundPosition = 'center';
                 Account_btnT.style.backgroundRepeat = 'no-repeat';
 
                 Account_btn.innerHTML = '';
-                Account_btn.style.background = `url('./Assets/cat.png')`;
+                Account_btn.style.background = `url('./Assets/account.png')`;
                 Account_btn.style.backgroundSize = '100% 100%';
                 Account_btn.style.backgroundPosition = 'center';
                 Account_btn.style.backgroundRepeat = 'no-repeat';
