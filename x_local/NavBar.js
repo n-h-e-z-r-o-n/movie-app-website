@@ -325,7 +325,7 @@ async function PlayTrailer(id_play, type){
 
 
 
-async function AddToFav(movie, width){
+async function AddToFav(movie, widget){
     let Fave = localStorage.getItem('user_watchlist');
     let email = localStorage.getItem('user_email');
     let notification = localStorage.getItem('user_massages') || '[]';
