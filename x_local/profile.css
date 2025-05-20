@@ -78,6 +78,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-image: url('./Assets/account.png');
+  position: relative;
 }
 
 .User_Image_input{
@@ -85,7 +86,7 @@
   height: 20px;
   position: absolute;
   right: -10px;
-  bo
+  bottom: -10px;
   border-radius: 50%;
   background: red;
 
