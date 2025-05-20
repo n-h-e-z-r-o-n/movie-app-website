@@ -152,7 +152,7 @@ function showMovies(movies) {
     const FaveButton = movieItem.querySelector(".button_style2");
     FaveButton.addEventListener("click", function(event) {
         event.stopPropagation();
-        AddToFav(movie);
+        AddToFav(movie, FaveButton);
     });
 
     const PlayT = movieItem.querySelector(".button_style1");
@@ -333,7 +333,7 @@ function showTV(movies) {
     const FaveButton = movieItem.querySelector(".button_style2");
     FaveButton.addEventListener("click", function(event) {
         event.stopPropagation(); // Prevent the click from propagating to the boxImg event
-        AddToFav(movie); // Replace 'yourFunction' with the function you want to call
+        AddToFav(movie, FaveButton); // Replace 'yourFunction' with the function you want to call
     });
 
     const PlayT = movieItem.querySelector(".button_style1");

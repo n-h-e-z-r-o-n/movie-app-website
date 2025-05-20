@@ -140,7 +140,7 @@ async function Show_Info(info_data, type){
     const Favorite_btn_watch = document.getElementById('Favorite_btn_watch');
     Favorite_btn_watch.addEventListener("click",  function(event) {
         event.stopPropagation();
-        AddToFav(info_data);
+        AddToFav(info_data, Favorite_btn_watch);
     });
 
     var show_type = document.getElementById("show_type");

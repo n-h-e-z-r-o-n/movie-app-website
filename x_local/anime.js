@@ -87,7 +87,7 @@ function Search_Results_SHOW(movies) {
     const FaveButton = movieItem.querySelector(".button_style2");
     FaveButton.addEventListener("click", function(event) {
         event.stopPropagation();
-        AddToFav(movie);
+        AddToFav(movie, FaveButton);
     });
 
     const PlayT = movieItem.querySelector(".button_style1");
