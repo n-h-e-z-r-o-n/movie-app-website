@@ -262,6 +262,28 @@ function updatePass($password, $email) {
     }
 }
 
+function updateIMG($img, $email) {
+    global $db;
+
+    try {
+        // Check if user exists (but don't reveal if they don't)
+        $stmt = $db->prepare("SELECT email FROM users WHERE email = :email");
+        $stmt->bindValue(':email', $email);
+        $stmt->execute();
+
+        if ($stmt->fetch()) {
+
+            // Store token in database
+            $stmt = $db->prepare("UPDATE users SET password = :token WHERE email = :email");
+            $stmt->bindValue(':token', $img);
+            $stmt->bindValue(':email', $email);
+            $stmt->execute();
+            echo json_encode(['message' => 'Password Changed ']);
+        }
+    } catch (PDOException $e) {
+        echo json_encode(['message' => 'Database error']);
+    }
+}
 
 
 ?>
