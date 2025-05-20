@@ -1178,7 +1178,8 @@ Terms_Details_content::-webkit-scrollbar {
         .Login_container {
           height: auto;
           width: 85%;
-          min-height: 0px;
+          aspect-ratio: 1;
+          max-height: auto;
         }
         .Forgot_password_container {
           height: auto;
