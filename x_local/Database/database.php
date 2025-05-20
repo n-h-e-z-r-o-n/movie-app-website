@@ -69,6 +69,13 @@ switch ($action) {
             updatePass($password, $email);
             break;
 
+        case 'updateIMG':
+            $img = $_POST['img'] ?? '';
+            $email = $_POST['email'] ?? '';
+
+            updateIMG($img, $email);
+            break;
+
 
 
         default:
@@ -84,12 +91,13 @@ function addUser($username, $email, $password, $watchlist, $Messages) {
 
     try {
         // Prepare the SQL query to insert the user
-        $stmt = $db->prepare("INSERT INTO users (name, email, password, watchlist, Messages) VALUES (:username, :email, :password, :watchlist, :Messages)");
+        $stmt = $db->prepare("INSERT INTO users (name, email, password, watchlist, Messages, ProfileIMG) VALUES (:username, :email, :password, :watchlist, :Messages, :img)");
         $stmt->bindValue(':username', $username);
         $stmt->bindValue(':email', $email);
         $stmt->bindValue(':password', $hashedPassword);
         $stmt->bindValue(':watchlist', $watchlist);
         $stmt->bindValue(':Messages', $Messages);
+        $stmt->bindValue(':img', null);
 
         // Execute the query
         if ($stmt->execute()) {
@@ -272,13 +280,12 @@ function updateIMG($img, $email) {
         $stmt->execute();
 
         if ($stmt->fetch()) {
-
             // Store token in database
             $stmt = $db->prepare("UPDATE users SET password = :token WHERE email = :email");
             $stmt->bindValue(':token', $img);
             $stmt->bindValue(':email', $email);
             $stmt->execute();
-            echo json_encode(['message' => 'Password Changed ']);
+            echo json_encode(['message' => 'Profile Updated']);
         }
     } catch (PDOException $e) {
         echo json_encode(['message' => 'Database error']);
