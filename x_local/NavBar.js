@@ -70,7 +70,7 @@ search_bt_toggle.onclick = function(){
 
 let lastScrollTop = 0;
 const navbar = document.getElementById('navbar');
-const scrollThreshold = 5; // Set the threshold to 300px
+const scrollThreshold = 500; // Set the threshold to 300px
 window.addEventListener('scroll', function() {
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
      //console.log("scrollTop", scrollTop);
