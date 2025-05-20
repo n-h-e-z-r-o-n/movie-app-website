@@ -225,14 +225,14 @@ function requestPasswordReset($email) {
             $hashedPassword = password_hash($token, PASSWORD_DEFAULT);
 
             // Store token in database
-            $stmt = $db->prepare("UPDATE users SET password = :token WHERE email = :email");
-            $stmt->bindValue(':token', $hashedPassword);
+            $stmt = $db->prepare("UPDATE users SET password = :newPass WHERE email = :email");
+            $stmt->bindValue(':newPass', $hashedPassword);
             $stmt->bindValue(':email', $email);
-            //$stmt->execute();
+            $stmt->execute();
 
             // Send email (pseudo-code - implement your email sending)
             $subject = "Password Reset Request";
-            $message = "reset your password, Reset Code: $token";
+            $message = "reset your password, New Password: $token";
             mail($email, $subject, $message);
         }
 
