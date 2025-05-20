@@ -280,7 +280,7 @@ function updateIMG($img, $email) {
 
         if ($stmt->fetch()) {
             // Store token in database
-            $stmt = $db->prepare("UPDATE users SET password = :token WHERE email = :email");
+            $stmt = $db->prepare("UPDATE users SET ProfileIMG = :token WHERE email = :email");
             $stmt->bindValue(':token', $img);
             $stmt->bindValue(':email', $email);
             $stmt->execute();

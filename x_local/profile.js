@@ -282,13 +282,13 @@ function Search_Results_SHOW(movies) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
- document.getElementById("User_Image_input").addEventListener('change', async (event) => {
+ document.getElementById("User_Image_input").addEventListener('change',  (event) => {
     let uploadedImageURL = null;
     const file = event.target.files[0];
     if (!file) return;
 
     const reader = new FileReader();
-    reader.onload = (e) => {
+    reader.onload = async (e) => {
       uploadedImageURL = e.target.result;
       console.log('Uploaded image:', uploadedImageURL); // You can save this string to DB
         document.getElementById("User_Image_show").style.backgroundImage = `url(${uploadedImageURL})`;
@@ -302,6 +302,9 @@ function Search_Results_SHOW(movies) {
         });
          const data = await response.json();
          console.log(data)
+         if(data.massage === 'Profile Updated') {
+               localStorage.setItem('user_profile_img', uploadedImageURL);
+         }
 
     };
     reader.readAsDataURL(file); // Reads file as base64 URL
