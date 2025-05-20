@@ -921,7 +921,7 @@ Terms_Details_content::-webkit-scrollbar {
 }
 
 .input_form::placeholder {
-    font-size: 0.5em;
+    font-size: 0.9em;
     color: #999;
     opacity: 0.5;
 }
@@ -1178,18 +1178,23 @@ Terms_Details_content::-webkit-scrollbar {
         .Login_container {
           height: auto;
           width: 85%;
+          max-width: 500px;
           aspect-ratio: 1;
-          max-height: auto;
+          max-height: 700px;
         }
         .Forgot_password_container {
           height: auto;
           width: 85%;
-          min-height: 0px;
+          aspect-ratio: 1;
+          max-width: 500px;
+          max-height: 700px;
         }
         .Register_container {
           height: auto;
           width: 85%;
-          min-height: 0px;
+          aspect-ratio: 1;
+          max-width: 500px;
+          max-height: 700px;
         }
         .Login_others{
            font-size: 1em;
