@@ -296,7 +296,7 @@ function Search_Results_SHOW(movies) {
     };
     reader.readAsDataURL(file); // Reads file as base64 URL
     //document.getElementById("User_Image_show").style.backgroundImage = `url(${uploadedImageURL})`;
-    console.log('Applied image to div:', uploadedImageURL);
+    //console.log('Applied image to div:', uploadedImageURL);
   });
 
 

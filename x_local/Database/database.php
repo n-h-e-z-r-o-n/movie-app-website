@@ -17,6 +17,7 @@ try {
         password TEXT NOT NULL,
         watchlist TEXT,
         Messages TEXT,
+        ProfileIMG TEXT,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );";
     $db->exec($query);

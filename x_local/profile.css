@@ -89,7 +89,7 @@
   right: -5px;
   bottom: -5px;
   border-radius: 50%;
-  background: red;
+  background: var(--Brand_Color);
   display: flex;
   align-items: center;
   justify-content: center;
