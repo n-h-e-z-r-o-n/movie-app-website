@@ -79,6 +79,7 @@
   background-repeat: no-repeat;
   background-image: url('./Assets/account.png');
   position: relative;
+  margin-bottom: 20px;
 }
 
 .User_Image_input{
