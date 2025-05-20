@@ -7,10 +7,10 @@ if ($isAuthorized) {
     // Output the content of NavBar.js
     //readfile('../NavBar.js');
     $jsCode = file_get_contents('../script.js');
-    //$obfuscatedCode = obfuscateJs($jsCode);
-    //echo $obfuscatedCode;
+    $obfuscatedCode = obfuscateJs($jsCode);
+    echo $obfuscatedCode;
 
-    header('Location: ../script.js', true, 302);
+    //header('Location: ../script.js', true, 302);
 
 
 
