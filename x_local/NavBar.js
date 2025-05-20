@@ -658,14 +658,15 @@ Account_btnT.addEventListener("click", handle_account)
 
 let savedState = localStorage.getItem("U_ID");
 if (savedState) {
+     user_profile_img = localStorage.getItem('user_profile_img');
      Account_btnT.innerHTML = '';
-     Account_btnT.style.background = `url('./Assets/account.png')`;
+     Account_btnT.style.background =  `url(${user_profile_img})`;
      Account_btnT.style.backgroundSize = '100% 100%';
      Account_btnT.style.backgroundPosition = 'center';
      Account_btnT.style.backgroundRepeat = 'no-repeat';
 
      Account_btn.innerHTML = '';
-     Account_btn.style.background = `url('./Assets/account.png')`;
+     Account_btn.style.background =  `url(${user_profile_img})`;
      Account_btn.style.backgroundSize = '100% 100%';
      Account_btn.style.backgroundPosition = 'center';
      Account_btn.style.backgroundRepeat = 'no-repeat';
@@ -733,7 +734,7 @@ document.getElementById('loginForm').addEventListener('click', async function(e)
                 Account_btnT.style.backgroundRepeat = 'no-repeat';
 
                 Account_btn.innerHTML = '';
-                Account_btn.style.background =  `url(${user_profile_img})`)`;
+                Account_btn.style.background =  `url(${user_profile_img})`;
                 Account_btn.style.backgroundSize = '100% 100%';
                 Account_btn.style.backgroundPosition = 'center';
                 Account_btn.style.backgroundRepeat = 'no-repeat';

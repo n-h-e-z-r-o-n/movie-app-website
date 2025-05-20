@@ -282,7 +282,7 @@ function Search_Results_SHOW(movies) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
- document.getElementById("User_Image_input").addEventListener('change', (event) => {
+ document.getElementById("User_Image_input").addEventListener('change', async (event) => {
     let uploadedImageURL = null;
     const file = event.target.files[0];
     if (!file) return;
@@ -291,7 +291,17 @@ function Search_Results_SHOW(movies) {
     reader.onload = (e) => {
       uploadedImageURL = e.target.result;
       console.log('Uploaded image:', uploadedImageURL); // You can save this string to DB
-          document.getElementById("User_Image_show").style.backgroundImage = `url(${uploadedImageURL})`;
+        document.getElementById("User_Image_show").style.backgroundImage = `url(${uploadedImageURL})`;
+        let user_email =  localStorage.getItem('user_email')
+        const response = await fetch('Database/database.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+              },
+        body: `action=updateIMG&img=${encodeURIComponent(uploadedImageURL)}&email=${encodeURIComponent(user_email)}`
+        });
+         const data = await response.json();
+         console.log(data)
 
     };
     reader.readAsDataURL(file); // Reads file as base64 URL

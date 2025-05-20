@@ -72,7 +72,6 @@ switch ($action) {
         case 'updateIMG':
             $img = $_POST['img'] ?? '';
             $email = $_POST['email'] ?? '';
-
             updateIMG($img, $email);
             break;
 
