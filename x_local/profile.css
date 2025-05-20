@@ -1,9 +1,10 @@
 .bar_section {
   display: flex;
+  flex-wrap: wrap;
   padding-top: 90px;
   padding-bottom: 4px;
   width: 100%;
-  gap:20%;
+  gap:auto;
   justify-content: center;
   align-items: center;
   margin-bottom: 15px;
@@ -14,9 +15,10 @@
    font-size: 1em;
    background: transparent;
    color: var(--global-color-fg);
+   margin: auto;
  }
 .text_container:hover{
-  color: var(--Brand_Color);
+   color: gray;
 }
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
