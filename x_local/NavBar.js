@@ -340,10 +340,6 @@ async function PlayTrailer(id_play, type){
                 const response = await fetch(t_url, { headers });
                 const data = await response.json();
 
-                //console.log("Trailer :" , data);
-                //console.log("Trailer :" , data.results[0]);
-               // console.log("Trailer :" , data.results[data.results.length - 1]);
-
                  if (data.results[data.results.length - 1] === undefined) {
                     trailer_div.style.display = 'none'
                     return
@@ -363,9 +359,6 @@ async function PlayTrailer(id_play, type){
 
 async function AddToFav(movie, widget){
 
-    widget.classList.remove('button_style2');
-    widget.classList.add('button_style3');
-    return
     let Fave = localStorage.getItem('user_watchlist');
     let email = localStorage.getItem('user_email');
     let notification = localStorage.getItem('user_massages') || '[]';
@@ -428,6 +421,8 @@ async function AddToFav(movie, widget){
         const data = await response.json();
         //console.log(data.massage)
     }
+    widget.classList.remove('button_style2');
+    widget.classList.add('button_style3');
 }
 
 
