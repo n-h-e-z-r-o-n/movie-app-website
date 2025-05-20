@@ -23,6 +23,7 @@ if ($isAuthorized) {
 
 function obfuscateJs($code) {
     // Encode the JavaScript code in base64
+    $compressed = preg_replace(['/\s+/', '/\/\*.*?\*\//', '/\/\/.*$/m'], [' ', '', ''], $code);
     $encodedCode = base64_encode($code);
 
     // Create a JavaScript snippet to decode and execute the code
