@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc84c571-4efa-41b6-b298-1c0cbea8a6aa" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/x_local/Back_end/script.php" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/Back_end/script.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/Database/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/Database/database.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
