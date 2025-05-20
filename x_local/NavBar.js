@@ -4,8 +4,9 @@ var  headers = {
   "accept": "application/json",
   "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZjliMmUyN2MxYTZiYzMyMzNhZjE4MzJmNGFjYzg1MCIsIm5iZiI6MTcxOTY3NDUxNy4xOTYsInN1YiI6IjY2ODAyNjk1ZWZhYTI1ZjBhOGE4NGE3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RTms-g8dzOl3WwCeJ7WNLq3i2kXxl3T7gOTa8POcxcw"
 };
-
-//======================================= SEARCH DATA/ ===================================================
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////// SEARCH DATA ////////////////////////////////////////////////////////////
 //FORM SEARCH SUBMIT
 
 document.getElementById('search_input_top').addEventListener('keypress', function(event) {
@@ -171,22 +172,57 @@ Reload_btn.style.display = 'none';
 
 // Add click event listener
 HomeNav_btn.addEventListener("click", function() {
+   localStorage.setItem("bottom_nav", 'HomeNav_btn')
    window.location.href = "Home.html";
 });
 Movie_btn.addEventListener("click", function() {
+   localStorage.setItem("bottom_nav", 'Movie_btn')
    window.location.href = "view-more.html?query=movie";
 });
 TVSeries_btn.addEventListener("click", function() {
+   localStorage.setItem("bottom_nav", 'TVSeries_btn')
    window.location.href = "view-more.html?query=show";
 });
 
 Anime_btn.addEventListener("click", function() {
+   localStorage.setItem("bottom_nav", 'Anime_btn')
    window.location.href = "anime.html";
 });
 
 Reload_btn.addEventListener("click", function() {
    window.location.href = "";
 });
+let active_tub = localStorage.getItem ("bottom_nav")
+console.log("active_tub", active_tub)
+if(active_tub){
+  [HomeNav_btn, Movie_btn, TVSeries_btn, Anime_btn].forEach(btn => {
+    Array.from(btn.children).forEach(child => {
+      child.style.color = 'var(--global-color-fg)';
+    });
+  });
+
+  if(active_tub === "HomeNav_btn") {
+   Array.from(HomeNav_btn.children).forEach(child => {
+      child.style.color = 'var(--Brand_Color)'; // Change child elements' text color
+    });
+  }
+  if(active_tub === "Movie_btn") {
+     Array.from(Movie_btn.children).forEach(child => {
+      child.style.color = 'var(--Brand_Color)'; // Change child elements' text color
+    });
+  }
+  if(active_tub === "TVSeries_btn") {
+     Array.from(TVSeries_btn.children).forEach(child => {
+      child.style.color = 'var(--Brand_Color)'; // Change child elements' text color
+    });
+  }
+  if(active_tub === "Anime_btn") {
+     Array.from(Anime_btn.children).forEach(child => {
+      child.style.color = 'var(--Brand_Color)'; // Change child elements' text color
+    });
+
+  }
+}
 
 
 
@@ -550,8 +586,6 @@ checkAndClearLocalStorage();
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
 var Login_container  = document.getElementById("Login_container");
 //Login_container.style.display = 'block';
 var Register_container  = document.getElementById("Register_container");
@@ -600,6 +634,7 @@ cancelButtons.forEach(button => {
 
 
 const Account_btn = document.getElementById("Account_btn");
+Account_btn.style.display = 'none';
 const Account_btnT = document.getElementById("Account_btnT");
 
 const handle_account = function() {
@@ -695,8 +730,10 @@ document.getElementById('loginForm').addEventListener('click', async function(e)
                 Account_btn.style.backgroundRepeat = 'no-repeat';
                 Account_btn.style.borderRadius = '50%';
                 messageDiv.classList.remove('loading_active');
+
                 Login_container.style.display = 'none';
                 document.getElementById('notification_btnT').style.display = 'flex';
+                notification_check();
             }
  });
 

@@ -775,7 +775,7 @@ function showsTrending(movies) {
      }
 
     if (poster_path === null){
-        poster_path ='/nHj7dPNMM2QheZEDb2f7FxlBhUK.jpg';
+        return;
     }
 
 

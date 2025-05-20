@@ -473,7 +473,7 @@
    align-items: center;
    justify-content: space-between;
    position:fixed;
-   z-index: 10;
+   z-index: 1000;
    bottom: 0;
    background-color: var(--global-color-bg);
    padding-right: 3%;  /* Padding on the right */
@@ -502,13 +502,13 @@
 }
 
 .nav_tub{
-     background-color: ;
+     background-color: transparent ;
      height: 80%;
      aspect-ratio: 1;
      align-items: center;
      display: grid;
      justify-content: center;
-     overflow. hidden
+     overflow. hidden;
 }
 
 .nav_tub_icon{
@@ -1148,13 +1148,25 @@ Terms_Details_content::-webkit-scrollbar {
 
 @media (max-width: 968px) {
           .navbar_top{
-            display: none;
+            display: flex;
+            background: transparent !important;
+          }
+          .logo_, .Nav_Links_container, .search_btn{
+             display: none;
           }
           .nav_bar_bottom{
              display: flex;
+
           }
+          .notification_picture {
+              min-width: 50px;
+              min-height: 50px;
+                }
+          .profile-picture{
+              min-width: 50px;
+              min-height: 50px;
 
-
+          }
 
           .Terms_Box {
               width:  95%;
