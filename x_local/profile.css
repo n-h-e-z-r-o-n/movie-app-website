@@ -81,8 +81,11 @@
 }
 
 .User_Image_input{
-  width: 100%;
-  height: 100%;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: -10px;
+  bo
   border-radius: 50%;
   background: red;
 
