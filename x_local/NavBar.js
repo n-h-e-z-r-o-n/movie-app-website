@@ -716,21 +716,24 @@ document.getElementById('loginForm').addEventListener('click', async function(e)
                 let user_info = data.massage;
                 let not_t =  user_info.Messages || '[]';
                 let watch_fave = user_info.watchlist || '[]';
+                let user_profile_img = user_info.ProfileIMG || '';
+
                 localStorage.setItem('U_ID', user_info.email);
                 localStorage.setItem('user_email', user_info.email);
                 localStorage.setItem('user_name', user_info.name);
                 localStorage.setItem('user_watchlist', watch_fave);
                 localStorage.setItem('user_massages', not_t);
                 localStorage.setItem('user_joined', user_info.created_at);
+                localStorage.setItem('user_joined', user_info.created_at);
 
                 Account_btnT.innerHTML = '';
-                Account_btnT.style.background = `url('./Assets/account.png')`;
+                Account_btnT.style.background = `url(${user_profile_img})`;
                 Account_btnT.style.backgroundSize = '100% 100%';
                 Account_btnT.style.backgroundPosition = 'center';
                 Account_btnT.style.backgroundRepeat = 'no-repeat';
 
                 Account_btn.innerHTML = '';
-                Account_btn.style.background = `url('./Assets/account.png')`;
+                Account_btn.style.background =  `url(${user_profile_img})`)`;
                 Account_btn.style.backgroundSize = '100% 100%';
                 Account_btn.style.backgroundPosition = 'center';
                 Account_btn.style.backgroundRepeat = 'no-repeat';
