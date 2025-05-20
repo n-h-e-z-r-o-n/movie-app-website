@@ -284,7 +284,7 @@ function Search_Results_SHOW(movies) {
 
 document.getElementById('User_Image').addEventListener('click', function(event) {
     console.log("bdfdf");
-    
+
     const file = event.target.files[0];
     if (!file) return;
 
@@ -293,6 +293,8 @@ document.getElementById('User_Image').addEventListener('click', function(event) 
         alert('Please select an image file.');
         return;
     }
+
+    console.log(file)
 
     const reader = new FileReader();
 
