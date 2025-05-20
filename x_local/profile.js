@@ -282,37 +282,38 @@ function Search_Results_SHOW(movies) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-document.getElementById('User_Image').addEventListener('click', function(event) {
-    console.log("bdfdf");
-
+ document.getElementById("User_Image_input").addEventListener('change', (event) => {
+    let uploadedImageURL = null;
     const file = event.target.files[0];
     if (!file) return;
 
-    // Check if the file is an image
-    if (!file.type.match('image.*')) {
-        alert('Please select an image file.');
-        return;
-    }
-
-    console.log(file)
-
     const reader = new FileReader();
+    reader.onload = (e) => {
+      uploadedImageURL = e.target.result;
+      console.log('Uploaded image:', uploadedImageURL); // You can save this string to DB
+          document.getElementById("User_Image_show").style.backgroundImage = `url(${uploadedImageURL})`;
 
-    reader.onload = function(e) {
-        const profileImage = document.getElementById('profileImage');
-        profileImage.src = e.target.result;
-
-        // Optional: Save to localStorage
-        localStorage.setItem('profileImage', e.target.result);
     };
+    reader.readAsDataURL(file); // Reads file as base64 URL
+    //document.getElementById("User_Image_show").style.backgroundImage = `url(${uploadedImageURL})`;
+    console.log('Applied image to div:', uploadedImageURL);
+  });
 
-    reader.readAsDataURL(file);
-});
 
-// Load saved image from localStorage on page load
-window.addEventListener('DOMContentLoaded', function() {
-    const savedImage = localStorage.getItem('profileImage');
-    if (savedImage) {
-        document.getElementById('profileImage').src = savedImage;
-    }
-});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
