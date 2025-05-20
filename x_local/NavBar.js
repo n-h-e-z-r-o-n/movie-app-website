@@ -724,7 +724,7 @@ document.getElementById('loginForm').addEventListener('click', async function(e)
                 localStorage.setItem('user_watchlist', watch_fave);
                 localStorage.setItem('user_massages', not_t);
                 localStorage.setItem('user_joined', user_info.created_at);
-                localStorage.setItem('user_joined', user_info.created_at);
+                localStorage.setItem('user_profile_img', user_profile_img);
 
                 Account_btnT.innerHTML = '';
                 Account_btnT.style.background = `url(${user_profile_img})`;
