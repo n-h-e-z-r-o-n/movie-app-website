@@ -278,3 +278,39 @@ function Search_Results_SHOW(movies) {
     }catch(error){console.log(error)}
 
  }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+document.getElementById('User_Image').addEventListener('click', function(event) {
+    console.log("bdfdf");
+    
+    const file = event.target.files[0];
+    if (!file) return;
+
+    // Check if the file is an image
+    if (!file.type.match('image.*')) {
+        alert('Please select an image file.');
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+        const profileImage = document.getElementById('profileImage');
+        profileImage.src = e.target.result;
+
+        // Optional: Save to localStorage
+        localStorage.setItem('profileImage', e.target.result);
+    };
+
+    reader.readAsDataURL(file);
+});
+
+// Load saved image from localStorage on page load
+window.addEventListener('DOMContentLoaded', function() {
+    const savedImage = localStorage.getItem('profileImage');
+    if (savedImage) {
+        document.getElementById('profileImage').src = savedImage;
+    }
+});
