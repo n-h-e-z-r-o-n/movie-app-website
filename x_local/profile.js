@@ -1,3 +1,46 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+logout_btn.addEventListener("click", function() {
+        sessionStorage.clear();
+        localStorage.removeItem('U_ID')
+        localStorage.removeItem('user_email')
+        localStorage.removeItem('user_name')
+        localStorage.removeItem('user_watchlist')
+        localStorage.removeItem('user_massages')
+        localStorage.removeItem('user_profile_img')
+
+        window.location.href = "Home.html";
+});
+
+if(U_ID){
+  getUserFavorites(Search_Results_SHOW)
+}else{
+  logout_btn.click();
+}
+
+
+
+async function getUserFavorites(passed_function) {
+
+    let watchlist = localStorage.getItem('user_watchlist');
+
+    if(watchlist){
+      let watchlist_array = JSON.parse(watchlist);
+      console.log(watchlist_array)
+      passed_function(watchlist_array);
+      console.log('fave')
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
 function switchTab(tabName) {
   // Hide all containers
   document.getElementById("profile_container").style.display = 'none';
@@ -54,6 +97,11 @@ document.addEventListener('DOMContentLoaded', function() {
 document.getElementById("E_M_A").innerHTML = localStorage.getItem('user_email')
 document.getElementById("Y_N").innerHTML = localStorage.getItem('user_name')
 document.getElementById("J_D").innerHTML = localStorage.getItem('user_joined')
+
+document.getElementById("User_Image_show").style.background = `url(${localStorage.getItem('user_profile_img')})`;
+document.getElementById("User_Image_show").style.backgroundSize = '100% 100%';
+document.getElementById("User_Image_show").style.backgroundPosition = 'center';
+document.getElementById("User_Image_show").style.backgroundRepeat = 'no-repeat';
 
 let Change_password = false;
 document.getElementById("Change_password").addEventListener("click", function() {
@@ -132,40 +180,6 @@ const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
 let U_ID = localStorage.getItem("U_ID");
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-logout_btn.addEventListener("click", function() {
-        sessionStorage.clear();
-        localStorage.removeItem('U_ID')
-        localStorage.removeItem('user_email')
-        localStorage.removeItem('user_name')
-        localStorage.removeItem('user_watchlist')
-        localStorage.removeItem('user_massages')
-        localStorage.removeItem('user_profile_img')
-
-        window.location.href = "Home.html";
-});
-
-if(U_ID){
-  getUserFavorites(Search_Results_SHOW)
-}else{
-  logout_btn.click();
-}
-
-
-
-async function getUserFavorites(passed_function) {
-
-    let watchlist = localStorage.getItem('user_watchlist');
-
-    if(watchlist){
-      let watchlist_array = JSON.parse(watchlist);
-      console.log(watchlist_array)
-      passed_function(watchlist_array);
-      console.log('fave')
-    }
-}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -290,7 +304,7 @@ function Search_Results_SHOW(movies) {
     const reader = new FileReader();
     reader.onload = async (e) => {
       uploadedImageURL = e.target.result;
-      console.log('Uploaded image:', uploadedImageURL); // You can save this string to DB
+        //console.log('Uploaded image:', uploadedImageURL); // You can save this string to DB
         document.getElementById("User_Image_show").style.backgroundImage = `url(${uploadedImageURL})`;
         let user_email =  localStorage.getItem('user_email')
         const response = await fetch('Database/database.php', {

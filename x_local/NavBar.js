@@ -717,7 +717,7 @@ document.getElementById('loginForm').addEventListener('click', async function(e)
                 let user_info = data.massage;
                 let not_t =  user_info.Messages || '[]';
                 let watch_fave = user_info.watchlist || '[]';
-                let user_profile_img = user_info.ProfileIMG || '';
+                let user_profile_img = user_info.ProfileIMG || '/Assets/account.png';
 
                 localStorage.setItem('U_ID', user_info.email);
                 localStorage.setItem('user_email', user_info.email);
