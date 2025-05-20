@@ -88,7 +88,7 @@ switch ($action) {
 function addUser($username, $email, $password, $watchlist, $Messages) {
     global $db;
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
+    $defaultProfileImg = '/images/default-profile.png';
     try {
         // Prepare the SQL query to insert the user
         $stmt = $db->prepare("INSERT INTO users (name, email, password, watchlist, Messages, ProfileIMG) VALUES (:username, :email, :password, :watchlist, :Messages, :img)");
@@ -97,7 +97,7 @@ function addUser($username, $email, $password, $watchlist, $Messages) {
         $stmt->bindValue(':password', $hashedPassword);
         $stmt->bindValue(':watchlist', $watchlist);
         $stmt->bindValue(':Messages', $Messages);
-        $stmt->bindValue(':img', null);
+        $stmt->bindValue(':img', $defaultProfileImg);
 
         // Execute the query
         if ($stmt->execute()) {
