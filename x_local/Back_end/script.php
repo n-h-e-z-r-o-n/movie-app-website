@@ -10,26 +10,19 @@ if ($isAuthorized) {
     $obfuscatedCode = obfuscateJs($jsCode);
     echo $obfuscatedCode;
 
-    //header('Location: ../script.js', true, 302);
-
-
-
-
-
 } else {
     // Output an error message or alternative JS code
     echo "console.error('Access to NavBar.js denied!');";
 }
 
 function obfuscateJs($code) {
-    $key = 'secret_key_123'; // Change this to a strong random key
-    $encoded = '';
-    for ($i = 0; $i < strlen($code); $i++) {
-        $encoded .= $code[$i] ^ $key[$i % strlen($key)];
-    }
-    return 'eval(unescape("' . rawurlencode($encoded) . '".replace(/./g, function(c) {
-        return String.fromCharCode(c.charCodeAt(0) ^ "' . addslashes($key) . '".charCodeAt(0);
-    })));';
+    // Encode the JavaScript code in base64
+    $encodedCode = base64_encode($code);
+
+    // Create a JavaScript snippet to decode and execute the code
+    $obfuscatedCode = "eval(atob('$encodedCode'));";
+
+    return $obfuscatedCode;
 }
 
 ?>
