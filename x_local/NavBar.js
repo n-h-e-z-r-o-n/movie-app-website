@@ -797,6 +797,7 @@ document.getElementById('signUpForm').addEventListener('click', async function(e
                 localStorage.setItem('user_name', sign_up_Name_)
                 localStorage.setItem('user_watchlist', '[]')
                 localStorage.setItem('user_massages', '[]')
+                localStorage.setItem('user_profile_img', '/Assets/account.png');
                 const currentDate = new Date();
                 localStorage.setItem('user_joined', currentDate.toString());
 
@@ -817,7 +818,6 @@ document.getElementById('signUpForm').addEventListener('click', async function(e
                 messageDiv.classList.remove('loading_active');
                 Register_container.style.display = 'none';
                 document.getElementById('notification_btnT').style.display = 'flex';
-
             }
 
 });

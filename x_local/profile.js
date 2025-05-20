@@ -1,3 +1,14 @@
+const search_R_div = document.getElementById("Watch_List_container");
+const logout_btn = document.getElementById("logout_btn");
+
+const xr = document.getElementById("Account_btn");
+const xr2 = document.getElementById("Account_btnT");
+xr.style.pointerEvents = 'none';
+xr2.style.pointerEvents = 'none';
+
+
+const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
+let U_ID = localStorage.getItem("U_ID");
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -27,7 +38,7 @@ async function getUserFavorites(passed_function) {
 
     if(watchlist){
       let watchlist_array = JSON.parse(watchlist);
-      console.log(watchlist_array)
+      //console.log(watchlist_array)
       passed_function(watchlist_array);
       console.log('fave')
     }
@@ -166,18 +177,7 @@ document.getElementById("C_P_SAVE").addEventListener("click", async function(e) 
 
 
 
-const search_R_div = document.getElementById("Watch_List_container");
-const logout_btn = document.getElementById("logout_btn");
 
-const xr = document.getElementById("Account_btn");
-const xr2 = document.getElementById("Account_btnT");
-xr.style.pointerEvents = 'none';
-xr2.style.pointerEvents = 'none';
-
-
-const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
-
-let U_ID = localStorage.getItem("U_ID");
 
 
 
@@ -185,7 +185,7 @@ let U_ID = localStorage.getItem("U_ID");
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function Search_Results_SHOW(movies) {
-  console.log(movies);
+  //console.log(movies);
   search_R_div.innerHTML = "";
   movies.forEach((movie) => {
     let { title, original_name, poster_path, id, vote_average, overview, release_date, first_air_date , runtime, S_info} = movie;
