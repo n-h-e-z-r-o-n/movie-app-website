@@ -137,12 +137,12 @@ let U_ID = localStorage.getItem("U_ID");
 
 logout_btn.addEventListener("click", function() {
         sessionStorage.clear();
-
         localStorage.removeItem('U_ID')
         localStorage.removeItem('user_email')
         localStorage.removeItem('user_name')
         localStorage.removeItem('user_watchlist')
         localStorage.removeItem('user_massages')
+        localStorage.removeItem('user_profile_img')
 
         window.location.href = "Home.html";
 });
@@ -301,9 +301,14 @@ function Search_Results_SHOW(movies) {
         body: `action=updateIMG&img=${encodeURIComponent(uploadedImageURL)}&email=${encodeURIComponent(user_email)}`
         });
          const data = await response.json();
-         console.log(data)
-         if(data.massage === 'Profile Updated') {
+         //console.log(data)
+         if(data.message === 'Profile Updated') {
                localStorage.setItem('user_profile_img', uploadedImageURL);
+               console.log(localStorage.getItem('user_profile_img'))
+               document.getElementById("Account_btnT").style.background =  `url(${uploadedImageURL})`;
+               document.getElementById("Account_btnT").style.backgroundSize = '100% 100%';
+               document.getElementById("Account_btnT").style.backgroundPosition = 'center';
+               document.getElementById("Account_btnT").style.backgroundRepeat = 'no-repeat';
          }
 
     };
