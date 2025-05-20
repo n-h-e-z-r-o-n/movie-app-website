@@ -315,7 +315,7 @@ function Search_Results_SHOW(movies) {
         body: `action=updateIMG&img=${encodeURIComponent(uploadedImageURL)}&email=${encodeURIComponent(user_email)}`
         });
          const data = await response.json();
-         //console.log(data)
+         console.log(data)
          if(data.message === 'Profile Updated') {
                localStorage.setItem('user_profile_img', uploadedImageURL);
                console.log(localStorage.getItem('user_profile_img'))
