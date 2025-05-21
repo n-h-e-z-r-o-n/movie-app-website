@@ -287,9 +287,10 @@
     cursor: pointer;
 }
 /*================= notification_ ====================================================================================*/
-.notification_picture {
+
+.reload_btn {
   position: relative;
-  background-color: transparent;
+  background-color: red;
   min-width: 40px;
   min-height: 40px;
   border-radius: 50%;
@@ -299,8 +300,7 @@
   backdrop-filter: blur(201px);
   align-items: center;
   justify-content: center;
-  display: none; /*flex*/
-
+  display: none; 
   font-size: 1.5em;
   color: var(--global-color-fg);
   cursor: pointer;
