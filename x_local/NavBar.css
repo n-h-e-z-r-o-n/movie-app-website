@@ -1161,10 +1161,11 @@ Terms_Details_content::-webkit-scrollbar {
           .notification_picture {
               min-width: 50px;
               min-height: 50px;
-                }
+          }
           .profile-picture{
               min-width: 50px;
               min-height: 50px;
+              margin-right: 15px;
 
           }
 
