@@ -308,13 +308,13 @@ document.getElementById("User_Image_input").addEventListener('change', (event) =
    reader.readAsDataURL(file);
 });
 
- async function image_bite{
+ async function image_bite(base64Image){
         let user_email = localStorage.getItem('user_email');
         const params = new URLSearchParams();
         params.append('action', 'updateImg');
-        params.append('newimg', image_bite);
+        params.append('newimg', base64Image);
         params.append('email', user_email);
-        console.log(image_bite);
+        console.log(base64Image);
 
      const response = await fetch('Database/database.php', {
         method: 'POST',
@@ -328,10 +328,10 @@ document.getElementById("User_Image_input").addEventListener('change', (event) =
      console.log(data)
 
      if(data.message === 'Profile Updated') {
-            document.getElementById("User_Image_show").style.backgroundImage = `url(${image_bite})`;
-            localStorage.setItem('user_profile_img', image_bite);
+            document.getElementById("User_Image_show").style.backgroundImage = `url(${base64Image})`;
+            localStorage.setItem('user_profile_img', base64Image);
             // console.log(localStorage.getItem('user_profile_img'))
-            document.getElementById("Account_btnT").style.background =  `url(${image_bite})`;
+            document.getElementById("Account_btnT").style.background =  `url(${base64Image})`;
             document.getElementById("Account_btnT").style.backgroundSize = '100% 100%';
             document.getElementById("Account_btnT").style.backgroundPosition = 'center';
             document.getElementById("Account_btnT").style.backgroundRepeat = 'no-repeat';
