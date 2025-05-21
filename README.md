@@ -5,7 +5,7 @@
 
 🌐 **Live Website**: [Visit Here](https://movionyx.com)
 
-**Android v0.1 AP**:  [Download .exe](https://github.com/ice-black/move-app/raw/main/APPS/onyx.apk)  
+**Android v0.1 **:  [Download .APK](https://github.com/ice-black/move-app/raw/main/APPS/onyx.apk)  
 
 ---
 
