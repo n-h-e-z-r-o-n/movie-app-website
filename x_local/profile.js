@@ -312,7 +312,7 @@ document.getElementById("User_Image_input").addEventListener('change', (event) =
         let user_email = localStorage.getItem('user_email');
         const params = new URLSearchParams();
         params.append('action', 'updateImg');
-        params.append('newimg', base64Image);
+        params.append('newimg', JSON.stringify(base64Image));
         params.append('email', user_email);
         console.log(base64Image);
 
