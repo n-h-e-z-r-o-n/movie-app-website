@@ -554,7 +554,7 @@ async function showMovies(movies) {
     }
 
     if (poster_path === null){
-        poster_path ='/nHj7dPNMM2QheZEDb2f7FxlBhUK.jpg';
+        return
     }
     const movieItem = document.createElement("div");
     movieItem.classList.add("box");
@@ -580,7 +580,8 @@ async function showMovies(movies) {
     `;
 
     const boxImg = movieItem.querySelector(".box-img");
-        boxImg.addEventListener("click", async() => {
+    boxImg.addEventListener("click", async (e) => {
+        e.stopPropagation();
         /*
         let res = await fetch(`https://api.themoviedb.org/3/movie/${id}/external_ids`, {headers});
         let data = await res.json();
@@ -720,7 +721,8 @@ function showTV(movies) {
     //
 
     const boxImg = movieItem.querySelector(".box-img");
-    boxImg.addEventListener("click", () => {
+    boxImg.addEventListener("click", async (e) => {
+      e.stopPropagation();
       window.location.href = "watch.html?id=" + id + "&type=tv";
     });
 

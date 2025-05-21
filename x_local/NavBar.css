@@ -302,10 +302,13 @@
   display: none;
   overflow: hidden;
   font-size: 1.5em;
-  color: var(--global-color-fg);
+  color: var(--Brand_Color);
   cursor: pointer;
   margin-right: auto;
   margin-left: 15px;
+}
+.reload_btn *{
+  color: var(--Brand_Color);
 }
 
 .notification_picture {
