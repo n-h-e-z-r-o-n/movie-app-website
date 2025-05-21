@@ -283,8 +283,12 @@ function updateIMG($img, $email) {
             $stmt = $db->prepare("UPDATE users SET ProfileIMG = :token WHERE email = :email");
             $stmt->bindValue(':token', $img);
             $stmt->bindValue(':email', $email);
-            $stmt->execute();
-            echo json_encode(['message' => 'Profile Updated']);
+
+            if ($stmt->execute()) {
+                       echo json_encode(['message' => 'Profile Updated']);
+            } else {
+                       echo json_encode(['message' => 'Update failed']);
+            }
         }
     } catch (PDOException $e) {
         echo json_encode(['message' => 'Database error']);
