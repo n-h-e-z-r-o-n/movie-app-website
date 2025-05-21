@@ -296,19 +296,17 @@ function Search_Results_SHOW(movies) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
- document.getElementById("User_Image_input").addEventListener('change',  (event) => {
-    let uploadedImageURL = null;
+document.getElementById("User_Image_input").addEventListener('change', (event) => {
     const file = event.target.files[0];
     if (!file) return;
 
     const reader = new FileReader();
     reader.onload = (e) => {
-      uploadedImageURL = e.target.result;
-      image_bite(uploadedImageURL)
-      //console.log('Uploaded image:', uploadedImageURL); // You can save this string to DB
-
-    reader.readAsDataURL(file); // Reads file as base64 URL
-  });
+        const uploadedImageURL = e.target.result;
+        image_bite(uploadedImageURL);
+    };
+   reader.readAsDataURL(file);
+});
 
  async function image_bite{
         let user_email = localStorage.getItem('user_email');

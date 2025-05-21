@@ -287,9 +287,9 @@ function updateIMG($img, $email) {
             $stmt->bindValue(':email', $email);
 
             if ($stmt->execute()) {
-                       echo json_encode(['message' => 'Profile Updated']);
+                 echo json_encode(['message' => 'Profile Updated']);
             } else {
-                       echo json_encode(['message' => 'Update failed']);
+                 echo json_encode(['message' => 'Update failed']);
             }
         }
     } catch (PDOException $e) {
