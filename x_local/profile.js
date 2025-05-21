@@ -40,7 +40,7 @@ async function getUserFavorites(passed_function) {
       let watchlist_array = JSON.parse(watchlist);
       //console.log(watchlist_array)
       passed_function(watchlist_array);
-      console.log('fave')
+     // console.log('fave')
     }
 }
 
@@ -305,26 +305,30 @@ function Search_Results_SHOW(movies) {
     reader.onload = async (e) => {
       uploadedImageURL = e.target.result;
         //console.log('Uploaded image:', uploadedImageURL); // You can save this string to DB
-        document.getElementById("User_Image_show").style.backgroundImage = `url(${uploadedImageURL})`;
-        let user_email =  localStorage.getItem('user_email')
+        let user_email = localStorage.getItem('user_email');
+        const params = new URLSearchParams();
+        params.append('action', 'updateIMG');
+        params.append('img', uploadedImageURL);
+        params.append('email', user_email);
+
         const response = await fetch('Database/database.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
-              },
-        body: `action=updateIMG&img=${encodeURIComponent(uploadedImageURL)}&email=${encodeURIComponent(user_email)}`
+        },
+        body: params.toString()
         });
          const data = await response.json();
          console.log(data)
          if(data.message === 'Profile Updated') {
-               localStorage.setItem('user_profile_img', uploadedImageURL);
-               console.log(localStorage.getItem('user_profile_img'))
-               document.getElementById("Account_btnT").style.background =  `url(${uploadedImageURL})`;
-               document.getElementById("Account_btnT").style.backgroundSize = '100% 100%';
-               document.getElementById("Account_btnT").style.backgroundPosition = 'center';
-               document.getElementById("Account_btnT").style.backgroundRepeat = 'no-repeat';
+                document.getElementById("User_Image_show").style.backgroundImage = `url(${uploadedImageURL})`;
+                localStorage.setItem('user_profile_img', uploadedImageURL);
+                console.log(localStorage.getItem('user_profile_img'))
+                document.getElementById("Account_btnT").style.background =  `url(${uploadedImageURL})`;
+                document.getElementById("Account_btnT").style.backgroundSize = '100% 100%';
+                document.getElementById("Account_btnT").style.backgroundPosition = 'center';
+                document.getElementById("Account_btnT").style.backgroundRepeat = 'no-repeat';
          }
-
     };
     reader.readAsDataURL(file); // Reads file as base64 URL
     //document.getElementById("User_Image_show").style.backgroundImage = `url(${uploadedImageURL})`;

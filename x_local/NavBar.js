@@ -70,10 +70,15 @@ search_bt_toggle.onclick = function(){
 
 let lastScrollTop = 0;
 const navbar = document.getElementById('navbar');
-const scrollThreshold = 500; // Set the threshold to 300px
+const scrollThreshold = 5; // Set the threshold to 300px
+mobileBreakpoint = 968;
 window.addEventListener('scroll', function() {
-    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-     //console.log("scrollTop", scrollTop);
+    if (window.innerWidth < mobileBreakpoint) {
+        navbar.classList.remove('hide-navbar');
+        navbar.classList.remove('hide-navbar_color');
+        return;
+    }
+     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
      if (scrollTop > scrollThreshold) {
             if (scrollTop > lastScrollTop) {
                 // Scrolling down
@@ -394,7 +399,7 @@ async function AddToFav(movie, widget){
             body: `action=updateMassagelist&email=${encodeURIComponent(email)}&Messages=${encodeURIComponent(JSON.stringify(numbers))}`
             });
             const data_note = await response_note.json();
-            console.log(data_note.massage)
+            //console.log(data_note.massage)
 
     } catch(error){  console.log(error)   }
 
@@ -712,7 +717,7 @@ document.getElementById('loginForm').addEventListener('click', async function(e)
                  messageDiv.innerHTML =  'User not found'
                  messageDiv.classList.remove('loading_active');
             } else {
-                console.log('Login :', data);
+                //console.log('Login :', data);
 
                 let user_info = data.massage;
                 let not_t =  user_info.Messages || '[]';
@@ -786,7 +791,7 @@ document.getElementById('signUpForm').addEventListener('click', async function(e
             });
 
             const data = await response.json();
-            console.log('signUp :', data);
+            //console.log('signUp :', data);
 
             messageDiv.textContent = data.massage;
 
