@@ -310,7 +310,7 @@ function Search_Results_SHOW(movies) {
         params.append('action', 'updateIMG');
         params.append('img', uploadedImageURL);
         params.append('email', user_email);
-
+        console.log(uploadedImageURL);
         const response = await fetch('Database/database.php', {
         method: 'POST',
         headers: {
@@ -318,12 +318,14 @@ function Search_Results_SHOW(movies) {
         },
         body: params.toString()
         });
+
          const data = await response.json();
          console.log(data)
+
          if(data.message === 'Profile Updated') {
                 document.getElementById("User_Image_show").style.backgroundImage = `url(${uploadedImageURL})`;
                 localStorage.setItem('user_profile_img', uploadedImageURL);
-                console.log(localStorage.getItem('user_profile_img'))
+                // console.log(localStorage.getItem('user_profile_img'))
                 document.getElementById("Account_btnT").style.background =  `url(${uploadedImageURL})`;
                 document.getElementById("Account_btnT").style.backgroundSize = '100% 100%';
                 document.getElementById("Account_btnT").style.backgroundPosition = 'center';
