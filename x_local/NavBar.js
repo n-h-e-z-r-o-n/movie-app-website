@@ -424,8 +424,9 @@ async function AddToFav(movie, widget){
         const data = await response.json();
         //console.log(data.massage)
     }
-    widget.classList.remove('button_style2');
-    widget.classList.add('button_style3');
+    //widget.classList.remove('button_style2');
+    //widget.classList.add('button_style3');
+    widget.style.display = 'none';
 }
 
 
