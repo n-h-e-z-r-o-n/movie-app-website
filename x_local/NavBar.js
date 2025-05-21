@@ -173,7 +173,7 @@ const Movie_btn = document.getElementById("Movie_btn");
 const TVSeries_btn = document.getElementById("TVSeries_btn");
 const Anime_btn = document.getElementById("Anime_btn");
 const Reload_btn = document.getElementById("Reload_btn");
-Reload_btn.style.display = 'none';
+
 
 // Add click event listener
 HomeNav_btn.addEventListener("click", function() {
