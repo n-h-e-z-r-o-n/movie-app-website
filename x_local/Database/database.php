@@ -72,7 +72,7 @@ switch ($action) {
             break;
 
         case 'updateImg':
-            $newimg = $_POST['newimg'] ?? '';
+            $newimg = urldecode($_POST['newimg']);
             $email = $_POST['email'] ?? '';
             updateIMG($newimg, $email);
             break;
