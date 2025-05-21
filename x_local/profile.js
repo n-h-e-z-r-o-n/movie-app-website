@@ -314,7 +314,7 @@ document.getElementById("User_Image_input").addEventListener('change', (event) =
         params.append('action', 'updateImg');
         params.append('newimg', JSON.stringify(base64Image));
         params.append('email', user_email);
-        console.log(base64Image);
+        console.log(JSON.stringify(base64Image));
 
      const response = await fetch('Database/database.php', {
         method: 'POST',

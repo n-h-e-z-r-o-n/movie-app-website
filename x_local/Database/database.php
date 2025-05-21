@@ -107,7 +107,6 @@ function addUser($username, $email, $password, $watchlist, $Messages) {
     } catch (PDOException $e) {
         if ($e->getCode() == 23000) { // SQLite constraint violation (unique email)
             echo json_encode(['massage' => 'User already exists']);
-
         } else {
                echo json_encode(['massage' => 'Error adding user']);
         }
@@ -297,31 +296,6 @@ function updateIMG($img, $email) {
     }
 }
 
-
-function updateIMG(img, $email) {
-    global $db;
-    try {
-        // Check if user exists (but don't reveal if they don't)
-        $stmt = $db->prepare("SELECT email FROM users WHERE email = :email");
-        $stmt->bindValue(':email', $email);
-        $stmt->execute();
-
-        if ($stmt->fetch()) {
-
-
-            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-            // Store token in database
-            $stmt = $db->prepare("UPDATE users SET password = :token WHERE email = :email");
-            $stmt->bindValue(':token', $hashedPassword);
-            $stmt->bindValue(':email', $email);
-            $stmt->execute();
-            echo json_encode(['message' => 'Password Changed ']);
-        }
-    } catch (PDOException $e) {
-        echo json_encode(['message' => 'Database error']);
-    }
-}
 
 
 ?>
