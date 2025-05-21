@@ -312,9 +312,10 @@ document.getElementById("User_Image_input").addEventListener('change', (event) =
         let user_email = localStorage.getItem('user_email');
         const params = new URLSearchParams();
         params.append('action', 'updateImg');
-        params.append('newimg', JSON.stringify(base64Image));
+        params.append('newimg', './\Assets\icon.png"');
         params.append('email', user_email);
-        console.log(JSON.stringify(base64Image));
+        console.log("---", String(base64Image));
+        console.log("---", typeof(String(base64Image)));
 
      const response = await fetch('Database/database.php', {
         method: 'POST',
