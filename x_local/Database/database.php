@@ -72,7 +72,8 @@ switch ($action) {
         case 'updateIMG':
             $img = $_POST['img'] ?? '';
             $email = $_POST['email'] ?? '';
-            updateIMG($img, $email);
+            echo json_encode(['massage' =>  $img]);
+            //updateIMG($img, $email);
             break;
 
 

@@ -311,6 +311,7 @@ function Search_Results_SHOW(movies) {
         params.append('img', uploadedImageURL);
         params.append('email', user_email);
         console.log(uploadedImageURL);
+
         const response = await fetch('Database/database.php', {
         method: 'POST',
         headers: {
@@ -319,6 +320,7 @@ function Search_Results_SHOW(movies) {
         body: params.toString()
         });
 
+         console.log(response);
          const data = await response.json();
          console.log(data)
 
