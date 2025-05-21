@@ -1,0 +1,208 @@
+# pip install requests
+# pip install tkwebview2
+import tkinter as tk
+import threading
+import os
+import ctypes as ct
+import requests
+from webview import screens
+
+path_exe = os.getcwd()
+
+bg_color = '#36454F'
+fg_color = "black"
+
+# ------------------------------- web-Integration ---------------------------------------------------------------------------------------------------
+
+import ctypes
+from webview.window import Window
+from webview.platforms.edgechromium import EdgeChrome
+from System import IntPtr, Int32, Func, Type, Environment
+from System.Windows.Forms import Control
+from System.Threading import ApartmentState, ThreadStart, SynchronizationContext, SendOrPostCallback
+from System.Threading import Thread as System_Thread
+import clr
+clr.AddReference('System.Windows.Forms')
+clr.AddReference('System.Threading')
+
+user32 = ctypes.windll.user32
+
+
+class WebView2(tk.Frame):
+    def __init__(self, parent, width: int, height: int, url: str = '', **kw):
+        global bg_color
+        tk.Frame.__init__(self, parent, width=width, height=height, **kw)
+        control = Control()
+        uid = 'master'
+        window = Window(uid, str(id(self)), url=None, html=None, js_api=None, width=width, height=height, x=None,
+                        y=None,
+                        resizable=True, fullscreen=False, min_size=(200, 100), hidden=False,
+                        frameless=False, easy_drag=True,
+                        minimized=False, on_top=False, confirm_close=False, background_color='#FFFFFF',
+                        transparent=False, text_select=True, localization=None,
+                        zoomable=True, draggable=True, vibrancy=False)
+        self.window = window
+        self.web_view = EdgeChrome(control, window, None)
+        self.control = control
+        self.web = self.web_view.webview
+        self.width = width
+        self.height = height
+        self.parent = parent
+        self.chwnd = int(str(self.control.Handle))
+        user32.SetParent(self.chwnd, self.winfo_id())
+        user32.MoveWindow(self.chwnd, 0, 0, width, height, True)
+        self.loaded = window.events.loaded
+        self.__go_bind()
+        if url != '':
+            self.load_url(url)
+        self.core = None
+        self.web.CoreWebView2InitializationCompleted += self.__load_core
+
+    def __go_bind(self):
+        self.bind('<Destroy>', lambda event: self.web.Dispose())
+        self.bind('<Configure>', self.__resize_webview)
+        self.newwindow = None
+
+    def __resize_webview(self, event):
+        user32.MoveWindow(self.chwnd, 0, 0, self.winfo_width(), self.winfo_height(), True)
+
+    def __load_core(self, sender, _):
+        self.core = sender.CoreWebView2
+        self.core.NewWindowRequested -= self.web_view.on_new_window_request
+        # Prevent opening new windows or browsers
+        self.core.NewWindowRequested += lambda _, args: args.Handled(True)
+
+        if self.newwindow != None:
+            self.core.NewWindowRequested += self.newwindow
+        settings = sender.CoreWebView2.Settings  # 设置
+        settings.AreDefaultContextMenusEnabled = False  # 菜单
+        settings.AreDevToolsEnabled = False  # 开发者工具
+        # self.core.DownloadStarting+=self.__download_file
+
+    def get_url(self):
+        return self.web_view.get_current_url()
+
+    def load_url(self, url):
+        self.web_view.load_url(url)
+
+    def reload(self):
+        self.core.Reload()
+
+    def Go_back(self):
+        self.web.GoBack()
+
+    def Go_Forwad(self):
+        self.web.GoForward()
+
+# =============================== Functions definition =================================================================
+
+# --------------------------------- Themes -----------------------------------------------------------------------------
+def title_bar_color(window, color):
+    # import ctypes as ct
+    try:
+        window.update()
+        if color.startswith('#'):
+            blue = color[5:7]
+            green = color[3:5]
+            red = color[1:3]
+            color = blue + green + red
+        else:
+            blue = color[4:6]
+            green = color[2:4]
+            red = color[0:2]
+            color = blue + green + red
+        get_parent = ct.windll.user32.GetParent
+        HWND = get_parent(window.winfo_id())
+
+        color = '0x' + color
+        color = int(color, 16)
+
+        ct.windll.dwmapi.DwmSetWindowAttribute(HWND, 35, ct.byref(ct.c_int(color)), ct.sizeof(ct.c_int))
+
+    except Exception as e:
+        print("title_bar_color fun error : ", e)
+
+def download_app_icon():
+
+        response = requests.get('https://raw.githubusercontent.com/n-h-e-z-r-o-n/assets/refs/heads/main/MoviOnyx.ico')
+        with open('MoviOnyx.ico', 'wb') as f:
+            f.write(response.content)
+
+
+def main():
+    app = tk.Tk()
+
+    app.geometry("600x500")
+    app.state("zoomed")
+    app.title("")
+
+    try:
+        app.iconbitmap("MoviOnyx.ico")
+    except:
+        download_app_icon()
+        try:
+            app.iconbitmap("MoviOnyx.ico")
+        except:
+            pass
+
+
+    title_bar_color(app, "#001b36")
+    screenheight =  int(app.winfo_screenheight() / 3)
+    screenwidth = int(app.winfo_screenwidth() / 3)
+
+    app.minsize(screenwidth, screenheight)
+
+    # ===================== WebView Section ============================================================================
+
+    new_web_view_frame = tk.Frame(app, bg="#000000")
+    new_web_view_frame.place(y=30, relwidth=1, relheight=0.977)
+    frame2 = WebView2(new_web_view_frame, 500, 500)
+    frame2.place(relheight=1, relwidth=1, relx=0, rely=0)
+    frame2.load_url("https://movionyx.com/")
+
+    # ===================== Navigation Bar Section =====================================================================
+    nav_bar_bg = "#000000"
+    nav_bar = tk.Frame(app, bg=nav_bar_bg)
+    nav_bar.place(x=0, y=0, relwidth=1, height=30)
+
+    back_button = tk.Button(master=nav_bar, fg='white', text="⤺", font=("Georgia", 20), activebackground=nav_bar_bg,
+                            activeforeground='yellow', bg=nav_bar_bg, command=lambda: frame2.Go_back(), border=0,
+                            borderwidth=0)
+    back_button.pack(side = tk.LEFT ) #place(relx=0.001, rely=0.1, relwidth=0.03, relheight=0.8)
+
+    Next_button = tk.Button(master=nav_bar, fg='white', text="⤻", font=("Georgia", 20), activebackground=nav_bar_bg,
+                            activeforeground='yellow', bg=nav_bar_bg, command=lambda: frame2.Go_Forwad(), border=0,
+                            borderwidth=0)
+
+    Next_button.pack(side = tk.LEFT) #place(relx=0.031, rely=0.1, relwidth=0.03, relheight=0.8)
+
+    reload_button = tk.Button(master=nav_bar, fg='white', text="⟲", font=("Georgia", 15),
+                            activebackground=nav_bar_bg,
+                            activeforeground='yellow', bg=nav_bar_bg, command= frame2.reload, border=0,
+                            borderwidth=0)
+    reload_button.pack(side = tk.LEFT) #place(relx=0.061, rely=0.1, relwidth=0.03, relheight=0.8)
+
+
+
+    # ===================== ============================================================================================
+
+
+    app.mainloop()
+
+
+def go():
+    try:
+        main()
+    except Exception as e:
+        print(e)
+
+
+if __name__ == "__main__":
+    #main()
+
+    # """
+    t = System_Thread(ThreadStart(go))
+    t.ApartmentState = ApartmentState.STA
+    t.Start()
+    t.Join()
+# """
