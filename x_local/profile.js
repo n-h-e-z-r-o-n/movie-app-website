@@ -237,7 +237,8 @@ function Search_Results_SHOW(movies) {
 
     `;
     // Add event listener to open another page when clicked
-    movieItem.addEventListener("click", () => {
+    movieItem.addEventListener("click", async (e) => {
+         e.stopPropagation();
          window.location.href = "watch.html?id=" + id + "&type="+r_type;
        });
 
