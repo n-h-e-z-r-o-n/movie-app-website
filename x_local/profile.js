@@ -320,7 +320,6 @@ function Search_Results_SHOW(movies) {
         body: params.toString()
         });
 
-         console.log(response);
          const data = await response.json();
          console.log(data)
 

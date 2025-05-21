@@ -1,5 +1,8 @@
 <?php
-header('Content-Type: application/json'); // Ensure JSON response
+header('Content-Type: application/json');
+error_reporting(0); // Turn off error reporting on live site
+ini_set('display_errors', 0);
+
 
 $action = $_POST['action'] ?? $_GET['action'] ?? '';
 
