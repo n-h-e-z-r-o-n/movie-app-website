@@ -71,11 +71,10 @@ switch ($action) {
             updatePass($password, $email);
             break;
 
-        case 'updateIMG':
-            $img = $_POST['img'] ?? '';
+        case 'updateImg':
+            $newimg = $_POST['newimg'] ?? '';
             $email = $_POST['email'] ?? '';
-            echo json_encode(['massage' =>  $img]);
-            //updateIMG($img, $email);
+            updateIMG($newimg, $email);
             break;
 
 
@@ -283,8 +282,8 @@ function updateIMG($img, $email) {
 
         if ($stmt->fetch()) {
             // Store token in database
-            $stmt = $db->prepare("UPDATE users SET ProfileIMG = :token WHERE email = :email");
-            $stmt->bindValue(':token', $img);
+            $stmt = $db->prepare("UPDATE users SET ProfileIMG = :img WHERE email = :email");
+            $stmt->bindValue(':img', $img);
             $stmt->bindValue(':email', $email);
 
             if ($stmt->execute()) {

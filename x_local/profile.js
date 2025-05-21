@@ -307,12 +307,17 @@ function Search_Results_SHOW(movies) {
         //console.log('Uploaded image:', uploadedImageURL); // You can save this string to DB
         let user_email = localStorage.getItem('user_email');
         const params = new URLSearchParams();
-        params.append('action', 'updateIMG');
-        params.append('img', uploadedImageURL);
+        params.append('action', 'updateImg');
+        params.append('newimg', uploadedImageURL);
         params.append('email', user_email);
         console.log(uploadedImageURL);
 
-        const response = await fetch('Database/database.php', {
+
+    reader.readAsDataURL(file); // Reads file as base64 URL
+  });
+
+ async function updateImg_p(pro){
+     const response = await fetch('Database/database.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -333,10 +338,7 @@ function Search_Results_SHOW(movies) {
                 document.getElementById("Account_btnT").style.backgroundRepeat = 'no-repeat';
          }
     };
-    reader.readAsDataURL(file); // Reads file as base64 URL
-    //document.getElementById("User_Image_show").style.backgroundImage = `url(${uploadedImageURL})`;
-    //console.log('Applied image to div:', uploadedImageURL);
-  });
+  }
 
 
 
