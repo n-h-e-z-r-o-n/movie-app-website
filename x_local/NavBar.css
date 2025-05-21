@@ -299,12 +299,13 @@
   backdrop-filter: blur(201px);
   align-items: center;
   justify-content: center;
-  display: flex;
+  display: none;
   overflow: hidden;
   font-size: 1.5em;
   color: var(--global-color-fg);
   cursor: pointer;
-  margin-right: 15px;
+  margin-right: auto;
+  margin-left: 15px;
 }
 
 .notification_picture {
@@ -1185,8 +1186,9 @@ Terms_Details_content::-webkit-scrollbar {
           .profile-picture{
               min-width: 50px;
               min-height: 50px;
-
-
+          }
+          .reload_btn{
+             display: flex;
           }
 
           .Terms_Box {
