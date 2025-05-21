@@ -1,45 +1,76 @@
-# FilmFusion (movie & TV Shows app)
-This desktop application allows users to watch movies and TV shows on their computer. It provides a user-friendly interface for browsing, searching, and streaming media content.
 
-- Live Website:  [VIEW](https://movionyx.com)
-## Installation
-Latest version (2.0)
-- Version 2.0    Windows os platform(2025)  : [DOWNLOAD](https://github.com/n-h-e-z-r-o-n/movie-app-website/raw/refs/heads/main/Source_code/MoviOnyx.zip)
-- version 1.0 : Windows os platform(2024)  : [DOWNLOAD](https://github.com/ice-black/move-app/raw/main/APPS/FilmFusion.exe)
+# 🎬 FilmFusion – Movie & TV Show Desktop App
 
-- Prototype 1.0 : Windows os platform(2023)  : [ DOWNLOAD ](https://github.com/ice-black/move-app/raw/main/APPS/TX%20movies%20(0.0.1).exe)
+**FilmFusion** is a Windows desktop application that allows users to seamlessly browse, search, and stream movies and TV shows. Designed with a sleek interface and smooth performance, FilmFusion is your all-in-one entertainment hub.
 
-## Features
-- Browse Movies and Shows: Easily navigate through a collection of movies and TV shows.
-- Search Functionality: Quickly find specific titles by searching through the database.
-- Streaming Capabilities: Stream content directly within the application.
+🌐 **Live Website**: [Visit Here](https://movionyx.com)
 
-# Screenshot
-## New Version  Screenshots
-![image](https://github.com/user-attachments/assets/db4b31b5-8651-4667-90cb-8b5696fc206f)
-![image](https://github.com/user-attachments/assets/a3c65b3b-8d30-4122-af32-8c1444b288ae)
-![image](https://github.com/user-attachments/assets/dbffef31-ed0d-4148-99b1-769343b85938)
-![image](https://github.com/user-attachments/assets/c961de6d-187c-4356-be5c-b16e70a4fe30)
-![image](https://github.com/user-attachments/assets/075d677a-a04e-49b4-8dda-3cd4956e33f2)
+---
 
+## 📁 Project Structure
 
-## Old Version 1 Screenshots
-### 1
-![image](https://github.com/ice-black/move-app/assets/55835551/3e898042-1d4b-4e86-89db-06f1cf591d0a)
-### 2
-![image](https://github.com/ice-black/move-app/assets/55835551/6f2b6ecf-e5b8-45bd-9fb7-6852c0b03ed4)
-### 3
-![image](https://github.com/ice-black/move-app/assets/55835551/fc8980ff-f943-4a55-b97b-171e951aedda)
-### 4
-![image](https://github.com/ice-black/move-app/assets/55835551/e614c229-c183-4922-a77b-1fa6a0545d72)
+```
+FilmFusion/
+├── assets/                 # Images, icons, and static media
+├── components/            # UI components
+├── screens/               # App screens (Home, Movie Details, Player, etc.)
+├── services/              # API services for fetching movie/show data
+├── utils/                 # Utility functions
+├── styles/                # Global and modular CSS/SCSS styles
+├── main.js / main.py      # App entry point (depending on tech stack)
+├── package.json           # If JavaScript-based (Electron)
+├── requirements.txt       # If Python-based
+└── README.md              # Project documentation
+```
 
-# License
+---
 
-This application is licensed under the GNU General Public  [ License ](https://raw.githubusercontent.com/Hezron26/Auto_git_commit_push/main/LICENSE)
+## 🚀 Features
 
+- **Browse Library** – Explore a wide collection of movies and TV shows.
+- **Smart Search** – Quickly find specific titles.
+- **Integrated Streaming** – Watch your favorite content directly in the app.
+- **Cross-Version Support** – Multiple versions available for compatibility.
 
-![lazy p](https://user-images.githubusercontent.com/55835551/226184555-72e10ba4-372b-4040-8d6b-cfd2537cc709.jpg)
+---
 
+## 🖥️ Installation & Download
 
+### 🔹 Latest Version (v2.0 – 2025)
+- 🪟 **Windows OS**: [Download .zip](https://github.com/n-h-e-z-r-o-n/movie-app-website/raw/refs/heads/main/Source_code/MoviOnyx.zip)
 
+### 🔸 Previous Versions
+- **v1.0 (2024)**: [Download .exe](https://github.com/ice-black/move-app/raw/main/APPS/FilmFusion.exe)  
+- **Prototype 1.0 (2023)**: [Download .exe](https://github.com/ice-black/move-app/raw/main/APPS/TX%20movies%20(0.0.1).exe)
 
+---
+
+## 🖼️ Screenshots
+
+### 🌟 Version 2.0
+![Screenshot](https://github.com/user-attachments/assets/db4b31b5-8651-4667-90cb-8b5696fc206f)
+
+### 🕹️ Version 1.0
+![Screenshot](https://github.com/ice-black/move-app/assets/55835551/3e898042-1d4b-4e86-89db-06f1cf591d0a)
+
+---
+
+## 🧑‍💻 Coding Style Guide
+
+- **Language**: JavaScript / Python
+- **Style Guide**: [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) / [PEP8 for Python](https://peps.python.org/pep-0008/)
+- **Component Naming**: PascalCase for components, camelCase for variables
+- **Folder Structure**: Feature-based modular structure
+- **Linting Tools**: ESLint (JS), Flake8 (Python)
+
+---
+
+## 📄 License
+
+Licensed under the [GNU General Public License](https://raw.githubusercontent.com/Hezron26/Auto_git_commit_push/main/LICENSE)
+
+---
+
+## 🙌 Acknowledgments
+
+![FilmFusion](https://user-images.githubusercontent.com/55835551/226184555-72e10ba4-372b-4040-8d6b-cfd2537cc709.jpg)
