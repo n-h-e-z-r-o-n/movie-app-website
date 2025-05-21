@@ -242,7 +242,7 @@ body , html {
       background: transparent;/* Ensure the overlay doesn't interfere with clicks */
  }
  .box-img-button {
-     bottom: 40%;
+     bottom: 0%;
      height: 50px;
  }
   .button_style2 {
