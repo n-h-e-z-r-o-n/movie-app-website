@@ -272,10 +272,6 @@ function updatePass($password, $email) {
 
 function updateIMG($img, $email) {
     global $db;
-    echo json_encode(['message' => $img]);
-
-    return;
-
     try {
         // Check if user exists (but don't reveal if they don't)
         $stmt = $db->prepare("SELECT email FROM users WHERE email = :email");
