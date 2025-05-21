@@ -302,43 +302,44 @@ function Search_Results_SHOW(movies) {
     if (!file) return;
 
     const reader = new FileReader();
-    reader.onload = async (e) => {
+    reader.onload = (e) => {
       uploadedImageURL = e.target.result;
-        //console.log('Uploaded image:', uploadedImageURL); // You can save this string to DB
-        let user_email = localStorage.getItem('user_email');
-        const params = new URLSearchParams();
-        params.append('action', 'updateImg');
-        params.append('newimg', uploadedImageURL);
-        params.append('email', user_email);
-        console.log(uploadedImageURL);
-
+      image_bite(uploadedImageURL)
+      //console.log('Uploaded image:', uploadedImageURL); // You can save this string to DB
 
     reader.readAsDataURL(file); // Reads file as base64 URL
   });
 
- async function updateImg_p(pro){
+ async function image_bite{
+        let user_email = localStorage.getItem('user_email');
+        const params = new URLSearchParams();
+        params.append('action', 'updateImg');
+        params.append('newimg', image_bite);
+        params.append('email', user_email);
+        console.log(image_bite);
+
      const response = await fetch('Database/database.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: params.toString()
-        });
+     });
 
-         const data = await response.json();
-         console.log(data)
+     const data = await response.json();
+     console.log(data)
 
-         if(data.message === 'Profile Updated') {
-                document.getElementById("User_Image_show").style.backgroundImage = `url(${uploadedImageURL})`;
-                localStorage.setItem('user_profile_img', uploadedImageURL);
-                // console.log(localStorage.getItem('user_profile_img'))
-                document.getElementById("Account_btnT").style.background =  `url(${uploadedImageURL})`;
-                document.getElementById("Account_btnT").style.backgroundSize = '100% 100%';
-                document.getElementById("Account_btnT").style.backgroundPosition = 'center';
-                document.getElementById("Account_btnT").style.backgroundRepeat = 'no-repeat';
-         }
-    };
-  }
+     if(data.message === 'Profile Updated') {
+            document.getElementById("User_Image_show").style.backgroundImage = `url(${image_bite})`;
+            localStorage.setItem('user_profile_img', image_bite);
+            // console.log(localStorage.getItem('user_profile_img'))
+            document.getElementById("Account_btnT").style.background =  `url(${image_bite})`;
+            document.getElementById("Account_btnT").style.backgroundSize = '100% 100%';
+            document.getElementById("Account_btnT").style.backgroundPosition = 'center';
+            document.getElementById("Account_btnT").style.backgroundRepeat = 'no-repeat';
+     }
+};
+
 
 
 
