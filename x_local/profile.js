@@ -325,7 +325,7 @@ document.getElementById("User_Image_input").addEventListener('change', (event) =
      });
 
      const data = await response.json();
-     console.log(data)
+     //console.log(data)
 
      if(data.message === 'Profile Updated') {
             document.getElementById("User_Image_show").style.backgroundImage = `url(${base64Image})`;
