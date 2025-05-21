@@ -48,10 +48,10 @@ FilmFusion/
 ## 🖼️ Screenshots
 
 ### 🌟 Version 2.0
-![Screenshot](https://github.com/user-attachments/assets/db4b31b5-8651-4667-90cb-8b5696fc206f)
+![Screenshot 2025-05-21 at 21-30-0](https://github.com/user-attachments/assets/ba657dbc-5cdd-4755-9464-c5ef93f23d6d)
 
-### 🕹️ Version 1.0
-![Screenshot](https://github.com/ice-black/move-app/assets/55835551/3e898042-1d4b-4e86-89db-06f1cf591d0a)
+
+
 
 ---
 
