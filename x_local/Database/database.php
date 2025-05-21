@@ -40,7 +40,6 @@ switch ($action) {
             $password = $_POST['password'] ?? '';
             $watchlist =  '[]';
             $messages =  '[]';
-
             addUser($name, $email, $password, $watchlist, $messages);
             break;
 
@@ -292,7 +291,7 @@ function updateIMG($img, $email) {
             }
         }
     } catch (PDOException $e) {
-        echo json_encode(['message' => 'Database error']);
+        echo json_encode(['message' => 'Update failed, Database error']);
     }
 }
 
