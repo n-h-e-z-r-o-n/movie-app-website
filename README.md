@@ -1,5 +1,5 @@
 
-# 🎬 FilmFusion – Movie & TV Show Desktop App
+# 🎬 Movie & TV Show Desktop App
 
 **FilmFusion** is a Windows desktop application that allows users to seamlessly browse, search, and stream movies and TV shows. Designed with a sleek interface and smooth performance, FilmFusion is your all-in-one entertainment hub.
 
