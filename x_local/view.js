@@ -144,7 +144,8 @@ function showMovies(movies) {
     `;
 
     const boxImg = movieItem.querySelector(".box-img");
-    boxImg.addEventListener("click", () => {
+    boxImg.addEventListener("click", async (e) => {
+      e.stopPropagation();
       window.location.href = "watch.html?id=" + id + "&type=movie";
     });
 
@@ -325,7 +326,8 @@ function showTV(movies) {
 
 
     const boxImg = movieItem.querySelector(".box-img");
-    boxImg.addEventListener("click", () => {
+    boxImg.addEventListener("click", async (e) => {
+        e.stopPropagation();
         window.location.href = "watch.html?id=" + id + "&type=tv";
     });
 

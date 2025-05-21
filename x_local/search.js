@@ -116,7 +116,8 @@ function Search_Results_SHOW(movies) {
     //window.location.href = "watch_page.html?id=" + id + "&type="+type;
 
     const boxImg = movieItem.querySelector(".box-img");
-    boxImg.addEventListener("click", () => {
+    boxImg.addEventListener("click", async (e) => {
+        e.stopPropagation();
         window.location.href = "watch.html?id=" + id + "&type="+type_r;
     });
 
