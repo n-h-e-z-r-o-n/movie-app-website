@@ -314,6 +314,12 @@ document.getElementById("User_Image_input").addEventListener('change', (event) =
         params.append('action', 'updateImg');
         params.append('newimg', encodeURIComponent(base64Image));
         params.append('email', user_email);
+        const payload = {
+               action: 'updateImg',
+                newimg: base64Image, // or just base64Clean if you remove the prefix
+                email: user_email
+            };
+
         console.log("---", base64Image);
         console.log("---", typeof(base64Image));
         console.log("===", encodeURIComponent(base64Image));
@@ -322,12 +328,16 @@ document.getElementById("User_Image_input").addEventListener('change', (event) =
      const response = await fetch('Database/database.php', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
+        'Content-Type': 'application/json',
+                },
         body: params.toString()
      });
 
-     const data = await response.json();
+
+const responseText = await response.text();  // Get raw response
+console.log('Server raw response:', responseText);
+
+     data = JSON.parse(responseText);
      console.log(data)
 
      if(data.message === 'Profile Updated') {
