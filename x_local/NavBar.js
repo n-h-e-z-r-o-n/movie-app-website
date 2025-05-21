@@ -802,19 +802,19 @@ document.getElementById('signUpForm').addEventListener('click', async function(e
                 localStorage.setItem('user_name', sign_up_Name_)
                 localStorage.setItem('user_watchlist', '[]')
                 localStorage.setItem('user_massages', '[]')
-                localStorage.setItem('user_profile_img', '/Assets/account.png');
+                localStorage.setItem('user_profile_img', './Assets/account.png');
                 const currentDate = new Date();
                 localStorage.setItem('user_joined', currentDate.toString());
 
 
                 Account_btnT.innerHTML = '';
-                Account_btnT.style.background = `url('./Assets/cat.png')`;
+                Account_btnT.style.background = `url('./Assets/account.png')`;
                 Account_btnT.style.backgroundSize = '100% 100%';
                 Account_btnT.style.backgroundPosition = 'center';
                 Account_btnT.style.backgroundRepeat = 'no-repeat';
 
                 Account_btn.innerHTML = '';
-                Account_btn.style.background = `url('./Assets/cat.png')`;
+                Account_btn.style.background = `url('./Assets/account.png')`;
                 Account_btn.style.backgroundSize = '100% 100%';
                 Account_btn.style.backgroundPosition = 'center';
                 Account_btn.style.backgroundRepeat = 'no-repeat';

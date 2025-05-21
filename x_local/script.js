@@ -79,8 +79,8 @@ if(!movie_currentPage){
   movie_currentPage = 1;
 }
 
- console.log(movie_currentPage)
- console.log(series_currentPage)
+ //console.log(movie_currentPage)
+ //console.log(series_currentPage)
 
 
 let Let_Movies_CK ;
@@ -121,7 +121,7 @@ function clearLocalStorageAfterInterval(intervalInMinutes) {
 
 
 
-            console.log('localStorage cleared *');
+            //console.log('localStorage cleared *');
             localStorage.setItem('lastClearedTime', currentTime);  // Update the timestamp
         }
     }
@@ -508,7 +508,7 @@ async function Latest_Movies(event, page, type) {
     }
 
   let hold = [];
-  console.log(data_json.length)
+  //console.log(data_json.length)
   for (let i = 0; i < data_json.length; i++) {
 
 
