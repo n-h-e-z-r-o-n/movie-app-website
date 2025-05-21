@@ -289,8 +289,7 @@
 /*================= notification_ ====================================================================================*/
 
 .reload_btn {
-  position: relative;
-  background-color: red;
+  background-color: transparent;
   min-width: 40px;
   min-height: 40px;
   border-radius: 50%;
@@ -300,10 +299,12 @@
   backdrop-filter: blur(201px);
   align-items: center;
   justify-content: center;
-  display: none; 
+  display: flex;
+  overflow: hidden;
   font-size: 1.5em;
   color: var(--global-color-fg);
   cursor: pointer;
+  margin-right: 15px;
 }
 
 .notification_picture {

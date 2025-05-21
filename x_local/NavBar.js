@@ -115,12 +115,13 @@ TVSeries_btnT.addEventListener("click", function() {
    window.location.href = "view-more.html?query=show";
 });
 
-
-
-
-
 Anime_btnT.addEventListener("click", function() {
    window.location.href = "anime.html";
+});
+
+const Reload_btn = document.getElementById("Reload_btn");
+Reload_btn.addEventListener("click", function() {
+   window.location.href = "";
 });
 
 
@@ -172,7 +173,6 @@ const HomeNav_btn = document.getElementById("HomeNav_btn");
 const Movie_btn = document.getElementById("Movie_btn");
 const TVSeries_btn = document.getElementById("TVSeries_btn");
 const Anime_btn = document.getElementById("Anime_btn");
-const Reload_btn = document.getElementById("Reload_btn");
 
 
 // Add click event listener
@@ -194,9 +194,7 @@ Anime_btn.addEventListener("click", function() {
    window.location.href = "anime.html";
 });
 
-Reload_btn.addEventListener("click", function() {
-   window.location.href = "";
-});
+
 let active_tub = localStorage.getItem ("bottom_nav")
 //console.log("active_tub", active_tub)
 if(active_tub){
