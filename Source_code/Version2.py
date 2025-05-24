@@ -81,7 +81,7 @@ def main():
     frame2 = WebView2(new_web_view_frame, 500, 500)
     frame2.place(relheight=1, relwidth=1, relx=0, rely=0)
 
-    frame2.load_url('https://movionyx.com')
+    frame2.('https://movionyx.com')
     frame2.user_agent='MovionyxApp/1.0'
 
     app.mainloop()
