@@ -1,8 +1,8 @@
 import webview
 
-def on_before_load(window, request):
+def on_before_load(window):
     # Block specific URLs (e.g., containing "redirect" or a specific domain)
-    url = request.url  # Access the URL from the request object
+    url = window.url  # Access the URL from the request object
     if "https://movionyx.com" in url:
         return True  # Allow navigation
     else:
@@ -12,11 +12,11 @@ def on_before_load(window, request):
 if __name__ == '__main__':
     window = webview.create_window('Block Redirect Example', 'https://movionyx.com')
     window.events.before_load += on_before_load
-    window.webview.settings = {
+    window.settings = {
         'ALLOW_DOWNLOADS': False,
-        'ALLOW_FILE_URLS': True,
+        'ALLOW_FILE_URLS': False,
         'OPEN_EXTERNAL_LINKS_IN_BROWSER': False,
-        'OPEN_DEVTOOLS_IN_DEBUG': True,
+        'OPEN_DEVTOOLS_IN_DEBUG': False,
         'REMOTE_DEBUGGING_PORT': None
     }
     webview.start(user_agent="MovionyxApp/1.0")
