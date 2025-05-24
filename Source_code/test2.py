@@ -10,7 +10,7 @@ def on_before_load(window):
         return False  # Cancel navigation
 
 if __name__ == '__main__':
-    window = webview.create_window('Block Redirect Example', 'https://movionyx.com', draggable=True,frameless=True, easy_drag=True)
+    window = webview.create_window('Block Redirect Example', 'https://movionyx.com', draggable=True, easy_drag=True)
     window.settings = {
         'ALLOW_DOWNLOADS': False,
         'ALLOW_FILE_URLS': False,
