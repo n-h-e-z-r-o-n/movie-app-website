@@ -30,20 +30,11 @@ class WebView2(tk.Frame):
                         transparent=False, text_select=True, localization=None,
                         zoomable=True, draggable=True, vibrancy=False)
         self.window = window
-        self.web = self.web_view
-
         self.width = width
         self.height = height
         self.parent = parent
-        self.chwnd = int(str(self.control.Handle))
 
         self.loaded = window.events.loaded
-        self.__go_bind()
-        self.loaded += self.__load_core
-
-        if url != '':
-            self.load_url(url)
-        self.core = None
 
 
 
