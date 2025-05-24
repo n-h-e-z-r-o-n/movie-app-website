@@ -1,19 +1,18 @@
-from PySide6.QtWidgets import QApplication, QMainWindow
-from PySide6.QtWebEngineWidgets import QWebEngineView
 import sys
+from PySide6.QtCore import QUrl
+from PySide6.QtWebEngineWidgets import QWebEngineView
+from PySide6.QtWidgets import QApplication
 
-class MainWindow(QMainWindow):
-    def __init__(self):
-        super().__init__()
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    web = QWebEngineView()
 
-        self.setWindowTitle("My WebView App")
-        self.setGeometry(100, 100, 1024, 768)
+    # Set custom User-Agent
+    user_agent = "MovionyxApp/1.0"
+    web.page().profile().setHttpUserAgent(user_agent)
 
-        web = QWebEngineView()
-        web.load("https://movionyx.com")
-        self.setCentralWidget(web)
+    # Load a webpage
+    web.load(QUrl("https://movionyx.com"))
+    web.show()
 
-app = QApplication(sys.argv)
-window = MainWindow()
-window.show()
-app.exec()
+    sys.exit(app.exec())
