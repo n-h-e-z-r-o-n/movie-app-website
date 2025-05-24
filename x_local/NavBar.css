@@ -368,9 +368,10 @@
 }
 
 .notification_container{
+  background-color: rgba(0, 0, 0, 0.5);
   display: none;
   flex-wrap: wrap;
-  backdrop-filter: blur(2100px);
+  backdrop-filter: blur(210px);
   width: 300px;
   height: auto;
   max-height: 400px;

@@ -17,6 +17,9 @@ body , html {
   height: 100%;
   width: 100%;
   background-color : var(--global-color-bg) ;
+  -webkit-tap-highlight-color: transparent;
+  tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 
@@ -218,6 +221,8 @@ body , html {
 
 
 @media (max-width: 968px) {
+
+
    .no-select{
         height: 100%;
         width: 100%;
@@ -242,8 +247,8 @@ body , html {
       background: transparent;/* Ensure the overlay doesn't interfere with clicks */
  }
  .box-img-button {
-     bottom: 0%;
-     height: 50px;
+     bottom: 4px;
+     height: 30px;
  }
   .button_style2 {
        background: var(--global-color-bg);

@@ -10,7 +10,36 @@
 </head>
 <body>
 <script>
-     window.location.href = "Home.html";
+
+
+const params = getQueryParams();
+
+if (params && params.device) {
+  const device_type = params.device;
+
+  if (device_type === 'phonewebapp') {
+    localStorage.setItem("device_type", "phone_app");
+  } else if (device_type === 'desktop_app') {
+    localStorage.setItem("device_type", "desktop_app");
+  }
+
+  window.location.href = "Home.html";
+} else {
+  window.location.href = "Home.html";
+}
+
+function getQueryParams() {
+  const params = {};
+  const queryString = window.location.search.substring(1);
+  const regex = /([^&=]+)=([^&]*)/g;
+  let m;
+  while ((m = regex.exec(queryString))) {
+    params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+  }
+  return params;
+}
+
+
 </script>
 </body>
 </html>

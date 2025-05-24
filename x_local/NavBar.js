@@ -1,4 +1,27 @@
 
+// Check if the User-Agent matches your app
+if (!navigator.userAgent.includes("MovionyxApp/1.0")) {
+    // Block the page and show a message
+
+    document.body.innerHTML = `
+        <div style="text-align: center; padding: 50px;">
+            <h1>Access Denied</h1>
+            <p>This website can only be accessed via the official <strong>Movionyx App</strong>.</p>
+            <p>Download it from the <a href="YOUR_APP_STORE_LINK">App Store</a> or <a href="YOUR_PLAY_STORE_LINK">Google Play</a>.</p>
+        </div>
+    `;
+    // Optional: Redirect to app store after a delay
+    setTimeout(() => {
+        //window.location.href = "https://play.google.com/store/apps/details?id=com.example.movionyx";
+    }, 3000);
+}
+
+//==////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////
+
+
+let notification_widget = document.getElementById('notification_container')
+
 
 var  headers = {
   "accept": "application/json",
@@ -283,38 +306,6 @@ genre_filter_bottom_nav.addEventListener("touchcancel", function () {
 
 
 
-/*
-document.addEventListener("click", function (event) {
-  Select_box_titles.forEach((Select_box_title) => {
-    const dropdown_content = Select_box_title.nextElementSibling;
-
-    // Check if the click is outside the dropdown and its associated 'Select_box_title'
-    if (
-      !Select_box_title.contains(event.target) &&
-      !dropdown_content.contains(event.target)
-    ) {
-      dropdown_content.style.display = "none"; // Close the dropdown
-    }
-  });
-});
-
-document.addEventListener("touchcancel", function (event) {
-  Select_box_titles.forEach((Select_box_title) => {
-    const dropdown_content = Select_box_title.nextElementSibling;
-
-    // Check if the click is outside the dropdown and its associated 'Select_box_title'
-    if (
-      !Select_box_title.contains(event.target) &&
-      !dropdown_content.contains(event.target)
-    ) {
-      dropdown_content.style.display = "none"; // Close the dropdown
-    }
-  });
-});
-
-
-*/
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -361,50 +352,20 @@ async function PlayTrailer(id_play, type){
 
 
 async function AddToFav(movie, widget){
-
-    let Fave = localStorage.getItem('user_watchlist');
     let email = localStorage.getItem('user_email');
-    let notification = localStorage.getItem('user_massages') || '[]';
+    /////////////////////////////////////////////////////////////////////////////////////
 
-    try{
-          let S_info =  movie.S_info;
-          let id =  movie.id
-          let numbers = S_info.match(/\d+/g).map(Number); //[1,1]
-          numbers.push(id)
-          console.log(numbers);
-
-          if(notification){
-                //console.log(JSON.parse(`[${notification}]`));
-                const parsed_notification =  JSON.parse(notification) ;
-                parsed_notification.push(numbers);
-
-
-                numbers = parsed_notification.filter((movie, index, self) =>
-                   index === self.findIndex(m => m[2] === movie[2])
-                );
-
-                console.log("uniqueMovies", numbers)
-                localStorage.setItem('user_massages', JSON.stringify(numbers))
-          } else{
-                   localStorage.setItem("user_massages", JSON.stringify([numbers]));
-          }
-
-            let response_note = await fetch('Database/database.php', {
+    let serverResponse = await fetch('Database/database.php', {
             method: 'POST',
-            headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: `action=updateMassagelist&email=${encodeURIComponent(email)}&Messages=${encodeURIComponent(JSON.stringify(numbers))}`
-            });
-            const data_note = await response_note.json();
-            //console.log(data_note.massage)
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            body: `action=getWatchlist&email=${encodeURIComponent(email)}`
+    });
+    const serverData = await serverResponse.json();
+    if(serverData.massage !== 'Error fetching'){
+        //console.log(serverData.massage);
+        //console.log("watchlist: ",JSON.parse(serverData.massage));
 
-    } catch(error){  console.log(error)   }
-
-    if(!Fave){
-        localStorage.setItem("user_watchlist", JSON.stringify([movie]));
-    } else {
-        const parsedFav = JSON.parse(Fave);
+        const parsedFav = JSON.parse(serverData.massage);
         parsedFav.push(movie);
 
         const uniqueMovies = parsedFav.filter((movie, index, self) =>
@@ -422,8 +383,48 @@ async function AddToFav(movie, widget){
         body: `action=updateWatchlist&email=${encodeURIComponent(email)}&watchlist=${encodeURIComponent(watchlist_new)}`
         });
         const data = await response.json();
-        //console.log(data.massage)
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    try{
+          let S_info =  movie.S_info;
+          let id =  movie.id
+          let numbers = S_info.match(/\d+/g).map(Number); //[1,1]
+          numbers.push(id)
+          //console.log(numbers);
+
+          let serverResponse = await fetch('Database/database.php', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                body: `action=getMessageslist&email=${encodeURIComponent(email)}`
+          });
+          const notificationData = await serverResponse.json();
+          if(notificationData.massage !== 'Error fetching'){
+              //console.log(notificationData.massage);
+              //console.log("Notification: ",JSON.parse(notificationData.massage));
+              const parsed_notification =  JSON.parse(notificationData.massage) ;
+              parsed_notification.push(numbers);
+
+              numbers = parsed_notification.filter((movie, index, self) =>
+                   index === self.findIndex(m => m[2] === movie[2])
+              );
+
+              let response_note = await fetch('Database/database.php', {
+                    method: 'POST',
+                    headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `action=updateMassagelist&email=${encodeURIComponent(email)}&Messages=${encodeURIComponent(JSON.stringify(numbers))}`
+              });
+              const data_note = await response_note.json();
+              //console.log("notification:", data_note.massage)
+              localStorage.setItem("user_massages", JSON.stringify(numbers));
+           }
+
+    } catch (error){}
+
     //widget.classList.remove('button_style2');
     //widget.classList.add('button_style3');
     widget.style.display = 'none';
@@ -677,7 +678,33 @@ if (savedState) {
      Account_btn.style.borderRadius = '50%';
 
      document.getElementById('notification_btnT').style.display = 'flex';
-     notification_check();
+     notification_check(notification_widget)
+
+     auto_update_user_info()
+
+
+
+}
+async function auto_update_user_info(){
+    let email = localStorage.getItem('user_email');
+
+    let serverResponse = await fetch('Database/database.php', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            body: `action=getUser&email=${encodeURIComponent(email)}`
+    });
+    const serverData = await serverResponse.json();
+    if(serverData.massage !== 'User not found'){
+          //console.log(serverData.massage);
+          user_data =  serverData.massage
+          let user_image =  user_data.ProfileIMG
+          let user_watchlist = user_data.watchlist
+          let user_mssage =  user_data.Messages
+
+          localStorage.setItem('user_profile_img', user_image);
+          localStorage.setItem("user_watchlist", user_watchlist);
+          localStorage.setItem("user_massages", user_mssage);
+    }
 }
 
 
@@ -747,7 +774,7 @@ document.getElementById('loginForm').addEventListener('click', async function(e)
 
                 Login_container.style.display = 'none';
                 document.getElementById('notification_btnT').style.display = 'flex';
-                notification_check();
+                notification_check(notification_widget)
             }
  });
 
@@ -889,14 +916,13 @@ document.getElementById('notification_btnT').addEventListener('click', async fun
 });
 
 
+async function notification_check(notification_widget){
 
-async function notification_check(){
-    let notification_widget = document.getElementById('notification_container')
     notification_widget.innerHTML = '';     // Clear previous notifications
 
     let  notification =  localStorage.getItem('user_massages');
     const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
-
+    //console.log(notification);
      if(notification){
         const parsed_notification = JSON.parse(notification);
         let notification_count = 0
@@ -957,7 +983,7 @@ async function notification_check(){
      }
 }
 
-//notification_check()
+
 
 
 
@@ -971,7 +997,7 @@ async function notification_check(){
 
 ///////////////////////////// Disable Right Click + Inspect Element ////////////////////////////////////////////////////
 
-/*
+
 document.addEventListener("contextmenu", (e) => e.preventDefault());
 document.addEventListener("keydown", (e) => {
   if (e.ctrlKey && (e.key === "u" || e.key === "U")) {
@@ -994,7 +1020,7 @@ setInterval(function() {
     } catch(e) {}
 }, 1000)
 
-*/
+/**/
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

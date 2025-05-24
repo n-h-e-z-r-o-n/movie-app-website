@@ -72,12 +72,33 @@ switch ($action) {
             break;
 
         case 'updateImg':
-            $newimg = urldecode($_POST['newimg']);
-            $email = $_POST['email'] ?? '';
-            updateIMG($newimg, $email);
+
+            $email = $_POST['email'];
+            if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+                $file  = $_FILES['image'];
+                $fileContent = file_get_contents($file['tmp_name']);
+                $base64Image = 'data:' . $file['type'] . ';base64,' . base64_encode($fileContent);
+                //echo json_encode(['massage' => $base64Image ]);
+                updateIMG($base64Image, $email);
+            }else{
+                echo json_encode(['massage' => 'No file uploaded or upload error' ]);
+            }
             break;
 
+        case 'getWatchlist':
+            $email = $_POST['email'] ?? '';
+            getWatchlist($email);
+            break;
 
+        case 'getMessageslist':
+            $email = $_POST['email'] ?? '';
+            getMessageslist($email);
+            break;
+
+        case 'getUser':
+            $email = $_POST['email'] ?? '';
+            getUsers($email);
+            break;
 
         default:
             echo json_encode(['massage' => 'Invalid action']);
@@ -113,25 +134,24 @@ function addUser($username, $email, $password, $watchlist, $Messages) {
     }
 }
 
-// Example usage (commented out to avoid duplicates):
-// addUser('john_doe', 'h@gmail.com', '123456', '[]', '[]');
 
-
-// Function to get users
-function getUsers() {
+function getUsers($email) {
     global $db;
     try {
-        // Prepare and execute the SELECT query
-        $stmt = $db->query("SELECT * FROM users");
+        $stmt = $db->prepare("SELECT * FROM users WHERE email = :email");
+        $stmt->bindValue(':email', $email);
+        $stmt->execute();
 
-        echo "<h3>User List:</h3>";
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            echo "<div style='border:1px solid #ccc; padding:10px; margin-bottom:10px;'>";
-            echo "ID: " . htmlspecialchars($row['id']) . "<br>";
-            echo "Username: " . htmlspecialchars($row['name']) . "<br>";
-            echo "Email: " . htmlspecialchars($row['email']) . "<br>";
-            echo "Created: " . htmlspecialchars($row['created_at']) . "<br>";
-            echo "</div>";
+         // Fetch the user data
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($user) {
+               unset($user['password']);
+               echo json_encode(['massage' => $user]);
+
+        } else {
+               echo json_encode(['massage' => 'User not found']);
+
         }
     } catch (PDOException $e) {
         echo "Error fetching users: " . $e->getMessage();
@@ -177,7 +197,6 @@ function updateWatchlist($email, $watchlist) {
         $stmt->bindValue(':watchlist', $watchlist);
         $stmt->bindValue(':email', $email);
 
-        // Execute the query
         if ($stmt->execute()) {
             if ($stmt->rowCount() > 0) {
                 echo json_encode(['massage' => 'Watchlist updated successfully']);
@@ -189,6 +208,36 @@ function updateWatchlist($email, $watchlist) {
         echo json_encode(['massage' => 'Error updating watchlist']);
     }
 }
+
+function getWatchlist($email) {
+    global $db;
+    $stmt = $db->prepare("SELECT watchlist FROM users WHERE email = :email");
+    $stmt->bindValue(':email', $email);
+    if ($stmt->execute()) {
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($result && isset($result['watchlist'])) {
+             echo json_encode(['massage' => $result['watchlist']]);
+        }else{
+           echo json_encode(['massage' => 'Error fetching']);
+        }
+    }
+}
+
+
+function getMessageslist($email) {
+    global $db;
+    $stmt = $db->prepare("SELECT Messages FROM users WHERE email = :email");
+    $stmt->bindValue(':email', $email);
+    if ($stmt->execute()) {
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($result && isset($result['Messages'])) {
+             echo json_encode(['massage' => $result['Messages']]);
+        }else{
+           echo json_encode(['massage' => 'Error fetching']);
+        }
+    }
+}
+
 
 function updateMassagelist($email, $Messages) {
     global $db;
@@ -285,7 +334,7 @@ function updateIMG($img, $email) {
             $stmt->bindValue(':email', $email);
 
             if ($stmt->execute()) {
-                 echo json_encode(['message' => 'Profile Updated']);
+                 echo json_encode(['message' => 'Profile Updated', 'imagedata' =>  $img]);
             } else {
                  echo json_encode(['message' => 'Update failed']);
             }

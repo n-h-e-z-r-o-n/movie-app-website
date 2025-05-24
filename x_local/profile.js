@@ -25,23 +25,22 @@ logout_btn.addEventListener("click", function() {
 });
 
 if(U_ID){
-  getUserFavorites(Search_Results_SHOW)
+      getUserFavorites(Search_Results_SHOW);
+      //let massages_container = document.getElementById('massages_container')
+      //notification_check(massages_container);
 }else{
-  logout_btn.click();
+      logout_btn.click();
 }
 
 
 
 async function getUserFavorites(passed_function) {
-
     let watchlist = localStorage.getItem('user_watchlist');
-
     if(watchlist){
       let watchlist_array = JSON.parse(watchlist);
-      //console.log(watchlist_array)
       passed_function(watchlist_array);
-     // console.log('fave')
     }
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -300,39 +299,36 @@ function Search_Results_SHOW(movies) {
 document.getElementById("User_Image_input").addEventListener('change', (event) => {
     const file = event.target.files[0];
     if (!file) return;
-
+    image_bite(file);
     const reader = new FileReader();
     reader.onload = (e) => {
         const uploadedImageURL = e.target.result;
-        image_bite(uploadedImageURL);
+        //image_bite(uploadedImageURL);
     };
    reader.readAsDataURL(file);
 });
 
- async function image_bite(base64Image){
+ async function image_bite(file){
         let user_email = localStorage.getItem('user_email');
-        const params = new URLSearchParams();
-        params.append('action', 'updateImg');
-        params.append('newimg', encodeURIComponent(base64Image));
-        params.append('email', user_email);
+        const formData = new FormData();
+        formData.append('action', 'updateImg');
+        formData.append('image', file); // Send the file directly
+        formData.append('email', localStorage.getItem('user_email'));
 
 
      const response = await fetch('Database/database.php', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: params.toString()
+        body: formData
      });
-
+     //console.log(response)
      const data = await response.json();
      //console.log(data)
 
      if(data.message === 'Profile Updated') {
-            document.getElementById("User_Image_show").style.backgroundImage = `url(${base64Image})`;
-            localStorage.setItem('user_profile_img', base64Image);
+            document.getElementById("User_Image_show").style.backgroundImage = `url(${data.imagedata})`;
+            localStorage.setItem('user_profile_img', data.imagedata);
             // console.log(localStorage.getItem('user_profile_img'))
-            document.getElementById("Account_btnT").style.background =  `url(${base64Image})`;
+            document.getElementById("Account_btnT").style.background =  `url(${data.imagedata})`;
             document.getElementById("Account_btnT").style.backgroundSize = '100% 100%';
             document.getElementById("Account_btnT").style.backgroundPosition = 'center';
             document.getElementById("Account_btnT").style.backgroundRepeat = 'no-repeat';
@@ -340,8 +336,8 @@ document.getElementById("User_Image_input").addEventListener('change', (event) =
 };
 
 
-
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 

@@ -68,13 +68,13 @@ const company_show = {
 const page_count = 1;
 
 let series_currentPage = parseInt(localStorage.getItem('series_currentPage'), 10);
-console.log(series_currentPage)
+//console.log(series_currentPage)
 if(!series_currentPage){
   series_currentPage = 1;
 }
 
 let movie_currentPage = parseInt(localStorage.getItem('movie_currentPage'), 10);
-console.log(movie_currentPage)
+//console.log(movie_currentPage)
 if(!movie_currentPage){
   movie_currentPage = 1;
 }
@@ -429,7 +429,7 @@ function Slider_Display(movies, show_type) {
               let updatedString;
               let { title, original_name, backdrop_path, first_air_date, poster_path, id, vote_average, overview, release_date } = movie;
               if (backdrop_path === null){
-                    backdrop_path ='/nHj7dPNMM2QheZEDb2f7FxlBhUK.jpg';
+                    return;
               }
 
 
@@ -619,12 +619,6 @@ async function showMovies(movies) {
 
 
 async function Latest_episode(event, page) {
-  try{
-    const choiceSelect = event.target;
-    const choiceDivs = document.querySelectorAll('.show_title_section_show button');
-    choiceDivs.forEach(div => div.classList.remove('selected_glow'));
-    choiceSelect.classList.add('selected_glow');
-  } catch{console.log();}
 
   let count = 1;
 

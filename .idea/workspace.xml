@@ -5,12 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc84c571-4efa-41b6-b298-1c0cbea8a6aa" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Source_code/test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source_code/test2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source_code/version1/custon.css" beforeDir="false" afterPath="$PROJECT_DIR$/Source_code/version1/custon.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source_code/version1/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Source_code/version1/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source_code/version1/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/Source_code/version1/test.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/Assets/Movionyx.ico" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/Assets/Movionyx.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/Assets/icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/Assets/icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/Database/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/Database/database.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/Database/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/Database/database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/NavBar.css" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/NavBar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/NavBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/NavBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/custon.css" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/custon.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/shared.css" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/shared.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -28,6 +52,8 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Python.test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test2.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;
@@ -37,6 +63,58 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\movie-app-website\x_local" />
     </key>
+  </component>
+  <component name="RunManager" selected="Python.test2">
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="movie-app-website" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Source_code" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Source_code/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="movie-app-website" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Source_code" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Source_code/test2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.test2" />
+        <item itemvalue="Python.test" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
