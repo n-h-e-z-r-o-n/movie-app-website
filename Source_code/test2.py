@@ -1,5 +1,5 @@
 import webview
 
 if __name__ == '__main__':
-    webview.create_window('User Agent Test', 'https://pywebview.flowrl.com/hello')
-    webview.start(user_agent='Custom user agent')
+    webview.create_window('', 'https://movionyx.com')
+    webview.start(user_agent='MovionyxApp/1.0')

@@ -134,7 +134,7 @@ def main():
     app = tk.Tk()
     app.geometry("600x500")
     app.state("zoomed")
-    app.title("FilmFusion")
+    app.title("")
     title_bar_color(app, "#12161F")
 
     new_web_view_frame = tk.Frame(app, bg="#000000")
