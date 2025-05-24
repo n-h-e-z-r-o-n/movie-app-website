@@ -48,7 +48,7 @@ class WebView2(tk.Frame):
         self.loaded = window.events.loaded
         self.__go_bind()
 
-        self.custom_user_agent. = "MovionyxApp/1.0"
+        self.user_agent = "MovionyxApp/1.0"
         self.loaded += self.__load_core
 
         if url != '':
