@@ -13,6 +13,7 @@ fg_color = "black"
 import ctypes
 from webview.window import Window
 from webview.platforms.edgechromium import EdgeChrome
+from System.Windows.Forms import Control
 
 
 help(Window)
@@ -22,6 +23,7 @@ class WebView2(tk.Frame):
         global bg_color
         tk.Frame.__init__(self, parent, width=width, height=height, **kw)
         uid = 'master'
+        control = Control()
         window = Window(uid, str(id(self)), url=None, html=None, js_api=None, width=width, height=height, x=None,
                         y=None,
                         resizable=True, fullscreen=False, min_size=(200, 100), hidden=False,
@@ -30,12 +32,18 @@ class WebView2(tk.Frame):
                         transparent=False, text_select=True, localization=None,
                         zoomable=True, draggable=True, vibrancy=False)
         self.window = window
+        self.web_view = EdgeChrome(control, window, None)
+
         self.width = width
         self.height = height
         self.parent = parent
 
         self.loaded = window.events.loaded
+        if url != '':
+            self.load_url(url)
 
+    def load_url(self, url):
+        self.web_view.load_url(url)
 
 
 
@@ -81,7 +89,7 @@ def main():
     frame2 = WebView2(new_web_view_frame, 500, 500)
     frame2.place(relheight=1, relwidth=1, relx=0, rely=0)
 
-    frame2.('https://movionyx.com')
+    frame2.load_url('https://movionyx.com')
     frame2.user_agent='MovionyxApp/1.0'
 
     app.mainloop()
