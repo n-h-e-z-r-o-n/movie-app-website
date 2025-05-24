@@ -8,6 +8,8 @@ def on_before_load(window):
     else:
         print(f"Blocked redirect: {url}")
         return False  # Cancel navigation
+def get_current_url(window):
+    print(window.get_current_url())
 
 if __name__ == '__main__':
     window = webview.create_window('Block Redirect Example', 'https://movionyx.com', draggable=True, easy_drag=True)
@@ -18,4 +20,4 @@ if __name__ == '__main__':
         'OPEN_DEVTOOLS_IN_DEBUG': False,
         'REMOTE_DEBUGGING_PORT': None
     }
-    webview.start()
+    webview.start(get_current_url, on_before_load, window)
