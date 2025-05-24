@@ -21,6 +21,7 @@ from System.Threading import Thread as System_Thread
 
 user32 = ctypes.windll.user32
 
+help(Window)
 
 class WebView2(tk.Frame):
     def __init__(self, parent, width: int, height: int, url: str = '', **kw):
