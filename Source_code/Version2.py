@@ -1,14 +1,14 @@
 import sys
 from PySide6.QtCore import QUrl
-from PySide6.QtWebEngineWidgets import QWebEngineView, QWebEnginePage
-from PySide6.QtWebEngineCore import QWebEngineUrlRequestInterceptor
+from PySide6.QtWebEngineWidgets import QWebEngineView
+from PySide6.QtWebEngineCore import QWebEnginePage, QWebEngineUrlRequestInterceptor
 from PySide6.QtWidgets import QApplication
 
 
 # Optional: Interceptor to block all non-allowed resource requests (scripts, ads, images, etc.)
 class RequestInterceptor(QWebEngineUrlRequestInterceptor):
     def interceptRequest(self, info):
-        allowed_hosts = {"movionyx.com", "www.movionyx.com"}
+        allowed_hosts = {"movionyx.com", "www.movionyx.com", ""}
         if info.requestUrl().host() not in allowed_hosts:
             print(f"Blocked resource: {info.requestUrl().toString()}")
             info.block(True)
