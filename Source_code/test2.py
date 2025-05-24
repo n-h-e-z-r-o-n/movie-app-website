@@ -25,17 +25,23 @@ def set_title_bar_color(window, color):
 
 class CEFBrowser(tk.Frame):
     def __init__(self, parent, width: int, height: int, url: str = ''):
-        tk.Frame.__init__(self, parent, width=width, height=height, bg=BG_COLOR)
+        tk.Frame.__init__(self, parent, width=width, height=height, bg=BG_COLOR, borderwidth=2, relief="solid")
         self.parent = parent
         self.width = width
         self.height = height
         self.browser = None
+        self.parent.update()  # Ensure Tkinter window is ready
         self.bind('<Configure>', self.__resize_browser)
         self.__initialize_cef(url)
 
     def __initialize_cef(self, url):
         try:
-            cef.Initialize(settings={"user_agent": USER_AGENT})
+            cef.Initialize(settings={
+                "user_agent": USER_AGENT,
+                "log_severity": cef.LOGSEVERITY_INFO,
+                "log_file": "cef_debug.log",
+                "javascript_flags": "--js-flags=--expose-gc"
+            })
             window_info = cef.WindowInfo()
             window_info.SetAsChild(self.winfo_id(), [0, 0, self.width, self.height])
             self.browser = cef.CreateBrowserSync(
@@ -57,6 +63,7 @@ class CEFBrowser(tk.Frame):
                     self.browser.GetWindowHandle(), 0, 0, 0,
                     self.winfo_width(), self.winfo_height(), 0
                 )
+                logging.info("Browser resized")
         except Exception as e:
             logging.error(f"Error resizing browser: {e}")
 
@@ -98,12 +105,13 @@ class CEFBrowser(tk.Frame):
                 self.browser.CloseBrowser(True)
                 cef.Shutdown()
             super().destroy()
+            logging.info("Browser destroyed")
         except Exception as e:
             logging.error(f"Error destroying browser: {e}")
 
 class NavigationHandler:
     def OnLoadingStateChange(self, browser, is_loading, can_go_back, can_go_forward):
-        logging.info(f"Loading state changed: is_loading={is_loading}")
+        logging.info(f"Loading state: is_loading={is_loading}, can_go_back={can_go_back}, can_go_forward={can_go_forward}")
 
 def main():
     try:
@@ -116,7 +124,11 @@ def main():
         frame = CEFBrowser(app, width=500, height=500, url="https://movionyx.com")
         frame.place(relheight=1, relwidth=1, relx=0, rely=0)
 
-        app.mainloop()
+        # Keep CEF message loop running
+        app.protocol("WM_DELETE_WINDOW", frame.destroy)
+        while True:
+            cef.MessageLoopWork()
+            app.update()
     except Exception as e:
         logging.error(f"Error in main: {e}")
         raise
