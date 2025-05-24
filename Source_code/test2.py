@@ -5,19 +5,7 @@ MY_DOMAIN = 'https://movionyx.com'
 def should_block_url(url):
     return MY_DOMAIN not in url
 
-# JavaScript code to intercept all link clicks
-js_script = f"""
-document.addEventListener('click', function(e) {{
-    let target = e.target;
-    while (target && target.tagName !== 'A') {{
-        target = target.parentNode;
-    }}
-    if (target && target.href && !target.href.includes('{MY_DOMAIN}')) {{
-        e.preventDefault();
-        alert('External links are blocked!');
-    }}
-}}, true);
-"""
+
 
 def on_loaded():
     webview.windows[0].evaluate_js(js_script)
@@ -26,4 +14,4 @@ if __name__ == '__main__':
     webview.settings['OPEN_EXTERNAL_LINKS_IN_BROWSER'] = False
     webview.settings['OPEN_DEVTOOLS_IN_DEBUG'] = False
     webview.create_window('', 'https://movionyx.com', frameless=False, easy_drag=True, fullscreen=False, )
-    webview.start(on_loaded, user_agent='MovionyxApp/1.0', icon='/logo.png')
+    webview.start( user_agent='MovionyxApp/1.0', icon='/logo.png')
