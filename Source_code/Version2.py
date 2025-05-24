@@ -4,9 +4,6 @@ from PySide6.QtWebEngineWidgets import QWebEngineView
 from PySide6.QtWebEngineCore import QWebEnginePage, QWebEngineUrlRequestInterceptor
 from PySide6.QtWidgets import QApplication
 
-import os
-os.environ["QT_QUICK_BACKEND"] = "software"
-os.environ["QTWEBENGINE_CHROMIUM_FLAGS"] = "--disable-gpu"
 
 
 # Optional: Interceptor to block all non-allowed resource requests (scripts, ads, images, etc.)
@@ -46,7 +43,6 @@ if __name__ == "__main__":
     page = CustomWebEnginePage(web)
     profile = page.profile()
     profile.setUrlRequestInterceptor(interceptor)
-    profile.setHttpUserAgent("MovionyxApp/1.0")
 
     web.setPage(page)
 
