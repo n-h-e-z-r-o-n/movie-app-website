@@ -1,53 +1,51 @@
 import sys
-from PySide6.QtCore import QUrl
+from PySide6.QtCore import QUrl, QTimer
+from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox
 from PySide6.QtWebEngineWidgets import QWebEngineView
-from PySide6.QtWebEngineCore import QWebEnginePage, QWebEngineUrlRequestInterceptor
-from PySide6.QtWidgets import QApplication
-
-
-
-# Optional: Interceptor to block all non-allowed resource requests (scripts, ads, images, etc.)
-class RequestInterceptor(QWebEngineUrlRequestInterceptor):
-    def interceptRequest(self, info):
-        allowed_hosts = {"movionyx.com", "www.movionyx.com", ""}
-        if info.requestUrl().host() not in allowed_hosts:
-            print(f"Blocked resource: {info.requestUrl().toString()}")
-            #info.block(True)
-
+from PySide6.QtWebEngineCore import QWebEnginePage
 
 class CustomWebEnginePage(QWebEnginePage):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+
     def acceptNavigationRequest(self, url, nav_type, is_main_frame):
+        allowed_prefix = "https://movionyx"
+        if url.toString().startswith(allowed_prefix):
+            return True  # Allow loading
+        else:
+            # Show a message box like a Toast
+            self.show_warning(f"Blocked navigation to: {url.toString()}")
+            return False  # Block loading
 
-        allowed_hosts = {"movionyx.com", "www.movionyx.com", "vidsrc.to"}
+    def show_warning(self, message):
+        # Simulates a Toast using a temporary non-blocking message box
+        msg = QMessageBox()
+        msg.setWindowTitle("Navigation Blocked")
+        msg.setText(message)
+        msg.setIcon(QMessageBox.Warning)
+        msg.setStandardButtons(QMessageBox.NoButton)
+        msg.setWindowModality(False)
+        msg.show()
+        QTimer.singleShot(2000, msg.close)  # Auto-close after 2 seconds
 
-        if url.scheme().startswith("http") and url.host() in allowed_hosts:
-            return True  # Allow navigation
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Movionyx WebView")
 
-        print(f"Blocked navigation to: {url.toString()}")
+        self.web_view = QWebEngineView(self)
+        self.setCentralWidget(self.web_view)
 
-        # Option: Redirect back to homepage
-        if is_main_frame:
-            self.setUrl(QUrl("https://movionyx.com"))
+        # Set custom page
+        page = CustomWebEnginePage(self.web_view)
+        self.web_view.setPage(page)
 
-        return False  # Block navigation
-
+        # Load initial URL
+        self.web_view.load(QUrl("https://movionyx.com"))
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    web = QWebEngineView()
-
-    # Set up the interceptor
-    interceptor = RequestInterceptor()
-
-    # Create custom page and apply settings
-    page = CustomWebEnginePage(web)
-    profile = page.profile()
-    profile.setUrlRequestInterceptor(interceptor)
-
-    web.setPage(page)
-
-    # Load the initial webpage
-    web.load(QUrl("https://movionyx.com"))
-    web.show()
-
+    window = MainWindow()
+    window.resize(1024, 768)
+    window.show()
     sys.exit(app.exec())
