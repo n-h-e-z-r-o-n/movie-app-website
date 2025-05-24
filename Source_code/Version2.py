@@ -17,8 +17,8 @@ class RequestInterceptor(QWebEngineUrlRequestInterceptor):
 
 class CustomWebEnginePage(QWebEnginePage):
     def acceptNavigationRequest(self, url, nav_type, is_main_frame):
-        return True
-        allowed_hosts = {"movionyx.com", "www.movionyx.com"}
+
+        allowed_hosts = {"movionyx.com", "www.movionyx.com", "vidsrc.to"}
 
         if url.scheme().startswith("http") and url.host() in allowed_hosts:
             return True  # Allow navigation
