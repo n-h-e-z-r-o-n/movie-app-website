@@ -1,0 +1,131 @@
+[0524/130911.384:INFO:cefpython_app.cpp(199)] [Browser process] OnBeforeChildProcessLaunch() command line: "C:\xampp\htdocs\movie-app-website\.venv1\Lib\site-packages\cefpython3\subprocess" --type=gpu-process --no-sandbox --locales-dir-path="C:\xampp\htdocs\movie-app-website\.venv1\Lib\site-packages\cefpython3\locales" --log-file=cef_debug.log --log-severity=info --resources-dir-path="C:\xampp\htdocs\movie-app-website\.venv1\Lib\site-packages\cefpython3" --user-agent=MovionyxApp/1.0 --lang=en-US --disable-gpu-shader-disk-cache /prefetch:2
+
+[0524/130911.388:INFO:cef_log.cpp(8)] [Browser process] Switch already set, ignoring: disable-gpu-shader-disk-cache
+
+[0524/130911.389:INFO:cefpython_app.cpp(199)] [Browser process] OnBeforeChildProcessLaunch() command line: "C:\xampp\htdocs\movie-app-website\.venv1\Lib\site-packages\cefpython3\subprocess" --type=gpu-process --no-sandbox --locales-dir-path="C:\xampp\htdocs\movie-app-website\.venv1\Lib\site-packages\cefpython3\locales" --log-file=cef_debug.log --log-severity=info --resources-dir-path="C:\xampp\htdocs\movie-app-website\.venv1\Lib\site-packages\cefpython3" --user-agent=MovionyxApp/1.0 --lang=en-US --disable-gpu-shader-disk-cache --gpu-preferences=KAAAAAAAAACAA4CAAQAAAAAAAAAAAGAAEAAAAAAAAAAAAAAAAAAAACgAAAAEAAAAIAAAAAAAAAAoAAAAAAAAADAAAAAAAAAAOAAAAAAAAAAQAAAAAAAAAAAAAAAKAAAAEAAAAAAAAAAAAAAACwAAABAAAAAAAAAAAQAAAAoAAAAQAAAAAAAAAAEAAAALAAAA --locales-dir-path="C:\xampp\htdocs\movie-app-website\.venv1\Lib\site-packages\cefpython3\locales" --log-file=cef_debug.log --log-severity=info --resources-dir-path="C:\xampp\htdocs\movie-app-website\.venv1\Lib\site-packages\cefpython3" --user-agent=MovionyxApp/1.0 --lang=en-US /prefetch:2
+
+[0524/130911.464:INFO:cef_log.cpp(8)] [Browser process] CreateBrowserSync() called
+
+[0524/130911.466:INFO:cef_log.cpp(8)] [Browser process] CefBrowser::CreateBrowserSync()
+
+[0524/130911.569:INFO:cef_log.cpp(8)] [Browser process] GetPyBrowser(): create new PyBrowser, browserId=1
+
+[0524/130911.571:INFO:cefpython_app.cpp(199)] [Browser process] OnBeforeChildProcessLaunch() command line: "C:\xampp\htdocs\movie-app-website\.venv1\Lib\site-packages\cefpython3\subprocess" --type=renderer --js-flags=--js-flags=--expose-gc --no-sandbox --service-pipe-token=67E8E4677B35CC206D62B7F56E1BEF37 --lang=en-US --locales-dir-path="C:\xampp\htdocs\movie-app-website\.venv1\Lib\site-packages\cefpython3\locales" --log-file=cef_debug.log --log-severity=info --resources-dir-path="C:\xampp\htdocs\movie-app-website\.venv1\Lib\site-packages\cefpython3" --user-agent=MovionyxApp/1.0 --disable-gpu-shader-disk-cache /prefetch:1
+
+[0524/130911.589:INFO:cef_log.cpp(8)] [Browser process] GetPyFrame(): underlying frame does not yet exist: browserId = 1, frameId = -4
+
+[0524/130911.591:INFO:cef_log.cpp(8)] [Browser process] GetPyFrame(): underlying frame does not yet exist: browserId = 1, frameId = -4
+
+[0524/130911.591:INFO:cef_log.cpp(8)] [Browser process] CefBrowser::CreateBrowserSync() succeeded
+
+[0524/130911.591:INFO:cef_log.cpp(8)] [Browser process] CefBrowser window handle = 1182190
+
+[0524/130911.592:INFO:cef_log.cpp(8)] [Browser process] GetPyFrame(): underlying frame does not yet exist: browserId = 1, frameId = -4
+
+[0524/130911.593:INFO:cef_log.cpp(8)] [Browser process] GetPyFrame(): underlying frame does not yet exist: browserId = 1, frameId = -4
+
+[0524/130911.593:INFO:cef_log.cpp(8)] [Browser process] GetPyFrame(): underlying frame does not yet exist: browserId = 1, frameId = -4
+
+[0524/130911.884:INFO:cef_log.cpp(8)] [Browser process] GetPyFrame(): underlying frame does not yet exist: browserId = 1, frameId = -4
+
+[0524/130911.886:INFO:cef_log.cpp(8)] [Browser process] GetPyFrame(): underlying frame does not yet exist: browserId = 1, frameId = -4
+
+[0524/130911.886:INFO:cef_log.cpp(8)] [Browser process] GetPyFrame(): underlying frame does not yet exist: browserId = 1, frameId = -4
+
+[0524/130912.908:INFO:cef_log.cpp(8)] [Browser process] GetPyFrame(): create new PyFrame, frameId=2
+
+[0524/130913.157:INFO:cefpython_app.cpp(270)] [Renderer process] OnContextCreated()
+
+[0524/130913.158:INFO:client_handler.cpp(40)] [Browser process] OnProcessMessageReceived(): OnContextCreated
+
+[0524/130913.158:INFO:cef_log.cpp(8)] [Browser process] V8ContextHandler_OnContextCreated()
+
+[0524/130913.231:INFO:cefpython_app.cpp(318)] [Renderer process] OnContextReleased()
+
+[0524/130913.231:INFO:client_handler.cpp(40)] [Browser process] OnProcessMessageReceived(): OnContextReleased
+
+[0524/130913.231:INFO:cef_log.cpp(8)] [Browser process] V8ContextHandler_OnContextReleased()
+
+[0524/130913.231:INFO:cef_log.cpp(8)] [Browser process] del g_pyFrames[1#2]
+
+[0524/130913.235:INFO:cefpython_app.cpp(270)] [Renderer process] OnContextCreated()
+
+[0524/130913.235:INFO:client_handler.cpp(40)] [Browser process] OnProcessMessageReceived(): OnContextCreated
+
+[0524/130913.235:INFO:cef_log.cpp(8)] [Browser process] V8ContextHandler_OnContextCreated()
+
+[0524/131620.434:INFO:cefpython_app.cpp(199)] [Browser process] OnBeforeChildProcessLaunch() command line: "C:\xampp\htdocs\movie-app-website\.venv1\Lib\site-packages\cefpython3\subprocess" --type=gpu-process --no-sandbox --locales-dir-path="C:\xampp\htdocs\movie-app-website\.venv1\Lib\site-packages\cefpython3\locales" --log-file=cef_debug.log --log-severity=info --resources-dir-path="C:\xampp\htdocs\movie-app-website\.venv1\Lib\site-packages\cefpython3" --user-agent=MovionyxApp/1.0 --lang=en-US --disable-gpu-shader-disk-cache /prefetch:2
+
+[0524/131620.436:INFO:cef_log.cpp(8)] [Browser process] Switch already set, ignoring: disable-gpu-shader-disk-cache
+
+[0524/131620.436:INFO:cefpython_app.cpp(199)] [Browser process] OnBeforeChildProcessLaunch() command line: "C:\xampp\htdocs\movie-app-website\.venv1\Lib\site-packages\cefpython3\subprocess" --type=gpu-process --no-sandbox --locales-dir-path="C:\xampp\htdocs\movie-app-website\.venv1\Lib\site-packages\cefpython3\locales" --log-file=cef_debug.log --log-severity=info --resources-dir-path="C:\xampp\htdocs\movie-app-website\.venv1\Lib\site-packages\cefpython3" --user-agent=MovionyxApp/1.0 --lang=en-US --disable-gpu-shader-disk-cache --gpu-preferences=KAAAAAAAAACAA4CAAQAAAAAAAAAAAGAAEAAAAAAAAAAAAAAAAAAAACgAAAAEAAAAIAAAAAAAAAAoAAAAAAAAADAAAAAAAAAAOAAAAAAAAAAQAAAAAAAAAAAAAAAKAAAAEAAAAAAAAAAAAAAACwAAABAAAAAAAAAAAQAAAAoAAAAQAAAAAAAAAAEAAAALAAAA --locales-dir-path="C:\xampp\htdocs\movie-app-website\.venv1\Lib\site-packages\cefpython3\locales" --log-file=cef_debug.log --log-severity=info --resources-dir-path="C:\xampp\htdocs\movie-app-website\.venv1\Lib\site-packages\cefpython3" --user-agent=MovionyxApp/1.0 --lang=en-US /prefetch:2
+
+[0524/131620.544:INFO:cef_log.cpp(8)] [Browser process] CreateBrowserSync() called
+
+[0524/131620.544:INFO:cef_log.cpp(8)] [Browser process] CefBrowser::CreateBrowserSync()
+
+[0524/131620.614:INFO:cef_log.cpp(8)] [Browser process] GetPyBrowser(): create new PyBrowser, browserId=1
+
+[0524/131620.617:INFO:cefpython_app.cpp(199)] [Browser process] OnBeforeChildProcessLaunch() command line: "C:\xampp\htdocs\movie-app-website\.venv1\Lib\site-packages\cefpython3\subprocess" --type=renderer --js-flags=--js-flags=--expose-gc --no-sandbox --service-pipe-token=E277788F2DE345BD9BDD7826D3390A14 --lang=en-US --locales-dir-path="C:\xampp\htdocs\movie-app-website\.venv1\Lib\site-packages\cefpython3\locales" --log-file=cef_debug.log --log-severity=info --resources-dir-path="C:\xampp\htdocs\movie-app-website\.venv1\Lib\site-packages\cefpython3" --user-agent=MovionyxApp/1.0 --disable-gpu-shader-disk-cache /prefetch:1
+
+[0524/131620.634:INFO:cef_log.cpp(8)] [Browser process] GetPyFrame(): underlying frame does not yet exist: browserId = 1, frameId = -4
+
+[0524/131620.635:INFO:cef_log.cpp(8)] [Browser process] GetPyFrame(): underlying frame does not yet exist: browserId = 1, frameId = -4
+
+[0524/131620.636:INFO:cef_log.cpp(8)] [Browser process] GetPyFrame(): underlying frame does not yet exist: browserId = 1, frameId = -4
+
+[0524/131620.637:INFO:cef_log.cpp(8)] [Browser process] CefBrowser::CreateBrowserSync() succeeded
+
+[0524/131620.637:INFO:cef_log.cpp(8)] [Browser process] CefBrowser window handle = 1247688
+
+[0524/131620.638:INFO:cef_log.cpp(8)] [Browser process] GetPyFrame(): underlying frame does not yet exist: browserId = 1, frameId = -4
+
+[0524/131620.639:INFO:cef_log.cpp(8)] [Browser process] GetPyFrame(): underlying frame does not yet exist: browserId = 1, frameId = -4
+
+[0524/131620.962:INFO:cef_log.cpp(8)] [Browser process] GetPyFrame(): underlying frame does not yet exist: browserId = 1, frameId = -4
+
+[0524/131620.963:INFO:cef_log.cpp(8)] [Browser process] GetPyFrame(): underlying frame does not yet exist: browserId = 1, frameId = -4
+
+[0524/131620.964:INFO:cef_log.cpp(8)] [Browser process] GetPyFrame(): underlying frame does not yet exist: browserId = 1, frameId = -4
+
+[0524/131621.872:INFO:cef_log.cpp(8)] [Browser process] GetPyFrame(): create new PyFrame, frameId=2
+
+[0524/131622.169:INFO:cefpython_app.cpp(270)] [Renderer process] OnContextCreated()
+
+[0524/131622.169:INFO:client_handler.cpp(40)] [Browser process] OnProcessMessageReceived(): OnContextCreated
+
+[0524/131622.169:INFO:cef_log.cpp(8)] [Browser process] V8ContextHandler_OnContextCreated()
+
+[0524/131622.321:INFO:cefpython_app.cpp(318)] [Renderer process] OnContextReleased()
+
+[0524/131622.322:INFO:client_handler.cpp(40)] [Browser process] OnProcessMessageReceived(): OnContextReleased
+
+[0524/131622.322:INFO:cef_log.cpp(8)] [Browser process] V8ContextHandler_OnContextReleased()
+
+[0524/131622.322:INFO:cef_log.cpp(8)] [Browser process] del g_pyFrames[1#2]
+
+[0524/131622.329:INFO:cefpython_app.cpp(270)] [Renderer process] OnContextCreated()
+
+[0524/131622.329:INFO:client_handler.cpp(40)] [Browser process] OnProcessMessageReceived(): OnContextCreated
+
+[0524/131622.329:INFO:cef_log.cpp(8)] [Browser process] V8ContextHandler_OnContextCreated()
+
+[0524/131753.973:INFO:cef_log.cpp(8)] [Browser process] CefBrowser::CloseBrowser(True)
+
+[0524/131753.974:INFO:cef_log.cpp(8)] [Browser process] Shutdown()
+
+[0524/131754.211:INFO:cef_log.cpp(8)] [Browser process] del g_pyBrowsers[1]
+
+[0524/131754.211:INFO:cef_log.cpp(8)] [Browser process] CefShutdown()
+
+[0524/131754.211:INFO:cef_log.cpp(8)] [Browser process] LifespanHandler_OnBeforeClose
+
+[0524/131754.211:INFO:cef_log.cpp(8)] [Browser process] OnBeforeClose: Browser was already globally unreferenced, a new incomplete instance is created, browser id=1
+
+[0524/131754.211:INFO:cef_log.cpp(8)] [Browser process] RemovePyBrowser() FAILED: browser not found, id = 1
+
+[0524/131754.261:INFO:cefpython_app.cpp(318)] [Renderer process] OnContextReleased()
+
+[0524/131754.773:INFO:cefpython_app.cpp(263)] [Renderer process] OnBrowserDestroyed()
+
+[0524/131754.779:ERROR:broker_win.cc(134)] Error sending sync broker message: The pipe is being closed. (0xE8)

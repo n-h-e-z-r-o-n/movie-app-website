@@ -1,0 +1,24 @@
+
+[2025-05-24 13:15:18] Traceback (most recent call last):
+  File "C:\xampp\htdocs\movie-app-website\Source_code\test2.py", line 64, in <module>
+    root.protocol("WM_DELETE_WINDOW", on_close)
+  File "C:\Users\hezro\AppData\Local\Programs\Python\Python39\lib\tkinter\__init__.py", line 1429, in mainloop
+    self.tk.mainloop(n)
+KeyboardInterrupt
+
+
+[2025-05-24 13:15:46] Traceback (most recent call last):
+  File "C:\xampp\htdocs\movie-app-website\Source_code\test2.py", line 65, in <module>
+    root.mainloop()
+  File "C:\Users\hezro\AppData\Local\Programs\Python\Python39\lib\tkinter\__init__.py", line 1429, in mainloop
+    self.tk.mainloop(n)
+KeyboardInterrupt
+
+
+[2025-05-24 13:16:14] Traceback (most recent call last):
+  File "C:\xampp\htdocs\movie-app-website\Source_code\test2.py", line 64, in <module>
+    self.winfo_width(), self.winfo_height(), 0
+  File "C:\Users\hezro\AppData\Local\Programs\Python\Python39\lib\tkinter\__init__.py", line 1429, in mainloop
+    self.tk.mainloop(n)
+KeyboardInterrupt
+
