@@ -1,8 +1,7 @@
 import tkinter as tk
-import threading
 import os
 import ctypes as ct
-import requests
+
 
 path_exe = os.getcwd()
 
@@ -14,12 +13,7 @@ fg_color = "black"
 import ctypes
 from webview.window import Window
 from webview.platforms.edgechromium import EdgeChrome
-from System import IntPtr, Int32, Func, Type, Environment
-from System.Windows.Forms import Control
-from System.Threading import ApartmentState, ThreadStart, SynchronizationContext, SendOrPostCallback
-from System.Threading import Thread as System_Thread
 
-user32 = ctypes.windll.user32
 
 help(Window)
 
@@ -27,7 +21,6 @@ class WebView2(tk.Frame):
     def __init__(self, parent, width: int, height: int, url: str = '', **kw):
         global bg_color
         tk.Frame.__init__(self, parent, width=width, height=height, **kw)
-        control = Control()
         uid = 'master'
         window = Window(uid, str(id(self)), url=None, html=None, js_api=None, width=width, height=height, x=None,
                         y=None,
@@ -37,16 +30,13 @@ class WebView2(tk.Frame):
                         transparent=False, text_select=True, localization=None,
                         zoomable=True, draggable=True, vibrancy=False)
         self.window = window
-        self.web_view = EdgeChrome(control, window, None)
-        self.control = control
         self.web = self.web_view
 
         self.width = width
         self.height = height
         self.parent = parent
         self.chwnd = int(str(self.control.Handle))
-        user32.SetParent(self.chwnd, self.winfo_id())
-        user32.MoveWindow(self.chwnd, 0, 0, width, height, True)
+
         self.loaded = window.events.loaded
         self.__go_bind()
         self.loaded += self.__load_core
@@ -54,48 +44,6 @@ class WebView2(tk.Frame):
         if url != '':
             self.load_url(url)
         self.core = None
-
-    def __go_bind(self):
-        self.bind('<Destroy>', lambda event: self.web.Dispose())
-        self.bind('<Configure>', self.__resize_webview)
-        self.newwindow = None
-
-    def __resize_webview(self, event):
-        user32.MoveWindow(self.chwnd, 0, 0, self.winfo_width(), self.winfo_height(), True)
-
-    def __load_core(self, sender, _):
-        self.core = sender.CoreWebView2
-        self.core.NewWindowRequested -= self.web_view.on_new_window_request
-        # Prevent opening new windows or browsers
-        self.core.NewWindowRequested += lambda _, args: args.Handled(True)
-
-        if self.newwindow != None:
-            self.core.NewWindowRequested += self.newwindow
-        settings = sender.CoreWebView2.Settings  # 设置
-        settings.AreDefaultContextMenusEnabled = False  # 菜单
-        settings.AreDevToolsEnabled = False  # 开发者工具
-        # self.core.DownloadStarting+=self.__download_file
-
-    def load_url(self, url):
-        self.web_view.load_url(url)
-
-    def reload(self):
-        self.core.Reload()
-
-    def Go_back(self):
-        self.web.GoBack()
-
-    def Go_Forwad(self):
-        self.web.GoForward()
-
-    def reload(self):
-        try:
-            self.reload()
-        except:
-            pass
-
-
-
 
 
 
@@ -156,10 +104,4 @@ def go():
 
 
 if __name__ == "__main__":
-
-    # """
-    t = System_Thread(ThreadStart(go))
-    t.ApartmentState = ApartmentState.STA
-    t.Start()
-    t.Join()
-# """
+    main()
