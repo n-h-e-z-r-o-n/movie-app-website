@@ -5,9 +5,8 @@ if (!navigator.userAgent.includes("MovionyxApp/1.0")) {
 
     document.body.innerHTML = `
         <div style="text-align: center; padding: 50px;">
-            <h1>Access Denied</h1>
+            <h1>Website Under Maintenance</h1>
             <p>This website can only be accessed via the official <strong>Movionyx App</strong>.</p>
-            <p>Download it from the <a href="YOUR_APP_STORE_LINK">App Store</a> or <a href="YOUR_PLAY_STORE_LINK">Google Play</a>.</p>
         </div>
     `;
     // Optional: Redirect to app store after a delay
