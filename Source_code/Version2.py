@@ -11,11 +11,12 @@ class RequestInterceptor(QWebEngineUrlRequestInterceptor):
         allowed_hosts = {"movionyx.com", "www.movionyx.com", ""}
         if info.requestUrl().host() not in allowed_hosts:
             print(f"Blocked resource: {info.requestUrl().toString()}")
-            info.block(True)
+            #info.block(True)
 
 
 class CustomWebEnginePage(QWebEnginePage):
     def acceptNavigationRequest(self, url, nav_type, is_main_frame):
+        return True
         allowed_hosts = {"movionyx.com", "www.movionyx.com"}
 
         if url.scheme().startswith("http") and url.host() in allowed_hosts:
