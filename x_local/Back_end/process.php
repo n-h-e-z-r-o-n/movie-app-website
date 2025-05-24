@@ -1,6 +1,9 @@
 <?php
+//header('Content-Type: application/json');
 // Get the target URL from the query parameter
 $targetUrl = isset($_GET['url']) ? $_GET['url'] : '';
+//echo json_encode(['massage' => 'Error adding user']);
+//exit;
 if (empty($targetUrl) || !filter_var($targetUrl, FILTER_VALIDATE_URL)) {
     http_response_code(400);
     echo 'Invalid or missing URL';
