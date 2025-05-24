@@ -40,6 +40,7 @@ class WebView2(tk.Frame):
         self.web_view = EdgeChrome(control, window, None)
         self.control = control
         self.web = self.web_view
+
         self.width = width
         self.height = height
         self.parent = parent
@@ -48,8 +49,6 @@ class WebView2(tk.Frame):
         user32.MoveWindow(self.chwnd, 0, 0, width, height, True)
         self.loaded = window.events.loaded
         self.__go_bind()
-
-        self.user_agent = "MovionyxApp/1.0"
         self.loaded += self.__load_core
 
         if url != '':
@@ -144,6 +143,7 @@ def main():
     frame2.place(relheight=1, relwidth=1, relx=0, rely=0)
 
     frame2.load_url('https://movionyx.com')
+    frame2.user_agent='MovionyxApp/1.0'
 
     app.mainloop()
 
