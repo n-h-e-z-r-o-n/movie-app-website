@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc84c571-4efa-41b6-b298-1c0cbea8a6aa" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Source_code/cef_debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/Source_code/cef_debug.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source_code/test2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source_code/test2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
