@@ -137,9 +137,7 @@ def main():
     app.title("")
     title_bar_color(app, "#12161F")
 
-    new_web_view_frame = tk.Frame(app, bg="#000000")
-    new_web_view_frame.place(y=30, relwidth=1, relheight=1)
-    frame2 = WebView2(new_web_view_frame, 500, 500)
+    frame2 = WebView2(app, 500, 500)
     frame2.place(relheight=1, relwidth=1, relx=0, rely=0)
 
     frame2.load_url('https://movionyx.com')
