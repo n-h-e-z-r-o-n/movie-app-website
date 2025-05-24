@@ -18,4 +18,4 @@ if __name__ == '__main__':
         'OPEN_DEVTOOLS_IN_DEBUG': False,
         'REMOTE_DEBUGGING_PORT': None
     }
-    webview.start(user_agent="MovionyxApp/1.0")
+    webview.start()

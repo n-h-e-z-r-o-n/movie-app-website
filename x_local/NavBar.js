@@ -1,5 +1,5 @@
 
-// Check if the User-Agent matches your app
+/* Check if the User-Agent matches your app
 if (!navigator.userAgent.includes("MovionyxApp/1.0")) {
     // Block the page and show a message
 
@@ -14,7 +14,7 @@ if (!navigator.userAgent.includes("MovionyxApp/1.0")) {
         //window.location.href = "https://play.google.com/store/apps/details?id=com.example.movionyx";
     }, 3000);
 }
-
+*/
 //==////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////
 
