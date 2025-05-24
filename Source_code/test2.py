@@ -2,6 +2,7 @@ import tkinter as tk
 import threading
 import os
 import ctypes as ct
+import requests
 
 path_exe = os.getcwd()
 

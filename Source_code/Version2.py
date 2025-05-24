@@ -29,8 +29,5 @@ class WebviewFrame:
             resizable=True,
             frameless=False,
             easy_drag=True,
-            user_agent=self.user_agent,
-            confirm_close=True,
-            gui='tkinter'
         )
         webview.start()
