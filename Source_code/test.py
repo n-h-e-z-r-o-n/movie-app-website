@@ -135,7 +135,9 @@ def main():
     app.geometry("600x500")
     app.state("zoomed")
     app.title("")
+    app.minsize(width=987, height=500)
     title_bar_color(app, "#12161F")
+
 
     new_web_view_frame = tk.Frame(app, bg="#000000")
     new_web_view_frame.place(y=30, relwidth=1, relheight=1)
