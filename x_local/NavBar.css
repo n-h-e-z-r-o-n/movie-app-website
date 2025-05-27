@@ -11,10 +11,14 @@
    align-items: center;
    justify-content: center;
    position:fixed;
+   left: 50%;          /* Start from center */
+   transform: translateX(-50%); /* Pull back by half of width */
    z-index: 10;
    top: 0; /* Position it at the top of the page */
    padding-top: 20px;
    /* background: linear-gradient( to bottom, var(--global-color-bg) 10%, transparent 100%);*/
+   margin-left: auto;
+   margin-right: auto;
 
 }
 
@@ -347,7 +351,7 @@
   background: red;
   top: 7px;
   right: 7px;
-  animation: pulse_glow 1s infinite ease-in-out;
+  animation: pulse_glow 3s infinite ease-in-out;
   font-size: 9px;
   display: none;
   align-items: center;

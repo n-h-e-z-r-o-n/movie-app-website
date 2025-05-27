@@ -101,6 +101,61 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+let touchStartX = 0;
+let touchEndX = 0;
+const swipeThreshold = 50;
+
+const containers = [
+  document.getElementById("profile_container"),
+  document.getElementById("massages_container"),
+  document.getElementById("Watch_List_container")
+];
+
+containers.forEach(container => {
+  if (container) {
+    container.addEventListener('touchstart', handleTouchStart, false);
+    container.addEventListener('touchend', handleTouchEnd, false);
+  }
+});
+
+function handleTouchStart(event) {
+  touchStartX = event.changedTouches[0].screenX;
+}
+
+function handleTouchEnd(event) {
+  touchEndX = event.changedTouches[0].screenX;
+  handleSwipe();
+}
+
+function handleSwipe() {
+  const deltaX = touchEndX - touchStartX;
+  if (Math.abs(deltaX) > swipeThreshold) {
+    const activeTab = localStorage.getItem('activeTab') || 'profile';
+
+    if (deltaX > 0) {
+      // Swipe right - go to previous tab
+      switch(activeTab) {
+        case 'messages':
+          switchTab('profile');
+          break;
+        case 'watchlist':
+          switchTab('messages');
+          break;
+      }
+    } else {
+      // Swipe left - go to next tab
+      switch(activeTab) {
+        case 'profile':
+          switchTab('messages');
+          break;
+        case 'messages':
+          switchTab('watchlist');
+          break;
+      }
+    }
+  }
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -206,7 +261,7 @@ function Search_Results_SHOW(movies) {
 
     } else {
         Box_title = original_name;
-        date = first_air_date.substring(0, 4);
+        date = first_air_date.substring(0, 4) || null;
         type = "tv";
         r_type= 'tv'
         info =  S_info ? S_info : null;

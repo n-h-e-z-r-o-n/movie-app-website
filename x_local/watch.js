@@ -11,10 +11,27 @@ loadCSS("./watch.css");
 loadCSS("./NavBar.css");
 */
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+async function checkIfFave(id){
+   id = parseInt(id);
+   let  user_watchlist =  localStorage.getItem('user_watchlist');
+   user_watchlist = JSON.parse(user_watchlist)
+   console.log(user_watchlist);
+   console.log(id);
+   const movieExists = user_watchlist.some(movie => movie.id === id);
+   console.log(movieExists); // true
+   if(movieExists){
+      document.getElementById("Favorite_btn_watch").style.display = 'none';
+   }
+}
 async function update_Notification(movie_info){
+    //console.log(movie_info)
     let {id, last_episode_to_air} = movie_info;
 
     try{
+          let email = localStorage.getItem('user_email');
           let  notification =  localStorage.getItem('user_massages');
           if(notification){
                 const parsed_notification = JSON.parse(notification);
@@ -24,21 +41,37 @@ async function update_Notification(movie_info){
 
                 const updatedMovies = parsed_notification.map(movie => {
                   if (movie[2] === id) {
+                    console.log(new_season, new_episode, movie[2])
                     return [new_season, new_episode, movie[2]];
                   }
                   return movie;
                 });
+                console.log(updatedMovies)
                 localStorage.setItem('user_massages', JSON.stringify(updatedMovies))
+
+                let response_note = await fetch('Database/database.php', {
+                    method: 'POST',
+                    headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `action=updateMassagelist&email=${encodeURIComponent(email)}&Messages=${encodeURIComponent(JSON.stringify(updatedMovies))}`
+                });
+                const data_note = await response_note.json();
+                //console.log("notification:", data_note.massage)
+                localStorage.setItem("user_massages", JSON.stringify(updatedMovies));
+                let notification_widget = document.getElementById('notification_container')
+                notification_check(notification_widget)
+
           }
 
     } catch(error){
+       console.log(error)
     }
 };
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-//IndexedDB
 
 const Movies_API_URL =   "https://api.themoviedb.org/3/discover/movie?&api_key=6bfaa39b0a3a25275c765dcaddc7dae7";
 const TVs_API_URL =   "https://api.themoviedb.org/3/discover/tv?&api_key=6bfaa39b0a3a25275c765dcaddc7dae7";
@@ -77,6 +110,7 @@ const params = getQueryParams();
    show_id = watch_page_id;
    Suggestion_Show();
    SHOW_INFOs(watch_page_id, watch_type);
+   checkIfFave(watch_page_id);
 
  } else { }
 
@@ -152,8 +186,9 @@ async function Show_Info(info_data, type){
     show_type_s.innerHTML = `&#9737; ${type}`;
 
     // ---------------------------------------------------------------------------------------------------------------------
+    /*
     var element = document.getElementById("back_img1");
-
+    //console.log(element)
     if (info_data['backdrop_path'] == null){info_data['backdrop_path'] = info_data['poster_path'] }
 
     element.style.background = `linear-gradient(to bottom, rgba(0, 0, 0, 0), hsl(218, 39%, 14%)),
@@ -162,14 +197,17 @@ async function Show_Info(info_data, type){
     element.style.backgroundPosition = 'center';
     element.style.backgroundRepeat = 'no-repeat';
     element.style.backgroundSize = 'cover';
-
+    */
 
 
     var back_img_s = document.getElementById("back_img_s");
-
+    /*
     back_img_s.style.background = ` linear-gradient(to bottom, rgba(0, 0, 0, 0) 80%, #050301 98%),
                                   linear-gradient(to right, rgba(0, 0, 0, 0) 40%, #050301 100%),
                                   url("${IMG_PATH}${info_data['backdrop_path']}")`;
+    */
+    back_img_s.style.background =`linear-gradient(to bottom, rgba(0,0,0,0), var(--global-color-bg)), linear-gradient(to top, rgba(0,0,0,0), var(--global-color-bg)),url("${IMG_PATH}${info_data['backdrop_path']}")`;
+
 
     back_img_s.style.backgroundPosition = 'center';
     back_img_s.style.backgroundRepeat = 'no-repeat';
@@ -192,10 +230,10 @@ async function Show_Info(info_data, type){
     poster_show.style.backgroundRepeat = 'no-repeat';
     poster_show.style.backgroundSize = 'cover';
 
-    poster_image_s.style.background  = `linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, hsl(218, 39%, 14%) 98%),
-                                    linear-gradient(to top , rgba(0, 0, 0, 0) 70%, hsl(218, 39%, 14%) 98%),
-                                    linear-gradient(to right, rgba(0, 0, 0, 0) 70%, hsl(218, 39%, 14%) 98%),
-                                    linear-gradient(to left, rgba(0, 0, 0, 0) 70%, hsl(218, 39%, 14%) 98%),
+    poster_image_s.style.background  = `linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, #050301 98%),
+                                    linear-gradient(to top , rgba(0, 0, 0, 0) 70%, #050301 98%),
+                                    linear-gradient(to right, rgba(0, 0, 0, 0) 70%, #050301 98%),
+                                    linear-gradient(to left, rgba(0, 0, 0, 0) 70%, #050301 98%),
                                     url("${IMG_PATH}${info_data['poster_path']}") `;
 
     poster_image_s.style.backgroundPosition = 'center';
@@ -318,8 +356,8 @@ async function Watch_IFRAME(imdb, type, info_data) {
                 let url_v = `${Server_S_location}?search=_${imdb}`;
                 const res = await fetch( url_v);
                 const data = await res.json();
-                console.log(data['data'][0]);
-                console.log(data['data'][0]['id']);
+                //console.log(data['data'][0]);
+                //console.log(data['data'][0]['id']);
                 let video_id = data['data'][0]['id'];
 
                 if(video_id){
@@ -484,7 +522,7 @@ const Selected_Season = document.querySelector('.Selected_Season')
 
 
             const Selected_Season = document.querySelector('.Selected_Season');
-            Selected_Season.innerHTML = `  &nbsp; &nbsp; Season   ${season_no} &nbsp;&nbsp; `;
+            Selected_Season.innerHTML = `  &nbsp; &nbsp; SEASON   ${season_no} &nbsp;&nbsp; `;
 
 
            let url_ep = `https://api.themoviedb.org/3/tv/${series_id}/season/${season_no}?language=en-US`
@@ -602,7 +640,7 @@ const Selected_Season = document.querySelector('.Selected_Season')
           localStorage.setItem(`watch_on_${show_id}`, 'true');
 
            var Info_container = document.getElementById('Info_container');
-           Info_container.style.display = 'flex';
+           Info_container.style.display = 'block';
  }
 
 
@@ -645,7 +683,7 @@ function Suggestion_Search(movies) {
         type = "movie";
     }
     if (poster_path === null){
-        poster_path ='/nHj7dPNMM2QheZEDb2f7FxlBhUK.jpg';
+        return;
     }
 
 
@@ -698,7 +736,7 @@ document.getElementById('watch_Now_btn').addEventListener('click', async functio
               }
     }
 
-    Info_container.style.display = 'flex';
+    Info_container.style.display = 'block';
     watch_Frame.style.display = 'flex';
     cancel_watch_btn.style.display = 'flex';
     localStorage.setItem(`watch_on_${show_id}`, 'true');

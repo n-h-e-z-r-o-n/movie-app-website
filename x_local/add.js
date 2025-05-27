@@ -1,109 +1,141 @@
-// List of common ad-related selectors (classes, IDs, attributes, iframes)
-const adSelectors = [
-  '[class*="ad-"]',
-  '[class*="ads-"]',
-  '[class*="banner"]',
-  '[class*="sponsored"]',
-  '[id*="ad-"]',
-  '[id*="ads-"]',
-  '[id*="banner"]',
-  '[data-ad]',
-  'iframe[src*="doubleclick.net"]',
-  'iframe[src*="adsense"]',
-  'iframe[src*="adserver"]',
-  'div.google-ad',
-  'a[href*="doubleclick.net"]',
-  'a[href*="adsense"]',
-  'a[target="_blank"]', // Target links that open in new tabs
-];
-
-// List of ad-related URL patterns for redirect blocking
-const adUrlPatterns = [
-  /doubleclick\.net/,
-  /adsense\.google\.com/,
-  /adserver/,
-  /banner/,
-  /sponsored/,
-];
-
-// Function to hide ad elements
-function hideAds() {
-  adSelectors.forEach(selector => {
-    try {
-      const elements = document.querySelectorAll(selector);
-      elements.forEach(el => {
-        el.style.display = 'none'; // Hide element
-        // Optionally: el.remove(); to remove element entirely
-        if (el.tagName === 'A') {
-          el.removeAttribute('target'); // Remove target="_blank"
-          el.addEventListener('click', preventAdRedirect); // Add click handler
-        }
-        if (el.tagName === 'IFRAME') {
-          el.setAttribute('src', 'about:blank'); // Neutralize iframe
-        }
-      });
-    } catch (e) {
-      console.error('Error processing selector', selector, e);
+// Function to apply restrictions to a single iframe
+function restrictIframe(iframe) {
+  try {
+    // Ensure sandbox attribute to block top-level navigation
+    if (!iframe.hasAttribute('sandbox')) {
+      iframe.setAttribute('sandbox', 'allow-scripts');
+      console.log(`Added sandbox to iframe: ${iframe.src || 'no-src'}`);
+    } else if (iframe.sandbox.contains('allow-top-navigation')) {
+      iframe.sandbox.remove('allow-top-navigation');
+      console.log(`Removed allow-top-navigation from iframe: ${iframe.src || 'no-src'}`);
     }
-  });
-}
 
-// Function to prevent redirects from ad links
-function preventAdRedirect(event) {
-  const href = event.target.href;
-  if (href && adUrlPatterns.some(pattern => pattern.test(href))) {
-    event.preventDefault();
-    event.stopPropagation();
-    console.log('Blocked ad redirect to:', href);
-  }
-}
+    const iframeWindow = iframe.contentWindow;
+    const iframeDoc = iframe.contentDocument || iframeWindow.document;
 
-// Override window.location setters to block ad redirects
-function blockLocationRedirects() {
-  const originalLocation = window.location;
-  const locationDescriptors = Object.getOwnPropertyDescriptors(window.location);
+    // Block window.open
+    iframeWindow.open = function(url, name, specs) {
+      console.warn(`Blocked iframe attempt to open new window to: ${url}`);
+      return null;
+    };
 
-  ['href', 'assign', 'replace'].forEach(prop => {
-    const originalSetter = locationDescriptors[prop]?.set;
-    if (originalSetter) {
-      Object.defineProperty(window.location, prop, {
-        set(value) {
-          if (adUrlPatterns.some(pattern => pattern.test(value))) {
-            console.log('Blocked location redirect to:', value);
-            return;
-          }
-          originalSetter.call(window.location, value);
+    // Block location changes
+    Object.defineProperty(iframeWindow, 'location', {
+      value: {
+        ...iframeWindow.location,
+        href: iframeWindow.location.href,
+        assign: function(url) {
+          console.warn(`Blocked iframe attempt to redirect via location.assign to: ${url}`);
         },
-        configurable: true,
-      });
-    }
-  });
+        replace: function(url) {
+          console.warn(`Blocked iframe attempt to redirect via location.replace to: ${url}`);
+        }
+      },
+      writable: false
+    });
+
+    // Block links with target="_blank"
+    iframeDoc.addEventListener('click', (event) => {
+      const target = event.target.closest('a');
+      if (target && target.getAttribute('target') === '_blank') {
+        event.preventDefault();
+        console.warn(`Blocked iframe link with target="_blank" to: ${target.href}`);
+      }
+    });
+
+    // Block form submissions with target="_blank"
+    iframeDoc.addEventListener('submit', (event) => {
+      const form = event.target;
+      if (form.getAttribute('target') === '_blank') {
+        event.preventDefault();
+        console.warn(`Blocked iframe form submission with target="_blank" to: ${form.action}`);
+      }
+    });
+
+    // Mark iframe as processed
+    iframe.dataset.redirectBlocked = 'true';
+  } catch (e) {
+    console.warn(`Could not access iframe content: ${e.message}`);
+  }
 }
 
-// Run ad blocker when DOM is fully loaded
-window.addEventListener('load', () => {
-  if (typeof document !== 'undefined') {
-    hideAds();
-    blockLocationRedirects();
-    // Observe DOM changes for dynamically loaded ads
-    if (typeof MutationObserver !== 'undefined') {
-      const observer = new MutationObserver(mutations => {
-        mutations.forEach(() => hideAds());
+// Function to initialize iframe blocking
+function blockIframeRedirects() {
+  // Apply restrictions to existing iframes
+  document.querySelectorAll('iframe').forEach(restrictIframe);
+
+  // Monitor dynamically added iframes
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      mutation.addedNodes.forEach((node) => {
+        if (node.tagName === 'IFRAME' && !node.dataset.redirectBlocked) {
+          restrictIframe(node);
+        }
+        // Check for iframes inside added nodes
+        if (node.querySelectorAll) {
+          node.querySelectorAll('iframe').forEach((iframe) => {
+            if (!iframe.dataset.redirectBlocked) {
+              restrictIframe(iframe);
+            }
+          });
+        }
       });
-      observer.observe(document.body, {
-        childList: true,
-        subtree: true,
-      });
-    }
+    });
+  });
+
+  // Observe DOM changes
+  observer.observe(document.body, { childList: true, subtree: true });
+
+  console.log('Dynamic iframe redirect blocking initialized');
+}
+
+// Run on page load
+window.addEventListener('load', blockIframeRedirects);
+document.addEventListener('DOMContentLoaded', blockIframeRedirects);
+
+// Function to safely add a dynamic iframe based on user preferences
+function addDynamicIframe(src, containerId) {
+  // Validate the src to prevent unsafe URLs (optional)
+  if (!src || !/^https?:\/\//.test(src)) {
+    console.warn(`Invalid or unsafe iframe src: ${src}`);
+    return;
+  }
+
+  const container = document.getElementById(containerId);
+  if (!container) {
+    console.warn(`Container with ID ${containerId} not found`);
+    return;
+  }
+
+  // Create iframe
+  const iframe = document.createElement('iframe');
+  iframe.src = src;
+  iframe.setAttribute('sandbox', 'allow-scripts'); // Restrict by default
+  iframe.style.width = '100%';
+  iframe.style.height = '400px'; // Adjust as needed
+  iframe.dataset.redirectBlocked = 'true'; // Mark as processed
+
+  // Append to container
+  container.appendChild(iframe);
+
+  // Apply restrictions immediately
+  restrictIframe(iframe);
+
+  console.log(`Added iframe with src: ${src}`);
+}
+
+// Example usage: Add iframe based on user input
+// Assuming a form with an input for URL and a button
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.querySelector('#iframe-form');
+  if (form) {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const urlInput = form.querySelector('#iframe-url');
+      const containerId = 'iframe-container'; // ID of the container div
+      if (urlInput && urlInput.value) {
+        addDynamicIframe(urlInput.value, containerId);
+      }
+    });
   }
 });
-
-// Prevent clicks on ad links from triggering redirects
-document.addEventListener('click', (event) => {
-  if (event.target.tagName === 'A' && adUrlPatterns.some(pattern => pattern.test(event.target.href))) {
-    event.preventDefault();
-    console.log('Blocked ad link click:', event.target.href);
-  }
-});
-
-console.log('Ad blocker initialized');

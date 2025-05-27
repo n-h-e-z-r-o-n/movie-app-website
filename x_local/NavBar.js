@@ -976,6 +976,8 @@ async function notification_check(notification_widget){
                     document.getElementById('notification_badge').style.display = 'flex'
                     document.getElementById('notification_badge').innerHTML = notification_count;
 
+
+
             }catch(error){}
         }
 
