@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Movionyx</title>
+    <meta charset="UTF-8">
+    <title> Movionyx </title>
     <link rel="icon" href="Assets/Movionyx.ico" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="./watch.css" />
+    <link rel="stylesheet" type="text/css" href="./shared.css" />
     <link rel="stylesheet" type="text/css" href="./NavBar.css" />
+    <link rel="stylesheet" type="text/css" href="./Actor.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 </head>
 <body>
+<div class="no-select">
 
  <!--------- Navigation bar  ------------------------------------------------------------------------------------------------------------>
 
@@ -51,6 +53,8 @@
                                 <input type="text" class="search-input" id="search_input_top" placeholder="Search...">
                             </div>
                         </div>
+
+
 
                         <div class="notification_picture" id="notification_btnT" >
                             <div class="notification_badge" id="notification_badge"></div>
@@ -118,6 +122,7 @@
                         <i class="fa fa-users nav_tub_icon" aria-hidden="true"></i>
                         <div class="nav_tub_text">Account </div>
                     </div>
+
 
 
                     <div class="search_div_bottom">
@@ -207,205 +212,29 @@
 </div>
 
 
-
  <!--------- Section ------------------------------------------------------------------------------------------------------------>
 
-<div class="no-select"  id="no_select" >
-<!----  watch container section -------------------------------- -------------------------------------------------------------------------------- -->
+          <div style="margin-top: 90px;"></div>
+          <div class="title_">CAST</div>
+          <div class="actor_movies" id="Movie_Results">
+
+          </div>
+          <div class="title_">CREW</div>
+          <div class="actor_movies" id="TV_Results">
+          </div>
+         <div style="padding-bottom: 90px;"></div>
 
 
+</div>
 
-
-
-
-
-                 <div class="uuux" id="back_img_s">
-
-                      <div class="watch_container"    >
-
-                          <div class="poster_container" >
-                              <div class="container_d1">
-                                  <div class="watch_Now_btn" id="watch_Now_btn"> WATCH NOW </div>
-                                  <div class="watch_Now_btn" id="watch_preview"> PREVIEW </div>
-                                  <div class="watch_Now_btn" id="Favorite_btn_watch"> ADD TO FAV</div>
-                              </div>
-                          </div>
-
-                          <div class="info_section">
-                                <div class="watch_image" id="poster_image"> </div>
-                                <div class="Show_title" id="Show_title_l"></div>
-                                <div class="show_genres" id="show_genres"></div>
-                                <div class="Show_Summary" id="Show_SUMMARY_l"></div>
-                                <div class="show_data">
-                                    <div class="show_type" id="show_type"></div>
-                                    <div class="show_pg" id="show_pg"></div>
-                                    <div class="show_HD" id="show_HD"></div>
-                                    <div class="show_MIN" ID="show_MIN"></div>
-                                    <div class="show_rating" id="show_rating"></div>
-                                    <div class="show_Premiered" ID="show_Premiered"></div>
-                                </div>
-                                <div class="show_production" id="show_production"></div>
-
-                          </div>
-                          <div class="watch_Frame" id="watch_Frame">    </div>
-
-                          <div class="cancel_watch" id="cancel_watch_btn">X</div>
-                      </div>
-                 </div>
-
-<!----  seasons info   section -------------------------------- -------------------------------------------------------------------------------- -->
-
-               <div class="season_info_hold">
-                   <div class="hold_s">
-                       <div class="season_info_hold_season_container_navigation">
-                           <div class="rarrow" id="rarrow">   &#11208  </div>
-                           <div class="larrow" id="larrow">   &#11207 </div>
-                       </div>
-                       <div  class="season_info_hold_season_container" id="season-selector1">
-
-                       </div>
-                   </div>
-
-                   <div class="seasons" id="season_c">
-
-                          <div class="seasons_container" id="seasons_container">
-                                <div class="Selected_Season">  </div>
-                                <div class="Selected_Season_img" id="Selected_Season_img"> </div>
-                          </div>
-
-                          <div class="episodes_container" id="episodes_container">
-                                <div id="episode-list" class="episodes"></div>
-                          </div>
-                    </div>
-               </div>
-
-<!----  Info Section -------------------------------- -------------------------------------------------------------------------------- -->
-
-               <div class="Info_container" id="Info_container">
-                        <div class="Info_container_toggle_content" > <!--id="back_img1" --></div>
-                        <div class="Info_container_toggle_content_title" id="Show_title_S">  </div>
-
-                            <div class="Info_container_toggle_content_PG" id="show_genres_s">
-                                 Adventure, Drama, Sci-Fi,
-                            </div>
-                            <div class="Info_container_toggle_content_elements" id="Show_Production_s">          </div>
-
-
-                            <div class="Info_container_show_data">
-                                    <div class="show_pg" id="show_pg_s"></div>
-                                    <div class="show_HD" id="show_HD_s"> </div>
-                                    <div class="show_MIN" ID="show_MIN_s"></div>
-                                    <div class="show_rating" id="show_rating_s"></div>
-                                    <div class="show_Premiered" ID="show_Premiered_s"> </div>
-                                    <div class="show_type" id="show_type_s"> </div>
-                            </div>
-
-                            <div class="Info_container_toggle_content_SHOW_SUMMARY">
-                                <div class="Info_container_toggle_content_SHOW_SUMMARY_icon"> <i class="fa fa-info-circle" aria-hidden="true"></i> &nbsp;&nbsp; Overview </div>
-                                <div  id="Show_SUMMARY_S"> </div>
-                            </div>
-
-
-                        <div class="watch_image_s" id="poster_image_s"> </div>
-               </div>
-
-               <div class="credits">
-                        <div class="cast_credits_title" > <i class="fa fa-users" aria-hidden="true"></i> &nbsp;&nbsp; CAST </div>
-
-                        <div class="cast_credits" id="cast_widget">
-                                <!--div class="cast_credits_each">
-                                   <div class="cast_credits_each_profile"> </div>
-                                   <div class="cast_credits_each_name"> </div>
-                                   <div class="cast_credits_each_character"> </div>
-                                </div -->
-                        </div>
-               </div>
-
-
-
-
-<!----  watch recommendation  section -------------------------------- -------------------------------------------------------------------------------- -->
-
-
-
-
-
-
-               <div class="watch_recommendation">
-                    <div class="watch_recommendation_title_section" >  RECOMMENDER FOR YOU </div>
-
-                    <div class="REM_container" id="recommendation_R_div">
-                      <!--
-                      <div class="box">
-                        <div class="imgBx">
-                          <img src="https://images.unsplash.com/photo-1579748138140-ce9ef2c32db1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80">
-                        </div>
-                        <div class="content">
-                          <div>
-                            <h2>Image Title</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi accusamus molestias quidem iusto.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="box">
-                        <div class="imgBx">
-                          <img src="https://images.unsplash.com/photo-1579639782539-15cc6c0be63f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80">
-                        </div>
-                        <div class="content">
-                          <div>
-                            <h2>Image Title</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi accusamus molestias quidem iusto.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="box">
-                        <div class="imgBx">
-                          <img src="https://images.unsplash.com/photo-1603984362497-0a878f607b92?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80">
-                        </div>
-                        <div class="content">
-                          <div>
-                            <h2>Image Title</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi accusamus molestias quidem iusto.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="box">
-                        <div class="imgBx">
-                          <img src="https://images.unsplash.com/photo-1579310962131-aa21f240d986?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80">
-                        </div>
-                        <div class="content">
-                          <div>
-                            <h2>Image Title</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi accusamus molestias quidem iusto.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    -->
-
-               </div>
-            </div>
-
-
-
-</div>>
-
-
-
-
-<script src="NavBar.js"></script>
-<script src="watch.js"></script>
- <script src="add.js"></script>
 <!--
 
 <script src="./Back_end/nav.php"></script>
-<script src="./Back_end/watch.php"></script>
+<script src="./Back_end/script.php"></script>
+
+
 -->
+<script  src="./NavBar.js"></script>
+<script src="./Actor.js"></script>
 </body>
-
-
 </html>

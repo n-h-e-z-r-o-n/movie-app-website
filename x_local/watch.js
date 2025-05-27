@@ -11,20 +11,97 @@ loadCSS("./watch.css");
 loadCSS("./NavBar.css");
 */
 
+
+const Movies_API_URL =   "https://api.themoviedb.org/3/discover/movie?&api_key=6bfaa39b0a3a25275c765dcaddc7dae7";
+const TVs_API_URL =   "https://api.themoviedb.org/3/discover/tv?&api_key=6bfaa39b0a3a25275c765dcaddc7dae7";
+
+const watch_info = document.getElementById("watch_info");
+const watch_Frame = document.getElementById("watch_Frame");
+let Watch_iframe_div_content;
+
+let Show_Data_Json;
+const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
+const watch_frame_link_eb = 'https://vidsrc.to/embed/'; //https://vidsrc.xyz/embed/   ====  https://vidsrc.dev/embed/tv/ == https://vidsrc.to/embed/
+
+try{
+const headers = {
+             "accept": "application/json",
+             "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZjliMmUyN2MxYTZiYzMyMzNhZjE4MzJmNGFjYzg1MCIsIm5iZiI6MTcxOTY3NDUxNy4xOTYsInN1YiI6IjY2ODAyNjk1ZWZhYTI1ZjBhOGE4NGE3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RTms-g8dzOl3WwCeJ7WNLq3i2kXxl3T7gOTa8POcxcw"
+};
+} catch(error){}
+
+let Server_S_location = "./Admin/Retrive_Movie.php"
+
+
+let episodes = {};
+let show_id;
+let watch_type;
+
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+async function cast_credits (type, id){
+        let cast_widget = document.getElementById("cast_widget")
+        let url;
+        console.log(id)
+        console.log(type)
+        if(type === 'movie'){
+                 url =  `https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`
+        }else{
+                 url =   `https://api.themoviedb.org/3/tv/${id}/credits?language=en-US`
+        }
+        const res = await fetch(url,   {headers});
+        const data = await res.json();
+
+        let cast = data.cast
+        let crew = data.crew
+        //cast = cast.concat(crew)
+        console.log(cast)
+
+        cast.forEach(item => {
+            let name = item.original_name
+
+            if(item.profile_path === null) return;
+
+            let profile_img = IMG_PATH +item.profile_path
+            let character = item.character
+            let cast_id = item.id
+
+             const movieItem = document.createElement("div");
+             movieItem.classList.add("cast_credits_each");
+             movieItem.innerHTML = `
+                           <div class="cast_credits_each_profile"> </div>
+                           <div class="cast_credits_each_name"> ${name}</div>
+                           <div class="cast_credits_each_character"> ${character} </div>
+             `;
+             const profileDiv = movieItem.querySelector('.cast_credits_each_profile');
+             profileDiv.style.backgroundImage = `url(${profile_img})`;
+             profileDiv.style.backgroundSize = 'cover';
+             profileDiv.style.backgroundPosition = 'center';
+
+             movieItem.addEventListener("click", async (e) => {
+                 e.stopPropagation();
+                 window.location.href = "Actor.html?id=" + cast_id;
+             });
+             cast_widget.appendChild(movieItem);
+       });
+}
 
 async function checkIfFave(id){
-   id = parseInt(id);
-   let  user_watchlist =  localStorage.getItem('user_watchlist');
-   user_watchlist = JSON.parse(user_watchlist)
-   console.log(user_watchlist);
-   console.log(id);
-   const movieExists = user_watchlist.some(movie => movie.id === id);
-   console.log(movieExists); // true
-   if(movieExists){
-      document.getElementById("Favorite_btn_watch").style.display = 'none';
-   }
+   try{
+       id = parseInt(id);
+       let  user_watchlist =  localStorage.getItem('user_watchlist');
+       user_watchlist = JSON.parse(user_watchlist)
+       console.log(user_watchlist);
+       console.log(id);
+       const movieExists = user_watchlist.some(movie => movie.id === id);
+       console.log(movieExists); // true
+       if(movieExists){
+          document.getElementById("Favorite_btn_watch").style.display = 'none';
+       }
+   } catch{}
 }
 async function update_Notification(movie_info){
     //console.log(movie_info)
@@ -73,33 +150,6 @@ async function update_Notification(movie_info){
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-const Movies_API_URL =   "https://api.themoviedb.org/3/discover/movie?&api_key=6bfaa39b0a3a25275c765dcaddc7dae7";
-const TVs_API_URL =   "https://api.themoviedb.org/3/discover/tv?&api_key=6bfaa39b0a3a25275c765dcaddc7dae7";
-
-const watch_info = document.getElementById("watch_info");
-const watch_Frame = document.getElementById("watch_Frame");
-let Watch_iframe_div_content;
-
-let Show_Data_Json;
-const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
-const watch_frame_link_eb = 'https://vidsrc.to/embed/'; //https://vidsrc.xyz/embed/   ====  https://vidsrc.dev/embed/tv/ == https://vidsrc.to/embed/
-
-try{
-const headers = {
-             "accept": "application/json",
-             "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZjliMmUyN2MxYTZiYzMyMzNhZjE4MzJmNGFjYzg1MCIsIm5iZiI6MTcxOTY3NDUxNy4xOTYsInN1YiI6IjY2ODAyNjk1ZWZhYTI1ZjBhOGE4NGE3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RTms-g8dzOl3WwCeJ7WNLq3i2kXxl3T7gOTa8POcxcw"
-};
-} catch(error){}
-
-let Server_S_location = "./Admin/Retrive_Movie.php"
-
-
-let episodes = {};
-let show_id;
-let watch_type;
-
-
-
 // ============================ Extract the search term from URL parameters ============================================
 
 
@@ -111,6 +161,7 @@ const params = getQueryParams();
    Suggestion_Show();
    SHOW_INFOs(watch_page_id, watch_type);
    checkIfFave(watch_page_id);
+   cast_credits (watch_type, show_id);
 
  } else { }
 
@@ -163,6 +214,7 @@ async function SHOW_INFOs(id, type) {
   Show_Data_Json = data;
   Show_Info(data, type)
   Watch_IFRAME(id, type, data);
+
 }
 
 
@@ -230,6 +282,7 @@ async function Show_Info(info_data, type){
     poster_show.style.backgroundRepeat = 'no-repeat';
     poster_show.style.backgroundSize = 'cover';
 
+    /*
     poster_image_s.style.background  = `linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, #050301 98%),
                                     linear-gradient(to top , rgba(0, 0, 0, 0) 70%, #050301 98%),
                                     linear-gradient(to right, rgba(0, 0, 0, 0) 70%, #050301 98%),
@@ -239,7 +292,7 @@ async function Show_Info(info_data, type){
     poster_image_s.style.backgroundPosition = 'center';
     poster_image_s.style.backgroundRepeat = 'no-repeat';
     poster_image_s.style.backgroundSize =  '100% 100%';
-
+    */
     //------------------------------------------------------------------------------------------------------------------
     var title_s = document.getElementById("Show_title_S");
     var title_l = document.getElementById("Show_title_l");

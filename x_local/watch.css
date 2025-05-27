@@ -50,9 +50,9 @@ left: 50%;          /* Start from center */
 .Info_container {
         display: none;
         width:  80%;
-        aspect-ratio: 16 / 9;
+        height: auto;
         max-width:  var(--Max-width);
-        background:  ;
+        background:  transparent;
         box-sizing: border-box;
         background-position: center;
         background-size: cover;
@@ -159,8 +159,80 @@ left: 50%;          /* Start from center */
       border: none;
 }
 
+.credits{
+    width:  80%;
+    height: auto;
+    max-width:  var(--Max-width);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    box-sizing: border-box;
+    background: #1B1B1B;
+    border-radius: 1em;
+    padding: 20px;
+    display: block;
+    margin-top: 20px;
+    box-shadow: 2px 3px 11px rgba(0, 0, 0, .4);
+}
 
 
+
+
+.cast_credits{
+    width:  100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    align-items: center;
+    justify-content: center;
+}
+.cast_credits_title{
+   width: 100%;
+   font-weight: 500;
+}
+.cast_credits_each{
+    background: transparent;
+    display: flex;
+    flex-wrap: wrap;
+    width: 200px;
+    height: 200px;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.cast_credits_each_profile{
+    background: transparent;
+    width: 70%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    box-shadow: 2px 3px 12px rgba(0, 0, 0, .4);
+}
+.cast_credits_each_name{
+  width: 100%;
+  background: transparent;
+  height: auto;
+  font-size: 1em;
+  text-align: center;
+  align-items: center;
+  text-overflow: ellipsis;
+  font-family: 'Courier New';
+}
+
+.cast_credits_each_character{
+  width: 100%;
+  background: transparent;
+  height: auto;
+  font-size: 0.9em;
+  text-align: center;
+  align-items: center;
+  text-overflow: ellipsis;
+  color: #A1CAF1;
+  opacity: 0.5;
+}
 
 /* ================================================================================================================== */
 /* ================================================================================================================== */
@@ -368,7 +440,7 @@ left: 50%;          /* Start from center */
 .Show_Summary {
   max-width: 70%;
   color: white;
-  font-family: "Agency FB", sans-serif; /* Added fallback font */
+  font-family:  sans-serif; /* Added fallback font */
   font-size: 0.8em;
   letter-spacing: 1px;
   text-align: right;
@@ -1042,9 +1114,9 @@ left: 50%;          /* Start from center */
          display: block !important;
          width: 90%;
          margin-top: 0px;
-         aspect-ratio: 16 / 15;
+         height: auto;
+  }
 
-   }
 
 
   .watch_recommendation_title_section{
@@ -1088,6 +1160,38 @@ left: 50%;          /* Start from center */
         font-family: 'Segoe Script';
         backdrop-filter: blur(201px);
         transition: 1s cubic-bezier(.17,1,.33,1);
+
+    }
+
+
+    .credits{
+       width: 90%;
+    }
+
+    .cast_credits{
+      display: flex;
+      flex-wrap: nowrap;
+      overflow: scroll;
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+    .cast_credits_title{
+       width: 100%;
+       font-weight: 500;
+    }
+    .cast_credits_each{
+        min-width:  100px;
+        min-height:  100px;
+        width: 100px;
+        height: 100px;
+        margin: 7px;
+    }
+    .cast_credits_each_name{
+        font-size: 0.9em;
+    }
+
+    .cast_credits_each_character{
+        font-size: 0.7em;
     }
 }
 
