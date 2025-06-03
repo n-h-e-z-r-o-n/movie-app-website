@@ -5,14 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc84c571-4efa-41b6-b298-1c0cbea8a6aa" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/x_local/Actor.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/x_local/Actor.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/x_local/Actor.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/x_local/Back_end/Anime_q.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/Admin/Retrive_Movie.php" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/Admin/Retrive_Movie.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/x_local/Home.html" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/Home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/x_local/custon.css" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/custon.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/x_local/watch.css" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/watch.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/x_local/watch.html" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/watch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/NavBar.css" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/NavBar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/NavBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/NavBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/S_Results.html" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/S_Results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/search.js" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/search.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/test.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/x_local/watch.js" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/watch.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,19 +44,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Python.Version2.executor": "Run",
-    "Python.test.executor": "Run",
-    "Python.test2.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/xampp/htdocs/movie-app-website/Source_code",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Python.Version2.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test2.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/movie-app-website/Source_code&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\movie-app-website\Source_code" />
@@ -156,6 +158,17 @@
       <updated>1747420698766</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

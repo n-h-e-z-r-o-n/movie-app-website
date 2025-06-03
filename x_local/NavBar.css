@@ -351,7 +351,7 @@
   background: red;
   top: 7px;
   right: 7px;
-  animation: pulse_glow 3s infinite ease-in-out;
+  animation: pulse_glow 5s infinite ease-in-out;
   font-size: 9px;
   display: none;
   align-items: center;

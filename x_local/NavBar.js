@@ -351,6 +351,7 @@ async function PlayTrailer(id_play, type){
 
 
 async function AddToFav(movie, widget){
+    console.log(movie)
     let email = localStorage.getItem('user_email');
     /////////////////////////////////////////////////////////////////////////////////////
 

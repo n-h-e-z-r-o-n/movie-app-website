@@ -264,7 +264,7 @@ function Search_Results_SHOW(movies) {
         date = first_air_date.substring(0, 4) || null;
         type = "tv";
         r_type= 'tv'
-        info =  S_info ? S_info : null;
+        info =  S_info ? S_info : '';
     }
 
     if(!poster_path.startsWith('https')){

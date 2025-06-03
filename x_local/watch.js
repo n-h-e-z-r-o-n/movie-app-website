@@ -45,8 +45,8 @@ let watch_type;
 async function cast_credits (type, id){
         let cast_widget = document.getElementById("cast_widget")
         let url;
-        console.log(id)
-        console.log(type)
+        //console.log(id)
+        //console.log(type)
         if(type === 'movie'){
                  url =  `https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`
         }else{
@@ -58,7 +58,7 @@ async function cast_credits (type, id){
         let cast = data.cast
         let crew = data.crew
         //cast = cast.concat(crew)
-        console.log(cast)
+        //console.log(cast)
 
         cast.forEach(item => {
             let name = item.original_name
@@ -81,7 +81,7 @@ async function cast_credits (type, id){
              profileDiv.style.backgroundSize = 'cover';
              profileDiv.style.backgroundPosition = 'center';
 
-             movieItem.addEventListener("click", async (e) => {
+             profileDiv.addEventListener("click", async (e) => {
                  e.stopPropagation();
                  window.location.href = "Actor.html?id=" + cast_id;
              });
@@ -94,8 +94,8 @@ async function checkIfFave(id){
        id = parseInt(id);
        let  user_watchlist =  localStorage.getItem('user_watchlist');
        user_watchlist = JSON.parse(user_watchlist)
-       console.log(user_watchlist);
-       console.log(id);
+       //console.log(user_watchlist);
+       //console.log(id);
        const movieExists = user_watchlist.some(movie => movie.id === id);
        console.log(movieExists); // true
        if(movieExists){
@@ -226,6 +226,17 @@ async function Show_Info(info_data, type){
     const Favorite_btn_watch = document.getElementById('Favorite_btn_watch');
     Favorite_btn_watch.addEventListener("click",  function(event) {
         event.stopPropagation();
+         //console.log(type);
+         if(type ==='tv' || type ==='Tv'){
+             //console.log(type);
+             try{
+             let SS = info_data.last_episode_to_air.season_number
+             let ESP = info_data.last_episode_to_air.episode_number
+             info_data.S_info  = `SS ${SS} / ESP ${ESP}`
+             }catch{
+               info_data.S_info  = `SS 1 / ESP 1`
+             }
+         }
         AddToFav(info_data, Favorite_btn_watch);
     });
 
