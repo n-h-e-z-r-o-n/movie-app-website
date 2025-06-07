@@ -188,6 +188,8 @@ left: 50%;          /* Start from center */
     overflow: scroll;
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
+    align-items: center;
+    justify-content: center;
 
 }
 .cast_credits_title{
@@ -1002,7 +1004,7 @@ left: 50%;          /* Start from center */
 
 
   .watch_container{
-      width:  94%;
+      width:  100%;
       aspect-ratio: 16 / 9;
       border: 0px solid;
   }
@@ -1143,13 +1145,6 @@ left: 50%;          /* Start from center */
        width: 90%;
     }
 
-    .cast,_credits{
-      display: flex;
-      flex-wrap: nowrap;
-      overflow: scroll;
-      -ms-overflow-style: none; /* IE and Edge */
-      scrollbar-width: none; /* Firefox */
-    }
     .cast_credits_title{
        width: 100%;
        font-weight: 500;

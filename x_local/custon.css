@@ -1064,6 +1064,9 @@ ul li a:hover{
     .rarrow{
       display: none;
     }
+    .section_sel{
+           display: none;
+    }
 
 
 }
