@@ -276,10 +276,7 @@ function Search_Results_SHOW(movies) {
         type = "tv";
         r_type= 'tv'
         info =  S_info ? S_info : '';
-
     } else {
-
-
        Box_title = title;
        date = release_date && typeof release_date === 'string' ? release_date.substring(0, 4) : release_date;
        type = "mv";
