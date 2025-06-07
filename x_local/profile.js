@@ -269,20 +269,22 @@ function Search_Results_SHOW(movies) {
     let info;
     let date;
     let r_type;
-    if (title) {
-       Box_title = title;
-       date = release_date && typeof release_date === 'string' ? release_date.substring(0, 4) : release_date;
-       type = "mv";
-       r_type= 'movie'
-       info = `${runtime} min` ;
 
-
-    } else {
+    if (S_info) {
         Box_title = original_name;
         date = first_air_date.substring(0, 4) || null;
         type = "tv";
         r_type= 'tv'
         info =  S_info ? S_info : '';
+
+    } else {
+
+
+       Box_title = title;
+       date = release_date && typeof release_date === 'string' ? release_date.substring(0, 4) : release_date;
+       type = "mv";
+       r_type= 'movie'
+       info = `${runtime} min` ;
     }
 
     if(!poster_path.startsWith('https')){
