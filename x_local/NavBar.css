@@ -1231,9 +1231,10 @@ Terms_Details_content::-webkit-scrollbar {
         .Login_others{
            font-size: 1em;
         }
-     
+
         .notification_container{
-           background-color: gray;
+           background: #1B1B1B;
+           border: 2px solid black;
         }
 }
 
