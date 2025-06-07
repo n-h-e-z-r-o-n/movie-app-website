@@ -363,7 +363,7 @@ async function PlayTrailer(id_play, type){
 
 async function AddToFav(movie, widget){
 
-    console.log(movie)
+    console.log(movie);
 
     delete movie.adult;
     delete movie.networks;
@@ -371,15 +371,30 @@ async function AddToFav(movie, widget){
     delete movie.episode_run_time;
     delete movie.homepage;
     delete movie.in_production;
+    delete movie.next_episode_to_air;
+    delete movie.number_of_episodes;
+    delete movie.number_of_seasons;
+    delete movie.origin_country;
+    delete movie.original_language;
+    delete movie.overview;
+    delete movie.popularity;
+    delete movie.production_companies;
+    delete movie.production_countries;
+    delete movie.seasons;
+    delete movie.spoken_languages;
     delete movie.languages;
-    delete movie.languages;
-    delete movie.languages;
-    delete movie.languages;
-    delete movie.languages;
-    delete movie.languages;
-    delete movie.languages;
-    delete movie.languages;
-    delete movie.languages;
+    delete movie.status;
+    delete movie.tagline;
+    delete movie.type;
+    delete movie.vote_count;
+    delete movie.backdrop_path
+    delete movie.last_air_date
+    delete movie.backdrop_path
+    delete movie.backdrop_path
+    delete movie.backdrop_path
+
+
+    console.log(movie)
 
     let email = localStorage.getItem('user_email');
     /////////////////////////////////////////////////////////////////////////////////////
