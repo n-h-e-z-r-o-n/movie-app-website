@@ -1,4 +1,43 @@
 
+//http://localhost/movie-app-website/x_local/index?d=mob
+let div_mob = localStorage.getItem("device_type");
+if(!div_mob){
+   document.querySelector('.nav_bar_bottom').classList.add('hid_element');
+   document.querySelector('.reload_btn').classList.add('hid_element');
+} else{
+   document.querySelector('.search_btn').classList.add('hid_element');
+
+}
+
+let lastScrollTop = 0;
+const navbar = document.getElementById('navbar');
+const scrollThreshold = 5; // Set the threshold to 300px
+mobileBreakpoint = 968;
+window.addEventListener('scroll', function() {
+    if (window.innerWidth < mobileBreakpoint) {
+        navbar.classList.remove('hide-navbar');
+        navbar.classList.remove('hide-navbar_color');
+
+        return;
+    }
+     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+     if (scrollTop > scrollThreshold) {
+            if (scrollTop > lastScrollTop) {
+                // Scrolling down
+                navbar.classList.add('hide-navbar');
+                navbar.classList.add('hide-navbar_color');
+            } else {
+                // Scrolling up
+                navbar.classList.remove('hide-navbar');
+            }
+     }else{  // If the user is within the  threshold  ensure the navbar is visible
+        navbar.classList.remove('hide-navbar');
+        navbar.classList.remove('hide-navbar_color');
+     }
+    lastScrollTop = scrollTop;
+});
+
+
 /* Check if the User-Agent matches your app
 if (!navigator.userAgent.includes("MovionyxApp/1.0")) {
     // Block the page and show a message
@@ -19,7 +58,7 @@ if (!navigator.userAgent.includes("MovionyxApp/1.0")) {
 ///////////////////////////////////
 
 
-let notification_widget = document.getElementById('notification_container')
+
 
 
 var  headers = {
@@ -88,34 +127,6 @@ search_bt_toggle.onclick = function(){
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-let lastScrollTop = 0;
-const navbar = document.getElementById('navbar');
-const scrollThreshold = 5; // Set the threshold to 300px
-mobileBreakpoint = 968;
-window.addEventListener('scroll', function() {
-    if (window.innerWidth < mobileBreakpoint) {
-        navbar.classList.remove('hide-navbar');
-        navbar.classList.remove('hide-navbar_color');
-        return;
-    }
-     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-     if (scrollTop > scrollThreshold) {
-            if (scrollTop > lastScrollTop) {
-                // Scrolling down
-                navbar.classList.add('hide-navbar');
-                navbar.classList.add('hide-navbar_color');
-            } else {
-                // Scrolling up
-                navbar.classList.remove('hide-navbar');
-            }
-     }else{  // If the user is within the  threshold  ensure the navbar is visible
-        navbar.classList.remove('hide-navbar');
-        navbar.classList.remove('hide-navbar_color');
-     }
-    lastScrollTop = scrollTop;
-});
 
 
 const HomeNav_btnT = document.getElementById("HomeNav_btnT");
@@ -678,12 +689,9 @@ if (savedState) {
      Account_btn.style.borderRadius = '50%';
 
      document.getElementById('notification_btnT').style.display = 'flex';
-     notification_check(notification_widget)
-
+     notification_check()
      auto_update_user_info()
-
-
-
+          //setInterval(notification_check, 60000);
 }
 async function auto_update_user_info(){
     let email = localStorage.getItem('user_email');
@@ -774,7 +782,7 @@ document.getElementById('loginForm').addEventListener('click', async function(e)
 
                 Login_container.style.display = 'none';
                 document.getElementById('notification_btnT').style.display = 'flex';
-                notification_check(notification_widget)
+                notification_check()
             }
  });
 
@@ -916,9 +924,9 @@ document.getElementById('notification_btnT').addEventListener('click', async fun
 });
 
 
-async function notification_check(notification_widget){
-
-    notification_widget.innerHTML = '';     // Clear previous notifications
+async function notification_check(){
+    let notification_widget = document.getElementById('notification_container')
+    notification_widget.innerHTML = '';
 
     let  notification =  localStorage.getItem('user_massages');
     const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
@@ -977,12 +985,11 @@ async function notification_check(notification_widget){
                     document.getElementById('notification_badge').style.display = 'flex'
                     document.getElementById('notification_badge').innerHTML = notification_count;
 
-
-
             }catch(error){}
         }
 
      }
+
 }
 
 
@@ -998,7 +1005,7 @@ async function notification_check(notification_widget){
 
 
 ///////////////////////////// Disable Right Click + Inspect Element ////////////////////////////////////////////////////
-
+/*
 
 document.addEventListener("contextmenu", (e) => e.preventDefault());
 document.addEventListener("keydown", (e) => {
@@ -1022,7 +1029,7 @@ setInterval(function() {
     } catch(e) {}
 }, 1000)
 
-/**/
+*/
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

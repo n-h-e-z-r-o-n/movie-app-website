@@ -89,7 +89,9 @@ async function cast_credits (type, id){
        });
 }
 
-async function checkIfFave(id){
+async function checkIfFave(id, type){
+   //const res = await fetch(`https://api.themoviedb.org/3/${type}/${id}&?`,   {headers});
+   //const data = await res.json();
    try{
        id = parseInt(id);
        let  user_watchlist =  localStorage.getItem('user_watchlist');
@@ -160,7 +162,7 @@ const params = getQueryParams();
    show_id = watch_page_id;
    Suggestion_Show();
    SHOW_INFOs(watch_page_id, watch_type);
-   checkIfFave(watch_page_id);
+   checkIfFave(watch_page_id, watch_type);
    cast_credits (watch_type, show_id);
 
  } else { }

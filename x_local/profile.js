@@ -25,11 +25,30 @@ logout_btn.addEventListener("click", function() {
 });
 
 if(U_ID){
-      getUserFavorites(Search_Results_SHOW);
+    getUserFavorites(Search_Results_SHOW);
       //let massages_container = document.getElementById('massages_container')
       //notification_check(massages_container);
+    const watchlistInterval = setInterval(auto_check_watchlist, 5000);
 }else{
       logout_btn.click();
+}
+
+
+async  function auto_check_watchlist (){
+    let email = localStorage.getItem('user_email');
+    let serverResponse = await fetch('Database/database.php', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            body: `action=getWatchlist&email=${encodeURIComponent(email)}`
+    });
+    const serverData = await serverResponse.json();
+    if(serverData.massage !== 'Error fetching'){
+        let watchlist_local = localStorage.getItem('user_watchlist');
+        if(watchlist_local !== serverData.massage){
+               localStorage.setItem("user_watchlist", serverData.massage);
+               getUserFavorites(Search_Results_SHOW);
+        }
+    }
 }
 
 
@@ -40,7 +59,6 @@ async function getUserFavorites(passed_function) {
       let watchlist_array = JSON.parse(watchlist);
       passed_function(watchlist_array);
     }
-
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

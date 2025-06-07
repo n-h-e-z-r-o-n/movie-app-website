@@ -1010,54 +1010,60 @@ ul li a:hover{
 
 
 
-  .section_sel {
-   width: 100%;
-   padding: 1% 0%;
-   border-radius: 0px;
-}
+    .section_sel {
+       width: 100%;
+       padding: 1% 0%;
+       border-radius: 0px;
+    }
 
-.filter-radios {
-   height: 40px;
-   max-width: 90%
-   aspect-ratio: 21/4;
+    .filter-radios {
+       height: 40px;
+       max-width: 90%
+       aspect-ratio: 21/4;
 
-   border-radius: 5px;
-   padding: 0.5% 2%;
-}
+       border-radius: 5px;
+       padding: 0.5% 2%;
+    }
 
-.sel_options {
+    .sel_options {
 
-   width: 30%;
-   height: 90%;
-   border-radius: 5px;
-   font-size: 0.95em;
-
-
-}
-
-  .company_card_holder{
-    height: 80px;
-    aspect-ratio: 16/12;
-    background-color: transparent;
-  }
-
-.category-card{
-    position: relative;
-    height: 80px;
-    aspect-ratio: 16/12;
-    border-radius: 5px;
-    margin: 1%;
-}
+       width: 30%;
+       height: 90%;
+       border-radius: 5px;
+       font-size: 0.95em;
 
 
-.category_card_name{
-        bottom: 2%;
-        z-index: 20;
-        left: 1%;
-        font-size: 1em;
-        font-family: cursive;
-}
+    }
 
+      .company_card_holder{
+        height: 80px;
+        aspect-ratio: 16/12;
+        background-color: transparent;
+      }
+
+    .category-card{
+        position: relative;
+        height: 80px;
+        aspect-ratio: 16/12;
+        border-radius: 5px;
+        margin: 1%;
+    }
+
+
+    .category_card_name{
+            bottom: 2%;
+            z-index: 20;
+            left: 1%;
+            font-size: 1em;
+            font-family: cursive;
+    }
+    .larrow{
+      display: none;
+    }
+
+    .rarrow{
+      display: none;
+    }
 
 
 }
