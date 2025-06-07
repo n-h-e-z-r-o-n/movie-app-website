@@ -737,7 +737,7 @@ if (savedState) {
      document.getElementById('notification_btnT').style.display = 'flex';
      notification_check()
      auto_update_user_info()
-          //setInterval(notification_check, 60000);
+     //setInterval(notification_check, 60000);
 }
 async function auto_update_user_info(){
     let email = localStorage.getItem('user_email');
@@ -1051,7 +1051,7 @@ async function notification_check(){
 
 
 ///////////////////////////// Disable Right Click + Inspect Element ////////////////////////////////////////////////////
-/*
+
 
 document.addEventListener("contextmenu", (e) => e.preventDefault());
 document.addEventListener("keydown", (e) => {
@@ -1075,7 +1075,7 @@ setInterval(function() {
     } catch(e) {}
 }, 1000)
 
-*/
+/**/
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
