@@ -85,7 +85,7 @@ left: 50%;          /* Start from center */
           height: auto;
           max-height: 40px;
           color: gray;
-          font-size: 1.2em;
+          font-size: 11px;
           font-family: 'Courier New';
           background: transparent;
 }
@@ -120,6 +120,7 @@ left: 50%;          /* Start from center */
     padding: 20px;
     box-sizing: border-box;
     margin-top: 15px;
+    font-family : Calibri;
 }
 
 .Info_container_toggle_content_SHOW_SUMMARY_icon{
