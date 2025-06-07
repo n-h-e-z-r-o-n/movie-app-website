@@ -387,11 +387,15 @@ async function AddToFav(movie, widget){
     delete movie.tagline;
     delete movie.type;
     delete movie.vote_count;
-    delete movie.backdrop_path
-    delete movie.last_air_date
-    delete movie.genres
-    delete movie.last_episode_to_air
-    delete movie.backdrop_path
+    delete movie.backdrop_path;
+    delete movie.last_air_date;
+    delete movie.genres;
+    delete movie.last_episode_to_air;
+    delete movie.belongs_to_collection;
+    delete movie.budget;
+    delete movie.imdb_id;
+    delete movie.revenue;
+    delete movie.video;
 
     if(movie.S_info){
        delete movie.runtime
