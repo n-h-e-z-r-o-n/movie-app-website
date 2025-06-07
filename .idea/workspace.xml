@@ -5,70 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc84c571-4efa-41b6-b298-1c0cbea8a6aa" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APPS/Movionyx.apk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/APPS/onyx.apk" beforeDir="false" afterPath="$PROJECT_DIR$/APPS/onyx.apk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/.idea/appInsightsSettings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/.idea/deploymentTargetSelector.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/.idea/migrations.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/.idea/runConfigurations.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/build.gradle.kts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/proguard-rules.pro" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/src/androidTest/java/com/example/movionyx/ExampleInstrumentedTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/src/main/AndroidManifest.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/src/main/ic_launcher-playstore.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/src/main/java/com/example/movionyx/CustomWebChromeClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/src/main/java/com/example/movionyx/MainActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/src/main/res/drawable/ic_launcher_foreground.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Android/movionyx_code/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/src/main/res/mipmap-hdpi/ic_launcher.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/src/main/res/mipmap-hdpi/ic_launcher_round.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/src/main/res/mipmap-mdpi/ic_launcher.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/src/main/res/mipmap-mdpi/ic_launcher_round.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/src/main/res/mipmap-xhdpi/ic_launcher.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/src/main/res/mipmap-xxhdpi/ic_launcher.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/src/main/res/values-night/themes.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/src/main/res/values/colors.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/src/main/res/values/ic_launcher_background.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/src/main/res/values/strings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/src/main/res/values/themes.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/src/main/res/xml/backup_rules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/src/main/res/xml/data_extraction_rules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/app/src/test/java/com/example/movionyx/ExampleUnitTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/build.gradle.kts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/gradle.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/gradle/libs.versions.toml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/gradlew.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/Movionyx/settings.gradle.kts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/x_local/Database/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/Database/database.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/x_local/NavBar.css" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/NavBar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/x_local/NavBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/NavBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/x_local/custon.css" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/custon.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/x_local/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/x_local/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/profile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/x_local/watch.css" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/watch.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/x_local/watch.js" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/watch.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

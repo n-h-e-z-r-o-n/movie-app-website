@@ -543,7 +543,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: 30px;
+    font-size: 27px;
     font-weight: bold;
     color: var(--global-color-fg);
     display: flex;
@@ -1230,6 +1230,9 @@ Terms_Details_content::-webkit-scrollbar {
         }
         .Login_others{
            font-size: 1em;
+        }
+        .section_sel{
+           display: none;
         }
 }
 
