@@ -363,7 +363,7 @@ async function PlayTrailer(id_play, type){
 
 async function AddToFav(movie, widget){
 
-    console.log(movie);
+    //console.log(movie);
 
     delete movie.adult;
     delete movie.networks;
@@ -396,6 +396,8 @@ async function AddToFav(movie, widget){
     delete movie.imdb_id;
     delete movie.revenue;
     delete movie.video;
+    delete movie.original_title;
+
 
     if(movie.S_info){
        delete movie.runtime

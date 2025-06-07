@@ -260,7 +260,7 @@ function Search_Results_SHOW(movies) {
   //console.log(movies);
   search_R_div.innerHTML = "";
   movies.forEach((movie) => {
-    let { title, original_name, poster_path, id, vote_average, overview, release_date, first_air_date , runtime, S_info} = movie;
+  let { title, original_name, poster_path, id, vote_average, release_date, first_air_date , runtime, S_info} = movie;
     //console.log(movie);
     //console.log('\n original_title: ', title, '\n original_name: ', original_name, '\n poster_path: ', poster_path, '\n id: ', id, '\n vote_average: ', vote_average, '\n overview: ', overview, '\n release_date: ', release_date, '\n first_air_date: ', first_air_date , '\n runtime: ', runtime, '\n S_info: ', S_info);
 
