@@ -330,7 +330,7 @@ async function Search_url(search_term, div_element, type) {
 //d
 
 async function fetchMovies(num) {
-    let url = `https://yts.mx/api/v2/list_movies.json?page=${home_page_count}&limit=50&sort_by=year` // download_count
+    let url = `https://yts.mx/api/v2/list_movies.json?page=${home_page_count}&limit=50&sort_by=download_count` // download_count
     const response = await fetch(url);
     const data = await response.json();
 
