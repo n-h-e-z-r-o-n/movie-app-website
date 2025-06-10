@@ -779,7 +779,6 @@ document.getElementById('loginForm').addEventListener('click', async function(e)
 
             messageDiv.classList.add('loading_active');
 
-
             const response = await fetch('Database/database.php', {
             method: 'POST',
             headers: {

@@ -1,6 +1,6 @@
 
 :root {
---global-color-bg:  hsl(222, 25%, 10%)  !important; /* #050301     #1D2951  #003153  #0F0404;*/
+--global-color-bg:  #050301 !important; /* #050301     #1D2951  #003153  #0F0404;*/
 --global-color-fg: white !important;
 --color_theme:  hsl(186 100% 69%);
 --section_header_color: #020403; /*#1B1B1B;*/
@@ -55,7 +55,7 @@ body , html {
   user-select: none;
   left: 0;
   top: 4px;
-  background:  #0C2340;
+  background:  #1B1B1B;
   position: relative;
   display: flex;
   flex-direction: column; /* Stack children vertically */
@@ -268,7 +268,7 @@ body , html {
   background: #2A3439 !important;
   overflow-y: auto;
   white-space: pre-wrap;
-  display: block;
+  display: none;
   padding: 1%;
   flex-shrink: 0;
   flex: 1;
@@ -285,6 +285,26 @@ body , html {
     background: transparent;
     user-select: none;
 }
+
+.Movie_List_container_nav{
+  background: #1B1B1B;
+  width: 100%;
+  height: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: auto;
+  justify-content: center;
+  align-items: center;
+
+}
+.Movie_List_container_nav_each{
+  height: 100%;
+  width: auto;
+  margin: auto;
+  color: gray;
+  font-size: 14px;
+}
+
 
 .TvShow_List_container {
     display: none;
@@ -538,13 +558,12 @@ body , html {
     margin: auto;
     margin-top: 10px;
     margin-bottom: 10px;
-    float: right;
     border: 4px solid transparent;
 }
 
 .box-img{
     width:  100%;
-    height: 80%;
+    height: 300px;
     cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='8' fill='%2300BFFF'/></svg>") 8 8, pointer;
     background-color: transparent;
     border-radius: inherit;
@@ -561,23 +580,20 @@ body , html {
     object-fit: fill;
     border-radius: inherit;
     background-color: transparent;
-
 }
 
 
 
 .box_title {
         width: 100%;
-        margin: 0px 1px 0px 1px;
-        height: 10%;
-        font-size: clamp(0.65em, 0.9em, .9em);
+        height: 15px;
+        font-size: 12px;
         font-weight: bold;
         font-family: 'Candara';
-        overflow:hidden;
+        overflow: hidden;
         align-item: center;
         white-space: nowrap;
         text-overflow: ellipsis;
-        display: inline-flex;
         background: transparent;
 }
 
@@ -623,18 +639,29 @@ body , html {
 @media (max-width: 968px) {
 
         .box {
-        width:  120px;
-        height: 210px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        background: transparent;
+            width:  120px;
+            height: 210px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
 
+        .box-img{
+            width:  100%;
+            height: 170px;
+            margin: 0px;
+        }
+
+        .box_title {
+            height:   10px;
+            font-size: 8px;
+            font-family: 'Calibri Light';
+            margin-top: 3px;
+        }
+
+
         .View_More_container, .View_More_movie_container{
-
-        left: 50%;
-        width: 98%;
-        height:50%;
-
+            left: 50%;
+            width: 98%;
+            height:50%;
         }
 
         .View_More_image{

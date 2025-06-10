@@ -6,9 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="cc84c571-4efa-41b6-b298-1c0cbea8a6aa" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APPS/onyx.apk" beforeDir="false" afterPath="$PROJECT_DIR$/APPS/onyx.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/Admin/admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/Admin/admin.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/x_local/Admin/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/Admin/admin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/x_local/Admin/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/Admin/data.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/Admin/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/Admin/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/Admin/tracks.json" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/Admin/tracks.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x_local/NavBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/x_local/NavBar.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

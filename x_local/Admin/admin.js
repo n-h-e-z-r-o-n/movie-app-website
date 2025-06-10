@@ -20,6 +20,7 @@ let Tv_nav= document.getElementById('Tv_nav')
 
 
 let Movie_div= document.getElementById('Movie_Results')
+Movie_div_nav = document.getElementById('Movie_Results_nav')
 let TV_div= document.getElementById('TV_Results')
 let Home_div= document.getElementById('Home_Results')
 let Search_div= document.getElementById('Search_Results')
@@ -48,6 +49,7 @@ const headers = {
 };
 
 let section_container;
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////     SEARCH       /////////////////////////////////////////////////////////
@@ -66,10 +68,9 @@ document.getElementById('Search_Movie').addEventListener('keypress', function(ev
 
         Search_div.style.display =  'flex';
         Movie_div.style.display = 'none';
+        Movie_div_nav.style.display = 'none';
         TV_div.style.display = 'none';
         Home_div.style.display =  'none';
-
-        //console.log("Movies: \t", searchValue)
         Search_url(searchValue, Search_div, 'movie')
     } else {
      Search_div.style.display =  'none';
@@ -88,6 +89,7 @@ document.getElementById('Search_TvShow').addEventListener('keypress', function(e
 
         Search_div.style.display =  'flex';
         Movie_div.style.display = 'none';
+        Movie_div_nav.style.display = 'none';
         TV_div.style.display = 'none';
         Home_div.style.display =  'none';
 
@@ -103,6 +105,7 @@ document.getElementById('Search_TvShow').addEventListener('keypress', function(e
 
 Home_nav.addEventListener('click', function(event) {
        Movie_div.style.display = 'none';
+       Movie_div_nav.style.display = 'none';
        TV_div.style.display = 'none';
        Search_div.style.display = 'none';
        Home_div.style.display =  'flex';
@@ -117,6 +120,7 @@ Home_nav.addEventListener('click', function(event) {
 
 Movie_nav.addEventListener('click', function(event) {
        Movie_div.style.display = 'flex';
+       Movie_div_nav.style.display = 'flex';
        TV_div.style.display = 'none';
        Search_div.style.display = 'none';
        Home_div.style.display =  'none';
@@ -136,6 +140,7 @@ Movie_nav.addEventListener('click', function(event) {
 
 Tv_nav.addEventListener('click', function(event) {
        Movie_div.style.display = 'none';
+       Movie_div_nav.style.display = 'none';
        Search_div.style.display = 'none';
        Home_div.style.display =  'none';
        TV_div.style.display = 'flex';
@@ -301,6 +306,7 @@ document.getElementById('View_More_Movie_container_close').addEventListener('cli
 let home_page_count =    parseInt(localStorage.getItem("home_page_count")) || 1;
 let home_page_data = JSON.parse(localStorage.getItem("home_page_data")) || [];
 //console.log("home_page_data", home_page_data);
+let fetchMovies_ulr = localStorage.getItem("fetchMovies_ulr") || `https://yts.mx/api/v2/list_movies.json?page=${home_page_count}&limit=50&sort_by=year`
 
 if(home_page_data.length > 0){
    showMovies(home_page_data)
@@ -327,18 +333,97 @@ async function Search_url(search_term, div_element, type) {
         Show_tv_SearchResults(data.results, div_element)
     }
 }
-//d
 
-async function fetchMovies(num) {
-    let url = `https://yts.mx/api/v2/list_movies.json?page=${home_page_count}&limit=50&sort_by=download_count` // download_count
-    const response = await fetch(url);
+
+
+
+
+async function fetchMovies() {
+
+    const response = await fetch(fetchMovies_ulr);
     const data = await response.json();
 
     home_page_data  =  home_page_data.concat(data.data.movies);
     localStorage.setItem("home_page_data", JSON.stringify(home_page_data));
     showMovies(data.data.movies)
-
+    console.log('status')
 }
+
+
+
+
+document.getElementById('Movie_List_container_nav_each_Year').addEventListener('click', function(event) {
+
+   home_page_count = 1
+   home_page_data = []
+   fetchMovies_ulr =  `https://yts.mx/api/v2/list_movies.json?page=${home_page_count}&limit=50&sort_by=year` // download_count
+   localStorage.setItem("fetchMovies_ulr", fetchMovies_ulr);
+   Movie_div.innerHTML = '';
+   fetchMovies()
+           document.querySelectorAll('.Movie_List_container_nav_each').forEach(el => {
+            el.style.color = '';
+        });
+   this.style.color = "#6DA9D2";
+});
+
+document.getElementById('Movie_List_container_nav_each_like_count').addEventListener('click', function(event) {
+
+   home_page_count = 1
+   home_page_data = []
+   fetchMovies_ulr =  `https://yts.mx/api/v2/list_movies.json?page=${home_page_count}&limit=50&sort_by=like_count` // like_count
+   localStorage.setItem("fetchMovies_ulr", fetchMovies_ulr);
+   Movie_div.innerHTML = '';
+   fetchMovies()
+   document.querySelectorAll('.Movie_List_container_nav_each').forEach(el => {
+         el.style.color = '';
+   });
+        this.style.color = "#6DA9D2";
+});
+
+document.getElementById('Movie_List_container_nav_each_date_added').addEventListener('click', function(event) {
+
+   home_page_count = 1;
+   home_page_data = []
+   fetchMovies_ulr =  `https://yts.mx/api/v2/list_movies.json?page=${home_page_count}&limit=50&sort_by=date_added` // date_added
+   localStorage.setItem("fetchMovies_ulr", fetchMovies_ulr);
+   Movie_div.innerHTML = '';
+   fetchMovies()
+   document.querySelectorAll('.Movie_List_container_nav_each').forEach(el => {
+         el.style.color = '';
+   });
+   this.style.color = "#6DA9D2";
+});
+
+document.getElementById('Movie_List_container_nav_each_download_count').addEventListener('click', function(event) {
+
+   home_page_count = 1
+   home_page_data = []
+   fetchMovies_ulr =  `https://yts.mx/api/v2/list_movies.json?page=${home_page_count}&limit=50&sort_by=download_count` // download_count
+   localStorage.setItem("fetchMovies_ulr", fetchMovies_ulr);
+   Movie_div.innerHTML = '';
+   fetchMovies()
+      document.querySelectorAll('.Movie_List_container_nav_each').forEach(el => {
+         el.style.color = '';
+   });
+   this.style.color = "green";
+});
+
+document.getElementById('Movie_List_container_nav_each_rating').addEventListener('click', function(event) {
+
+   home_page_count = 1
+   home_page_data = []
+   fetchMovies_ulr =  `https://yts.mx/api/v2/list_movies.json?page=${home_page_count}&limit=50&sort_by=rating` // download_count
+
+   localStorage.setItem("fetchMovies_ulr", fetchMovies_ulr);
+   Movie_div.innerHTML = '';
+   fetchMovies()
+      document.querySelectorAll('.Movie_List_container_nav_each').forEach(el => {
+         el.style.color = '';
+   });
+   this.style.color = "green";
+});
+
+
 
 async function Show_SearchResults(movies, dive_element) {
   dive_element.innerHTML = '';
@@ -380,9 +465,9 @@ async function Show_SearchResults(movies, dive_element) {
 
 
 async function showMovies(movies) {
-  // console.log("movies : ", movies)
+  //console.log("movies : ", movies)
   movies.forEach((movie) => {
-        let { id, title, year, imdb_code, large_cover_image, torrents } = movie;
+        let { rating, id, title, year, imdb_code, large_cover_image, torrents } = movie;
 
         const movieItem = document.createElement("div");
         movieItem.classList.add("box");
@@ -399,6 +484,8 @@ async function showMovies(movies) {
                  </div>
                  <div class="box_title">${title}</div>
                  <div class="box_title">${year}</div>
+                 <div class="box_title">${rating}</div>
+
               </div>
         `;
        Movie_div.appendChild(movieItem);
