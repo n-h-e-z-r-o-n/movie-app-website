@@ -6,7 +6,6 @@ if(!div_mob){
    document.querySelector('.reload_btn').classList.add('hid_element');
 } else{
    document.querySelector('.search_btn').classList.add('hid_element');
-
 }
 
 let lastScrollTop = 0;
