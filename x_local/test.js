@@ -1,27 +1,56 @@
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    function scrambleToText(el, finalText, speed = 40) {
+      const chars = '!<>-_\\/[]{}—=+*^?#________'
+      const queue = []
+      const length = finalText.length
 
+      for (let i = 0; i < length; i++) {
+        queue.push({
+          to: finalText[i],
+          char: '',
+          done: false,
+          frame: 0,
+          maxFrames: Math.floor(Math.random() * speed+ speed)
+        })
+      }
 
+      function randomChar() {
+        return chars[Math.floor(Math.random() * chars.length)]
+      }
 
-  fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://nyaa.si/?f=0&c=1_2&q=jujutsu+kaisen'))
-    .then(response => response.json())
-    .then(data => {
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(data.contents, 'text/html');
-      const rows = doc.querySelectorAll('table.torrent-list tbody tr');
+      function update() {
+        let output = ''
+        let complete = 0
 
-      rows.forEach(row => {
-        const title = row.querySelector('td:nth-child(2) a:not(.comments)')?.textContent;
-        const magnet = row.querySelector('td:nth-child(3) a[href^="magnet"]')?.href;
-        console.log({ title, magnet });
-      });
-    });
+        for (let i = 0; i < length; i++) {
+          const q = queue[i]
+          if (q.done) {
+            output += q.to
+            complete++
+          } else {
+            if (q.frame >= q.maxFrames) {
+              q.done = true
+              output += q.to
+            } else {
+              if (q.frame === 0 || Math.random() < 0.5) {
+                q.char = randomChar()
+              }
+              output += `<span class="dud">${q.char}</span>`
+              q.frame++
+            }
+          }
+        }
 
+        el.innerHTML = output
 
+        if (complete < length) {
+          requestAnimationFrame(update)
+        }
+      }
 
+      update()
+    }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
+    // Usage
+    const el = document.querySelector('.text')
+    scrambleToText(el, "Hello World!", 40)

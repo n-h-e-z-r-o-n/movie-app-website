@@ -81,6 +81,13 @@ async function cast_credits (type, id){
              profileDiv.style.backgroundSize = 'cover';
              profileDiv.style.backgroundPosition = 'center';
 
+             const profile_name = movieItem.querySelector('.cast_credits_each_name');
+             scrambleToText(profile_name, name, 70)
+
+             const profile_character = movieItem.querySelector('.cast_credits_each_character');
+             scrambleToText(profile_character, character, 60)
+
+
              profileDiv.addEventListener("click", async (e) => {
                  e.stopPropagation();
                  window.location.href = "Actor.html?id=" + cast_id;
@@ -221,7 +228,7 @@ async function SHOW_INFOs(id, type) {
 
 
 async function Show_Info(info_data, type){
-    //console.log(info_data)
+    console.log(info_data)
     const no_select = document.getElementById("no_select");
     no_select.style.background = 'hsl(222, 25%, 10%)';
 
@@ -381,6 +388,8 @@ async function Show_Info(info_data, type){
 
     overview1.innerHTML = info_data['overview'];
     overview2.innerHTML = info_data['overview'];
+    //scrambleToText(overview1, info_data['overview'], 80)
+    //scrambleToText(overview2, info_data['overview'], 80)
 
     //------------------------------------------------------------------------------------------------------------------
 

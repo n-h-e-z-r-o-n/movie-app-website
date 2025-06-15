@@ -1047,11 +1047,69 @@ async function notification_check(){
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+async function scrambleToText(el, finalText, speed = 40) {
+      const chars = '█▓▒░<>\\/|_‖∆Ω≡≠∑√ΦΞ※Λ⋆+*#?~'
+      const queue = []
+      const length = finalText.length
+
+      for (let i = 0; i < length; i++) {
+        queue.push({
+          to: finalText[i],
+          char: '',
+          done: false,
+          frame: 0,
+          maxFrames: Math.floor(Math.random() * speed+ speed)
+        })
+      }
+
+      function randomChar() {
+        return chars[Math.floor(Math.random() * chars.length)]
+      }
+
+      function update() {
+        let output = ''
+        let complete = 0
+
+        for (let i = 0; i < length; i++) {
+          const q = queue[i]
+          if (q.done) {
+            output += q.to
+            complete++
+          } else {
+            if (q.frame >= q.maxFrames) {
+              q.done = true
+              output += q.to
+            } else {
+              if (q.frame === 0 || Math.random() < 0.5) {
+                q.char = randomChar()
+              }
+              output += `<span class="dud" style="color: #1B1B1B; opacity: 0.1;">${q.char}</span>`
+              q.frame++
+            }
+          }
+        }
+
+        el.innerHTML = output
+
+
+        if (complete < length) {
+          requestAnimationFrame(update)
+        }
+      }
+
+      update()
+
+    }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 ///////////////////////////// Disable Right Click + Inspect Element ////////////////////////////////////////////////////
 
-
+/*
 document.addEventListener("contextmenu", (e) => e.preventDefault());
 document.addEventListener("keydown", (e) => {
   if (e.ctrlKey && (e.key === "u" || e.key === "U")) {
@@ -1074,7 +1132,7 @@ setInterval(function() {
     } catch(e) {}
 }, 1000)
 
-/**/
+*/
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

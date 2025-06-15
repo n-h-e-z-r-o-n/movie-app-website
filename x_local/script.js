@@ -532,7 +532,7 @@ async function Latest_Movies(event, page, type) {
      }
 
      hold.push({poster_path:data_json[i]['medium_cover_image'], release_date:data_json[i]['year'], vote_average:data_json[i]['rating'], title:data_json[i]['title_english'], id:data.id, runtime:data_json[i]['runtime']});
-     showMovies([{poster_path:data_json[i]['medium_cover_image'], release_date:data_json[i]['year'], vote_average:data_json[i]['rating'], title:data_json[i]['title_english'], id:data.id, runtime:data_json[i]['runtime']}]);
+     showMovies([{poster_path:data_json[i]['medium_cover_image'], release_date:data_json[i]['year'], vote_average:data_json[i]['rating'], title:data_json[i]['title_english'], id:data.id, runtime:data_json[i]['runtime']}], true);
   }
   Let_Movies_CK = hold;
   movie_div.innerHTML = "";
@@ -546,7 +546,7 @@ async function sleep(ms) {
 
 
 
-async function showMovies(movies) {
+async function showMovies(movies, num) {
   movies.forEach((movie) => {
     let { title, poster_path, id, vote_average, overview, release_date, runtime } = movie;
     if(!id){
@@ -578,7 +578,19 @@ async function showMovies(movies) {
                <div  class="badge-type_rating"> &starf;  ${vote_average} </div>
             </div>
     `;
+    if(num){
+        const box_title = movieItem.querySelector('.box_title');
+        scrambleToText(box_title, title, 20)
 
+        const badge_type_year = movieItem.querySelector('.badge-type_year');
+        scrambleToText(badge_type_year, `${release_date}`, 10)
+
+        const badge_type_text = movieItem.querySelector('.badge-type_text');
+        scrambleToText(badge_type_text, runtime, 10)
+
+        const badge_type_rating = movieItem.querySelector('.badge-type_rating');
+        scrambleToText(badge_type_rating, `&starf;  ${vote_average} `, 20)
+    }
     const boxImg = movieItem.querySelector(".box-img");
     boxImg.addEventListener("click", async (e) => {
         e.stopPropagation();
@@ -658,7 +670,7 @@ async function Latest_episode(event, page) {
                 //console.log(data2)
                 hold.push({poster_path:data2['poster_path'], first_air_date:data2['first_air_date'], vote_average:data2['vote_average'], original_name:data2['name'], id:data2['id'], S_info: seasons_episode});
                 id_prev = data2['id'];
-                showTV([{poster_path:data2['poster_path'], first_air_date:data2['first_air_date'], vote_average:data2['vote_average'], original_name:data2['name'], id:data2['id'], S_info: seasons_episode}]);
+                showTV([{poster_path:data2['poster_path'], first_air_date:data2['first_air_date'], vote_average:data2['vote_average'], original_name:data2['name'], id:data2['id'], S_info: seasons_episode}], true);
             }
           }
         }finally{continue;}
@@ -673,7 +685,11 @@ async function Latest_episode(event, page) {
 
 // SHOW TV SECTION -----------------------------------------------------------------------
 
-function showTV(movies) {
+function showTV(movies, num) {
+  movies = Array.from(
+   new Map(movies.map(movie => [movie.id, movie])).values()
+  );
+
   movies.forEach((movie) => {
     let {id, original_name, poster_path, vote_average, overview, first_air_date, S_info } = movie;
     if(!id){
@@ -709,10 +725,20 @@ function showTV(movies) {
 
     `;
 
-    // Add event listener to open another page when clicked
-    //movieItem.addEventListener("click", () => {
-    //window.location.href = "watch.html?id=" + id + "&type=tv";
-    //
+    //console.log(num)
+    if(num){
+        const box_title = movieItem.querySelector('.box_title');
+        scrambleToText(box_title, original_name, 20)
+
+        const badge_type_year = movieItem.querySelector('.badge-type_year');
+        scrambleToText(badge_type_year, `${updatedString}`, 10)
+
+        const badge_type_text = movieItem.querySelector('.badge-type_text');
+        scrambleToText(badge_type_text, S_info, 10)
+
+        const badge_type_rating = movieItem.querySelector('.badge-type_rating');
+        scrambleToText(badge_type_rating, `&starf;  ${vote_average} `, 20)
+    }
 
     const boxImg = movieItem.querySelector(".box-img");
     boxImg.addEventListener("click", async (e) => {
@@ -845,11 +871,10 @@ async function more_movie(){
                      }
 
                      hold.push({poster_path:data_json[i]['medium_cover_image'], release_date:data_json[i]['year'], vote_average:data_json[i]['rating'], title:data_json[i]['title_english'], id:data.id, runtime:data_json[i]['runtime']});
-                     showMovies([{poster_path:data_json[i]['medium_cover_image'], release_date:data_json[i]['year'], vote_average:data_json[i]['rating'], title:data_json[i]['title_english'], id:data.id, runtime:data_json[i]['runtime']}]);
+                     showMovies([{poster_path:data_json[i]['medium_cover_image'], release_date:data_json[i]['year'], vote_average:data_json[i]['rating'], title:data_json[i]['title_english'], id:data.id, runtime:data_json[i]['runtime']}], true);
             }
             button.innerHTML = "Show More &#x21b4;";
             button.setAttribute('data-state', 'show-more');
-            //showMovies(hold)
             const name = localStorage.getItem('Movies');
             const parsedSeries = JSON.parse(name);
             hold = parsedSeries.concat(hold);
@@ -901,7 +926,7 @@ async function more_series(){
                         }
 
                       hold.push({poster_path:data2['poster_path'], first_air_date:data2['first_air_date'], vote_average:data2['vote_average'], original_name:data2['name'], id:data2['id'], S_info: seasons_episode});
-                      showTV([{poster_path:data2['poster_path'], first_air_date:data2['first_air_date'], vote_average:data2['vote_average'], original_name:data2['name'], id:data2['id'], S_info: seasons_episode}]);
+                      showTV([{poster_path:data2['poster_path'], first_air_date:data2['first_air_date'], vote_average:data2['vote_average'], original_name:data2['name'], id:data2['id'], S_info: seasons_episode}], true);
                       id_prev = data2['id'];
                     }
                   }
@@ -909,12 +934,13 @@ async function more_series(){
             }
             button.innerHTML = "Show More &#x21b4;";
             button.setAttribute('data-state', 'show-more');
-            //showTV(hold);
-
 
             const name = localStorage.getItem('Series');
             const parsedSeries = JSON.parse(name);
             hold = parsedSeries.concat(hold);
+            hold = Array.from(
+               new Map(hold.map(movie => [movie.id, movie])).values()
+            );
             localStorage.setItem("Series", JSON.stringify(hold));
   }
 }

@@ -65,6 +65,7 @@
     align-items: center;
     justify-content: center;
     color: var(--global-color-bg);
+    background: gray;
     font-size: 1.1em;
     font-family: 'Brush Script';
 }
@@ -74,7 +75,7 @@
 }
 
 .shows_contaner_nav div.active{
-  background-color: gray;
+  background-color: white;
 }
 
 .each_box {

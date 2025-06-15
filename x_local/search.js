@@ -20,7 +20,6 @@ const search_R_div = document.getElementById("Search_Results");
  //console.log(searchTerm);
 
  if (searchTerm) {
-
    SearchShows(SEARCH_MOVIE_API + searchTerm);    // code to fetch and display search results here
  } else {
 
@@ -70,7 +69,7 @@ function Search_Results_SHOW(movies) {
     //console.log(movie);
     if (media_type === "person"){
        let {known_for_department, name, profile_path } = movie;
-       style = "border-radius: 50%; background-color: green;"
+       style = "border-radius: 50%; background-color: #1B1B1B;"
        date =''
        title = name;
        poster_path = profile_path
@@ -127,6 +126,20 @@ function Search_Results_SHOW(movies) {
     // Add event listener to open another page when clicked
     //movieItem.addEventListener("click", () => {
     //window.location.href = "watch_page.html?id=" + id + "&type="+type;
+
+    if(true){
+        const box_title = movieItem.querySelector('.box_title');
+        scrambleToText(box_title, title, 20)
+
+        const badge_type_year = movieItem.querySelector('.badge-type_year');
+        scrambleToText(badge_type_year, `${date}`, 10)
+
+        const badge_type_text = movieItem.querySelector('.badge-type_text');
+        scrambleToText(badge_type_text, info, 10)
+
+        const badge_type_rating = movieItem.querySelector('.badge-type_rating');
+        scrambleToText(badge_type_rating, `&starf;  ${vote_average} `, 20)
+    }
 
     const boxImg = movieItem.querySelector(".box-img");
     boxImg.addEventListener("click", async (e) => {

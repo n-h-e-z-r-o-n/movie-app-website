@@ -104,7 +104,7 @@ body , html {
 
 .box-img-button {
     width: 100%;
-    bottom: 0%; /* Move the button 50% down */
+    bottom: 40%; /* Move the button 50% down */
     position: absolute;
     outline: none;
     border: none;
@@ -119,31 +119,44 @@ body , html {
 
 
 .button_style2, .button_style1 {
-    background: transparent;
-    border: 1px solid var(--Brand_Color);
+    border: 1px solid transparent;
     color: white;
-    border-radius: 4%;
-    width:  40%; /* Width of the circle */
-    height: auto; /* Height of the circle (same as width for a perfect circle) */
+    border-radius: 50%;
+    width:  60px; /* Width of the circle */
+    height: 60px; /* Height of the circle (same as width for a perfect circle) */
     align-items: center; /* Vertically center text */
+    text-align: center;
     justify-content: center; /* Horizontally center text */
     display: flex; /* Use Flexbox for centering */
-    font-size: 20px;
+    font-size: 40px;
     padding: 1%;
     white-space: nowrap;
     text-overflow: ellipsis;
     cursor: pointer;
-    font-size: 1em;
     overflow: hidden;
     transition: all 0.3s ease;
+    font-weight: bold;
+
+}
+.button_style1{
+   background: yellow !important;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+   color: black !important;
+
+}
+
+.button_style2{
+   background: white !important;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+   color: black !important;
 }
 
 .button_style1::before {
-    content: "Trailer"; /* Emoji + text */
-
+    content: "	\25B6";
+    font-size: 25px;
 }
 .button_style2::before {
-    content: "Add to Fav";
+    content: "+";
 }
 
 .button_style3 {
@@ -153,13 +166,13 @@ body , html {
 
 .button_style2:hover {
     color:   #DAA520;
-    border: 1px solid #DAA520;
+    border: 1px solid var(--Brand_Color);
     cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='8' fill='%23DAA520'/></svg>") 8 8, pointer;
 }
 
 .button_style1:hover {
     color:   #DAA520;
-    border: 1px solid #DAA520;
+    border: 1px solid var(--Brand_Color);
     cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='8' fill='%23DAA520'/></svg>") 8 8, pointer;
 }
 
@@ -168,7 +181,7 @@ body , html {
         width: 100%;
         margin: 0px 1px 0px 1px;
         height: 8%;
-        font-size: 1rem;
+        font-size: 14px;
         font-style: bold;
         font-family: 'Candara';
         overflow:hidden;
@@ -192,7 +205,7 @@ body , html {
     border: 0.1px solid var(--global-color-fg);
     padding: 0 2px;
     color: var(--global-color-fg);
-    font-size: 1em;
+    font-size: 10px;
     border-radius: .2rem;
     margin: 1px;
 }
@@ -201,18 +214,18 @@ body , html {
        color: var(--global-color-fg);
        margin-top: auto; /* Pushes the text to the bottom */
        text-align: center;
-       font-size: .75em;
+       font-size: 8px;
      }
 .badge-type_rating {
    color: var(--global-color-fg);
-   font-size: 1em;
+   font-size: 11px;
 }
 
 .badge-type_text {
     color:var(--global-color-fg);
     display: flex;
     text-align: center;
-    font-size: 1em;
+    font-size: 11px;
     justify-content: center;
 }
 
@@ -247,49 +260,48 @@ body , html {
       background: transparent;/* Ensure the overlay doesn't interfere with clicks */
  }
  .box-img-button {
-     bottom: 4px;
-     height: 30px;
+     bottom: 40%;
  }
   .button_style2 {
-       background: var(--global-color-bg);
-       font-size: 0.85em;
+       width: 50px;
+       height:50px;
+       font-size: 29px;
   }
 
   .button_style1{
-       background: var(--global-color-bg);
-       font-size: 0.85em;
+       width: 50px;
+       height:50px;
+       font-size: 10px;;
   }
 
-  .button_style1::before {
-        content: "Trailer";
-  }
-  .button_style2::before {
-        content: "+ save";
-  }
+
   .box_title{
-        overflow: hidden;
-        position: fixed;
-        width: 100%;
-        bottom: 0;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+     display: none;
   }
 
   .container_span{
      margin: 0px;
      opacity: 0.8;
-     display: none;
+     position: absolute;
+     bottom: 0;
+     width: 100%;
+     backdrop-filter: blur(10px);
+
   }
   .badge-type{
-      display: none;
+    display: none;
   }
   .badge-type_year {
-      display: none;
+   font-size: 9px;
   }
 
-  .badge-type_text {
-        justify-content: flex-start;
-        text-align: left;
+  .badge-type_text{
+    font-size: 9px;
   }
+  .badge-type_rating{
+    font-size: 9px;
+  }
+
+
 
 }

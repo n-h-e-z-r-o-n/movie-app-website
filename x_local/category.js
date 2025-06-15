@@ -187,6 +187,7 @@ show_movies.addEventListener("click", () => { //dblclick
             show_movies2.classList.add("active");
             show_tv.classList.remove("active");
             show_tv2.classList.remove("active");
+            localStorage.setItem('C_CAT_T', 'mv')
         });
 
  show_movies2.addEventListener("click", () => { //dblclick
@@ -195,6 +196,7 @@ show_movies.addEventListener("click", () => { //dblclick
             show_movies2.classList.add("active");
             show_tv.classList.remove("active");
             show_tv2.classList.remove("active");
+            localStorage.setItem('C_CAT_T', 'mv')
         });
 
 
@@ -205,7 +207,8 @@ show_tv.addEventListener("click", () => { //dblclick
            show_tv2.classList.add("active");
            show_movies.classList.remove("active");
            show_movies2.classList.remove("active");
-        });
+           localStorage.setItem('C_CAT_T', 'tv')
+});
 
 show_tv2.addEventListener("click", () => { //dblclick
            show_Series(xcode);
@@ -213,9 +216,14 @@ show_tv2.addEventListener("click", () => { //dblclick
            show_tv2.classList.add("active");
            show_movies.classList.remove("active");
            show_movies2.classList.remove("active");
-        });
+           localStorage.setItem('C_CAT_T', 'tv')
+});
 
-
-
+let  C_CAT_T = localStorage.getItem('C_CAT_T')
+if(C_CAT_T=== 'mv'){
+    show_movies.click();
+}else if(C_CAT_T=== 'tv'){
+    show_tv.click();
+}else {}
 
 

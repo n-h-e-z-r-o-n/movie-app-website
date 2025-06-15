@@ -126,8 +126,21 @@ function Search_Results_SHOW(movies) {
                <div class="badge-type_text"> ${info}</div>
                <div  class="badge-type_rating"> &starf;  ${vote_average} </div>
             </div>
-
     `;
+
+    if(true){
+        const box_title = movieItem.querySelector('.box_title');
+        scrambleToText(box_title, title, 20)
+
+        const badge_type_year = movieItem.querySelector('.badge-type_year');
+        scrambleToText(badge_type_year, `${date}`, 10)
+
+        const badge_type_text = movieItem.querySelector('.badge-type_text');
+        scrambleToText(badge_type_text, info, 10)
+
+        const badge_type_rating = movieItem.querySelector('.badge-type_rating');
+        scrambleToText(badge_type_rating, `&starf;  ${vote_average} `, 20)
+    }
     // Add event listener to open another page when clicked
     //movieItem.addEventListener("click", () => {
     //window.location.href = "watch_page.html?id=" + id + "&type="+type;
