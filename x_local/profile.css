@@ -148,17 +148,62 @@
 }
 
 
-.massages_container {
-    display: flex;
+.Extra_container {
+    display: block;
     flex-wrap: wrap;
     width: 100%;
-    height: auto;
-    gap: 20px; /* Changed from 'auto' - gap needs specific value */
+    height: 100%;
     background: transparent;
     flex: 1 1 1; /* Added missing third value */
     padding: 20px; /* Recommended for container spacing */
     box-sizing: border-box; /* Ensures padding doesn't affect width */
 }
+
+.d_links{
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  width: auto;
+  height: auto;
+  gap: 10px;
+}
+
+.download_btn {
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 250px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    outline: none;
+    text-decoration: none;
+    color: var(--global-color-bg);
+    background:#fff;
+    padding: 10px;
+
+}
+.download_btn *{
+   color: var(--global-color-bg);
+   font-size: 30px;
+}
+
+.download_btn:hover{
+  background: #EAF4FC;
+}
+
+
+
+
+
 
 .remove_fave {
   position: absolute;
@@ -176,6 +221,9 @@
   color: red;
   animation: pulse_glow 1.5s infinite ease-in-out;
 }
+
+
+
 
 /* Smoother animation with consistent glow */
 @keyframes pulse_glow {

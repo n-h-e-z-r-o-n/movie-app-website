@@ -652,50 +652,54 @@ checkAndClearLocalStorage();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+var Authentication_section = document.getElementById("Authentication_section");
 var Login_container  = document.getElementById("Login_container");
-//Login_container.style.display = 'block';
 var Register_container  = document.getElementById("Register_container");
 var Forgot_password_container  = document.getElementById("Forgot_password_container");
 
-var Register  = document.getElementById("Register");
-var Forgot_password  = document.getElementById("Forgot_password");
-var login_change  = document.getElementById("login_change");
-var login_change1  = document.getElementById("login_change1");
+var Register_view  = document.getElementById("Register_view");
+var Forgot_password_view  = document.getElementById("Forgot_password_view");
+var Login_view  = document.getElementById("Login_view");
 
 
-Register.addEventListener("click", function() {
+Register_view.addEventListener("click", function() {
         Register_container.style.display = 'block';
         Login_container.style.display = 'none';
+        Forgot_password_container.style.display = 'none';
+
+        Register_view.style.opacity = '1';
+        Forgot_password_view.style.opacity= '0.3';
+        Login_view.style.opacity = '0.3';
 });
 
 
-login_change.addEventListener("click", function() {
-        Register_container.style.display = 'none';
-        Login_container.style.display = 'block';
-});
-
-
-Forgot_password.addEventListener("click", function() {
+Forgot_password_view.addEventListener("click", function() {
         Login_container.style.display = 'none';
         Forgot_password_container.style.display = 'block';
+        Register_container.style.display = 'none';
 
+        Register_view.style.opacity = '0.3';
+        Forgot_password_view.style.opacity = '1';
+        Login_view.style.opacity ='0.3';
 });
 
-login_change1.addEventListener("click", function() {
+Login_view.addEventListener("click", function() {
         Forgot_password_container.style.display = 'none';
         Login_container.style.display = 'block';
+        Register_container.style.display = 'none';
 
+        Register_view.style.opacity = '0.3';
+        Forgot_password_view.style.opacity = '0.3';
+        Login_view.style.opacity ='1';
 });
 
+Login_view.click()
 
 
 const cancelButtons = document.querySelectorAll('.login_cancel'); // Selects ALL elements with class
 cancelButtons.forEach(button => {
     button.addEventListener('click', function() {
-        Login_container.style.display = 'none';
-        Forgot_password_container.style.display = 'none';
-        Register_container.style.display = 'none';
+            Authentication_section.style.display = 'none';
     });
 });
 
@@ -709,9 +713,9 @@ const handle_account = function() {
     console.log('savedState', savedState)
     if (savedState) {
         window.location.href = "profile.html";
-        Login_container.style.display = 'none';
+        Authentication_section.style.display = 'none';
     }else {
-        Login_container.style.display = 'block';
+        Authentication_section.style.display = 'flex';
     }
 };
 Account_btn.addEventListener("click", handle_account)
@@ -824,7 +828,7 @@ document.getElementById('loginForm').addEventListener('click', async function(e)
                 Account_btn.style.borderRadius = '50%';
                 messageDiv.classList.remove('loading_active');
 
-                Login_container.style.display = 'none';
+                Authentication_section.style.display = 'none';
                 document.getElementById('notification_btnT').style.display = 'flex';
                 notification_check()
             }
@@ -899,7 +903,7 @@ document.getElementById('signUpForm').addEventListener('click', async function(e
                 Account_btn.style.borderRadius = '50%';
 
                 messageDiv.classList.remove('loading_active');
-                Register_container.style.display = 'none';
+                Authentication_section.style.display = 'none';
                 document.getElementById('notification_btnT').style.display = 'flex';
             }
 

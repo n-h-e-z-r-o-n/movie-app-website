@@ -163,54 +163,39 @@
 
 <!--  Login/SignUp section --------------------------------------------------------------------------------------------------------->
 
-<div class="Login_container" id="Login_container">
-        <div class="login_cancel"></div>
+            <div class="Authentication_section" id="Authentication_section">
+                <div class="login_cancel"></div>
+                <div class="Login_container_header">
+                                <div class="" id="Login_view">Login</div>
+                                <div class=""  id="Register_view"  >Sign Up</div>
+                                <div class=""  id="Forgot_password_view" style="opacity: 0.3;" >Reset</div>
+                </div>
+                <div class="Login_container" id="Login_container">
 
-        <div class="Login_container_header">
-                <div class="" id="">Login</div>
-                <div class=""  id="Register" style="opacity: 0.3;" >Sign Up</div>
-        </div>
-        <input id="login_username" autocomplete="off" class="input_form" type="text" placeholder="email" required>
-        <input id="login_password" class="input_form" type="password" placeholder="Password" required>
-        <div class="error" id="login_error_display"></div>
-	    <div  class="Login_btn" id="loginForm">Login</div>
-        <hr>
-        <div class="shift_container">
-                <div class="Login_others" id="Forgot_password">Forgot password</div>
-        </div>
-</div>
+                        <input id="login_username" autocomplete="off" class="input_form" type="text" placeholder="Email" required>
+                        <input id="login_password" class="input_form" type="password" placeholder="Password" required>
+                        <div class="error" id="login_error_display"></div>
+                        <div  class="input_form_submit" id="loginForm">Login</div>
+                </div>
 
 
-<div class="Register_container" id="Register_container">
-        <div class="login_cancel"></div>
-        <div class="Login_container_header">
-                <div class="" id="login_change" style="opacity: 0.3;">Login</div>
-                <div class="" >Sign Up</div>
-        </div>
-        <input  id="sign_up_Name_" autocomplete="off" class="input_form" type="text" placeholder="Full Name" required>
-        <input  id="sign_up_email_" autocomplete="off" class="input_form" type="text" placeholder="Email address" required>
-        <input id='sign_up_password_' class="input_form" type="password" placeholder="Password" required>
-        <input  id='sign_up_password_confirm' class="input_form" type="password" placeholder="Confirm Password" required>
+                <div class="Register_container" id="Register_container">
+                        <input  id="sign_up_Name_" autocomplete="off" class="input_form" type="text" placeholder="Full Name" required>
+                        <input  id="sign_up_email_" autocomplete="off" class="input_form" type="text" placeholder="Email address" required>
+                        <input id='sign_up_password_' class="input_form" type="password" placeholder="Password" required>
+                        <input  id='sign_up_password_confirm' class="input_form" type="password" placeholder="Confirm Password" required>
 
-        <div class="error" id="signup_error_display"></div>
-        <div  class="Sign_up_btn" id="signUpForm">Sign Up</div>
-        <hr>
-        <div class="shift_container">
-        </div>
-</div>
+                        <div class="error" id="signup_error_display"></div>
+                        <div  class="input_form_submit" id="signUpForm">Sign Up</div>
 
-<div class="Forgot_password_container" id="Forgot_password_container">
-        <div class="login_cancel"></div>
-        <input  id="reset_email_" autocomplete="off" class="input_form" type="text" placeholder="Email address" required>
-        <div class="error" id="Forgot_display"></div>
+                </div>
 
-	    <div  class="Forgot_password_btn" id="forget_p_form">Submit</div>
-        <hr>
-        <div class="shift_container">
-                <div class="Login_others" id="login_change1">Login</div>
-        </div>
-</div>
-
+                <div class="Forgot_password_container" id="Forgot_password_container">
+                        <input  id="reset_email_" autocomplete="off" class="input_form" type="text" placeholder="Email address" required>
+                        <div class="error" id="Forgot_display"></div>
+                        <div  class="input_form_submit" id="forget_p_form">Submit</div>
+                </div>
+            </div>
 
  <!--------- Section ------------------------------------------------------------------------------------------------------------>
 
@@ -517,75 +502,75 @@
                 <div class="show_title_section">Categories by Genre</div>
                 <div class="category-grid">
                     <div class="category-card" data-genre="28">
-                        <img src="https://i.postimg.cc/JzfWFmfC/action.jpg" alt="image" class="category_card_img">
+                        <img src="https://i.postimg.cc/JzfWFmfC/action.jpg" alt="" class="category_card_img">
                         <div class="category_gradient_overlay"></div>
                         <div class="category_card_name">Action</div>
                     </div>
 
                     <div class="category-card" data-genre="35">
-                        <img src="https://i.postimg.cc/CKpxqjL8/comedy.jpg" alt="image" class="category_card_img">
+                        <img src="https://i.postimg.cc/CKpxqjL8/comedy.jpg" alt="" class="category_card_img">
                         <div class="category_gradient_overlay"></div>
                         <div class="category_card_name">Comedy</div>
                     </div>
 
                     <div class="category-card" data-genre="53">
-                        <img src="https://i.postimg.cc/3rfrBMxY/thriller.webp" alt="image" class="category_card_img">
+                        <img src="https://i.postimg.cc/3rfrBMxY/thriller.webp" alt="" class="category_card_img">
                         <div class="category_gradient_overlay"></div>
                         <div class="category_card_name">Thriller</div>
                     </div>
 
                     <div class="category-card" data-genre="10752">
-                        <img src="https://image.tmdb.org/t/p/w1280/1uKHoFWyYJn060dpIXUCU7Wbc15.jpg" alt="image" class="category_card_img">
+                        <img src="https://image.tmdb.org/t/p/w1280/1uKHoFWyYJn060dpIXUCU7Wbc15.jpg" alt="" class="category_card_img">
                         <div class="category_gradient_overlay"></div>
                         <div class="category_card_name">War</div>
                     </div>
 
                     <div class="category-card " data-genre="12">
-                        <img src="https://i.postimg.cc/qRRVhRnn/adventure.jpg" alt="image" class="category_card_img">
+                        <img src="https://i.postimg.cc/qRRVhRnn/adventure.jpg" alt="" class="category_card_img">
                         <div class="category_gradient_overlay"></div>
                         <div class="category_card_name">Adventure</div>
                     </div>
 
                     <div class="category-card" data-genre="16">
-                        <img src="https://i.postimg.cc/15pmZ8K5/animated.jpg" alt="image" class="category_card_img">
+                        <img src="https://i.postimg.cc/15pmZ8K5/animated.jpg" alt="" class="category_card_img">
                         <div class="category_gradient_overlay"></div>
                         <div class="category_card_name">Animation</div>
                     </div>
 
                     <div class="category-card" data-genre="35">
-                        <img src="https://i.postimg.cc/XvX6Xq95/crime.jpg" alt="image" class="category_card_img">
+                        <img src="https://i.postimg.cc/XvX6Xq95/crime.jpg" alt="" class="category_card_img">
                         <div class="category_gradient_overlay"></div>
                         <div class="category_card_name">Crime</div>
                     </div>
 
                     <div class="category-card" data-genre="878">
-                        <img src="https://i.postimg.cc/8568BYKP/sci-fi.jpg" alt="image" class="category_card_img">
+                        <img src="https://i.postimg.cc/8568BYKP/sci-fi.jpg" alt="" class="category_card_img">
                         <div class="category_gradient_overlay"></div>
                         <div class="category_card_name">Sci-fi</div>
                     </div>
                     <div class="category-card" data-genre="18">
-                        <img src="https://image.tmdb.org/t/p/w1280/zfJ92ITa8qYedvC7rtmWpXB6cRe.jpg" alt="image" class="category_card_img">
+                        <img src="https://image.tmdb.org/t/p/w1280/zfJ92ITa8qYedvC7rtmWpXB6cRe.jpg" alt="" class="category_card_img">
                         <div class="category_gradient_overlay"></div>
                         <div class="category_card_name">Drama</div>
                     </div>
                     <div class="category-card" data-genre="10751">
-                        <img src="https://image.tmdb.org/t/p/w1280/uPhBxT1LoX7VQkdQbvWXCDJsX66.jpg" alt="image" class="category_card_img">
+                        <img src="https://image.tmdb.org/t/p/w1280/uPhBxT1LoX7VQkdQbvWXCDJsX66.jpg" alt="" class="category_card_img">
                         <div class="category_gradient_overlay"></div>
                         <div class="category_card_name">Family</div>
                     </div>
                     <div class="category-card" data-genre="9648">
-                           <img src="https://image.tmdb.org/t/p/w1280/9Ifb7kDdMH1yCg81oMoYsK7kDj3.jpg" alt="image" class="category_card_img">
+                           <img src="https://image.tmdb.org/t/p/w1280/9Ifb7kDdMH1yCg81oMoYsK7kDj3.jpg" alt="" class="category_card_img">
                            <div class="category_gradient_overlay"></div>
                            <div class="category_card_name">Mystery</div>
                     </div>
                     <div class="category-card" data-genre="99">
-                        <img src="https://image.tmdb.org/t/p/w1280/zocVz88wzfCd2y3RPKxI8qjhRKc.jpg" alt="image" class="category_card_img">
+                        <img src="https://image.tmdb.org/t/p/w1280/zocVz88wzfCd2y3RPKxI8qjhRKc.jpg" alt="" class="category_card_img">
                         <div class="category_gradient_overlay"></div>
                         <div class="category_card_name">Documentary</div>
                     </div>
 
                     <div class="category-card" data-genre="10749">
-                        <img src="https://image.tmdb.org/t/p/w1280/sUQgwo4oCgNVbpIq7ZtIUhF5hOe.jpg" alt="image" class="category_card_img">
+                        <img src="https://image.tmdb.org/t/p/w1280/sUQgwo4oCgNVbpIq7ZtIUhF5hOe.jpg" alt="" class="category_card_img">
                         <div class="category_gradient_overlay"></div>
                         <div class="category_card_name">Romance</div>
                     </div>
@@ -610,7 +595,6 @@
 
                 <div class="footer-brand">
                     <div class="footer-logo"> <p>Movi</p>  <p style="color: #004F98;"> Onyx </p> </div>
-            <a class="download_btn" href="https://github.com/n-h-e-z-r-o-n/movie-app-website/raw/refs/heads/main/APPS/onyx.apk"> Download APK  </a>
 
                     <p class="slogan">
                         This site, <strong class="footer-disclaimer_text">Movionyx</strong>, does not produce or broadcast channels, TV shows, or audiovisual content.

@@ -162,7 +162,7 @@ left: 50%;          /* Start from center */
 }
 
 .credits{
-    width:  80%;
+    width: 80%;
     height: auto;
     max-width:  var(--Max-width);
     margin-left: auto;
@@ -172,25 +172,22 @@ left: 50%;          /* Start from center */
     background: #1B1B1B;
     border-radius: 1em;
     padding: 20px;
+    padding-left: 0px;
+    padding-right: 0px;
     display: block;
     margin-top: 20px;
     box-shadow: 2px 3px 11px rgba(0, 0, 0, .4);
 }
-
-
-
 
 .cast_credits{
     width:  100%;
     height: auto;
     display: flex;
     flex-wrap: wrap;
-    overflow: scroll;
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
     align-items: center;
     justify-content: center;
-
 }
 .cast_credits_title{
    width: 100%;
@@ -223,6 +220,7 @@ left: 50%;          /* Start from center */
   align-items: center;
   text-overflow: ellipsis;
   font-family: 'Courier New';
+
 }
 
 .cast_credits_each_character{
@@ -285,7 +283,8 @@ left: 50%;          /* Start from center */
 }
 
 .container_d1 {
-  width: auto;
+  width: 100%;
+  max-width:  var(--Max-width);
   height: auto;
   display: flex;
   align-items: center;
@@ -293,7 +292,6 @@ left: 50%;          /* Start from center */
   position: absolute;
   z-index: 10;
   bottom: 0;
-  left: 0;
   color: var(--global-color-fg);
   text-align: center;
   justify-content: left;
@@ -301,8 +299,11 @@ left: 50%;          /* Start from center */
   gap: 4px;
   background: transparent;
   height: 40px;
-
- }
+  margin-left: auto;
+  margin-right:auto;
+  left: 50%;
+  transform: translateX(-50%);
+  }
 
 
 .watch_Now_btn{
@@ -320,8 +321,7 @@ left: 50%;          /* Start from center */
   box-shadow: 0 0 10px rgba(0,0,0,.5);
   transition: all .3s;
   white-space: nowrap;
-
-  padding: 5% 5%;
+  padding: 5px 5px;
   background: transparent;
   box-sizing: border-box;
 }
@@ -1024,6 +1024,10 @@ left: 50%;          /* Start from center */
     border: 0px solid;
   }
 
+  .container_d1 {
+    width: 90%;
+  }
+
   .season_info_hold{
     background: transparent;
     width: 90%;
@@ -1154,7 +1158,7 @@ left: 50%;          /* Start from center */
         min-height:  100px;
         width: 100px;
         height: 100px;
-        margin: 7px;
+        margin: 0px;
     }
     .cast_credits_each_name{
         font-size: 11px;

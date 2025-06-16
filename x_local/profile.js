@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 let touchStartX = 0;
 let touchEndX = 0;
-const swipeThreshold = 50;
+const swipeThreshold = 200;
 
 const containers = [
   document.getElementById("profile_container"),
@@ -412,7 +412,10 @@ document.getElementById("User_Image_input").addEventListener('change', (event) =
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
+async function download_initiate(name){
+  console.log(name);
+ //href="https://github.com/n-h-e-z-r-o-n/movie-app-website/raw/refs/heads/main/APPS/onyx.apk"
+}
 
 
 

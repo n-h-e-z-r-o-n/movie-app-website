@@ -285,21 +285,26 @@ body , html {
      position: absolute;
      bottom: 0;
      width: 100%;
-     backdrop-filter: blur(10px);
-
+     background: var(--global-color-bg);
   }
   .badge-type{
     display: none;
   }
   .badge-type_year {
-   font-size: 9px;
+   font-size: 10px;
+   font-weight: bold;
+   margin-top: auto;
   }
 
   .badge-type_text{
-    font-size: 9px;
+    font-size: 10px;
+    font-weight: bold;
+    margin-top: auto;
   }
   .badge-type_rating{
-    font-size: 9px;
+    font-size: 10px;
+    font-weight: bold;
+    margin-top: auto;
   }
 
 
