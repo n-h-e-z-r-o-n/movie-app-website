@@ -23,7 +23,6 @@ if (isset($_GET['search'])) {
             'message' => curl_error($ch)
         ]);
     } else {
-
         echo $response;
         //echo json_encode(['error' => $search]);
     }

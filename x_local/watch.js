@@ -437,7 +437,6 @@ async function Watch_IFRAME(imdb, type, info_data) {
 
                 if(video_id){
                         Watch_iframe_div_content = `<iframe class="iframe_watch"   id="watch-frame" src='https://dna.uns.bio/#${video_id}' width="700px" height="600px" frameborder="0" allowfullscreen></iframe> `;
-
                 }else{
                        Watch_iframe_div_content = ` <iframe  class="iframe_watch"   id="watch-frame" onerror="iframeLoadError()" src='${watch_frame_link_eb}${type}/${imdb}'  frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> `;
                 }

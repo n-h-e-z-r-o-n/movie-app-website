@@ -23,7 +23,6 @@ if (isset($_GET['search'])) {
             'message' => curl_error($ch)
         ]);
     } else {
-        http_response_code(curl_getinfo($ch, CURLINFO_HTTP_CODE));
         echo $response;
     }
 

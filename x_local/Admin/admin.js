@@ -28,10 +28,6 @@ let Search_div= document.getElementById('Search_Results')
 let Search_Movie = document.getElementById('Search_Movie')
 let Search_TV = document.getElementById('Search_TvShow')
 
-
-
-
-
 //let Server_S_location = "https://movionyx.com/Server_S.php"
 
 let Server_S_location = "./Retrive_Movie.php"
@@ -269,7 +265,8 @@ async function Direct_uploadVideo(magnet_link, title, box,  quality){
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+let Tasklist;
+get_Tasklist()
 async function get_Tasklist() {
     const response = await fetch('read_tracks.php');
     Tasklist =  await response.json();
@@ -290,7 +287,6 @@ async function saveUploadedTracks(tracks) {
 }
 
 
-let Tasklist;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -305,13 +301,14 @@ document.getElementById('View_More_Movie_container_close').addEventListener('cli
 
 let home_page_count =    parseInt(localStorage.getItem("home_page_count")) || 1;
 let home_page_data = JSON.parse(localStorage.getItem("home_page_data")) || [];
-//console.log("home_page_data", home_page_data);
-let fetchMovies_ulr = localStorage.getItem("fetchMovies_ulr") || `https://yts.mx/api/v2/list_movies.json?page=${home_page_count}&limit=50&sort_by=year`
+let fetchMovies_ulr = localStorage.getItem("fetchMovies_ulr") || `https://yts.mx/api/v2/list_movies.json?&limit=50&sort_by=year`
+//console.log(fetchMovies_ulr);
+//console.log(home_page_count);
 
 if(home_page_data.length > 0){
    showMovies(home_page_data)
 }else{
-   fetchMovies(home_page_count)
+   fetchMovies()
 }
 
 
@@ -339,16 +336,16 @@ async function Search_url(search_term, div_element, type) {
 
 
 async function fetchMovies() {
-
-    const response = await fetch(fetchMovies_ulr);
+    let url = fetchMovies_ulr + `&page=${home_page_count}`
+    //console.log(url)
+    const response = await fetch(url);
     const data = await response.json();
 
     home_page_data  =  home_page_data.concat(data.data.movies);
     localStorage.setItem("home_page_data", JSON.stringify(home_page_data));
     showMovies(data.data.movies)
-    console.log('status')
+    //console.log('status')
 }
-
 
 
 
@@ -381,13 +378,12 @@ document.getElementById('Movie_List_container_nav_each_like_count').addEventList
 });
 
 document.getElementById('Movie_List_container_nav_each_date_added').addEventListener('click', function(event) {
-
    home_page_count = 1;
    home_page_data = []
-   fetchMovies_ulr =  `https://yts.mx/api/v2/list_movies.json?page=${home_page_count}&limit=50&sort_by=date_added` // date_added
+   fetchMovies_ulr =  `https://yts.mx/api/v2/list_movies.json?limit=50&sort_by=date_added` // date_added
    localStorage.setItem("fetchMovies_ulr", fetchMovies_ulr);
    Movie_div.innerHTML = '';
-   fetchMovies()
+   fetchMovies();
    document.querySelectorAll('.Movie_List_container_nav_each').forEach(el => {
          el.style.color = '';
    });
@@ -395,10 +391,9 @@ document.getElementById('Movie_List_container_nav_each_date_added').addEventList
 });
 
 document.getElementById('Movie_List_container_nav_each_download_count').addEventListener('click', function(event) {
-
    home_page_count = 1
    home_page_data = []
-   fetchMovies_ulr =  `https://yts.mx/api/v2/list_movies.json?page=${home_page_count}&limit=50&sort_by=download_count` // download_count
+   fetchMovies_ulr =  `https://yts.mx/api/v2/list_movies.json?limit=50&sort_by=download_count` // download_count
    localStorage.setItem("fetchMovies_ulr", fetchMovies_ulr);
    Movie_div.innerHTML = '';
    fetchMovies()
@@ -409,11 +404,9 @@ document.getElementById('Movie_List_container_nav_each_download_count').addEvent
 });
 
 document.getElementById('Movie_List_container_nav_each_rating').addEventListener('click', function(event) {
-
    home_page_count = 1
    home_page_data = []
-   fetchMovies_ulr =  `https://yts.mx/api/v2/list_movies.json?page=${home_page_count}&limit=50&sort_by=rating` // download_count
-
+   fetchMovies_ulr =  `https://yts.mx/api/v2/list_movies.json?limit=50&sort_by=rating` // download_count
    localStorage.setItem("fetchMovies_ulr", fetchMovies_ulr);
    Movie_div.innerHTML = '';
    fetchMovies()
@@ -431,7 +424,6 @@ async function Show_SearchResults(movies, dive_element) {
   if(movies===undefined){
      return;
   }
-
   movies.forEach((movie) => {
         let { id, title, year, imdb_code, medium_cover_image, large_cover_image, torrents } = movie;
 
@@ -554,7 +546,7 @@ async function View_More_Movie_Results_fill (data, div_m){
 
 async function uploadVideo(imdb_code, magnet_link, name, box, quality){
            const classList = box.classList
-           console.log(classList)
+           //console.log(classList)
            console.log(classList[1])
            if(classList[1] === 'success-state' ){
               return
@@ -590,7 +582,7 @@ async function uploadVideo(imdb_code, magnet_link, name, box, quality){
 
           console.log(" SHOW NAME : \t:", title )
 
-          let url_v = `${Server_S_location}?search=_${imdb}`;
+          let url_v = `${Server_S_location}?search=${imdb}`;
           const res = await fetch( url_v);
           const data = await res.json();
 
@@ -620,8 +612,6 @@ async function uploadVideo(imdb_code, magnet_link, name, box, quality){
               }else{
                    console.log("Upload Error: ", data);
                    console.log("===================================================================================================================================================================")
-
-
               }
 
           } else{
@@ -1245,7 +1235,7 @@ async function Show_More_F() {
             //console.log("show_more : Movie")
             home_page_count = home_page_count + 1;
             localStorage.setItem("home_page_count", home_page_count)
-            fetchMovies(home_page_count)
+            fetchMovies()
         }else if(section_container === "Tv_nav"){
             //console.log("show_more : tv")
             tv_page_count = tv_page_count + 1;
@@ -1450,3 +1440,109 @@ const extractCode = (str) => {
     });
 
 */
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+let uploadClickCount = true;
+let Auto_Upload_btn = document.getElementById("Auto_Upload")
+Auto_Upload_btn.addEventListener('click', function(event) {
+  if (uploadClickCount)  {
+    auto_upload();
+    uploadClickCount = false
+    Auto_Upload_btn.style.color = "green";
+  }
+});
+
+async function auto_upload(){
+   //url = `https://yts.mx/api/v2/list_movies.json?&limit=50&sort_by=year`
+   let url = fetchMovies_ulr + `&page=${home_page_count}`
+   const response = await fetch(url);
+   const data = await response.json();
+   console.log(data.data.movies)
+   movies = data.data.movies
+   let j = 0
+    for (let i = 0; i < movies.length; i++) {
+        const movie = movies[i];
+        j++
+        let { imdb_code,  title_long, large_cover_image, torrents} = movie;
+
+        let find_url =`https://api.themoviedb.org/3/find/${imdb_code}?external_source=imdb_id`
+        const find_response = await fetch(find_url, {method: 'GET', headers });
+        const find_data = await find_response.json();
+        let movie_id;
+        try{
+          movie_id =  `${find_data.movie_results[0].id}`
+        } catch{
+          continue;
+        }
+
+        let upload_name =  title_long + ' ' + '_'+ movie_id
+        let torrent = getHighestQualityItem(torrents);
+        let magnetLink = `magnet:?xt=urn:btih:${torrent.hash}`;
+
+        const itemExists = Tasklist.some(item => item.name === title_long);
+        if(!itemExists){
+               let url_v = `${Server_S_location}?search=_${movie_id}`;
+               const res = await fetch( url_v);
+               const data = await res.json();
+               let task_id = data.id;
+               //console.log(data.data[0]);
+               if(data.data[0]){
+                   name = data.data[0].name
+                   match = name.match(/_(\d+)/)
+                   if (match && match[1]) {    } else{continue;}
+                   //console.log(data, "---", name, match, movie_id)
+                   number = `${match[1]}`
+                   if(number === movie_id){
+                    console.log("AUTO UPLOAD CANCELED:  MOVIE ALREADY IN SERVER : \t",  upload_name);
+                    continue;
+                   }else{
+
+                   }
+               }else{
+                      const upload_url = `${upload_admin_location}?url=${encodeURIComponent(magnetLink)}&name=${encodeURIComponent(upload_name)}`
+                      const response = await fetch(upload_url);
+                      const data = await response.json();
+                      //console.log(data);
+                      let task_id = data.id;
+                      if (data.message === "You have reached the maximum number of pending advance upload tasks"){
+                          let TIME = new Date().toLocaleString();
+                          console.log("\n\nAUTO UPLOAD PAUSED: ",  TIME)
+                          await sleep(3 * 60 * 1000);  // Wait for 5 minutes
+                          i--
+                          TIME = new Date().toLocaleString();
+                          console.log("AUTO UPLOAD RESUME: ",  TIME, "\n\n")
+                      } else if(task_id){
+                          Tasklist = await get_Tasklist()
+                          Tasklist.push( { "task_id": task_id, "name": upload_name , "show_id": movie_id , 'imdb_code': movie_id })
+                          saveUploadedTracks(Tasklist)
+                          console.log(" \t \t \t \t ");
+                          console.log(" UPLOADING : \t : ", upload_name);
+                          console.log(" TASK ID  : \t:", task_id )
+                          console.log(" \t \t \t \t ");
+                      }
+
+               }
+        }else{
+                console.log("UPLOAD ERROR  MOVIE ALREADY IN QUEUE : \t",  title);
+        }
+   };
+   console.log("\n\n AUTO UPLOAD FINISHED \n\n")
+   uploadClickCount = true;
+   Auto_Upload_btn.style.color = "";
+}
+
+function getHighestQualityItem(list) {
+  return list.reduce((max, current) => {
+    const currentQuality = parseInt(current.quality);
+    const maxQuality = parseInt(max.quality);
+    return currentQuality > maxQuality ? current : max;
+  });
+}
+
+
+
+
+//auto_upload()

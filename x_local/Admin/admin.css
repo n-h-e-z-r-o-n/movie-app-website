@@ -559,6 +559,8 @@ body , html {
     margin-top: 10px;
     margin-bottom: 10px;
     border: 4px solid transparent;
+    padding: 2px;
+
 }
 
 .box-img{
@@ -600,23 +602,19 @@ body , html {
 
 .error-state {
     background-color: #5E1914 !important;
-    border: 4px solid #5E1914 !important;
 }
 
 .success-state {
     background-color: green !important;
-    border: 4px solid green !important;
 }
 
 .exist-state{
-    background-color: #003153 !important;
-    border: 4px solid #003153 !important;
+    background-color: #1B1B1B !important;
     pointer-events: none;
 }
 
 .not_exist-state{
     background-color:  #36454F !important;
-    border: 4px solid  #36454F !important;
 }
 
 

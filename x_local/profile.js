@@ -413,8 +413,24 @@ document.getElementById("User_Image_input").addEventListener('change', (event) =
 
 
 async function download_initiate(name){
-  console.log(name);
- //href="https://github.com/n-h-e-z-r-o-n/movie-app-website/raw/refs/heads/main/APPS/onyx.apk"
+
+
+  if(name === "android"){
+    let url = "https://github.com/n-h-e-z-r-o-n/movie-app-website/raw/refs/heads/main/APPS/onyx.apk";
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    document.body.appendChild(anchor);
+    anchor.click();
+    document.body.removeChild(anchor);
+  }else if(name === "Linux"){
+      window.location.href = "";
+  }else if(name === "Tv"){
+      window.location.href = "";
+  }else if(name === "windows"){
+      window.location.href = "";
+  }
+
+
 }
 
 
