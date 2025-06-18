@@ -302,6 +302,7 @@
   margin-right: auto;
   margin-left: 15px;
 }
+
 .reload_btn *{
   color: var(--Brand_Color);
 }
@@ -337,13 +338,13 @@
 .notification_badge  {
   position: absolute;
   border-radius: 50%;
-  width: 15px;
-  height: 15px;
+  width: 20px;
+  height: 20px;
   background: red;
-  top: 7px;
-  right: 7px;
+  top: 0px;
+  right: 0px;
   animation: pulse_glow 5s infinite ease-in-out;
-  font-size: 9px;
+  font-size: 10px;
   display: none;
   align-items: center;
   justify-content: center;
@@ -357,7 +358,7 @@
   }
   50% {
     opacity: 0.8;
-    transform: scale(1.5);
+    transform: scale(1.2);
     text-shadow: 0 0 12px rgba(255, 0, 0, 1);
   }
 }
@@ -422,7 +423,7 @@
     overflow-wrap: break-word;
     white-space: normal;
     font-size: 0.7em;
-    font-family: cursive;
+    font-family: "Calibri Light";
 }
 
 .notification_container_Details{
@@ -434,7 +435,7 @@
     overflow-wrap: break-word;
     white-space: normal;
     font-size: 0.7em;
-    font-family: cursive;
+    font-family: "Calibri Light";
     color: gray;
 }
 
