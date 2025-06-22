@@ -12,15 +12,17 @@ body , html {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
   height: 100%;
   width: 100%;
   background-color : var(--global-color-bg) ;
   -webkit-tap-highlight-color: transparent;
   tap-highlight-color: transparent;
   touch-action: manipulation;
-}
+  overscroll-behavior: contain;
+  Background:  url("./Amssets/black_bg.png"), #050301;
+  background-repeat: no-repeat;
+  background-position: center;
+  Background-size:  100% 100%;}
 
 
 *{
@@ -41,9 +43,16 @@ body , html {
         width: 90%;
         background-color : var(--global-color-bg);
         margin: auto;
+        background: ;
+        overflow: scroll;
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
 }
 
 
+.no-select::-webkit-scrollbar {
+    display: none;
+}
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 .box {

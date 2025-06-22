@@ -1523,7 +1523,6 @@ async function auto_upload(){
                           console.log(" TASK ID  : \t:", task_id )
                           console.log(" \t \t \t \t ");
                       }
-
                }
         }else{
                 console.log("UPLOAD ERROR  MOVIE ALREADY IN QUEUE : \t",  title);

@@ -197,11 +197,12 @@ left: 50%;          /* Start from center */
     background: transparent;
     display: flex;
     flex-wrap: wrap;
-    width: 180px;
-    height: 180px;
+    width: 160px;
+    height: 160px;
     justify-content: center;
     align-items: center;
     margin: auto;
+    overflow: hidden;
 }
 
 .cast_credits_each_profile{
@@ -360,7 +361,7 @@ left: 50%;          /* Start from center */
 /* =========================================================================================================== */
 .info_section {
   position: absolute;
-  width: 40%;
+  width: 400px;
   height: 100%;
   bottom: 0;
   right: 0;
@@ -369,7 +370,6 @@ left: 50%;          /* Start from center */
   y-scroll: hidden;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
-
   display: flex;
   flex-direction: column;
   gap: 2%;
@@ -752,7 +752,7 @@ left: 50%;          /* Start from center */
 
 .seasons{
     width:  100%;
-    aspect-ratio: 21/6;
+    aspect-ratio: 21/9;
     display: none;
     align-item: center;
     margin-left: auto;
@@ -761,6 +761,8 @@ left: 50%;          /* Start from center */
     background: #1B1B1B !important;
     border: none;
     border-radius: 1em;
+    box-sizing: border-box;
+    padding: 8px;
 }
 
 
@@ -771,32 +773,26 @@ left: 50%;          /* Start from center */
     height: 100%;
     position: relative;
     background: transparent;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 
 
 .Selected_Season{
-     width: auto;
+     width: 100%;
+     height: 20px;
      font-size: 1em;
      font-family: "Calibri";
      display: flex;
      align-items: center;
      text-align: center;
      justify-content: center;
-     cursor: pointer;
      color: var(--global-color-fg);
-     border: 0px solid var(--global-color-fg);
-     border-radius: 2px;
-
      margin-left: auto;
      margin-right: auto;
-     margin-bottom: 5%;
-     margin-top: 2%;
-
      pointer-events: none;
      cursor: default;
-     box-sizing: border-box;
-
 }
 
 .Selected_Season_img{
@@ -807,6 +803,8 @@ left: 50%;          /* Start from center */
    text-align: center;
    margin-left: auto;
    margin-right: auto;
+
+   margin-bottom: auto;
 }
 
 
@@ -835,16 +833,18 @@ left: 50%;          /* Start from center */
     height: 50px;
     display: flex; /* Changed from 'block' to 'flex' to use align-items and justify-content */
     align-items: center;
-    padding-left: 1%;
+    padding: 4px;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.9);
     border: 1px solid transparent;
-    font-size: 25px;
+    font-size: 18px;
     font-family: "Calibri";
     color: var(--global-color-fg);
     margin: 5px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    box-sizing: border-box;
+
 }
 
 .episodes_each:hover {
@@ -925,7 +925,7 @@ left: 50%;          /* Start from center */
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg,var(--Brand_Color), black);
+  background: linear-gradient(180deg, red, black);
   opacity: 0;
   transition: 0.5s;
   mix-blend-mode: multiply;

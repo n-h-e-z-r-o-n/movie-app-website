@@ -622,9 +622,16 @@ const Selected_Season = document.querySelector('.Selected_Season')
             let not_out_class = '';
             while(i <= episodes_count){
                 let index = i - 1;
-                let episode_name = data_episodes[index].name
-                let episode_no = i ;
+                console.log(index)
+                console.log(data_episodes[index])
+                let episode_name
+                if(data_episodes[index]){
+                   episode_name = data_episodes[index].name || index
+                }else{
+                   episode_name  = ""
+                }
 
+                let episode_no = i ;
 
                 if(last_season === season_no){
                   if(i > last_episode){

@@ -693,6 +693,24 @@ Login_view.addEventListener("click", function() {
         Login_view.style.opacity ='1';
 });
 
+function attachEnterTrigger(containerId, buttonId) {
+    const container = document.getElementById(containerId);
+    const button = document.getElementById(buttonId);
+
+    if (container && button) {
+        container.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                button.click();
+            }
+        });
+    }
+}
+attachEnterTrigger("Login_container", "loginForm");
+attachEnterTrigger("Register_container", "signUpForm");
+attachEnterTrigger("Forgot_password_container", "forget_p_form");
+
+
 Login_view.click()
 
 
