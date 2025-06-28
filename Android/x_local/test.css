@@ -1,0 +1,101 @@
+
+:root {
+  color-scheme: only dark; /* Signals to extensions you are managing theme */
+--global-color-bg:  hsl(222, 25%, 10%)  !important; /* #050301     #1D2951  #003153  #0F0404;*/
+--global-color-fg: white !important;
+--Brand_Color:   #00BFFF !important;
+--Brand_Image:  linear-gradient(to bottom, rgba(0,0,0,0), var(--global-color-bg)), url("./Assets/xr.jpg") !important;
+}
+
+
+body , html {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  height: 100%;
+  width: 100%;
+  background-color : var(--global-color-bg) ;
+}
+
+
+.season_info_hold_season_container_each{
+  width: 10%;
+  min-width: 100px;
+  aspect-ratio: 16/8;
+  background:  url("./Assets/516664.jpg");
+  background-size: 100%;
+  object-fit: fit;
+  border-radius: 10px;
+  backdrop-filter: blur(100px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid transparent;
+  flex-shrink: 0;
+  transition: border 0s ease;
+  overflow: hidden;
+
+}
+
+.season_info_hold_season_container_each::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(gray 1px, transparent 1px);
+  background-size: 5px 5px;
+  opacity: 0.9;
+  pointer-events: none;
+  width: 100%;
+  height: 100%
+  border: none;
+}
+
+.season_info_hold_season_container_each:hover::before{
+   content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(blue 1px, transparent 1px);
+  background-size: 5px 5px;
+  opacity: 0.9;
+  pointer-events: none;
+  width: 100%;
+  height: 100%
+  border: none;
+}
+
+.season_info_hold_season_container_each.active::before{
+   content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(red 1px, transparent 1px);
+  background-size: 5px 5px;
+  opacity: 0.9;
+  pointer-events: none;
+  width: 100%;
+  height: 100%
+  border: none;
+}
+
+
+.season_info_hold_season_container_each:hover{
+        border: 1px solid white;
+}
+
+
+.season_info_hold_season_container_each_title{
+  width: 100%;
+  height:100%;
+  font-size: clamp(0.8rem, 2.5vw, 1.5rem);
+  font-family: 'Calibri';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color:  white;
+  white-space: wrap;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  z-index: 1;
+}
