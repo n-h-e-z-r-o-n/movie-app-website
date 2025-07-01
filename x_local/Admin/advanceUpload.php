@@ -19,7 +19,7 @@ function uploadVideo() {
     $jsonData = json_encode($data);
 
     $apiUrl = 'https://upnshare.com/api/v1/video/advance-upload';
-    $apiToken = '1af48a98de335a85b8863a7b';  // Your API token
+    $apiToken = '108ce292df799791c4df2200';  // Your API token
 
     // Initialize cURL session
     $ch = curl_init();

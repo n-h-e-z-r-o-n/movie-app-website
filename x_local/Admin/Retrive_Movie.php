@@ -1,10 +1,13 @@
 <?php
+header("Access-Control-Allow-Origin: *"); // Allow all origins (use with caution)
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json");
 
 if (isset($_GET['search'])) {
     $search = urlencode($_GET['search']);
     $apiUrl = 'https://upnshare.com/api/v1/video/manage?search=' . $search;
-    $apiToken = '1af48a98de335a85b8863a7b';
+    $apiToken = '108ce292df799791c4df2200';
 
     $ch = curl_init();
 

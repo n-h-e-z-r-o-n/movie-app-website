@@ -10,7 +10,7 @@ $test = [
 //echo json_encode($test); /*
 // API Configuration
 $apiUrl = 'https://upnshare.com/api/v1/video/manage/' . $videoId;
-$apiToken = '1af48a98de335a85b8863a7b'; // Use environment variables in production
+$apiToken = '108ce292df799791c4df2200'; // Use environment variables in production
 
 
 // Prepare request

@@ -6,7 +6,7 @@ if (true) {
 
     $apiUrl = 'https://upnshare.com/api/v1/video/advance-upload/'. $task_id;
     //$apiUrl = 'https://upnshare.com/api/v1/video/advance-upload/qs5ja';
-    $apiToken = '1af48a98de335a85b8863a7b';
+    $apiToken = '108ce292df799791c4df2200';
 
 
 

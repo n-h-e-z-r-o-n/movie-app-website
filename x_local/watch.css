@@ -292,15 +292,14 @@ left: 50%;          /* Start from center */
   justify-content: center;
   position: absolute;
   z-index: 10;
-  bottom: 0;
+  bottom: 4px;
   color: var(--global-color-fg);
   text-align: center;
   justify-content: left;
   outline: none;
   gap: 4px;
   background: transparent;
-  height: 40px;
-  margin-left: auto;
+  height: 30px;
   margin-right:auto;
   left: 50%;
   transform: translateX(-50%);
@@ -758,9 +757,9 @@ left: 50%;          /* Start from center */
     margin-left: auto;
     margin-right: auto;
     margin-top: 1%;
-    background: #1B1B1B !important;
+
+    /*backdrop-filter: blur(100px);*/
     border: none;
-    border-radius: 1em;
     box-sizing: border-box;
     padding: 8px;
 }
@@ -833,7 +832,7 @@ left: 50%;          /* Start from center */
     height: 50px;
     display: flex; /* Changed from 'block' to 'flex' to use align-items and justify-content */
     align-items: center;
-    padding: 4px;
+    padding: 10px;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.9);
     border: 1px solid transparent;
     font-size: 18px;
@@ -844,7 +843,7 @@ left: 50%;          /* Start from center */
     white-space: nowrap;
     text-overflow: ellipsis;
     box-sizing: border-box;
-
+    background: rgba(128, 128, 128, 0.1);
 }
 
 .episodes_each:hover {
@@ -866,6 +865,75 @@ left: 50%;          /* Start from center */
    background-color: var(--Brand_Color) !important;
 }
 
+.watch_control{
+   background: #1B1B1B;
+   width: 80%;
+   max-width: var(--Max-width);
+   height: 50px;
+   margin-right: auto;
+   margin-left: auto;
+   margin-top: 10px;
+   display: flex;
+   gap: 25px;
+}
+
+.sever_change{
+  display: flex;
+  max-width: 150px;
+  height: 100%;
+  background: transparent;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 14px;
+  font-family: "console";
+  position: relative;
+}
+.sever_indicator {
+   border-radius: 50%;
+   background: green;
+   width: 10px;
+   height: 10px;
+   margin: 7px;
+   animation: blink 1.3s infinite;
+}
+
+@keyframes blink {
+   0%, 100% { opacity: 1; }
+   50% { opacity: 0.2; }
+}
+
+.sever_change_select{
+   position: absolute;
+   width: 100%;
+   height: auto;
+   background: #1A2421 !important;
+
+   z-index: 10;
+   top: 100%;
+   right: 0;
+   box-sizing: border-box;
+   padding: 10px;
+   border-radius: 1em;
+   display: none;
+}
+.sever_change_select.active{
+  display: block;
+}
+.sever_change_select_each{
+   padding: 5px;
+   border-radius: 1em;
+   font-size: 14px;
+   font-family:  'Segoe UI';
+   color: white;
+}
+
+.sever_change_select_each:hover {
+   color: gray;
+}
+.sever_change_select_each.active{
+   background: var(--Brand_Color);
+}
 /* ------------------------------------------------------------------------------------------------------------*/
 /* ------------------------------------------------------------------------------------------------------------*/
 
@@ -1044,8 +1112,18 @@ left: 50%;          /* Start from center */
 
   .seasons{
     width:  100%;
+    height: 600px;
     aspect-ratio: 21/13;
     flex-wrap: wrap;
+  }
+
+  .watch_control{
+    width:  100%;
+    height: 30px;
+  }
+  .watch_control *{
+    font-size: 11px;
+
   }
 
   .seasons_container {
@@ -1082,9 +1160,8 @@ left: 50%;          /* Start from center */
   .episodes_each {
     font-size: clamp(0.9rem, 1.1em, 1.5rem);
     font-family: "george";
-    height: 20px;
+    height: 50px;
     box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.1);
-
   }
 
    .info_section{

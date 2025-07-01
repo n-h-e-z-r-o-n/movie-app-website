@@ -1,15 +1,10 @@
-/*
-function loadCSS(filePath) {
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.type = "text/css";
-    link.href = filePath;
-    document.head.appendChild(link);
-}
-
-loadCSS("./watch.css");
-loadCSS("./NavBar.css");
-*/
+document.cookie.split(";").forEach(cookie => {
+    const eqPos = cookie.indexOf("=");
+    const name = eqPos > -1 ? cookie.substr(0, eqPos).trim() : cookie.trim();
+    if (name) {
+        document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
+    }
+});
 
 
 const Movies_API_URL =   "https://api.themoviedb.org/3/discover/movie?&api_key=6bfaa39b0a3a25275c765dcaddc7dae7";
@@ -21,7 +16,37 @@ let Watch_iframe_div_content;
 
 let Show_Data_Json;
 const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
-const watch_frame_link_eb = 'https://vidsrc.to/embed/'; //https://vidsrc.xyz/embed/   ====  https://vidsrc.dev/embed/tv/ == https://vidsrc.to/embed/
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+let watch_frame_link_eb = 'https://vidsrc.to/embed/'; //https://vidsrc.xyz/embed/   ====  https://vidsrc.dev/embed/tv/ == https://vidsrc.to/embed/
+let C_servers = ['https://vidsrc.to/embed/', 'https://vidsrc.xyz/embed/', 'https://player.vidsrc.co/embed/', 'https://vidsrc.net/embed/']
+
+let con_severs = ''
+i = 0
+while (i < C_servers.length){
+     con_severs = con_severs + `<div class="sever_change_select_each "><i class="fa fa-server" aria-hidden="true"></i>&nbsp; HD-${i} </div>`
+     i++
+}
+document.getElementById('server_dropdown').innerHTML = con_severs;
+
+let set_server = localStorage.getItem('C_servers');
+if(set_server){
+    set_server = parseInt(set_server)
+    watch_frame_link_eb = C_servers[set_server]
+    const items = document.querySelectorAll('.sever_change_select_each');
+    items[set_server].classList.add('active');
+
+}else{
+    watch_frame_link_eb = C_servers[0];
+    const items = document.querySelectorAll('.sever_change_select_each');
+    items[0].classList.add('active');
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 try{
 const headers = {
@@ -30,7 +55,7 @@ const headers = {
 };
 } catch(error){}
 
-let Server_S_location = "./Admin/Retrive_Movie.php"
+let Server_S_location = "https://movionyx.com/Admin/Retrive_Movie.php"
 
 
 let episodes = {};
@@ -218,11 +243,31 @@ function compareWithToday(dateString) {
 
 
 async function SHOW_INFOs(id, type) {
-  const res = await fetch(`https://api.themoviedb.org/3/${type}/${id}&?`,   {headers});
-  const data = await res.json();
-  Show_Data_Json = data;
-  Show_Info(data, type)
-  Watch_IFRAME(id, type, data);
+        const res = await fetch(`https://api.themoviedb.org/3/${type}/${id}&?`,   {headers});
+        const data = await res.json();
+        Show_Data_Json = data;
+        Show_Info(data, type)
+        Watch_IFRAME(id, type, data);
+
+        document.getElementById('sever_change').addEventListener("click", serverDropdown);
+        const items = document.querySelectorAll('.sever_change_select_each');
+        items.forEach(item => {
+            item.addEventListener('click', () => {
+                  items.forEach(not_sel => { not_sel.classList.remove('active') });
+                  item.classList.add('active');
+                  let selected_server = item.textContent.trim()
+                  let server_number = selected_server.replace(/\D/g, ""); // Remove non-digits
+                  console.log("Selected:", selected_server );
+                  console.log("Selected:", parseInt(server_number));
+                  console.log("Selected:", C_servers[server_number]);
+                  localStorage.setItem('C_servers', `${server_number}` );
+                  watch_frame_link_eb = C_servers[server_number]
+                  document.getElementById('server_dropdown').classList.remove('active');
+                  Watch_IFRAME(id, type, data);
+            });
+        });
+
+        document.getElementById('Reload_Show').addEventListener("click", () => Watch_IFRAME(id, type, data));
 
 }
 
@@ -424,6 +469,9 @@ async function Show_Info(info_data, type){
 
 // =====================================================================================================================
 
+function serverDropdown(){
+     document.getElementById('server_dropdown').classList.toggle('active');
+}
 
 async function Watch_IFRAME(imdb, type, info_data) {
       if (type==="movie"){
@@ -436,7 +484,7 @@ async function Watch_IFRAME(imdb, type, info_data) {
                 let video_id = data['data'][0]['id'];
 
                 if(video_id){
-                        Watch_iframe_div_content = `<iframe class="iframe_watch"   id="watch-frame" src='https://dna.uns.bio/#${video_id}' width="700px" height="600px" frameborder="0" allowfullscreen></iframe> `;
+                       Watch_iframe_div_content = `<iframe class="iframe_watch"   id="watch-frame" src='https://dna.uns.bio/#${video_id}' width="700px" height="600px" frameborder="0" allowfullscreen></iframe> `;
                 }else{
                        Watch_iframe_div_content = ` <iframe  class="iframe_watch"   id="watch-frame" onerror="iframeLoadError()" src='${watch_frame_link_eb}${type}/${imdb}'  frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> `;
                 }
@@ -905,3 +953,21 @@ document.addEventListener("keydown", (e) => {
 */
 
 // =====================================================================================================================
+
+document.getElementById("share_btn").addEventListener("click", shareWebsite);
+function shareWebsite() {
+  if (navigator.share) {
+    navigator.share({
+      title: document.title,
+      text: "Check out this website!",
+      url: window.location.href,
+    })
+    .then(() => console.log('Shared successfully'))
+    .catch(err => console.error('Error sharing:', err));
+  } else {
+    // Fallback: copy to clipboard
+    navigator.clipboard.writeText(window.location.href)
+      .then(() => alert("Link copied to clipboard!"))
+      .catch(() => alert("Could not copy link. Please copy it manually."));
+  }
+}

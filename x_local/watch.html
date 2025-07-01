@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="./watch.css" />
     <link rel="stylesheet" type="text/css" href="./NavBar.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin" />
 
 </head>
 <body>
@@ -213,7 +214,7 @@
                               <div class="container_d1">
                                   <div class="watch_Now_btn" id="watch_Now_btn"> WATCH NOW </div>
                                   <div class="watch_Now_btn" id="watch_preview"> PREVIEW </div>
-                                  <div class="watch_Now_btn" id="Favorite_btn_watch"> ADD TO FAV</div>
+                                  <!--div class="watch_Now_btn" id="Favorite_btn_watch"> ADD TO FAV</div-->
                               </div>
                           </div>
 
@@ -239,6 +240,24 @@
                       </div>
                  </div>
 
+<!----  watch control section -------------------------------- -------------------------------------------------------------------------------- -->
+               <div class="watch_control">
+                   <div class="sever_change" id="sever_change" >
+                       <div class="sever_indicator"></div>
+                       &nbsp;
+                       <div>Server Play <i class="fa fa-chevron-circle-down" aria-hidden="true" style="font-size: 9px;"></i> </div>
+                       <div class="sever_change_select" id="server_dropdown">
+                          <!--div class="sever_change_select_each "><i class="fa fa-server" aria-hidden="true"></i>&nbsp; s0 </div>
+                          <div class="sever_change_select_each "><i class="fa fa-server" aria-hidden="true"></i>&nbsp; s1 </div -->
+                       </div>
+                    </div>
+
+                   <div class="sever_change" id="Favorite_btn_watch"> <i class="fa fa-plus-circle" aria-hidden="true" style="font-size: 10px;"></i>&nbsp; Favorite</div>
+                   <div class="sever_change" id="share_btn"> <i class="fa fa-share-alt" aria-hidden="true" style="font-size: 10px;"></i> &nbsp; Share</div>
+                   <div class="sever_change" > <i class="fa fa-comments" aria-hidden="true" style="font-size: 10px;"></i> &nbsp; Discussion</div>
+                   <div class="sever_change" id="Reload_Show"> <i class="fa fa-retweet" aria-hidden="true"></i>&nbsp; Re-load</div>
+
+               </div>
 <!----  seasons info   section -------------------------------- -------------------------------------------------------------------------------- -->
 
                <div class="season_info_hold">
@@ -248,7 +267,6 @@
                            <div class="larrow" id="larrow">   &#11207 </div>
                        </div>
                        <div  class="season_info_hold_season_container" id="season-selector1">
-
                        </div>
                    </div>
 
