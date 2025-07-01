@@ -22,6 +22,17 @@ import androidx.core.view.WindowInsetsControllerCompat;
 
 import android.view.WindowManager;
 
+import android.app.DownloadManager;
+import android.net.Uri;
+import android.os.Environment;
+import android.webkit.DownloadListener;
+import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.webkit.URLUtil;
+
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -70,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                if (url.startsWith("https://movionyx") || url.startsWith("file:///android_asset/x_local/") || url.startsWith("https://github.com/n-h-e-z-r-o-n/")) {
+                if (url.startsWith("https://movionyx") || url.startsWith("file:///android_asset/x_local/") || url.startsWith("https://github.com") || url.startsWith("http://github.com") || url.startsWith("https://raw.githubusercontent.com") || url.startsWith("http://raw.githubusercontent.com")) {
                     return false; // Allow loading
                 } else {
                     Toast.makeText(MainActivity.this, "", Toast.LENGTH_SHORT).show();
@@ -89,7 +100,33 @@ public class MainActivity extends AppCompatActivity {
                 //loadErrorPage();
             }
         });
-        //webView.loadUrl("https://movionyx.com"); // Change to your website
+
+        webView.setDownloadListener((url, userAgent, contentDisposition, mimeType, contentLength) -> {
+            // Force known file name (because GitHub doesn't give us a good one)
+            String fileName = "onyx.apk";
+
+            DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
+            request.setMimeType("application/vnd.android.package-archive"); // Force correct MIME
+            request.addRequestHeader("User-Agent", userAgent);
+            request.setDescription("Downloading APK...");
+            request.setTitle(fileName);
+            request.allowScanningByMediaScanner();
+            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+
+            // Use scoped storage — safe on API 29+
+            request.setDestinationInExternalFilesDir(getApplicationContext(), Environment.DIRECTORY_DOWNLOADS, fileName);
+
+            DownloadManager dm = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+            if (dm != null) {
+                dm.enqueue(request);
+                Toast.makeText(getApplicationContext(), "Downloading " + fileName, Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(), "DownloadManager unavailable", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
 
         String urlToLoad = "file:///android_asset/x_local/index.html"; // default
 

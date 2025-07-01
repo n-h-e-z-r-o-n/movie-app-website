@@ -429,7 +429,7 @@ async function download_initiate(name){
   }else if(name === "windows"){
       window.location.href = "";
   }
-
+  alert("Your download has started. Please check your Downloads folder.");
 }
 
 
