@@ -1,0 +1,240 @@
+.bar_section {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 90px;
+  padding-bottom: 4px;
+  width: 100%;
+  gap:auto;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.text_container{
+   font-family: 'popine';
+   font-size: 1em;
+   background: transparent;
+   color: var(--global-color-fg);
+   margin: auto;
+ }
+.text_container:hover{
+   color: gray;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+.Favorites_Container{
+    width:  100%;
+    height: 95%;
+    background: transparent;
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    flex: 1;
+
+}
+
+
+
+.Watch_List_container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    gap: 20px; /* Changed from 'auto' - gap needs specific value */
+    background: transparent;
+    flex: 1 1 1; /* Added missing third value */
+    padding: 20px; /* Recommended for container spacing */
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+
+.profile_container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    gap: 20px; /* Changed from 'auto' - gap needs specific value */
+    background: transparent;
+    flex: 1 1 1; /* Added missing third value */
+    padding: 20px; /* Recommended for container spacing */
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+.profile_section_1{
+     width: 600px;
+     height: auto;
+     background: ;
+     margin: auto;
+     padding: 5%;
+     box-shadow: 1px 12px 25px rgb(128 128 128 / 9%);
+}
+
+
+.User_Image {
+  background: transparent;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: ;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.User_Image_input{
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  right: -5px;
+  bottom: -5px;
+  border-radius: 50%;
+  background: var(--Brand_Color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px; /* Adjust size for the pen icon/text */
+  color: white !important; /* Optional: color for the icon */
+  cursor: pointer;
+}
+
+
+.profile_section_1_head{
+   opacity: 0.7;
+   font-family: 'Courier New';
+   margin: auto;
+   width: 80%;
+}
+
+.profile_section_1_input{
+   height: 55px;
+   width: 80%;
+   margin: 10px;
+   margin-left: auto;
+   margin-right: auto;
+   display: flex;
+
+   margin-bottom: 20px;
+   background: #C2D8D3 !important;
+   font-family: 'Poppins', sans-serif;
+   font-size: 1.3em;
+   border-radius: 0.5em;
+   color: black;
+   padding: 2%;
+   align-items: center;
+   box-sizing: border-box;
+}
+
+.C_P_SAVE{
+   height: 55px;
+   width: 80%;
+   margin: 10px;
+   margin-left: auto;
+   margin-right: auto;
+   display: flex;
+
+   margin-bottom: 20px;
+   background: var(--Brand_Color) !important;
+   font-family: 'Poppins', sans-serif;
+   font-size: 1.3em;
+   border-radius: 0.5em;
+   color: black;
+   padding: 2%;
+   align-items: center;
+   justify-content: center;
+   box-sizing: border-box;
+}
+
+
+.Extra_container {
+    display: block;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    flex: 1 1 1; /* Added missing third value */
+    padding: 20px; /* Recommended for container spacing */
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+
+.d_links{
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  width: auto;
+  height: auto;
+  gap: 10px;
+}
+
+.download_btn {
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 250px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    outline: none;
+    text-decoration: none;
+    color: var(--global-color-bg);
+    background:#fff;
+    padding: 10px;
+
+}
+.download_btn *{
+   color: var(--global-color-bg);
+   font-size: 30px;
+}
+
+.download_btn:hover{
+  background: #EAF4FC;
+}
+
+
+
+
+
+
+.remove_fave {
+  position: absolute;
+  right: 3.5%;
+  font-family: cursive;
+  color: gray;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1;
+  font-weight: 900;
+  font-size: 1.5em;
+}
+
+.remove_fave:hover{
+  color: red;
+  animation: pulse_glow 1.5s infinite ease-in-out;
+}
+
+
+
+
+/* Smoother animation with consistent glow */
+@keyframes pulse_glow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(2);
+    text-shadow: 0 0 8px rgba(255, 0, 0, 0.8);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+    text-shadow: 0 0 12px rgba(255, 0, 0, 1);
+  }
+}

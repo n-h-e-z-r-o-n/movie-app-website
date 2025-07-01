@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: black;
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        #bg-video {
+          background: black;
+          position: fixed;
+          top: 0;
+          left: 0;
+          min-width: 100%;
+          min-height: 100%;
+          object-fit: cover;
+          z-index: -1;
+        }
+        .content {
+          position: relative;
+          z-index: 1;
+          color: white;
+          text-align: center;
+          top: 50%;
+          transform: translateY(-50%);
+          font-family: sans-serif;
+        }
+        .shadow-dance-text {
+            font-size: 4rem;
+            color: #fff;
+            text-shadow: 5px 5px 0 #ff005e, 10px 10px 0 #00d4ff;
+            animation: shadow-dance 4s infinite;
+        }
+
+        @keyframes shadow-dance {
+            0%, 100% {
+                text-shadow: 5px 5px 0 #ff005e, 10px 10px 0 #00d4ff;
+            }
+            50% {
+                text-shadow: -5px -5px 0 #00d4ff, -10px -10px 0 #ff005e;
+            }
+        }
+    </style>
+</head>
+<body>
+  <!-- Video Background -->
+  <video id="bg-video" autoplay muted loop poster="./Assets/icon.png">
+    Your browser does not support the video tag.
+  </video>
+
+ <!-- Content over video -->
+  <div class="content">
+    <h1 class="shadow-dance-text">MoviOnyx</h1>
+    <p id="status">POWERED BY ONYX</p>
+  </div>
+
+</body>
+
+<script type="module">
+
+    const totalVideos = 9; // Change this if you add more videos
+    const randomIndex = Math.floor(Math.random() * totalVideos) + 1;
+    const videoPath = `./Assets/vids/${randomIndex}.mp4`;
+    const videoElement = document.getElementById("bg-video");
+    const source = document.createElement("source");
+    source.setAttribute("src", videoPath);
+    source.setAttribute("type", "video/mp4");
+    videoElement.appendChild(source);
+    videoElement.load();
+    videoElement.addEventListener("loadedmetadata", () => {
+      videoElement.playbackRate = 0.7; // Slow motion
+      videoElement.play(); // Make sure it plays
+    });
+
+
+    let i = 1
+    function checkConnection() {
+        if (navigator.onLine) {
+            document.getElementById("status").innerHTML = " . . . ";
+            // Go back to the previous page in the WebView history
+            //window.history.back();
+            window.location.href = "./Home.html";
+            //console.log(i)
+            i=i+1
+        } else {
+            document.getElementById("status").innerHTML = "YOU ARE OFFLINE";
+        }
+
+    }
+
+
+    window.onload = function () {
+        // Delay for 2 seconds (2000 ms), then start checking every 5 seconds
+        setTimeout(function () {
+            checkConnection(); // Optional: do an immediate check first
+            setInterval(checkConnection, 5000); // Then continue every 5s
+        }, 2000);
+    };
+</script>
+
+</html>

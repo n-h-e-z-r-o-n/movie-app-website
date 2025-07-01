@@ -1,0 +1,41 @@
+.Search_R_Container {
+         padding-top: 86px;
+}
+
+.Search_R_Headline{
+   width: 100%;
+   background: transparent;
+   display: flex;
+}
+
+.Search_R_count{
+   color: var(--global-color-fg);
+
+}
+
+.Search_R_title_Display{
+  color: var(--Brand_Color);
+
+}
+
+
+
+.Results_Display_container{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    min-height: 200px;
+    gap: 10px;
+}
+
+/*==========    SMALL DEVICES    ================================================================  = */
+
+
+@media (max-width: 968px) {
+
+.Search_R_Container {
+         padding-top: 40px;
+}
+
+
+}
