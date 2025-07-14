@@ -490,49 +490,44 @@ async function Latest_Movies(event, page, type) {
   let data_json = [];
 
   while (count <= page) {
-      /*
+      
       let res = await fetch(`https://vidsrc.xyz/movies/latest/page-${page}.json`, {"accept": "application/json",});
       let data = await res.json();
-      console.log(data['result']);
+      //console.log(data['result']);
       data_json = data_json.concat(data['result']) ;
-      */
+      
+     /*
         let url = `https://yts.mx/api/v2/list_movies.json?page=${page}&limit=50&sort_by=year`
         let response = await fetch(url);
         let data = await response.json();
         //console.log("Shown data", data.data.movies);
         data_json = data_json.concat(data.data.movies) ;
-
+      */
 
       count++;
       break;
-    }
-
+  }
   let hold = [];
-  //console.log(data_json.length)
   for (let i = 0; i < data_json.length; i++) {
-
-
-     /*
-     medium_cover_image
-     rating
-     runtime
-     small_cover_image
-     title_english
-     */
      let data;
      while(true){
         try{
-             let res = await fetch(`https://api.themoviedb.org/3/movie/${data_json[i]['imdb_code']}/external_ids`, {headers});
-             data = await res.json();
-             //console.log(data.id)
+            
+            //let res = await fetch(`https://api.themoviedb.org/3/movie/${data_json[i]['imdb_code']}/external_ids`, {headers});
+            let res = await fetch(`https://api.themoviedb.org/3/movie/${data_json[i]['imdb_id']}`, {headers});
+            data = await res.json();
+            //console.log(data)
              break
          }catch(error){
             await sleep(1050);
          }
      }
 
-     hold.push({poster_path:data_json[i]['medium_cover_image'], release_date:data_json[i]['year'], vote_average:data_json[i]['rating'], title:data_json[i]['title_english'], id:data.id, runtime:data_json[i]['runtime']});
-     showMovies([{poster_path:data_json[i]['medium_cover_image'], release_date:data_json[i]['year'], vote_average:data_json[i]['rating'], title:data_json[i]['title_english'], id:data.id, runtime:data_json[i]['runtime']}], true);
+    // hold.push({poster_path:data_json[i]['medium_cover_image'], release_date:data_json[i]['year'], vote_average:data_json[i]['rating'], title:data_json[i]['title_english'], id:data.id, runtime:data_json[i]['runtime']});
+    // showMovies([{poster_path:data_json[i]['medium_cover_image'], release_date:data_json[i]['year'], vote_average:data_json[i]['rating'], title:data_json[i]['title_english'], id:data.id, runtime:data_json[i]['runtime']}], true);
+    
+    hold.push({poster_path:IMG_PATH + data['poster_path'], release_date:data['release_date'], vote_average:data['vote_average'], title:data['title'], id:data['id'], runtime:data['runtime']});
+    showMovies([{poster_path:IMG_PATH +data['poster_path'], release_date:data['release_date'], vote_average:data['vote_average'], title:data['title'], id:data['id'], runtime:data['runtime']}]);  
   }
   Let_Movies_CK = hold;
   movie_div.innerHTML = "";
