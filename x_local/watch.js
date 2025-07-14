@@ -1,3 +1,5 @@
+
+
 document.cookie.split(";").forEach(cookie => {
     const eqPos = cookie.indexOf("=");
     const name = eqPos > -1 ? cookie.substr(0, eqPos).trim() : cookie.trim();
@@ -20,8 +22,41 @@ const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-let watch_frame_link_eb = 'https://vidsrc.to/embed/'; //https://vidsrc.xyz/embed/   ====  https://vidsrc.dev/embed/tv/ == https://vidsrc.to/embed/
-let C_servers = ['https://vidsrc.to/embed/', 'https://vidsrc.xyz/embed/', 'https://player.vidsrc.co/embed/', 'https://vidsrc.net/embed/']
+let watch_frame_link_eb = ; //https://vidsrc.xyz/embed/   ====  https://vidsrc.dev/embed/tv/ == https://vidsrc.to/embed/
+let C_servers = ['https://vidsrc.to/embed/', 'https://vidsrc.xyz/embed/']
+
+function All_servers(selected_src_type, url_type){
+     if(url_type === "movie"){
+        switch (selected_src_type) {
+            case "1":
+                watch_frame_link_eb = 'https://vidsrc.to/embed/movie/${imdb}';
+                break;
+            case "2":
+                watch_frame_link_eb = "https://player.embed-api.stream/?id=786892&type=movie"
+                break;
+
+            default:
+                watch_frame_link_eb = 'https://vidsrc.to/embed/movie/${imdb}';
+                break;
+        }
+     } else {
+          switch (selected_src_type) {
+            case "1":
+                watch_frame_link_eb = 'https://vidsrc.to/embed/tv/${imdb}/${season_no}/${episode_no}';
+                break;
+            case "2":
+                watch_frame_link_eb = "https://player.embed-api.stream/?id=${imdb}&s=${season_no}&e=${episode_no}"
+                break;
+
+            default:
+                watch_frame_link_eb = 'https://vidsrc.to/embed/tv/${imdb}/${season_no}/${episode_no}';
+                break;
+        }
+     }
+
+     return watch_frame_link_eb
+}
+
 
 let con_severs = ''
 i = 0
@@ -111,7 +146,6 @@ async function cast_credits (type, id){
 
              const profile_character = movieItem.querySelector('.cast_credits_each_character');
              scrambleToText(profile_character, character, 60)
-
 
              profileDiv.addEventListener("click", async (e) => {
                  e.stopPropagation();
@@ -492,9 +526,6 @@ async function Watch_IFRAME(imdb, type, info_data) {
                        Watch_iframe_div_content = ` <iframe  class="iframe_watch"   id="watch-frame" onerror="iframeLoadError()" src='${watch_frame_link_eb}${type}/${imdb}'  frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> `;
              }
 
-
-          //watch_Frame.innerHTML = ` <iframe  class="iframe_watch"   id="watch-frame" onerror="iframeLoadError()" src='${watch_frame_link_eb}${type}/${imdb}'  frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> `;
-          //Watch_iframe_div_content = ` <iframe  class="iframe_watch"   id="watch-frame" onerror="iframeLoadError()" src='${watch_frame_link_eb}${type}/${imdb}'  frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> `;
 
           let savedState = localStorage.getItem(`watch_on_${show_id}`);
           if (savedState) {
