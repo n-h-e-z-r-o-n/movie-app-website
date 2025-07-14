@@ -34,9 +34,8 @@ body , html {
 }
 
 .navbar_top{
-   max-width: var(--Max-width) !important;
    width:80%;
-left: 50%;          /* Start from center */
+    left: 50%;          /* Start from center */
    transform: translateX(-50%);
    }
 

@@ -1130,7 +1130,7 @@ async function scrambleToText(el, finalText, speed = 40) {
 
 ///////////////////////////// Disable Right Click + Inspect Element ////////////////////////////////////////////////////
 
-/*
+
 document.addEventListener("contextmenu", (e) => e.preventDefault());
 document.addEventListener("keydown", (e) => {
   if (e.ctrlKey && (e.key === "u" || e.key === "U")) {
@@ -1152,7 +1152,7 @@ setInterval(function() {
         })();
     } catch(e) {}
 }, 1000)
-
+/*
 */
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

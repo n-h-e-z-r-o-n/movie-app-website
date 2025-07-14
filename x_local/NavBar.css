@@ -2,8 +2,10 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
 
 .navbar_top{
+
    height:60px;
    width:inherit;  /* Fixed height for the header */
+    max-width: var(--Max-width) !important;
    display: flex; /* Flexbox for layout */
    transition: all .5s;
    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
@@ -32,18 +34,17 @@
 
 .logo_ {
     height: 100%;
-    aspect-ratio: 21/9;
+    width: 100px;
+    height: 40px;
     align-items: center; /* Align items vertically within the container */
     display: flex;
     Background-color: transparent;
-    font-size: 3em;
     margin-left: 10px;
+    margin-top: auto;
     text-decoration: none;
-    /*animation: logo_flicker 2s infinite;*/
-    align-items: center; /* Align items vertically within the container */
     justify-content: center;
     background: url("./Assets/text_logo.png");
-        background-repeat: no-repeat;
+    background-repeat: no-repeat;
     background-position: center;
     background-size: 104% 115%;
     border-radius: 4px;
@@ -379,7 +380,7 @@
   transition: visibility 0s, opacity 0.3s ease-in-out;
   border-radius: 5px;
   transform: translateX(-40%) translateY(65%);
-  z-index: 1000;
+  z-index: 5000;
   -ms-overflow-style: none;
   scrollbar-width: none;
   overflow: scroll;
