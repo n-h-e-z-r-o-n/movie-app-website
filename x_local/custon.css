@@ -306,17 +306,20 @@
     align-text: center;
     display: flex;
     position: absolute;
+    aspect-ratio: 1;
     background-color: transparent;
     color: rgba(255, 255, 255, 0.2);
     top: 50%;
+    border-radius: 50%;
     transform: translateY(-50%);
     border: none;
-    font-size: 2em;
+    font-size: 1em;
     cursor: pointer;
     z-index: 10;
     left: 5px;
     background: rgba(255, 255, 255, 0.2); /* White with 20% opacity */
     backdrop-filter: blur(10px);
+    border: 1px solid transparent ;
 }
 
 .rarrow {
@@ -328,14 +331,16 @@
     color: rgba(255, 255, 255, 0.2);
     position: absolute;
     top: 50%;
+    border-radius: 50%;
     transform: translateY(-50%);
     border: none;
-    font-size: 2em;
+    font-size: 1em;
     cursor: pointer;
     z-index: 10;
     right: 5px;
     background: rgba(255, 255, 255, 0.2); /* White with 20% opacity */
     backdrop-filter: blur(10px);
+    border: 1px solid #00BFFF  ;
 }
 
 

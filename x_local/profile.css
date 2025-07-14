@@ -62,10 +62,11 @@
 .profile_section_1{
      width: 600px;
      height: auto;
-     background: ;
+     background: #232B2B ;
      margin: auto;
      padding: 5%;
      box-shadow: 1px 12px 25px rgb(128 128 128 / 9%);
+     border-radius: 1.5rem;
 }
 
 
@@ -79,9 +80,15 @@
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: ;
   position: relative;
   margin-bottom: 20px;
+  border: 4px solid  #1A2421;
+
+}
+
+.User_Image:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  border: 4px solid var(--Brand_Color, #4f8cff);
 }
 
 .User_Image_input{
@@ -134,7 +141,6 @@
    margin-left: auto;
    margin-right: auto;
    display: flex;
-
    margin-bottom: 20px;
    background: var(--Brand_Color) !important;
    font-family: 'Poppins', sans-serif;
@@ -207,19 +213,31 @@
 
 .remove_fave {
   position: absolute;
-  right: 3.5%;
+  right: 1%;
+  top: 1%;
   font-family: cursive;
-  color: gray;
+  color: #1B1B1B;
+  background: white !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
   cursor: pointer;
   transition: all 0.3s ease;
   z-index: 1;
   font-weight: 900;
-  font-size: 1.5em;
+  width:  20px;
+  height:  20px;
+  font-size: 14px;
+  border-radius: 50%;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  padding: 5px;
 }
 
 .remove_fave:hover{
   color: red;
-  animation: pulse_glow 1.5s infinite ease-in-out;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 
@@ -229,7 +247,7 @@
 @keyframes pulse_glow {
   0%, 100% {
     opacity: 1;
-    transform: scale(2);
+    transform: scale(1.1);
     text-shadow: 0 0 8px rgba(255, 0, 0, 0.8);
   }
   50% {

@@ -326,6 +326,8 @@ function AutoScroll_TRENDING() {
                   });
 
               setTimeout(startAutoScroll, 2000);
+              arrowsRight.style.borderColor = "var(--Brand_Color)";
+              arrowsRight.style.borderColor = "transparent";
         });
 
 
@@ -337,7 +339,8 @@ function AutoScroll_TRENDING() {
                     left: -scrollAmount,
                     behavior: "smooth",
                 });
-
+                arrowsLeft.style.borderColor = "var(--Brand_Color)";
+                arrowsRight.style.borderColor = "transparent";
                 setTimeout(startAutoScroll, 2000);
         });
 
@@ -353,12 +356,24 @@ function AutoScroll_TRENDING() {
             if (movieLists.scrollLeft + movieLists.clientWidth >= movieLists.scrollWidth) {
                 setTimeout(startAutoScroll, 2000);
                 scrollDirection = -scroll_pixel; // Change direction to left
+                arrowsLeft.style.borderColor = "var(--Brand_Color)";
+                arrowsRight.style.borderColor = "transparent";
             }
 
             // Check if we reached the left end
             if (movieLists.scrollLeft <= 0) {
                 setTimeout(startAutoScroll, 2000);
                 scrollDirection = scroll_pixel; // Change direction to right
+                arrowsRight.style.borderColor = "var(--Brand_Color)";
+                arrowsLeft.style.borderColor = "transparent";
+            }
+
+            if(movieLists.scrollLeft <= 0){
+                arrowsLeft.style.borderColor = "var(--Brand_Color)";
+                arrowsRight.style.borderColor = "transparent";
+            } else{
+                arrowsRight.style.borderColor = "var(--Brand_Color)";
+                arrowsLeft.style.borderColor = "transparent";
             }
           }, 50);
         }
@@ -371,7 +386,9 @@ function AutoScroll_TRENDING() {
         }
 
         movieLists.addEventListener("touchmove", () => {
-            stopAutoScroll(); // Stop auto scroll during touch move
+             arrowsRight.style.borderColor = "transparent";
+             arrowsLeft.style.borderColor = "transparent";
+             stopAutoScroll(); // Stop auto scroll during touch move
         });
 
         movieLists.addEventListener("touchend", () => {
