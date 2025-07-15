@@ -22,61 +22,74 @@ const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-let watch_frame_link_eb = ; //https://vidsrc.xyz/embed/   ====  https://vidsrc.dev/embed/tv/ == https://vidsrc.to/embed/
-let C_servers = ['https://vidsrc.to/embed/', 'https://vidsrc.xyz/embed/']
+let watch_frame_link_eb ;
 
-function All_servers(selected_src_type, url_type){
+function All_servers(selected_src_type, url_type, s_no, e_no){
      if(url_type === "movie"){
         switch (selected_src_type) {
             case "1":
-                watch_frame_link_eb = 'https://vidsrc.to/embed/movie/${imdb}';
+                watch_frame_link_eb = `https://vidsrc.to/embed/movie/${show_id}`;
                 break;
             case "2":
-                watch_frame_link_eb = "https://player.embed-api.stream/?id=786892&type=movie"
+                watch_frame_link_eb = `https://player.embed-api.stream/?id=${show_id}&type=movie`
                 break;
-
+            case "3":
+                watch_frame_link_eb = `https://www.2embed.skin/embed/${show_id}`
+                break;
+            case "4":
+                watch_frame_link_eb = `https://embed.su/embed/movie/${show_id}`
+                break;
+            case "5":
+                watch_frame_link_eb = `https://www.primewire.tf/embed/movie?tmdb=${show_id}`
+                break;
             default:
-                watch_frame_link_eb = 'https://vidsrc.to/embed/movie/${imdb}';
+                watch_frame_link_eb = `https://vidsrc.to/embed/movie/${show_id}`;
                 break;
         }
      } else {
           switch (selected_src_type) {
             case "1":
-                watch_frame_link_eb = 'https://vidsrc.to/embed/tv/${imdb}/${season_no}/${episode_no}';
+                watch_frame_link_eb = `https://vidsrc.to/embed/tv/${show_id}/${s_no}/${e_no}`;
                 break;
             case "2":
-                watch_frame_link_eb = "https://player.embed-api.stream/?id=${imdb}&s=${season_no}&e=${episode_no}"
+                watch_frame_link_eb = `"https://player.embed-api.stream/?id=${show_id}&s=${s_no}&e=${e_no}`
+                break;
+            case "3":
+                watch_frame_link_eb = `https://www.2embed.cc/embedtv/${show_id}&s=${s_no}&e=${e_no}`
                 break;
 
+            case "4":
+                watch_frame_link_eb = `https://embed.su/embed/tv/${show_id}/${s_no}/${e_no}`
+                break;
+            case "5":
+                watch_frame_link_eb = `https://www.primewire.tf/embed/tv?tmdb=${show_id}&season=${s_no}&episode=${e_no}`
+                break;
             default:
-                watch_frame_link_eb = 'https://vidsrc.to/embed/tv/${imdb}/${season_no}/${episode_no}';
+                watch_frame_link_eb = `https://vidsrc.to/embed/tv/${show_id}/${s_no}/${e_no}`;
                 break;
         }
      }
-
+     console.log(watch_frame_link_eb)
      return watch_frame_link_eb
 }
 
 
+
+let no_of_servers = 5
 let con_severs = ''
-i = 0
-while (i < C_servers.length){
+i = 1
+while (i <= no_of_servers){
      con_severs = con_severs + `<div class="sever_change_select_each "><i class="fa fa-server" aria-hidden="true"></i>&nbsp; HD-${i} </div>`
      i++
 }
 document.getElementById('server_dropdown').innerHTML = con_severs;
 
-let set_server = localStorage.getItem('C_servers');
-if(set_server){
-    set_server = parseInt(set_server)
-    watch_frame_link_eb = C_servers[set_server]
-    const items = document.querySelectorAll('.sever_change_select_each');
-    items[set_server].classList.add('active');
 
-}else{
-    watch_frame_link_eb = C_servers[0];
+let set_server_choice = localStorage.getItem('C_servers') ;
+console.log(set_server_choice)
+if(set_server_choice){
     const items = document.querySelectorAll('.sever_change_select_each');
-    items[0].classList.add('active');
+    items[set_server_choice-1].classList.add('active');
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -292,10 +305,9 @@ async function SHOW_INFOs(id, type) {
                   let selected_server = item.textContent.trim()
                   let server_number = selected_server.replace(/\D/g, ""); // Remove non-digits
                   console.log("Selected:", selected_server );
-                  console.log("Selected:", parseInt(server_number));
-                  console.log("Selected:", C_servers[server_number]);
+                  console.log("Selected Server number:", server_number);
                   localStorage.setItem('C_servers', `${server_number}` );
-                  watch_frame_link_eb = C_servers[server_number]
+                  set_server_choice = server_number
                   document.getElementById('server_dropdown').classList.remove('active');
                   Watch_IFRAME(id, type, data);
             });
@@ -307,7 +319,7 @@ async function SHOW_INFOs(id, type) {
 
 
 async function Show_Info(info_data, type){
-    console.log(info_data)
+    //console.log(info_data)
     const no_select = document.getElementById("no_select");
     no_select.style.background = 'hsl(222, 25%, 10%)';
 
@@ -509,23 +521,11 @@ function serverDropdown(){
 
 async function Watch_IFRAME(imdb, type, info_data) {
       if (type==="movie"){
-            try{
-                let url_v = `${Server_S_location}?search=_${imdb}`;
-                const res = await fetch( url_v);
-                const data = await res.json();
-                //console.log(data['data'][0]);
-                //console.log(data['data'][0]['id']);
-                let video_id = data['data'][0]['id'];
 
-                if(video_id){
-                       Watch_iframe_div_content = `<iframe class="iframe_watch"   id="watch-frame" src='https://dna.uns.bio/#${video_id}' width="700px" height="600px" frameborder="0" allowfullscreen></iframe> `;
-                }else{
-                       Watch_iframe_div_content = ` <iframe  class="iframe_watch"   id="watch-frame" onerror="iframeLoadError()" src='${watch_frame_link_eb}${type}/${imdb}'  frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> `;
-                }
-             } catch(error){
-                       Watch_iframe_div_content = ` <iframe  class="iframe_watch"   id="watch-frame" onerror="iframeLoadError()" src='${watch_frame_link_eb}${type}/${imdb}'  frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> `;
-             }
+          All_servers(set_server_choice, "movie")
 
+          watch_Frame.innerHTML =    ` <iframe  class="iframe_watch"   id="watch-frame" onerror="iframeLoadError()" src=${watch_frame_link_eb}  frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> `;
+          Watch_iframe_div_content = ` <iframe  class="iframe_watch"   id="watch-frame" onerror="iframeLoadError()" src=${watch_frame_link_eb}  frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> `;
 
           let savedState = localStorage.getItem(`watch_on_${show_id}`);
           if (savedState) {
@@ -547,7 +547,6 @@ async function Watch_IFRAME(imdb, type, info_data) {
 
               let i = 0;
               let j = 0;
-
 
 
               for (i ; i < se.length; i++) {
@@ -701,8 +700,8 @@ const Selected_Season = document.querySelector('.Selected_Season')
             let not_out_class = '';
             while(i <= episodes_count){
                 let index = i - 1;
-                console.log(index)
-                console.log(data_episodes[index])
+                //console.log(index)
+                //console.log(data_episodes[index])
                 let episode_name
                 if(data_episodes[index]){
                    episode_name = data_episodes[index].name || index
@@ -750,9 +749,8 @@ const Selected_Season = document.querySelector('.Selected_Season')
 
             item.classList.remove('episodes_each_select');
             if(seasonTitle === seasonTitle1){
-                  console.log("active episod found");
+                  //console.log("active episod found");
                   item.classList.add('episodes_each_select');
-                  console.log(item)
             }
 
           });
@@ -770,27 +768,11 @@ const Selected_Season = document.querySelector('.Selected_Season')
           watch_Frame_element = document.getElementById('watch_Frame');
           watch_Frame_element.style.display = 'block';
 
-          let type = 'tv';
 
-          try{
-              let url_v = `${Server_S_location}?search=${episode_code}`;
-              const res = await fetch( url_v);
-              const data = await res.json();
-              console.log(data['data']);
-              //console.log(data['data'][0]['id']);
-              if(data['data'][0]['id']){
+          All_servers(set_server_choice, url_type="tv", s_no=season_no, e_no=episode_no)
 
-                  watch_Frame.innerHTML = `<iframe class="iframe_watch"   id="watch-frame" src='https://dna.uns.bio/#${data["data"][0]["id"]}' width="700px" height="600px" frameborder="0" allowfullscreen></iframe>`;
-                  Watch_iframe_div_content = `<iframe class="iframe_watch"   id="watch-frame" src='https://dna.uns.bio/#${data["data"][0]["id"]}' width="700px" height="600px" frameborder="0" allowfullscreen></iframe> `;
-
-              }else{
-                    watch_Frame.innerHTML = ` <iframe  class="iframe_watch"   id="watch-frame" onerror="iframeLoadError()" src='${watch_frame_link_eb}${type}/${imdb}'  frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> `;
-                    Watch_iframe_div_content = ` <iframe  class="iframe_watch"   id="watch-frame" onerror="iframeLoadError()" src='${watch_frame_link_eb}${type}/${imdb}'  frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> `;
-              }
-          } catch(error){
-                  watch_Frame.innerHTML = ` <iframe  class="iframe_watch"   id="watch-frame" onerror="iframeLoadError()" src='${watch_frame_link_eb}${type}/${series_id}/${season_no}/${episode_no}'  frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> `;
-                  Watch_iframe_div_content = ` <iframe  class="iframe_watch"   id="watch-frame" onerror="iframeLoadError()" src='${watch_frame_link_eb}${type}/${series_id}/${season_no}/${episode_no}'  frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> `;
-          }
+          watch_Frame.innerHTML = ` <iframe  class="iframe_watch"   id="watch-frame" onerror="iframeLoadError()" src=${watch_frame_link_eb}  frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> `;
+          Watch_iframe_div_content = ` <iframe  class="iframe_watch"   id="watch-frame" onerror="iframeLoadError()" src=${watch_frame_link_eb}  frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> `;
 
           //watch_Frame.innerHTML = ` <iframe  class="iframe_watch"   id="watch-frame" onerror="iframeLoadError()" src='${watch_frame_link_eb}${type}/${series_id}/${season_no}/${episode_no}'  frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> `;
           //Watch_iframe_div_content = ` <iframe  class="iframe_watch"   id="watch-frame" onerror="iframeLoadError()" src='${watch_frame_link_eb}${type}/${series_id}/${season_no}/${episode_no}'  frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> `;
