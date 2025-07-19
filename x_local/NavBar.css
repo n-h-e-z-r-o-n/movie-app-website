@@ -909,7 +909,7 @@ Terms_Details_content::-webkit-scrollbar {
   height:  500px;
   width: 500px;
   box-sizing: border-box;
-  background: #1B1B1B;
+  background:  var(--global-color-bg);
   box-shadow: 1px 1px 10px 1px #000000, 8px 8px 0px 0px #344454, 12px 12px 10px 0px #000000;
   box-shadow: 1px 1px 4px 0px #000000, 8px 8px 0px 0px #a2703f, 9px 9px 4px 0px #000000, 16px 16px 0px 0px rgba(172, 65, 31, 0.5), 17px 17px 7px 1px #000000;
   z-index: 1000;
