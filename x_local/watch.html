@@ -3,6 +3,7 @@
 <head>
     <title>Movionyx</title>
     <link rel="icon" href="Assets/Movionyx.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="./shared.css" />
     <link rel="stylesheet" type="text/css" href="./watch.css" />
     <link rel="stylesheet" type="text/css" href="./NavBar.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -196,50 +197,60 @@
 
  <!--------- Section ------------------------------------------------------------------------------------------------------------>
 
-<div class="no-select"  id="no_select" >
+
 <!----  watch container section -------------------------------- -------------------------------------------------------------------------------- -->
-
-
-
-
 
 
 
                  <div class="uuux" id="back_img_s">
 
-                      <div class="watch_container"    >
+                     <div class="uuux_cover" id="uuux_cover"> </div>
 
-                          <div class="poster_container" >
-                              <div class="container_d1">
-                                  <div class="watch_Now_btn" id="watch_Now_btn"> WATCH NOW </div>
-                                  <div class="watch_Now_btn" id="watch_preview"> PREVIEW </div>
-                                  <!--div class="watch_Now_btn" id="Favorite_btn_watch"> ADD TO FAV</div-->
+                      <div class="watch_container">
+                          <div class="play_video">
+                              <div class="circle" id="watch_Now_btn_1">
+                                  <span class="circle__btn">
+                                    &#x25B6;
+                                  </span>
+                                  <span class="circle__back-1"></span>
+                                  <span class="circle__back-2"></span>
                               </div>
                           </div>
-
-                          <div class="info_section">
-                                <div class="watch_image" id="poster_image"> </div>
-                                <div class="Show_title" id="Show_title_l"></div>
-                                <div class="show_genres" id="show_genres"></div>
-                                <div class="Show_Summary" id="Show_SUMMARY_l"></div>
-                                <div class="show_data">
-                                    <div class="show_type" id="show_type"></div>
-                                    <div class="show_pg" id="show_pg"></div>
-                                    <div class="show_HD" id="show_HD"></div>
-                                    <div class="show_MIN" ID="show_MIN"></div>
-                                    <div class="show_rating" id="show_rating"></div>
-                                    <div class="show_Premiered" ID="show_Premiered"></div>
-                                </div>
-                                <div class="show_production" id="show_production"></div>
-
-                          </div>
                           <div class="watch_Frame" id="watch_Frame">    </div>
-
                           <div class="cancel_watch" id="cancel_watch_btn">X</div>
                       </div>
                  </div>
+<!----  section -------------------------------- -------------------------------------------------------------------------------- -->
+
+ <div class="no-select"  id="no_select" >
 
 <!----  watch control section -------------------------------- -------------------------------------------------------------------------------- -->
+               <div class="info_section" id="info_section">
+                   <div class="info_section_1">
+                        <div class="watch_image" id="poster_image"> </div>
+                   </div>
+
+                   <div class="info_section_2">
+                        <div class="container_d1">
+                                  <div class="watch_Now_btn" id="watch_Now_btn_2"> <i class="fa fa-play" aria-hidden="true"></i> &nbsp; Watch Now </div>
+                                  <div class="watch_Now_btn" id="watch_preview"> <i class="fas fa-video"></i> &nbsp; Trailer </div>
+                                  <div class="watch_Now_btn" id="Favorite_btn_watch_1" style="margin-left: auto; background: #F5F5F5;   box-shadow: 0 0 10px transparent; border-radius: 1em; padding-left: 10px; padding-right: 10px;"> <i class="fas fa-plus"></i> &nbsp; Add to Favorite</div>
+                        </div>
+                        <div class="Show_title" id="Show_title_l"></div>
+                        <div class="show_genres" id="show_genres"></div>
+                        <div class="Show_Summary" id="Show_SUMMARY_l"></div>
+                        <div class="show_data">
+                            <div class="show_type" id="show_type"></div>
+                            <div class="show_pg" id="show_pg"></div>
+                            <div class="show_HD" id="show_HD"></div>
+                            <div class="show_MIN" ID="show_MIN"></div>
+                            <div class="show_rating" id="show_rating"></div>
+                            <div class="show_Premiered" ID="show_Premiered"></div>
+                        </div>
+                        <div class="show_production" id="show_production"></div>
+                   </div>
+               </div>
+
                <div class="watch_control">
                    <div class="sever_change" id="sever_change" >
                        <div class="sever_indicator"></div>
@@ -251,7 +262,7 @@
                        </div>
                     </div>
 
-                   <div class="sever_change" id="Favorite_btn_watch"> <i class="fa fa-plus-circle" aria-hidden="true" style="font-size: 10px;"></i>&nbsp; Favorite</div>
+                   <div class="sever_change" id="Favorite_btn_watch_2"> <i class="fa fa-plus-circle" aria-hidden="true" style="font-size: 10px;"></i>&nbsp; Favorite</div>
                    <div class="sever_change" id="share_btn"> <i class="fa fa-share-alt" aria-hidden="true" style="font-size: 10px;"></i> &nbsp; Share</div>
                    <div class="sever_change" > <i class="fa fa-comments" aria-hidden="true" style="font-size: 10px;"></i> &nbsp; Discussion</div>
                    <div class="sever_change" id="Reload_Show"> <i class="fa fa-retweet" aria-hidden="true"></i>&nbsp; Re-load</div>
@@ -327,9 +338,6 @@
 
 
 <!----  watch recommendation  section -------------------------------- -------------------------------------------------------------------------------- -->
-
-
-
 
 
 

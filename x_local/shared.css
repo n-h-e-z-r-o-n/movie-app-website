@@ -1,7 +1,8 @@
 /*#1B1B1B*/
 :root {
---global-color-bg:  #050301  !important; /* #050301     #1D2951  #003153  #0F0404;*/
---global-color-fg: white !important;
+--global-color-bg:  white !important; /* #050301     #1D2951  #003153  #0F0404;*/
+--global-color-bg-shade:   #1B1B1B;
+--global-color-fg: black !important;
 --color_theme:  hsl(186 100% 69%);
 --section_header_color: #020403; /*#1B1B1B;*/
 --Brand_Color:   #00BFFF;
@@ -15,15 +16,15 @@ body , html {
   padding: 0;
   height: 100%;
   width: 100%;
-  background-color : var(--global-color-bg) ;
+  background: var(--global-color-bg) ;
   -webkit-tap-highlight-color: transparent;
   tap-highlight-color: transparent;
   touch-action: manipulation;
   overscroll-behavior: contain;
-  Background:  url("./Amssets/black_bg.png"), #050301;
   background-repeat: no-repeat;
   background-position: center;
-  Background-size:  100% 100%;}
+  Background-size:  100% 100%;
+}
 
 
 *{
@@ -41,11 +42,10 @@ body , html {
 
 .no-select{
         height: 100%;
-        width: 90%;
+        width: 80%;
         max-width: var(--Max-width);
         background-color : var(--global-color-bg);
         margin: auto;
-        background: ;
         overflow: scroll;
         -ms-overflow-style: none;  /* IE and Edge */
         scrollbar-width: none;  /* Firefox */
@@ -67,8 +67,6 @@ body , html {
     margin-top: 10px;
     margin-bottom: 10px;
     float: right;
-
-
 }
 
 .box-img{
@@ -100,7 +98,6 @@ body , html {
     height: 100%;
     object-fit: fill;
     border-radius: inherit;
-
 }
 
 
@@ -240,6 +237,27 @@ body , html {
     justify-content: center;
 }
 
+/*====================================================================================================================*/
+
+.show_more{
+  width: auto;
+  margin: 0 auto;
+  padding: 0px;
+  text-align: center;
+}
+.show_more_1 {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.show_more_1 button {
+  padding: 5px 10px;
+  background-color: transparent;
+  box-shadow: 0 4px 6px gray;
+  border-radius: 10px 10px 10px 10px;
+  cursor: pointer;
+  color: var(--global-color-fg);
+}
 
 /*=========================================    SMALL DEVICES    ======================================================*/
 

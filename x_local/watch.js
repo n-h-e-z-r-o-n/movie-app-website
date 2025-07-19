@@ -86,7 +86,6 @@ document.getElementById('server_dropdown').innerHTML = con_severs;
 
 
 let set_server_choice = localStorage.getItem('C_servers') ;
-console.log(set_server_choice)
 if(set_server_choice){
     const items = document.querySelectorAll('.sever_change_select_each');
     items[set_server_choice-1].classList.add('active');
@@ -319,26 +318,26 @@ async function SHOW_INFOs(id, type) {
 
 
 async function Show_Info(info_data, type){
-    //console.log(info_data)
-    const no_select = document.getElementById("no_select");
-    no_select.style.background = 'hsl(222, 25%, 10%)';
+    console.log(info_data)
+    async function handleFaveClick(Favorite_widget) {
+        console.log(type);
+        if (type === 'tv' || type === 'Tv') {
+            try {
+                let SS = info_data.last_episode_to_air.season_number;
+                let ESP = info_data.last_episode_to_air.episode_number;
+                info_data.S_info = `SS ${SS} / ESP ${ESP}`;
+            } catch {
+                info_data.S_info = `SS 1 / ESP 1`;
+            }
+        }
+        AddToFav(info_data, Favorite_widget);
+    }
 
-    const Favorite_btn_watch = document.getElementById('Favorite_btn_watch');
-    Favorite_btn_watch.addEventListener("click",  function(event) {
-        event.stopPropagation();
-         //console.log(type);
-         if(type ==='tv' || type ==='Tv'){
-             //console.log(type);
-             try{
-             let SS = info_data.last_episode_to_air.season_number
-             let ESP = info_data.last_episode_to_air.episode_number
-             info_data.S_info  = `SS ${SS} / ESP ${ESP}`
-             }catch{
-               info_data.S_info  = `SS 1 / ESP 1`
-             }
-         }
-        AddToFav(info_data, Favorite_btn_watch);
-    });
+    const Favorite_btn_watch_1 = document.getElementById('Favorite_btn_watch_1');
+    const Favorite_btn_watch_2 = document.getElementById('Favorite_btn_watch_2');
+
+    Favorite_btn_watch_1.addEventListener('click', () => handleFaveClick(Favorite_btn_watch_1));
+    Favorite_btn_watch_2.addEventListener('click', () => handleFaveClick(Favorite_btn_watch_2));
 
     var show_type = document.getElementById("show_type");
     var show_type_s = document.getElementById("show_type_s");
@@ -368,14 +367,16 @@ async function Show_Info(info_data, type){
     back_img_s.style.background = ` linear-gradient(to bottom, rgba(0, 0, 0, 0) 80%, #050301 98%),
                                   linear-gradient(to right, rgba(0, 0, 0, 0) 40%, #050301 100%),
                                   url("${IMG_PATH}${info_data['backdrop_path']}")`;
-    */
-    back_img_s.style.background =`linear-gradient(to bottom, rgba(0,0,0,0), var(--global-color-bg)), linear-gradient(to top, rgba(0,0,0,0), var(--global-color-bg)),url("${IMG_PATH}${info_data['backdrop_path']}")`;
-
-
+        back_img_s.style.background =`linear-gradient(to bottom, rgba(0,0,0,0), var(--global-color-bg)), linear-gradient(to top, rgba(0,0,0,0), var(--global-color-bg)),url("${IMG_PATH}${info_data['backdrop_path']}")`;
+   */
+    back_img_s.style.background =`url("${IMG_PATH}${info_data['backdrop_path']}")`;
+    //console.log(`${IMG_PATH}${info_data['backdrop_path']}`);
     back_img_s.style.backgroundPosition = 'center';
     back_img_s.style.backgroundRepeat = 'no-repeat';
     back_img_s.style.backgroundSize = 'cover';
     back_img_s.style.imageRendering = 'high-quality';
+
+
 
 
 
@@ -529,7 +530,7 @@ async function Watch_IFRAME(imdb, type, info_data) {
 
           let savedState = localStorage.getItem(`watch_on_${show_id}`);
           if (savedState) {
-               var watch_Now_btn = document.getElementById('watch_Now_btn');
+               var watch_Now_btn = document.getElementById('watch_Now_btn_1');
                watch_Now_btn.click();
           }
 
@@ -581,16 +582,17 @@ async function Watch_IFRAME(imdb, type, info_data) {
               season_selector1.innerHTML = `${con1}`;
               scroll_allow();
 
-              //console.log(info_data);
               document.querySelectorAll('.season_info_hold_season_container_each').forEach(item => {
-                    item.style.background = `linear-gradient(to bottom, rgba(0,0,0,0), var(--global-color-bg)),  url("${IMG_PATH}${info_data['backdrop_path']}")`;
+                    //item.style.background = `linear-gradient(to bottom, rgba(0,0,0,0), var(--global-color-bg)),  url("${IMG_PATH}${info_data['backdrop_path']}")`;
+                    item.style.background = `url("${IMG_PATH}${info_data['backdrop_path']}")`;
                     item.style.backgroundSize = "100% 100%";       // Ensures the image covers the element
                     item.style.backgroundRepeat = "no-repeat"; // Prevents tiling
                     item.style.backgroundPosition = "center";   // Centers the image
+                    item.style.backdropFilter = "blur(60px)";
+
               });
 
                const savedState = localStorage.getItem(`DisplayEpisode_${info_data["id"]}`);
-               // console.log(savedState)
                if (savedState) {
 
                     const state = JSON.parse(savedState);
@@ -857,33 +859,48 @@ function Suggestion_Search(movies) {
 // ---------------------------------------------------------------------------------------------------------------------
 // ---------------------------------------------------------------------------------------------------------------------
 
-document.getElementById('watch_Now_btn').addEventListener('click', async function() {
+async function handleWatchNowClick() {
     var cancel_watch_btn = document.getElementById('cancel_watch_btn');
     var Info_container = document.getElementById('Info_container');
-    //console.log("Watch_iframe_div_content", Watch_iframe_div_content)
+    var uuux_cover = document.getElementById('uuux_cover');
+    var info_section_element = document.getElementById('info_section');
+    var no_select_element = document.getElementById('no_select');
+
     if(Watch_iframe_div_content){
         watch_Frame.innerHTML = Watch_iframe_div_content;
-    } else{
-              try{
-                  const firstEpisode = document.querySelector('.episodes_each');
-                  firstEpisode.click();
-                  localStorage.setItem(`watch_on_${show_id}`, 'true');
-              } catch(error){
-                  const first_season = document.querySelector('.season_info_hold_season_container_each');
-                  first_season.click();
-                  await sleep(2000);
-                  const firstEpisode = document.querySelector('.episodes_each');
-                  firstEpisode.click();
-                  localStorage.setItem(`watch_on_${show_id}`, 'true');
-              }
+    } else {
+        try {
+            const firstEpisode = document.querySelector('.episodes_each');
+            firstEpisode.click();
+            localStorage.setItem(`watch_on_${show_id}`, 'true');
+        } catch (error) {
+            try {
+                const first_season = document.querySelector('.season_info_hold_season_container_each');
+                first_season.click();
+                await sleep(2000);
+                const firstEpisode = document.querySelector('.episodes_each');
+                firstEpisode.click();
+                localStorage.setItem(`watch_on_${show_id}`, 'true');
+            } catch {}
+        }
     }
 
+    info_section_element.style.display = "none";
     Info_container.style.display = 'block';
+    uuux_cover.style.backdropFilter = "blur(10px)";
+    //no_select_element.style.transform = "translateY(0px)";
+    no_select_element.classList.add('active');
     watch_Frame.style.display = 'flex';
     cancel_watch_btn.style.display = 'flex';
     localStorage.setItem(`watch_on_${show_id}`, 'true');
-});
+}
 
+// Attach the same function to multiple buttons by ID
+document.getElementById('watch_Now_btn_1').addEventListener('click', handleWatchNowClick);
+document.getElementById('watch_Now_btn_2').addEventListener('click', handleWatchNowClick);
+
+
+//======================================================================================================================
 async function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -891,8 +908,17 @@ async function sleep(ms) {
 document.getElementById('cancel_watch_btn').addEventListener('click', function() {
     var Info_container = document.getElementById('Info_container');
     var cancel_watch_btn = document.getElementById('cancel_watch_btn');
+    var uuux_cover = document.getElementById('uuux_cover');
+    var info_section_element = document.getElementById('info_section');
+    var no_select_element = document.getElementById('no_select');
+
+
     watch_Frame.innerHTML = ``;
     watch_Frame.style.display = 'none';
+    uuux_cover.style.backdropFilter = "blur(0px)";
+    info_section_element.style.display = "flex"
+    //no_select_element.style.transform = "translateY(-200px)";
+    no_select_element.classList.remove('active');
     cancel_watch_btn.style.display = 'none';
     localStorage.removeItem(`watch_on_${show_id}`);
 

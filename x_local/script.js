@@ -978,7 +978,7 @@ async function Company_Card(company_show) {
                   let card_each = document.createElement("div");
 
                   card_each.classList.add("company_card");
-                  card_each.style.background = `linear-gradient(to bottom, rgba(0,0,0,0), var(--global-color-bg)), url(${company_backdrop})`;
+                  card_each.style.background = `url(${company_backdrop})`;
 
                   card_each.style.backgroundRepeat = 'no-repeat';
                   card_each.style.backgroundPosition = 'center';

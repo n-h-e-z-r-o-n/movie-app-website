@@ -65,7 +65,7 @@
      background: #232B2B ;
      margin: auto;
      padding: 5%;
-     box-shadow: 1px 12px 25px rgb(128 128 128 / 9%);
+     box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
      border-radius: 1.5rem;
 }
 
@@ -110,9 +110,10 @@
 
 .profile_section_1_head{
    opacity: 0.7;
-   font-family: 'Courier New';
+   font-family: 'Courier New', serif;
    margin: auto;
    width: 80%;
+   color: white !important;
 }
 
 .profile_section_1_input{
@@ -122,7 +123,6 @@
    margin-left: auto;
    margin-right: auto;
    display: flex;
-
    margin-bottom: 20px;
    background: #C2D8D3 !important;
    font-family: 'Poppins', sans-serif;
@@ -133,7 +133,12 @@
    align-items: center;
    box-sizing: border-box;
 }
-
+.Change_password{
+    color: white !important;
+    margin: auto;
+    margin-bottom:20px;
+    width: 80%;
+}
 .C_P_SAVE{
    height: 55px;
    width: 80%;
@@ -192,13 +197,13 @@
     text-align: center;
     outline: none;
     text-decoration: none;
-    color: var(--global-color-bg);
+    color: var(--global-color-fg);
     background:#fff;
     padding: 10px;
-
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
 }
 .download_btn *{
-   color: var(--global-color-bg);
+   color: var(--global-color-fg);
    font-size: 30px;
 }
 

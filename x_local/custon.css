@@ -3,19 +3,20 @@
 /*====================================================================================================================*/
 .section_sel {
    display: flex;
-   width: 100%;
+   width: 98%;
    overflow: hidden;
    justify-content: center; /* Center the filter-radios horizontally */
-   background: #1B1B1B;
-   padding: 1% 0%;
+   background: var(--global-color-bg);
    border-radius: 40px;
+   box-shadow: 0 4px 6px gray; /* Add a subtle shadow */
+   margin:auto;
+
 }
 
 .filter-radios {
    background: var(--global-color-bg);
-
    height: 60px;
-   aspect-ratio: 21/2;
+   width: 70%;
    display: flex;
    justify-content: space-between;
    align-items: center;
@@ -30,20 +31,20 @@
    display: flex;
    justify-content: center;
    align-items: center;
-   width: 30%;
-   height: 90%;
+   width: 140px;
+   height: 75%;
    border-radius: 14px;
    cursor: pointer;
    transition: all 0.3s ease;
-   font-size: 14px;
+   font-size: 20px;
    font-weight: 500;
-   color: var(--global-color-fg);
+   color: gray;
    border: 0.5px solid transparent;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1)
 
 }
 .sel_options.active {
-   background: #1B1B1B; /* Blue background for active state */
-   ; /* White text for active state */
+   color: var(--Brand_Color);
    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7); /* Shadow for active state */
 }
 .sel_options:hover {
@@ -56,36 +57,27 @@
 /* ===================================================================================================================*/
 
 .trending_container{
-    /*background: var(--Brand_Image);*/
+    background: transparent;
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100% 100%;
-    /*background-image:  url("./profile/Home_img.jpg");*/
-    animation:backAn 50s infinite;
-    height: 80vh;
+    height: 800px;
     width:  100%;
     padding-bottom: 10px;
-    padding-top: 80px;
+    margin-top: 80px;
     display: flex;
 }
 
-
-@keyframes badckAn {
-  0%   { background-size:100% }
-  50%   { background-size:250% }
-  100%   { background-size:100% }
-}
 
 
 
 .slider-container{
   width: 100%;
   height: 92%;
-  padding-bottom: 10px:
+  padding-bottom: 10px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -117,7 +109,7 @@
   transition: 0.7s ease;
   margin: 4px;
   display: block;
-  background: rgba(57, 89, 116, 0.8);
+  background: rgba(57, 89, 116, 0.7);
   filter: blur(9px);
   overflow: hidden;
 }
@@ -139,6 +131,7 @@
   transition: 0.7s ease;
   display: none;
 }
+
 .details_p{
   font-family: "Jost", sans-serif;
   font-size: 1em;
@@ -213,27 +206,7 @@
 
 
 
-/*-----------------------------------------------------------------------------*/
 
-.show_more{
-  width: auto;
-  margin: 0 auto;
-  padding: 0px;
-  text-align: center;
-}
-.show_more_1 {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-.show_more_1 button {
-  padding: 5px 10px;
-  background-color: transparent;
-  border-color: var(--Brand_Color);
-  border-radius: 10px 10px 10px 10px;
-  cursor: pointer;
-  color: var(--global-color-fg);
-}
 
 /* --------------------------------------------------------------------------------------------------*/
 .recommended_container{
@@ -269,6 +242,7 @@
   margin-left: 17px;
   aspect-ratio: 1;
   position: relative;
+  background: rgba(57, 89, 116, 0.8);
   backdrop-filter: blur(10px); /* Applies blur to the background */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
@@ -311,6 +285,8 @@
     color: rgba(255, 255, 255, 0.2);
     top: 50%;
     border-radius: 50%;
+    width: 45px;
+    height:  45px;
     transform: translateY(-50%);
     border: none;
     font-size: 1em;
@@ -332,6 +308,8 @@
     position: absolute;
     top: 50%;
     border-radius: 50%;
+    width: 45px;
+    height:  45px;
     transform: translateY(-50%);
     border: none;
     font-size: 1em;
@@ -354,7 +332,6 @@
 
 .navbar-container.active {
   background-color: white;
-
   color: black;
 }
 
@@ -413,27 +390,24 @@
     color-scheme: light;
     height: 200px;
     aspect-ratio: 16/9;
-    /*background:  linear-gradient(to bottom, white 10%, white 90%), url("./Assets/xr.png");*/
-
-
     background-repeat: no-repeat;
     background-position: center;
     background-size: 'cover';
     background-color: white;
-
     display: flex;
     justify-content: center;
     align-items: center;
     box-shadow: 0 5px 15px 0px rgba(0,0,0,0.1);
-    margin: 1%;
-    box-shadow: inset 2px -2px 20px rgba(214, 214, 214, 0.2),
-    inset -3px 3px 3px rgba(255, 255, 255, 0.3);
+    margin: 10px;
+    box-shadow: 0 4px 6px gray;
     border-radius: 3px;
     mix-blend-mode: normal;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 .company_card_holder:hover {
-   background-color: blue;
+   transform: scale(1.045);
 }
 
 
@@ -446,14 +420,6 @@
     background-size: 100% 100%;
     background-color: transparent;
 
-    box-shadow: 0 5px 15px 0px rgba(0,0,0,0.1);
-    box-shadow: inset 2px -2px 20px rgba(214, 214, 214, 0.2),
-    inset -3px 3px 3px rgba(255, 255, 255, 0.3);
-    border-radius: 3px;
-
-    **mix-blend-mode: normal;** /* This will protect your div */
-    -webkit-filter: invert(0%) !important; /* Stops color inversion */
-    filter: invert(0%) !important;
 }
 
 
@@ -473,21 +439,20 @@
     position: relative;
     overflow: hidden;
     border-radius: 18px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+    box-shadow: 0 1px 5px var(--global-color-fg);
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
-    min-height: 150px;
+    height: 150px;
     background: #181818;
 }
 
 .category-card:hover {
     transform: scale(1.045);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.18);
 }
 
 .category_card_img {
     width: 100%;
-    height: 150px;
+    height: 140px;
     object-fit: cover;
     display: block;
     transition: filter 0.2s;
@@ -522,16 +487,18 @@
     z-index: 2;
     text-shadow: 0 2px 8px rgba(0,0,0,0.4);
     pointer-events: none;
+    color: var(--global-color-fg);
 }
 
 /* --- Enhanced Section Title --- */
 .show_title_section {
     font-size: 1.6rem;
-    font-weight: 700;
+    font-weight: bold;
     margin: 40px 0 18px 0;
-    color: white;
+    color: var(--global-color-fg);
     letter-spacing: 1px;
     text-align: left;
+    background: transparent;
 }
 
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
@@ -969,11 +936,9 @@ ul li a:hover{
 
 
    .trending_container{
-        /*background: var(--Brand_Image);*/
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
-        /*background-image:  url("./profile/Home_img.jpg");*/
         animation:backAn 50s infinite;
         height: 400px;
         width:  100%;
