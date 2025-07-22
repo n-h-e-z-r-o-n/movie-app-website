@@ -339,13 +339,14 @@
 .notification_badge  {
   position: absolute;
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   background: red;
+  color: var(--global-color-fg);
   top: 0px;
   right: 0px;
   animation: pulse_glow 5s infinite ease-in-out;
-  font-size: 10px;
+  font-size: 14px;
   display: none;
   align-items: center;
   justify-content: center;
