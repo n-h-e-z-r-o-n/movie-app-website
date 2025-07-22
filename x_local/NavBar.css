@@ -365,8 +365,10 @@
 }
 
 .notification_container{
-  background: #1B1B1B;
-  border: 2px solid black;
+  background: var(--global-color-bg);
+  border: 17px solid transparent;
+  box-shadow: 0 4px 6px gray; /* Add a subtle shadow */
+  border-radius: 0.8em;
   display: none;
   flex-wrap: wrap;
   backdrop-filter: blur(210px);
@@ -374,11 +376,8 @@
   height: auto;
   max-height: 400px;
   position: absolute;
-
-  box-sizing: border-box;
-
+  padding:  2px;
   transition: visibility 0s, opacity 0.3s ease-in-out;
-  border-radius: 5px;
   transform: translateX(-40%) translateY(65%);
   z-index: 5000;
   -ms-overflow-style: none;
@@ -393,6 +392,10 @@
   height: 100px;
   display: flex;
   flex-wrap: wrap;
+}
+.notification_container_each:hover{
+    opacity: 0.8;
+    background: rgba(57, 89, 116, 0.1);
 }
 
 .notification_container_each_img{
