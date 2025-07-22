@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title> Movionyx </title>
+    <title>Movionyx</title>
     <link rel="icon" href="Assets/Movionyx.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="./shared.css" />
-    <link rel="stylesheet" type="text/css" href="./anime.css" />
     <link rel="stylesheet" type="text/css" href="./NavBar.css" />
+    <link rel="stylesheet" type="text/css" href="./profile.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 </head>
-<body>
+<body >
 <div class="no-select">
 
  <!--------- Navigation bar  ------------------------------------------------------------------------------------------------------------>
@@ -17,6 +18,7 @@
                         <div class="reload_btn" id ="Reload_btn">
                                <i class="fas fa-sync fa-spin"></i>
                         </div>
+
                         <div class="Nav_container">
                             <div class="logo_ float_animation_nav" id="HomeNav_btnT"></div>
                         </div>
@@ -120,7 +122,6 @@
                         <div class="nav_tub_text">Account </div>
                     </div>
 
-
                     <div class="search_div_bottom">
                         <input type="text" class="search_input_bottom" id="search_input_bottom" placeholder="Search">
                         <div class="search_btn_bottom_cancel">+</div>
@@ -195,86 +196,75 @@
             </div>
 
 
- <!--------- Section ------------------------------------------------------------------------------------------------------------>
+<!-- Favorite section --------------------------------------------------------------------------------------------------------->
+         <div class="bar_section" >
+                     <div class="text_container" id="show_profile"><i class="fa fa-users" aria-hidden="true"></i> &nbsp; PROFILE </div>
+                     <div class="text_container" id="show_messages"><i class="fas fa-coffee"></i> &nbsp; EXTRAS </div>
+                     <div class="text_container" id="show_watchlist" ><i class="fa fa-heartbeat" aria-hidden="true"></i> &nbsp; FAVORITES </div>
+                     <div class="text_container" id="logout_btn"><i class="fa fa-eraser" aria-hidden="true"></i> &nbsp;  LOGOUT </div>
+         </div>
 
-        <div class="filter_section">
-
-
-              <div class="anime_search_container">
-                   <input type="text" class="anime_search_input" id="anime_search_input" placeholder="Search anime...">
-                   <div class="anime_search_btn" id="anime_search_btn"> <i class="fa fa-search"></i>  </div>
-              </div>
-
-             <div class="anime_genra_list_title">Filter </div>
-             <div class="Select_option">
-                  <div class="Select_option_title">Type&dtrif;</div>
-                  <div class="anime_dropdown_content" >
-                      <label><input type="checkbox" name="show_type" value="All" data-country="All">All</label>
-                      <label><input type="checkbox" name="show_type" value="Movie" data-country="Movie"> Movie</label>
-                      <label><input type="checkbox" name="show_type" value="Tv" data-country="Tv">Tv</label>
-                  </div>
-             </div>
-
-             <div class="Select_option">
-                  <div class="Select_option_title">Sort By &dtrif;</div>
-                  <div class="anime_dropdown_content" >
-                      <label><input type="checkbox"  name="sorting" value="original_title.asc" data-country="original_title.asc"> Original_title Ascending Order</label>
-                      <label><input type="checkbox"  name="sorting"  value="original_title.desc" data-country="original_title.desc"> Original_title Descending Order</label>
-                      <label><input type="checkbox"  name="sorting"  value="popularity.asc" data-country="popularity.asc"> Popularity  Ascending Order</label>
-                      <label><input type="checkbox"  name="sorting"  value="popularity.desc" data-country="popularity.desc"> popularity.Descending Order</label>
-                      <label><input type="checkbox"  name="sorting"  value="revenue.asc" data-country="revenue.asc"> Revenue Ascending Order</label>
-                      <label><input type="checkbox"  name="sorting"  value="revenue.desc" data-country="revenue.desc">Revenue Descending Order</label>
-                  </div>
-             </div>
+         <div class="Favorites_Container" >
 
 
-            <div class="anime_genra_list_title">Genre </div>
-            <div class="anime_genra_list" >
-                                <div class="anime_genre_each" data-genre="28">Action</div>
-                                <div class="anime_genre_each" data-genre="12">Adventure</div>
-                                <div class="anime_genre_each" data-genre="16">Animation</div>
-                                <div class="anime_genre_each" data-genre="35">Comedy</div>
-                                <div class="anime_genre_each" data-genre="80">Crime</div>
-                                <div class="anime_genre_each" data-genre="99">Documentary</div>
-                                <div class="anime_genre_each" data-genre="18">Drama</div>
-                                <div class="anime_genre_each" data-genre="10751">Family</div>
-                                <div class="anime_genre_each" data-genre="9648">Mystery</div>
-                                <div class="anime_genre_each" data-genre="10749">Romance</div>
-                                <div class="anime_genre_each" data-genre="878">Sci-Fi</div>
-                                <div class="anime_genre_each" data-genre="10770">TV Movie</div>
-                                <div class="anime_genre_each" data-genre="53">Thriller</div>
-                                <div class="anime_genre_each" data-genre="37">Western</div>
-                                <div class="anime_genre_each" data-genre="10752">War</div>
-            </div>
-            <div class="anime_genra_list_Filter_btn" id="anime_genra_list_Filter_btn">Filter </div>
+                <div class="profile_container" id="profile_container">
+                   <div class="profile_section_1">
 
+                       <div class="User_Image"  id="User_Image_show" >
+                           <input type="file" id="User_Image_input"  accept="image/*" hidden />
+                           <label for="User_Image_input" class="User_Image_input" title="Upload Image">
+                                 <i class='fas fa-pen-nib'></i>
+                           </label>
+                       </div>
+
+                        <div class="profile_section_1_head">EMAIL ADDRESS </div>
+                        <div class="profile_section_1_input" id="E_M_A"> </div>
+                        <div class="profile_section_1_head" >YOUR NAME </div>
+                        <div class="profile_section_1_input " id="Y_N"> </div>
+                        <div class="profile_section_1_head" > JOINED </div>
+                        <div class="profile_section_1_input" id="J_D"> </div>
+                        <div class="profile_section_1_head" > CURRENT PASSWORD </div>
+                        <div class="profile_section_1_input"> * * * * * * * *</div>
+                        <div class="Change_password" id="Change_password">&#128273; Change password</div>
+                        <div class="profile_section_1_head" style="display: none;" id="N_P" > NEW PASSWORD </div>
+                        <input class="profile_section_1_input" style="display: none;" id="N_P_I">
+                        <div class="profile_section_1_head" style="display: none;" id="C_N_P"> CONFIRM NEW PASSWORD </div>
+                        <input class="profile_section_1_input"  style="display: none;" id="C_N_P_I">
+                        <div style="margin: auto; margin-bottom:10px; width: 80%;" id="profile_msm"></div>
+                        <div class="C_P_SAVE" style="display: none;" id="C_P_SAVE">SAVE</div>
+
+                   </div>
+                </div>
+                <div class="Extra_container" id="massages_container">
+                    <div class="d_links">
+                          <div class="download_btn" onclick= "download_initiate('android')" > <i class="fab fa-android"></i> &nbsp; &nbsp;  Download for Android  </div>
+                          <div class="download_btn" onclick= "download_initiate('Linux')" style="opacity: 0.2;"> <i class="fab fa-linux"></i> &nbsp; &nbsp;  Download for Linux  </div>
+                          <div class="download_btn" onclick= "download_initiate('Tv')" style="opacity: 0.2;"> <i class="fas fa-tv"></i> &nbsp; &nbsp;  Android TV  </div>
+                          <div class="download_btn" onclick= "download_initiate('windows')" style="opacity: 0.2;">  <i class="fab fa-windows"></i> &nbsp; &nbsp;  Download for Windows  </div>
+                    </div>
+
+
+                </div>
+                <div class="Watch_List_container" id="Watch_List_container"> </div>
         </div>
-        <div class="movies-container"  id="gen_category">
-        </div>
-        <div class="show_more" id="show_more_g" data-state="show-more">Show More &#x21b4;</div>
         <div style="padding-bottom: 60px;"></div>
-
-
 
 
 
 <!----------------------------------------------------------------------------------------------------------------------------->
 
 
+<div style="height: 80px;"></div>
+
+
 </div>
+</body>
 <!--
-
 <script src="./Back_end/nav.php"></script>
-<script src="./Back_end/anime.php"></script>
-
+<script src="./Back_end/profile.php"></script>
 -->
 
 <script src="NavBar.js"></script>
-<script src="anime.js"></script>
-
-
-
-</body>
-
+<script src="profile.js"></script>
 
 </html>

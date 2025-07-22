@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movionyx</title>
+    <link rel="icon" href="../Assets/Movionyx.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body >
+
+
+
+
+<!--  section --------------------------------------------------------------------------------------------------------->
+   <div class="no-select">
+
+             <div class="control_panel">
+                    <div class="logo_"></div>
+                    <div class="control_panel_div" id="Fill_Data-Store"> Fill Data-Store</div>
+                    <div class="control_panel_div" id="Rename_Uploaded"> Rename Uploaded</div>
+                    <div class="control_panel_div" id="Refresh_Feed">Refresh Feed </div>
+                    <div class="control_panel_div" id="Direct_Upload"> Direct_Upload </div>
+                    <div class="control_panel_div" id="Auto_Upload"> Auto Upload </div>
+                    <div class="control_panel_div" >  </div>
+                    <div class="control_panel_div" id="terminal_control"> Terminal </div>
+
+                    <div class="info_show">
+                        <div class="exist-state">Uploaded</div>
+                        <div class="not_exist-state">Not Uploaded</div>
+                        <div class="success-state">Uploading </div>
+                        <div class="error-state"> error </div>
+                    </div>
+             </div>
+
+             <div class="main_d">
+
+                 <div class="Nav">
+                         <div id="Home_nav"> HOME </div>
+                         <div id="Movie_nav"> Movies </div>
+                         <div id="Tv_nav"> TV SHOWS </div>
+                         <div class="search-container" id="Search_nav">
+                            <input type="text"
+                                   class="search-input"
+                                   placeholder="Search for Movie..."
+                                   id="Search_Movie">
+
+                            <input type="text"
+                                   class="search-input"
+                                   placeholder="Search for Tv Show..."
+                                   id="Search_TvShow">
+                        </div>
+                 </div>
+
+
+                 <div class="Favorites_Container" >
+                           <div class="Movie_List_container_nav" id="Movie_Results_nav">
+                                    <div class="Movie_List_container_nav_each" id="Movie_List_container_nav_each_Year"> Year </div>
+                                    <div class="Movie_List_container_nav_each" id="Movie_List_container_nav_each_like_count"> like_count </div>
+                                    <div class="Movie_List_container_nav_each" id="Movie_List_container_nav_each_date_added"> date_added </div>
+                                    <div class="Movie_List_container_nav_each" id="Movie_List_container_nav_each_download_count"> download_count </div>
+                                   <div class="Movie_List_container_nav_each" id="Movie_List_container_nav_each_rating"> rating </div>
+                           </div>
+                           <div class="Movie_List_container" id="Movie_Results">
+
+                           </div>
+                           <div class="TvShow_List_container" id="TV_Results">       </div>
+                           <div class="Search_List_container" id="Search_Results">   </div>
+                           <div class="Home_container" id="Home_Results">            </div>
+
+                           <div class="show_more" id="show_more_g" data-state="show-more">Show More &#x21b4;</div>
+
+                           <div class="View_More_container" id="View_More_Movie_Results">
+                               <div class="View_More_container_close" id="View_More_Movie_container_close">x</div>
+                               <div class="View_More_image_info">
+                                  <div class="View_More_image" id="View_More_movie_image"> </div>
+                                  <div class="" id="view_show_movie_name"> </div>
+                                  <div class="" id="view_show_movie_id"> </div>
+                               </div>
+                               <div class="View_More_Section2">
+                                   <div class="View_More_downloadLinks" id="View_More_Movie_downloadLinks">
+
+                                       <div class="each_downloadLinks">
+                                        <div class="each_downloadLinks_SE"> S1 // EP 2 </div>
+                                        <div  class="each_downloadLinks_name">The Stolen Girl S01E02 720p DSNP WEB-DL DDP5 1 Atmos H 264-RAWR EZTV</div>
+                                        <div class="each_downloadLinks_seeds_peers">Seeds: 68 || Peers: 25</div>
+                                       </div>
+                                   </div>
+                                   <div class="View_More_Direct_hold" >
+                                         <input type="text" id="Movie_direct_link">
+                                         <div class="Direct_link_submit"  style="padding: 1%;" id="Movie_submitBtn">Submit</div>
+                                   </div>
+
+
+                               </div>
+                           </div>
+
+                          <div class="View_More_container" id="View_More_Results">
+                             <div class="View_More_container_close" id="View_More_container_close">x</div>
+                             <div class="View_More_image_info">
+                                  <div class="View_More_image" id="View_More_image"> </div>
+                                  <div class="" id="view_show_name"> </div>
+                                 <div class="" id="view_show_id"> </div>
+                                  <div class="" id="first_air_date"> </div>
+                                 <div class="" id="last_air_date"> </div>
+                                 <div class="" id="number_of_seasons"> </div>
+                                 <div class="" id="number_of_episodes"> </div>
+                                 <div class="Season_btn" id="Season_btn"> Seasons Select </div>
+                                 <div class="Season_Selector" id="Season_Selector"> </div>
+                                  <div class="Episodes_show" id="Episodes_show"> </div>
+                             </div>
+                             <div class="View_More_Section2">
+                                  <div class="View_More_downloadLinks" id="View_More_downloadLinks">
+
+                                     <!-- div class="each_downloadLinks">
+                                        <div class="each_downloadLinks_SE"> S1 // EP 2 </div>
+                                        <div  class="each_downloadLinks_name">The Stolen Girl S01E02 720p DSNP WEB-DL DDP5 1 Atmos H 264-RAWR EZTV</div>
+                                        <div class="each_downloadLinks_seeds_peers">Seeds: 68 || Peers: 25</div>
+                                     </div -->
+                                  </div>
+                                   <div class="View_More_Direct_hold" >
+                                         <input type="text" id="episode_direct_link">
+                                         <div class="Direct_link_submit"  style="padding: 1%;" id="episode_submitBtn">Submit</div>
+                                   </div>
+                             </div>
+                          </div>
+
+                          <div class="View_More_container" id="Direct_link_Results">
+                                    <div class="View_More_container_close" id="Direct_link_Results_close">x</div>
+                                    <div class="Direct_link_section_1">
+                                        <div class="Direct_link_name">Name :::</div>
+                                        <div class="Direct_link_name_input"><input type="text" id="nameInput"></div>
+                                        <div class="Direct_link_name">Link :::</div>
+                                        <div class="Direct_link_name_input"><input type="text" id="linkInput"></div>
+                                        <div class="Direct_link_submit" id="submitBtn">Submit</div>
+                                    </div>
+                          </div>
+
+
+
+
+                 </div>
+                 <div class="terminal" id="terminal"> </div>
+             </div>
+
+   </div>
+<!--  section --------------------------------------------------------------------------------------------------------->
+
+
+
+<!--  section --------------------------------------------------------------------------------------------------------->
+
+
+</body>
+
+<!--
+<script src="./advanceUpload.php"></script>
+
+-->
+<script  src="admin.js"></script>
+
+
+</html>

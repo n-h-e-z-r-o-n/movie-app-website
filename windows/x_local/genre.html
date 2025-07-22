@@ -4,13 +4,12 @@
     <title> Movionyx </title>
     <link rel="icon" href="Assets/Movionyx.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="./shared.css" />
-    <link rel="stylesheet" type="text/css" href="./anime.css" />
+    <link rel="stylesheet" type="text/css" href="./genre.css" />
     <link rel="stylesheet" type="text/css" href="./NavBar.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 <div class="no-select">
-
  <!--------- Navigation bar  ------------------------------------------------------------------------------------------------------------>
 
              <div class = "navbar_top" id="navbar" >
@@ -128,7 +127,6 @@
                     </div>
 
 
-
                     <div class="dropdown_nav_bottom" id="genre_filter_bottom_nav">
                             <div class="genre_each" data-genre="28">Action</div>
                             <div class="genre_each" data-genre="12">Adventure</div>
@@ -195,84 +193,115 @@
             </div>
 
 
+
  <!--------- Section ------------------------------------------------------------------------------------------------------------>
 
-        <div class="filter_section">
 
 
-              <div class="anime_search_container">
-                   <input type="text" class="anime_search_input" id="anime_search_input" placeholder="Search anime...">
-                   <div class="anime_search_btn" id="anime_search_btn"> <i class="fa fa-search"></i>  </div>
-              </div>
+                <div class="filter_section">
+                <div class="g_filter">
 
-             <div class="anime_genra_list_title">Filter </div>
-             <div class="Select_option">
-                  <div class="Select_option_title">Type&dtrif;</div>
-                  <div class="anime_dropdown_content" >
-                      <label><input type="checkbox" name="show_type" value="All" data-country="All">All</label>
-                      <label><input type="checkbox" name="show_type" value="Movie" data-country="Movie"> Movie</label>
-                      <label><input type="checkbox" name="show_type" value="Tv" data-country="Tv">Tv</label>
-                  </div>
-             </div>
-
-             <div class="Select_option">
-                  <div class="Select_option_title">Sort By &dtrif;</div>
-                  <div class="anime_dropdown_content" >
-                      <label><input type="checkbox"  name="sorting" value="original_title.asc" data-country="original_title.asc"> Original_title Ascending Order</label>
-                      <label><input type="checkbox"  name="sorting"  value="original_title.desc" data-country="original_title.desc"> Original_title Descending Order</label>
-                      <label><input type="checkbox"  name="sorting"  value="popularity.asc" data-country="popularity.asc"> Popularity  Ascending Order</label>
-                      <label><input type="checkbox"  name="sorting"  value="popularity.desc" data-country="popularity.desc"> popularity.Descending Order</label>
-                      <label><input type="checkbox"  name="sorting"  value="revenue.asc" data-country="revenue.asc"> Revenue Ascending Order</label>
-                      <label><input type="checkbox"  name="sorting"  value="revenue.desc" data-country="revenue.desc">Revenue Descending Order</label>
-                  </div>
-             </div>
-
-
-            <div class="anime_genra_list_title">Genre </div>
-            <div class="anime_genra_list" >
-                                <div class="anime_genre_each" data-genre="28">Action</div>
-                                <div class="anime_genre_each" data-genre="12">Adventure</div>
-                                <div class="anime_genre_each" data-genre="16">Animation</div>
-                                <div class="anime_genre_each" data-genre="35">Comedy</div>
-                                <div class="anime_genre_each" data-genre="80">Crime</div>
-                                <div class="anime_genre_each" data-genre="99">Documentary</div>
-                                <div class="anime_genre_each" data-genre="18">Drama</div>
-                                <div class="anime_genre_each" data-genre="10751">Family</div>
-                                <div class="anime_genre_each" data-genre="9648">Mystery</div>
-                                <div class="anime_genre_each" data-genre="10749">Romance</div>
-                                <div class="anime_genre_each" data-genre="878">Sci-Fi</div>
-                                <div class="anime_genre_each" data-genre="10770">TV Movie</div>
-                                <div class="anime_genre_each" data-genre="53">Thriller</div>
-                                <div class="anime_genre_each" data-genre="37">Western</div>
-                                <div class="anime_genre_each" data-genre="10752">War</div>
-            </div>
-            <div class="anime_genra_list_Filter_btn" id="anime_genra_list_Filter_btn">Filter </div>
-
-        </div>
-        <div class="movies-container"  id="gen_category">
-        </div>
-        <div class="show_more" id="show_more_g" data-state="show-more">Show More &#x21b4;</div>
-        <div style="padding-bottom: 60px;"></div>
+                    <div class="Select_box">
+                      <div class="Select_box_title">Type&dtrif;</div>
+                      <div class="dropdown_content" >
+                              <label><input type="checkbox" name="show_type" value="All" data-country="All">All</label>
+                              <label><input type="checkbox" name="show_type" value="Movie" data-country="Movie"> Movie</label>
+                              <label><input type="checkbox" name="show_type" value="Tv" data-country="Tv">Tv</label>
+                      </div>
+                    </div>
 
 
 
+                     <div class="Select_box">
+                      <div class="Select_box_title">Country &dtrif;</div>
+                      <div class="dropdown_content" >
+                          <label><input type="checkbox" name="country" value="Argentina" data-country="Argentina"> Argentina</label>
+                          <label><input type="checkbox" name="country" value="Austria" data-country="Austria"> Austria</label>
+                          <label><input type="checkbox" name="country" value="Brazil" data-country="Brazil"> Brazil</label>
+                          <label><input type="checkbox" name="country" value="Finland" data-country="Finland"> Finland</label>
+                          <label><input type="checkbox" name="country" value="Argentina" data-country="Argentina"> Argentina</label>
+                          <label><input type="checkbox" name="country" value="Argentina" data-country="Argentina"> Argentina</label>
+                      </div>
+                      </div>
+
+                      <div class="Select_box">
+                          <div class="Select_box_title">Sort By &dtrif;</div>
+                          <div class="dropdown_content" >
+                              <label><input type="checkbox"  name="sorting" value="original_title.asc" data-country="original_title.asc"> Original_title Ascending Order</label>
+                              <label><input type="checkbox"  name="sorting"  value="original_title.desc" data-country="original_title.desc"> Original_title Descending Order</label>
+                              <label><input type="checkbox"  name="sorting"  value="popularity.asc" data-country="popularity.asc"> Popularity  Ascending Order</label>
+                              <label><input type="checkbox"  name="sorting"  value="popularity.desc" data-country="popularity.desc"> popularity.Descending Order</label>
+                              <label><input type="checkbox"  name="sorting"  value="revenue.asc" data-country="revenue.asc"> Revenue Ascending Order</label>
+                              <label><input type="checkbox"  name="sorting"  value="revenue.desc" data-country="revenue.desc">Revenue Descending Order</label>
+                          </div>
+                      </div>
+
+                      <div class="Select_box">
+                      <div class="Select_box_title">Year &dtrif;</div>
+                      <div class="dropdown_content" >
+                          <label><input type="checkbox" name="year" value="2025" data-year="2025"> 2025</label>
+                          <label><input type="checkbox" name="year" value="2024" data-year="2024"> 2024</label>
+                          <label><input type="checkbox" name="year" value="2023" data-year="2023"> 2023</label>
+                          <label><input type="checkbox" name="year" value="2022" data-year="2022"> 2022</label>
+                          <label><input type="checkbox" name="year" value="2021" data-year="2021"> 2021</label>
+                      </div>
+                      </div>
+
+                    <div class="Select_box">
+                        <div class="Select_box_title">Genres &dtrif;</div>
+                        <div class="dropdown_content">
+                          <label><input type="checkbox" value="All"> All</label>
+                          <label><input type="checkbox" value="28" data-genre="28"> Action</label>
+                          <label><input type="checkbox" value="12" data-genre="12"> Adventure</label>
+                          <label><input type="checkbox" value="16" data-genre="16"> Animation</label>
+                          <label><input type="checkbox" value="35" data-genre="35"> Comedy</label>
+                          <label><input type="checkbox" value="80" data-genre="80"> Crime</label>
+                          <label><input type="checkbox" value="99" data-genre="99"> Documentary</label>
+                          <label><input type="checkbox" value="10751" data-genre="10751"> Family</label>
+                          <label><input type="checkbox" value="18" data-genre="18"> Drama</label>
+                          <label><input type="checkbox" value="14" data-genre="14"> Fantasy</label>
+                          <label><input type="checkbox" value="36" data-genre="36"> History</label>
+                          <label><input type="checkbox" value="27" data-genre="27"> Horror</label>
+                          <label><input type="checkbox" value="10402" data-genre="10402"> Music</label>
+                          <label><input type="checkbox" value="9648" data-genre="9648"> Mystery</label>
+                          <label><input type="checkbox" value="10749" data-genre="10749"> Romance</label>
+                          <label><input type="checkbox" value="878" data-genre="878"> Science Fiction</label>
+                          <label><input type="checkbox" value="53" data-genre="53"> Thriller</label>
+                          <label><input type="checkbox" value="10752" data-genre="10752"> War</label>
+                          <label><input type="checkbox" value="37" data-genre="37"> Western</label>
+                        </div>
+                    </div>
 
 
-<!----------------------------------------------------------------------------------------------------------------------------->
+                </div>
+                    <div class="gen_filter_btn" id="gen_filter_btn">
+                        Filter
+                    </div>
+                </div>
+
+                <div class="genre_header" id="genre_header"> Action Movies, TV Series </div>
+                <div class="grid_container" >
+                        <div class="movies-container"  id="gen_category">
 
 
-</div>
-<!--
+                        </div>
+
+                <div class="show_more" id="show_more_g" data-state="show-more">Show More &#x21b4;</div>
+                <div style="padding-bottom: 80px; width: 100%;"></div>
+                </div>
+
+
+     </div>
+
+
 
 <script src="./Back_end/nav.php"></script>
-<script src="./Back_end/anime.php"></script>
+<script src="./Back_end/genre.php"></script>
 
--->
-
+<!--
+<script src="genre.js"></script>
 <script src="NavBar.js"></script>
-<script src="anime.js"></script>
-
-
+-->
 
 </body>
 

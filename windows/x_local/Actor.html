@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title> Movionyx </title>
     <link rel="icon" href="Assets/Movionyx.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="./shared.css" />
-    <link rel="stylesheet" type="text/css" href="./anime.css" />
     <link rel="stylesheet" type="text/css" href="./NavBar.css" />
+    <link rel="stylesheet" type="text/css" href="./Actor.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -52,6 +53,8 @@
                                 <input type="text" class="search-input" id="search_input_top" placeholder="Search...">
                             </div>
                         </div>
+
+
 
                         <div class="notification_picture" id="notification_btnT" >
                             <div class="notification_badge" id="notification_badge"></div>
@@ -121,12 +124,12 @@
                     </div>
 
 
+
                     <div class="search_div_bottom">
                         <input type="text" class="search_input_bottom" id="search_input_bottom" placeholder="Search">
                         <div class="search_btn_bottom_cancel">+</div>
                         <div class="search_btn_filter_bottom" id="search_btn_filter_bottom">filter</div>
                     </div>
-
 
 
                     <div class="dropdown_nav_bottom" id="genre_filter_bottom_nav">
@@ -197,84 +200,27 @@
 
  <!--------- Section ------------------------------------------------------------------------------------------------------------>
 
-        <div class="filter_section">
+          <div style="margin-top: 90px;"></div>
+          <div class="title_">CAST</div>
+          <div class="actor_movies" id="Movie_Results">
 
-
-              <div class="anime_search_container">
-                   <input type="text" class="anime_search_input" id="anime_search_input" placeholder="Search anime...">
-                   <div class="anime_search_btn" id="anime_search_btn"> <i class="fa fa-search"></i>  </div>
-              </div>
-
-             <div class="anime_genra_list_title">Filter </div>
-             <div class="Select_option">
-                  <div class="Select_option_title">Type&dtrif;</div>
-                  <div class="anime_dropdown_content" >
-                      <label><input type="checkbox" name="show_type" value="All" data-country="All">All</label>
-                      <label><input type="checkbox" name="show_type" value="Movie" data-country="Movie"> Movie</label>
-                      <label><input type="checkbox" name="show_type" value="Tv" data-country="Tv">Tv</label>
-                  </div>
-             </div>
-
-             <div class="Select_option">
-                  <div class="Select_option_title">Sort By &dtrif;</div>
-                  <div class="anime_dropdown_content" >
-                      <label><input type="checkbox"  name="sorting" value="original_title.asc" data-country="original_title.asc"> Original_title Ascending Order</label>
-                      <label><input type="checkbox"  name="sorting"  value="original_title.desc" data-country="original_title.desc"> Original_title Descending Order</label>
-                      <label><input type="checkbox"  name="sorting"  value="popularity.asc" data-country="popularity.asc"> Popularity  Ascending Order</label>
-                      <label><input type="checkbox"  name="sorting"  value="popularity.desc" data-country="popularity.desc"> popularity.Descending Order</label>
-                      <label><input type="checkbox"  name="sorting"  value="revenue.asc" data-country="revenue.asc"> Revenue Ascending Order</label>
-                      <label><input type="checkbox"  name="sorting"  value="revenue.desc" data-country="revenue.desc">Revenue Descending Order</label>
-                  </div>
-             </div>
-
-
-            <div class="anime_genra_list_title">Genre </div>
-            <div class="anime_genra_list" >
-                                <div class="anime_genre_each" data-genre="28">Action</div>
-                                <div class="anime_genre_each" data-genre="12">Adventure</div>
-                                <div class="anime_genre_each" data-genre="16">Animation</div>
-                                <div class="anime_genre_each" data-genre="35">Comedy</div>
-                                <div class="anime_genre_each" data-genre="80">Crime</div>
-                                <div class="anime_genre_each" data-genre="99">Documentary</div>
-                                <div class="anime_genre_each" data-genre="18">Drama</div>
-                                <div class="anime_genre_each" data-genre="10751">Family</div>
-                                <div class="anime_genre_each" data-genre="9648">Mystery</div>
-                                <div class="anime_genre_each" data-genre="10749">Romance</div>
-                                <div class="anime_genre_each" data-genre="878">Sci-Fi</div>
-                                <div class="anime_genre_each" data-genre="10770">TV Movie</div>
-                                <div class="anime_genre_each" data-genre="53">Thriller</div>
-                                <div class="anime_genre_each" data-genre="37">Western</div>
-                                <div class="anime_genre_each" data-genre="10752">War</div>
-            </div>
-            <div class="anime_genra_list_Filter_btn" id="anime_genra_list_Filter_btn">Filter </div>
-
-        </div>
-        <div class="movies-container"  id="gen_category">
-        </div>
-        <div class="show_more" id="show_more_g" data-state="show-more">Show More &#x21b4;</div>
-        <div style="padding-bottom: 60px;"></div>
-
-
-
-
-
-<!----------------------------------------------------------------------------------------------------------------------------->
+          </div>
+          <div class="title_">CREW</div>
+          <div class="actor_movies" id="TV_Results">
+          </div>
+         <div style="padding-bottom: 90px;"></div>
 
 
 </div>
+
 <!--
 
 <script src="./Back_end/nav.php"></script>
-<script src="./Back_end/anime.php"></script>
+<script src="./Back_end/script.php"></script>
+
 
 -->
-
-<script src="NavBar.js"></script>
-<script src="anime.js"></script>
-
-
-
+<script  src="./NavBar.js"></script>
+<script src="./Actor.js"></script>
 </body>
-
-
 </html>
