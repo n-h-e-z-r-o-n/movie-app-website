@@ -674,7 +674,14 @@ const Selected_Season = document.querySelector('.Selected_Season')
            Selected_Season_img.style.backgroundSize = '100% 100%'; // Stretch to fit the container
            Selected_Season_img.style.imageRendering = 'high-quality'
 
-
+           if(season_image) {
+               var back_img_s = document.getElementById("back_img_s");
+               back_img_s.style.background = ` url("${IMG_PATH}${decodeURIComponent(season_image)}")`;
+               back_img_s.style.backgroundPosition = 'center';
+               back_img_s.style.backgroundRepeat = 'no-repeat';
+               back_img_s.style.backgroundSize = 'cover';
+               back_img_s.style.imageRendering = 'high-quality';
+           }
             const Selected_Season = document.querySelector('.Selected_Season');
             Selected_Season.innerHTML = `  &nbsp; &nbsp; SEASON   ${season_no} &nbsp;&nbsp; `;
 
@@ -744,8 +751,16 @@ const Selected_Season = document.querySelector('.Selected_Season')
  }
 
  async function WatchEpisodes(season_no,  episode_no, series_id){
+            var info_section_element = document.getElementById('info_section');
+            info_section_element.style.display = 'none';
 
-          document.querySelectorAll('.episodes_each').forEach(item => {
+            var uuux_cover = document.getElementById('uuux_cover');
+            uuux_cover.style.backdropFilter = "blur(10px)";
+
+            var no_select_element = document.getElementById('no_select');
+            no_select_element.classList.add('active');
+
+           document.querySelectorAll('.episodes_each').forEach(item => {
             const seasonTitle = item.dataset.season
             const seasonTitle1 = `S${season_no}E${episode_no}`
 

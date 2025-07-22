@@ -10,7 +10,7 @@ if(!div_mob){
 
 let lastScrollTop = 0;
 const navbar = document.getElementById('navbar');
-const scrollThreshold = 5; // Set the threshold to 300px
+const scrollThreshold = 300; // Set the threshold to 300px
 mobileBreakpoint = 968;
 window.addEventListener('scroll', function() {
     if (window.innerWidth < mobileBreakpoint) {
