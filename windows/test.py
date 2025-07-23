@@ -1,29 +1,23 @@
-from pystray import Icon, Menu, MenuItem
-from PIL import Image
-import threading
+import os
+import win32com.client #pip install pywin32
 
 
-def on_quit(icon, item):
-    icon.stop()
+def create_shortcut(target_path, shortcut_name, icon_path=None):
+    desktop = os.path.join(os.environ['USERPROFILE'], 'Desktop')
+    shortcut_path = os.path.join(desktop, f"{shortcut_name}.lnk")
 
-def run_tray():
-    icon_path = "./Movionyx.ico"
-    image = Image.open(icon_path)
-    icon = Icon(
-        "app_name",
-        icon=image,
-        title="Movionyx",
-        menu=Menu(
-            MenuItem("Quit", on_quit),
-           MenuItem("Open", on_quit)
-        )
-    )
-    icon.run()
+    shell = win32com.client.Dispatch("WScript.Shell")
+    shortcut = shell.CreateShortcut(shortcut_path)
+    shortcut.TargetPath = target_path
+    shortcut.WorkingDirectory = os.path.dirname(target_path)
+    if icon_path:
+        shortcut.IconLocation = icon_path
+    shortcut.Save()
 
-# Run in a separate thread to avoid blocking
-threading.Thread(target=run_tray, daemon=True).start()
 
-# Your app logic here
-while True:
-    print("workin")
-    pass
+# Example usage
+target = os.path.abspath("movionyx.py")  # or .py if run with python
+shortcut_name = "MoviOnyx"
+icon = os.path.abspath("Movionyx.ico")  # Optional
+
+create_shortcut(target, shortcut_name, icon)

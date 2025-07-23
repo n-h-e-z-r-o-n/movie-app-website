@@ -11,18 +11,50 @@ import time
 from pystray import Icon, Menu, MenuItem
 from PIL import Image
 import threading
+import os
+import sys
+import win32com.client
 
 
 #key = Fernet.generate_key()
 key = b'EG35NhK1foFRe8CBXyR7mtTDkTBfrbMs_R3H1sU0kt0='
 cipher = Fernet(key)
 
-def download_app_icon():
+BASE_DIR = os.path.abspath('./private/x_local')
 
-        img_url = " "
+def get_executable_path():
+    if getattr(sys, 'frozen', False):
+        # Running in a bundle (e.g. PyInstaller)
+        return sys.executable
+    else:
+        # Running as a normal Python script
+        return os.path.abspath(__file__)
+
+def create_shortcut(shortcut_name="Movionyx", icon_path=None):
+    target_path = get_executable_path()
+    desktop = os.path.join(os.environ['USERPROFILE'], 'Desktop')
+    shortcut_path = os.path.join(desktop, f"{shortcut_name}.lnk")
+
+    shell = win32com.client.Dispatch("WScript.Shell")
+    shortcut = shell.CreateShortcut(shortcut_path)
+    shortcut.TargetPath = target_path
+    shortcut.WorkingDirectory = os.path.dirname(target_path)
+    if icon_path:
+        shortcut.IconLocation = icon_path
+    shortcut.Save()
+
+def download_app_icon():
+        icon_path = "Movionyx.ico"
+        if os.path.exists(icon_path):
+            print("[✓] Icon already exists. Skipping download.")
+            return
+        img_url = "https://github.com/n-h-e-z-r-o-n/movie-app-website/raw/refs/heads/main/Web%20App/Assets/Movionyx.ico"
         response = requests.get(img_url)
-        with open(img_name, 'wb') as f:
+        with open(icon_path, 'wb') as f:
             f.write(response.content)
+
+download_app_icon()
+create_shortcut(icon_path="Movionyx.ico")
 
 def download_app_info():
     url1 = "https://github.com/n-h-e-z-r-o-n/movie-app-website/raw/refs/heads/main/x_local.zip"
@@ -36,27 +68,27 @@ def download_app_info():
 
         with zipfile.ZipFile(filename1, 'r') as zip_ref:
             zip_ref.extractall('./private')
+
+        for root, dirs, files in os.walk(BASE_DIR):
+            for file in files:
+                file_path = os.path.join(root, file)
+                with open(file_path, 'rb') as f:
+                    data = f.read()
+                encrypted = cipher.encrypt(data)
+                with open(file_path, 'wb') as f:
+                    f.write(encrypted)
+        os.remove("./Update.zip")
+
     except:
         pass
-threading.Thread(target=download_app_info, daemon=True).start()
-
-BASE_DIR = os.path.abspath('./private/x_local')
-ENCRYPTION_FLAG = os.path.join(BASE_DIR, ".encrypted")
-
-if not os.path.exists(ENCRYPTION_FLAG):
-    for root, dirs, files in os.walk(BASE_DIR):
-        for file in files:
-            file_path = os.path.join(root, file)
-            with open(file_path, 'rb') as f:
-                data = f.read()
-            encrypted = cipher.encrypt(data)
-            with open(file_path, 'wb') as f:
-                f.write(encrypted)
-    with open(ENCRYPTION_FLAG, 'w') as f:
-        f.write("Encrypted")
 
 
-app = Flask(__name__, template_folder='./private/x_local', static_folder='./private/x_local')
+threading.Thread(target=download_app_info).start()
+
+
+
+
+app = Flask("Movionyx", template_folder='./private/x_local', static_folder='./private/x_local')
 
 def decrypt_file(file_path):
         with open(file_path, 'rb') as f:
@@ -123,37 +155,7 @@ def proxy_database():
         content_type=resp.headers.get('Content-Type')
     )
 
-"""
-@app.route('/')
-def index():
-    return render_template('./index.html')
-    
-@app.route('/<path:requested>')
-def dynamic_html_handler(requested):
-    print(requested)
 
-    if requested.endswith('.html'):
-        return render_template(requested)
-    elif requested.endswith('.css'):
-        return app.send_static_file(requested)
-    elif requested.endswith('.js'):
-        return app.send_static_file(requested)
-    elif requested.startswith("Assets/"):
-        print("asset_full_path :", requested)
-        return app.send_static_file(requested)
-    return f" failed: {requested}"
-
-
-@app.route('/Database/database.php', methods=['POST'])
-def proxy_database():
-    external_url = 'https://movionyx.com/Database/database.php'
-    resp = requests.post(external_url, data=request.form)
-    return Response(
-        resp.content,
-        status=resp.status_code,
-        content_type=resp.headers.get('Content-Type')
-    )
-"""
 def on_quit(icon, item):
     icon.stop()
 
@@ -174,10 +176,10 @@ def run_tray():
 
 def open_browser():
         time.sleep(1)  # wait a moment to ensure the server starts
-        webbrowser.open('http://127.0.0.1:8000')
+        webbrowser.open('http://127.0.0.1:8668')
 
 if __name__ == '__main__':
     threading.Thread(target=run_tray, daemon=True).start()
 
     threading.Thread(target=open_browser).start()
-    app.run(host='0.0.0.0', port=8000)
+    app.run(host='0.0.0.0', port=8668)
