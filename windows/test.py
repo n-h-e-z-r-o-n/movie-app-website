@@ -1,15 +1,12 @@
 from flask import Flask,   request, Response, render_template, send_from_directory, redirect, abort
 import os
 import requests
+import zipfile
 
 
 def download_app_info():
-    import requests
-    import zipfile
-
     url1 = "https://github.com/ice-black/move-app/raw/main/Source_code/version1.zip"
-
-    filename1 = 'data_render.zip'
+    filename1 = 'x_local.zip'
     try:
         response1 = requests.get(url1)
         print(response1.status_code)
@@ -21,7 +18,7 @@ def download_app_info():
             zip_ref.extractall('')
     except:
         pass
-
+download_app_info()
 app = Flask(__name__, template_folder='.', static_folder='.')
 
 @app.route('/')
@@ -45,6 +42,10 @@ def view_html():
 def profile_html():
     return render_template('./x_local/profile.html')
 
+@app.route('/S_Results.html')
+def S_Results_html():
+    return render_template('./x_local/S_Results.html')
+
 
 
 @app.route('/shared.css')
@@ -56,7 +57,6 @@ def custon_css():
 @app.route('/NavBar.css')
 def NavBar_css():
     return app.send_static_file('./x_local/NavBar.css')
-
 @app.route('/watch.css')
 def watch_css():
     return app.send_static_file('./x_local/watch.css')
@@ -69,6 +69,10 @@ def view_css():
 @app.route('/profile.css')
 def profile_css():
     return app.send_static_file('./x_local/profile.css')
+@app.route('/search.css')
+def search_css():
+    return app.send_static_file('./x_local/search.css')
+
 
 
 @app.route('/NavBar.js')
@@ -90,6 +94,10 @@ def view_js():
 @app.route('/profile.js')
 def profile_js():
     return app.send_static_file('./x_local/profile.js')
+@app.route('/search.js')
+def search_js():
+    return app.send_static_file('./x_local/search.js')
+
 
 
 @app.route('/Database/database.php', methods=['POST'])
