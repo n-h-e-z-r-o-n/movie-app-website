@@ -1,8 +1,10 @@
 const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
-const SEARCH_MOVIE_API = "https://api.themoviedb.org/3/search/movie?&query=";
+//const SEARCH_MOVIE_API = "https://api.themoviedb.org/3/search/movie?include_adult=true&query=";
+const SEARCH_MOVIE_API ='https://api.themoviedb.org/3/search/multi?include_adult=true&query=' ;
+
 const SEARCH_TV_API = "https://api.themoviedb.org/3/search/tv?&query=";
 
-const headers = {
+var headers = {
 "accept": "application/json",
 "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZjliMmUyN2MxYTZiYzMyMzNhZjE4MzJmNGFjYzg1MCIsIm5iZiI6MTcxOTY3NDUxNy4xOTYsInN1YiI6IjY2ODAyNjk1ZWZhYTI1ZjBhOGE4NGE3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RTms-g8dzOl3WwCeJ7WNLq3i2kXxl3T7gOTa8POcxcw"
 };
@@ -11,12 +13,17 @@ const search_R_div = document.getElementById("Search_Results");
 
  // Extract the search term from URL parameters
  const params = getQueryParams();
- const searchTerm = params['query'];
+
+
+
+ const searchTerm = params['search_query'];
+ //console.log(searchTerm);
 
  if (searchTerm) {
-   document.getElementById('result_text').innerText = `SEARCH RESULTS      :  ${searchTerm}`;
-   SearchShows(SEARCH_MOVIE_API + searchTerm, SEARCH_TV_API+searchTerm);    // code to fetch and display search results here
- } else { }
+   SearchShows(SEARCH_MOVIE_API + searchTerm);    // code to fetch and display search results here
+ } else {
+
+ }
 
 
 // =========================================Function to get URL parameters ============================================
@@ -32,88 +39,78 @@ const search_R_div = document.getElementById("Search_Results");
  }
 
 //======================================= Search ===================================================
-// FOR SEARCH SUBMIT
-const form = document.getElementById("searchForm");
-const search = document.getElementById("search_input");
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const searchTerm = search.value;
-  if (searchTerm && searchTerm !== "") {
-
-    search.value = "";
-    window.location.href = "S_Results.html?query=" + searchTerm; // Replace with the URL of the page you want to open
-  } else {
-
-  }
-});
-
-const searchButton = document.getElementById('toggle-search');
-const searchInput = document.querySelector('.search-input');
-const icon = document.getElementById("id_search_icon");
-
-searchButton.addEventListener('click', () => {
-searchInput.classList.toggle('active');
-
-// Toggle the icon between "search" and "close"
-if (searchInput.classList.contains('active')) {
-icon.innerHTML = '&#10060;'; // Close icon
-} else {
-icon.innerHTML = 'Q'; // Search icon
-}
-});
-
-//======================================= ===================================================
-
-
-
-
-async function SearchShows(url, url2) {
+async function SearchShows(url) {
   const res1 = await fetch(url, {headers});
   const data1 = await res1.json();
 
-  const response = await fetch(url, { headers });
-  const data = await response.json();
-
-  const res2 = await fetch(url2, {headers});
-  const data2 = await res2.json();
-  //console.log("show ", data1['results']);
-  console.log("mvovie ", data2['results']);
-  const combinedData =data1.results.concat(data2.results);
-  Search_Results_SHOW(combinedData) ;
+  Search_Results_SHOW(data1.results) ;
 }
 
 function Search_Results_SHOW(movies) {
   //console.log(movies);
+
+  document.getElementById('Search_R_count').innerText = `SEARCH RESULTS  (${movies.length}) :`;
+  document.getElementById('Search_R_title_Display').innerText = `:  ${searchTerm}`;
+
   search_R_div.innerHTML = "";
   movies.forEach((movie) => {
-    const { original_title, original_name, poster_path, id, vote_average, overview, release_date, first_air_date , runtime, S_info} = movie;
-    //console.log(movie);
+    let { media_type, original_title, original_name, name, poster_path, id, vote_average, overview, release_date, first_air_date , runtime, S_info} = movie;
+
     let title;
     let type;
+    let type_r;
     let Info;
+    let style = ''
+    let SR = ''
+    let SR1 = ''
+    vote_average = parseInt(vote_average) + '&starf;'
 
-    if (original_title === undefined) {
-       title = original_name;
+    //console.log(movie);
+    if (media_type === "person"){
+       let {known_for_department, name, profile_path } = movie;
+       style = "border-radius: 50%; background-color: #1B1B1B;"
+       date =''
+       title = name;
+       poster_path = profile_path
+       info = known_for_department
+       type = ''
+       vote_average = ''
+       SR = "display: none;";
+       SR1 =  SR;
+
+    } else if (media_type === "tv") {
+       title = name || original_name;
        date = first_air_date.substring(0, 4);
        type = "tv";
+       type_r = "tv";
+       SR1 =  "display: none;"
+
+
        info = ''; //S_info;
 
-    } else {
+    } else if (media_type  === "movie"){
         title = original_title;
         date = release_date.substring(0, 4);
         type = "mv";
+        type_r = "movie"
         info = ''; //`${runtime} min` ;
+        SR1 =  "display: none;"
     }
+
+    if (poster_path === null){
+       return;
+    }
+
 
     const movieItem = document.createElement("div");
     movieItem.classList.add("box");
     movieItem.innerHTML = `
              <div class="box-img">
-                <img class="img-on" src="${IMG_PATH + poster_path}" alt="">
+                <img class="img-on" style="${style}" src="${IMG_PATH + poster_path}" alt="">
                 <div class="box-img-button">
-                     <div class="button_style1">&#9654;</div>
-                     <div class="button_style2">+</div>
+                     <div class="button_style1" style='${SR}'></div>
+                     <div class="button_style2" style='${SR1}'></div>
                 </div>
             </div>
             <div class="box_title">${title}</div>
@@ -123,67 +120,52 @@ function Search_Results_SHOW(movies) {
                     <div class="badge-type_year"> ${date} </div>
                </div>
                <div class="badge-type_text"> ${info}</div>
-               <div  class="badge-type_rating"> &starf;  ${vote_average} </div>
+               <div  class="badge-type_rating">  ${vote_average} </div>
             </div>
-
     `;
     // Add event listener to open another page when clicked
     //movieItem.addEventListener("click", () => {
     //window.location.href = "watch_page.html?id=" + id + "&type="+type;
 
-    const boxImg = movieItem.querySelector(".box-img");
-    boxImg.addEventListener("click", () => {
-    window.location.href = "watch.html?id=" + id + "&type="+type;
+    if(true){
+        const box_title = movieItem.querySelector('.box_title');
+        scrambleToText(box_title, title, 20)
 
+        const badge_type_year = movieItem.querySelector('.badge-type_year');
+        scrambleToText(badge_type_year, `${date}`, 10)
+
+        const badge_type_text = movieItem.querySelector('.badge-type_text');
+        scrambleToText(badge_type_text, info, 10)
+
+        const badge_type_rating = movieItem.querySelector('.badge-type_rating');
+        scrambleToText(badge_type_rating, `&starf;  ${vote_average} `, 20)
+    }
+
+    const boxImg = movieItem.querySelector(".box-img");
+    boxImg.addEventListener("click", async (e) => {
+        e.stopPropagation();
+        if (media_type === "person"){
+            window.location.href = "Actor.html?id=" + id
+        }else{
+            window.location.href = "watch.html?id=" + id + "&type="+type_r;
+        }
+    });
 
     const FaveButton = movieItem.querySelector(".button_style2");
-    FaveButton.addEventListener("click", () => {
-    event.stopPropagation(); // Prevent the click from propagating to the boxImg event
-    AddToFav(movie); // Replace 'yourFunction' with the function you want to call
+    FaveButton.addEventListener("click", function(event) {
+        event.stopPropagation();
+        AddToFav(movie, FaveButton );
     });
 
     const PlayT = movieItem.querySelector(".button_style1");
-    PlayT.addEventListener("click", () => {
-    event.stopPropagation(); // Prevent the click from propagating to the boxImg event
-    PlayTrailer(movie); // Replace 'yourFunction' with the function you want to call
+    PlayT.addEventListener("click", function(event) {
+        event.stopPropagation();
+        PlayTrailer(id , type_r);
     });
 
 
-       });
     search_R_div.appendChild(movieItem);
   });
 }
 
-
-
-
-
-//===================================================================================================
-
-
-function AddToFav(movie){
-    console.log("Fav :" , movie);
-    console.log("Fav :" , typeof(movie));
-
-    const Fave = localStorage.getItem('Favorites');
-    if(Fave === null){
-        localStorage.setItem("Favorites", JSON.stringify([movie]));
-    } else {
-        const parsedFav = JSON.parse(Fave);
-        parsedFav.push(movie);
-
-        const uniqueMovies = parsedFav.filter((movie, index, self) =>
-          index === self.findIndex(m => m.id === movie.id)
-        );
-
-        localStorage.setItem("Favorites", JSON.stringify(uniqueMovies));
-    }
-}
-
-
-function PlayTrailer(movie){
-    console.log("Trailer :" , movie);
-}
-
-//====================================================================
 

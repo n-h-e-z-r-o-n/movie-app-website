@@ -1,0 +1,212 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+
+
+
+
+.filter_section{
+    margin-top: 85px;
+    width: 600px;
+    max-width: 60%;
+    height: auto;
+    display: flex;
+
+    flex-wrap: wrap;
+    Background:  url("./Assets/anime.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+
+}
+
+
+.anime_search_container{
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  margin-left: 1%;
+  margin-bottom: 55px;
+}
+
+.anime_search_input{
+   width: 370px;
+   height: 50px;
+   background: rgba(57, 89, 116, 0.4);
+   border: 1px solid rgba(57, 89, 116, 0.8);
+   border-radius : 10px;
+   text-align: center;
+   margin-right: 2%;
+   cursor: pointer;
+   font-size: 1em;
+}
+
+.anime_search_btn{
+        background: var(--Brand_Color);
+        border-radius : 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        aspect-ratio: 1;
+        font-size: 1.5em;
+}
+
+.anime_genra_list_title{
+      margin-left: 1%;
+      font-size: 1.2em;
+      font-family: 'Georgia';
+      width: 99%;
+}
+
+
+
+
+
+
+.anime_genra_list{
+   width: 100%;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: start;
+}
+
+.anime_genre_each{
+    width: auto;
+    border: 1px solid  #1B1B1B;
+    font-size: 1em;
+    padding: 1% 2%;
+    margin: 1%;
+    border-radius: 8px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    user-select: none;
+    background: transparent;
+}
+
+
+.anime_genre_each:hover {
+    border: 1px solid  var(--Brand_Color);
+}
+
+.anime_genre_each.Selected_G {
+    Background:  var(--Brand_Color);
+    border: 1px solid  var(--Brand_Color);
+}
+
+
+.anime_genra_list_Filter_btn{
+   background: red;
+   color: white;
+   margin: 1%;
+    padding: 1% 2%;
+    border-radius: 10px;
+    font-size: 1.5em;
+    user-select: none;
+}
+
+
+
+
+ .Select_option {
+    width: auto;
+    border: 1px solid  #1B1B1B;
+    font-size: 1em;
+    padding: 1% 2%;
+    margin: 1%;
+    border-radius: 8px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    user-select: none;
+    box-sizing: border-box; /* Ensure padding and borders don't affect width/height */
+
+ }
+
+
+.Select_option_title{
+  width: 100%;
+  height: 100%;
+  font-size: 0.95em;
+  font-family: 'Calibri Light ';
+  color: var(--global-color-fg);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  box-sizing: border-box; /* Ensure padding and borders don't affect width/height */
+
+}
+
+.anime_dropdown_content{
+    display: none;
+    flex-wrap: wrap;
+    position: absolute;
+    width: auto;
+    z-index: 1000;
+    background: transparent;
+    width: 310px;
+    backdrop-filter: blur(10px);
+    overflow: scroll;
+    border: 1px solid #1B1B1B;
+    border-radius: 8px;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+.anime_dropdown_content label{
+   width: 100%;
+}
+
+.movies-container{
+    display: flex;
+    flex-wrap: wrap;
+    width:  100%;
+    height: auto;
+    gap: 10px;
+    padding-bottom: 35px;
+}
+
+
+.show_more{
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+    width: 140px;
+    text-align: center;
+    border-radius: 0.5em;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+
+/* =========================================================================================================*/
+
+@media (max-width: 968px) {
+
+
+.main_div {
+  padding-top: 0px;
+  padding-bottom: 80px;
+}
+
+
+.filter_section{
+    padding-top: 70px;
+    width: 100%;
+    border-radius: 0px;
+}
+
+
+
+
+
+}

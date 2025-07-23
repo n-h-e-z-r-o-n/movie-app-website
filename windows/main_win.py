@@ -8,10 +8,21 @@ from cryptography.fernet import Fernet
 import threading
 import webbrowser
 import time
+from pystray import Icon, Menu, MenuItem
+from PIL import Image
+import threading
+
 
 #key = Fernet.generate_key()
 key = b'EG35NhK1foFRe8CBXyR7mtTDkTBfrbMs_R3H1sU0kt0='
 cipher = Fernet(key)
+
+def download_app_icon():
+
+        img_url = " "
+        response = requests.get(img_url)
+        with open(img_name, 'wb') as f:
+            f.write(response.content)
 
 def download_app_info():
     url1 = "https://github.com/n-h-e-z-r-o-n/movie-app-website/raw/refs/heads/main/x_local.zip"
@@ -27,7 +38,7 @@ def download_app_info():
             zip_ref.extractall('./private')
     except:
         pass
-#download_app_info()
+threading.Thread(target=download_app_info, daemon=True).start()
 
 BASE_DIR = os.path.abspath('./private/x_local')
 ENCRYPTION_FLAG = os.path.join(BASE_DIR, ".encrypted")
@@ -52,6 +63,22 @@ def decrypt_file(file_path):
             encrypted = f.read()
         return cipher.decrypt(encrypted)
 
+# ✅ Content Security Policy to restrict external assets or frames
+@app.after_request
+def apply_csp(response):
+    ad_domains = ["ads.example.com", "doubleclick.net", "googlesyndication.com"]
+    for domain in ad_domains:
+        if domain in request.url:
+            abort(403)  # Forbidden
+
+    response.headers['Content-Security-Policy'] = (
+        "default-src 'self'; "
+        "script-src 'self'; "
+        "img-src 'self'; "
+        "style-src 'self'; "
+        "frame-src 'none';"
+    )
+    return response
 @app.route('/')
 def serve_encrypted_file():
     file_path = os.path.join(BASE_DIR, "index.html")
@@ -127,11 +154,30 @@ def proxy_database():
         content_type=resp.headers.get('Content-Type')
     )
 """
+def on_quit(icon, item):
+    icon.stop()
 
-if __name__ == '__main__':
-    def open_browser():
+def run_tray():
+    icon_path = "./Movionyx.ico"
+    image = Image.open(icon_path)
+    icon = Icon(
+        "app_name",
+        icon=image,
+        title="Movionyx",
+        menu=Menu(
+            MenuItem("Quit", on_quit),
+           MenuItem("Open", open_browser)
+        )
+    )
+    icon.run()
+
+
+def open_browser():
         time.sleep(1)  # wait a moment to ensure the server starts
         webbrowser.open('http://127.0.0.1:8000')
+
+if __name__ == '__main__':
+    threading.Thread(target=run_tray, daemon=True).start()
 
     threading.Thread(target=open_browser).start()
     app.run(host='0.0.0.0', port=8000)

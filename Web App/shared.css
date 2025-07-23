@@ -1,0 +1,340 @@
+/*#1B1B1B*/
+:root {
+--global-color-bg:  white !important; /* #050301     #1D2951  #003153  #0F0404;*/
+--global-color-bg-shade:   #1B1B1B;
+--global-color-fg: black !important;
+--color_theme:  hsl(186 100% 69%);
+--section_header_color: #020403; /*#1B1B1B;*/
+--Brand_Color:   #00BFFF;
+--Brand_Image:  linear-gradient(to bottom, rgba(0,0,0,0), var(--global-color-bg)), url("./Assets/xr.jpg");
+--Max-width:  1700px;
+}
+
+body , html {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--global-color-bg) ;
+  -webkit-tap-highlight-color: transparent;
+  tap-highlight-color: transparent;
+  touch-action: manipulation;
+  overscroll-behavior: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  Background-size:  100% 100%;
+}
+
+
+*{
+  color: var(--global-color-fg);
+}
+
+::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+
+.no-select{
+        height: 100%;
+        width: 80%;
+        max-width: var(--Max-width);
+        background-color : var(--global-color-bg);
+        margin: auto;
+        overflow: scroll;
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+}
+
+
+.no-select::-webkit-scrollbar {
+    display: none;
+}
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+.box {
+    width:  200px;
+    height: 350px;
+    backdrop-filter: blur(10px); /* Applies blur to the background */
+    box-shadow: 1px 12px 25px rgb(128 128 128 / 9%);
+    border-radius:5px 5px 0px 0px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    float: right;
+}
+
+.box-img{
+    width:  100%;
+    height: 85%;
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='8' fill='%2300BFFF'/></svg>") 8 8, pointer;
+    background-color: transparent;
+    border-radius: inherit;
+    transition: 0.4s all linear;
+    position: relative;
+    display: flex;
+ }
+
+ .box-img::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 90%, var(--global-color-bg) 99%);
+    border-radius: inherit;
+    pointer-events: none; /* Ensure the overlay doesn't interfere with clicks */
+}
+
+.img-on {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    border-radius: inherit;
+}
+
+
+.box-img:hover{
+    transform: translateY(-10px);
+    opacity: 0.9;
+}
+
+.box-img:hover .box-img-button   {
+  opacity: 1;
+}
+
+.box-img-button {
+    width: 100%;
+    bottom: 40%; /* Move the button 50% down */
+    position: absolute;
+    outline: none;
+    border: none;
+    opacity: 0;
+    display: flex;
+    background-color: transparent;
+    justify-content: center;
+    gap: 5px;
+    z-index: 10;
+}
+
+
+
+.button_style2, .button_style1 {
+    border: 1px solid transparent;
+    color: white;
+    border-radius: 50%;
+    width:  60px; /* Width of the circle */
+    height: 60px; /* Height of the circle (same as width for a perfect circle) */
+    align-items: center; /* Vertically center text */
+    text-align: center;
+    justify-content: center; /* Horizontally center text */
+    display: flex; /* Use Flexbox for centering */
+    font-size: 40px;
+    padding: 1%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    font-weight: bold;
+
+}
+.button_style1{
+   background: yellow !important;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+   color: black !important;
+
+}
+
+.button_style2{
+   background: white !important;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+   color: black !important;
+}
+
+.button_style1::before {
+    content: "	\25B6";
+    font-size: 25px;
+}
+.button_style2::before {
+    content: "+";
+}
+
+.button_style3 {
+    display: 'none';
+    transition: all 0.3s ease;
+}
+
+.button_style2:hover {
+    color:   #DAA520;
+    border: 1px solid var(--Brand_Color);
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='8' fill='%23DAA520'/></svg>") 8 8, pointer;
+}
+
+.button_style1:hover {
+    color:   #DAA520;
+    border: 1px solid var(--Brand_Color);
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='8' fill='%23DAA520'/></svg>") 8 8, pointer;
+}
+
+
+.box_title {
+        width: 100%;
+        margin: 0px 1px 0px 1px;
+        height: 8%;
+        font-size: 14px;
+        font-style: bold;
+        font-family: 'Candara';
+        overflow:hidden;
+        align-item: center;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        display: block;
+}
+
+.container_span{
+  height: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: .85em;
+  margin: 0px 10px 1px 10px;
+  overflow: hidden;
+}
+
+.badge-type {
+    border: 0.1px solid var(--global-color-fg);
+    padding: 0 2px;
+    color: var(--global-color-fg);
+    font-size: 10px;
+    border-radius: .2rem;
+    margin: 1px;
+}
+
+.badge-type_year {
+       color: var(--global-color-fg);
+       margin-top: auto; /* Pushes the text to the bottom */
+       text-align: center;
+       font-size: 8px;
+     }
+.badge-type_rating {
+   color: var(--global-color-fg);
+   font-size: 11px;
+}
+
+.badge-type_text {
+    color:var(--global-color-fg);
+    display: flex;
+    text-align: center;
+    font-size: 11px;
+    justify-content: center;
+}
+
+/*====================================================================================================================*/
+
+.show_more{
+  width: auto;
+  margin: 0 auto;
+  padding: 0px;
+  text-align: center;
+}
+.show_more_1 {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.show_more_1 button {
+  padding: 5px 10px;
+  background-color: transparent;
+  box-shadow: 0 4px 6px gray;
+  border-radius: 10px 10px 10px 10px;
+  cursor: pointer;
+  color: var(--global-color-fg);
+}
+
+/*=========================================    SMALL DEVICES    ======================================================*/
+
+
+@media (max-width: 968px) {
+
+
+   .no-select{
+        height: 100%;
+        width: 100%;
+        background: transparent;
+        background-color : var(--global-color-bg);
+        margin: auto;
+  }
+
+  .box {
+        width:  120px;
+        height: 200px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        background: transparent;
+  }
+
+  .box-img{
+        width:  100%;
+        height: 100%;
+  }
+
+  .box-img::after {
+      background: transparent;/* Ensure the overlay doesn't interfere with clicks */
+ }
+ .box-img-button {
+     bottom: 40%;
+ }
+  .button_style2 {
+       width: 50px;
+       height:50px;
+       font-size: 29px;
+  }
+
+  .button_style1{
+       width: 50px;
+       height:50px;
+       font-size: 10px;;
+  }
+
+
+  .box_title{
+     display: none;
+  }
+
+  .container_span{
+     margin: 0px;
+     opacity: 0.8;
+     position: absolute;
+     bottom: 0;
+     width: 100%;
+     background: var(--global-color-bg);
+  }
+  .badge-type{
+    display: none;
+  }
+  .badge-type_year {
+   font-size: 10px;
+   font-weight: bold;
+   margin-top: auto;
+  }
+
+  .badge-type_text{
+    font-size: 10px;
+    font-weight: bold;
+    margin-top: auto;
+  }
+  .badge-type_rating{
+    font-size: 10px;
+    font-weight: bold;
+    margin-top: auto;
+  }
+
+
+}

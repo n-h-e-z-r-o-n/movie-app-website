@@ -1,0 +1,259 @@
+.bar_section {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 90px;
+  padding-bottom: 4px;
+  width: 100%;
+  gap:auto;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.text_container{
+   font-family: 'popine';
+   font-size: 1em;
+   background: transparent;
+   color: var(--global-color-fg);
+   margin: auto;
+ }
+.text_container:hover{
+   color: gray;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+.Favorites_Container{
+    width:  100%;
+    height: 95%;
+    background: transparent;
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    flex: 1;
+
+}
+
+
+
+.Watch_List_container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    gap: 20px; /* Changed from 'auto' - gap needs specific value */
+    background: transparent;
+    flex: 1 1 1; /* Added missing third value */
+    padding: 20px; /* Recommended for container spacing */
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+
+.profile_container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    gap: 20px; /* Changed from 'auto' - gap needs specific value */
+    background: transparent;
+    flex: 1 1 1; /* Added missing third value */
+    padding: 20px; /* Recommended for container spacing */
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+.profile_section_1{
+     width: 600px;
+     height: auto;
+     background: #232B2B ;
+     margin: auto;
+     padding: 5%;
+     box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
+     border-radius: 1.5rem;
+}
+
+
+.User_Image {
+  background: transparent;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  margin-bottom: 20px;
+  border: 4px solid  #1A2421;
+
+}
+
+.User_Image:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  border: 4px solid var(--Brand_Color, #4f8cff);
+}
+
+.User_Image_input{
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  right: -5px;
+  bottom: -5px;
+  border-radius: 50%;
+  background: var(--Brand_Color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px; /* Adjust size for the pen icon/text */
+  color: white !important; /* Optional: color for the icon */
+  cursor: pointer;
+}
+
+
+.profile_section_1_head{
+   opacity: 0.7;
+   font-family: 'Courier New', serif;
+   margin: auto;
+   width: 80%;
+   color: white !important;
+}
+
+.profile_section_1_input{
+   height: 55px;
+   width: 80%;
+   margin: 10px;
+   margin-left: auto;
+   margin-right: auto;
+   display: flex;
+   margin-bottom: 20px;
+   background: #C2D8D3 !important;
+   font-family: 'Poppins', sans-serif;
+   font-size: 1.3em;
+   border-radius: 0.5em;
+   color: black;
+   padding: 2%;
+   align-items: center;
+   box-sizing: border-box;
+}
+.Change_password{
+    color: white !important;
+    margin: auto;
+    margin-bottom:20px;
+    width: 80%;
+}
+.C_P_SAVE{
+   height: 55px;
+   width: 80%;
+   margin: 10px;
+   margin-left: auto;
+   margin-right: auto;
+   display: flex;
+   margin-bottom: 20px;
+   background: var(--Brand_Color) !important;
+   font-family: 'Poppins', sans-serif;
+   font-size: 1.3em;
+   border-radius: 0.5em;
+   color: black;
+   padding: 2%;
+   align-items: center;
+   justify-content: center;
+   box-sizing: border-box;
+}
+
+
+.Extra_container {
+    display: block;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    flex: 1 1 1; /* Added missing third value */
+    padding: 20px; /* Recommended for container spacing */
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+
+.d_links{
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  width: auto;
+  height: auto;
+  gap: 10px;
+}
+
+.download_btn {
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 250px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    outline: none;
+    text-decoration: none;
+    color: var(--global-color-fg);
+    background:#fff;
+    padding: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
+}
+.download_btn *{
+   color: var(--global-color-fg);
+   font-size: 30px;
+}
+
+.download_btn:hover{
+  background: #EAF4FC;
+}
+
+
+.remove_fave {
+  position: absolute;
+  right: 1%;
+  top: 1%;
+  font-family: cursive;
+  color: #1B1B1B;
+  background: white !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1;
+  font-weight: 900;
+  width:  20px;
+  height:  20px;
+  font-size: 14px;
+  border-radius: 50%;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  padding: 5px;
+}
+
+.remove_fave:hover{
+  color: red;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+
+
+
+/* Smoother animation with consistent glow */
+@keyframes pulse_glow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1.1);
+    text-shadow: 0 0 8px rgba(255, 0, 0, 0.8);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+    text-shadow: 0 0 12px rgba(255, 0, 0, 1);
+  }
+}

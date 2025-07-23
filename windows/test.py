@@ -1,24 +1,21 @@
 from pystray import Icon, Menu, MenuItem
-from PIL import Image, ImageDraw
+from PIL import Image
 import threading
 
-def create_image():
-    # Create a simple icon image (16x16 or 32x32)
-    image = Image.new('RGB', (64, 64), 'white')
-    dc = ImageDraw.Draw(image)
-    dc.rectangle((16, 16, 48, 48), fill='black')
-    return image
 
 def on_quit(icon, item):
     icon.stop()
 
 def run_tray():
+    icon_path = "./Movionyx.ico"
+    image = Image.open(icon_path)
     icon = Icon(
         "app_name",
-        icon=create_image(),
-        title="My Python App",
+        icon=image,
+        title="Movionyx",
         menu=Menu(
-            MenuItem("Quit", on_quit)
+            MenuItem("Quit", on_quit),
+           MenuItem("Open", on_quit)
         )
     )
     icon.run()
@@ -28,5 +25,5 @@ threading.Thread(target=run_tray, daemon=True).start()
 
 # Your app logic here
 while True:
-    # Simulating background work
+    print("workin")
     pass
