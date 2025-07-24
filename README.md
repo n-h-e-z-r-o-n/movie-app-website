@@ -6,7 +6,7 @@
 ## 🖥️ Installation & Download
 
 ### 🔹 Latest Version (v2.0 – 2025)
-- 🪟 **Windows OS**: [Download ]([https://github.com/n-h-e-z-r-o-n/movie-app-website/raw/refs/heads/main/Source_code/MoviOnyx.zip](https://github.com/n-h-e-z-r-o-n/movie-app-website/raw/refs/heads/main/APPS/movionyx.exe))
+- 🪟 **Windows OS**: [Download .exe ](https://github.com/n-h-e-z-r-o-n/movie-app-website/raw/refs/heads/main/APPS/movionyx.exe)
 
 - **Android  **:  [Download .APK](https://github.com/ice-black/move-app/raw/main/APPS/onyx.apk)  
 
