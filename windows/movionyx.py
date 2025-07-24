@@ -13,7 +13,7 @@ from PIL import Image
 import threading
 import os
 import sys
-import win32com.client
+import win32com.client  #pip install pywin32
 
 
 #key = Fernet.generate_key()
@@ -22,25 +22,56 @@ cipher = Fernet(key)
 
 BASE_DIR = os.path.abspath('./private/x_local')
 
+def ensure_c_drive_location():
+    expected_dir = r"C:\Movionyx"
+    exe_name = os.path.basename(sys.argv[0])
+    current_path = os.path.abspath(sys.argv[0])
+    target_path = os.path.join(expected_dir, exe_name)
+
+    # Only proceed if NOT already running from C:\Movionyx
+    if not current_path.lower().startswith(expected_dir.lower()):
+        print("[~] Moving Movionyx.exe to C:/Movionyx")
+
+        import shutil
+
+        if not os.path.exists(expected_dir):
+            os.makedirs(expected_dir)
+
+        # Copy only the executable
+        shutil.copy2(current_path, target_path)
+
+        # Launch from new location
+        os.startfile(target_path)
+        sys.exit()
+
+    # ADD A CODE TO STOP THIS FILE FOROM RUNNING
+
+ensure_c_drive_location()
+
 def get_executable_path():
     if getattr(sys, 'frozen', False):
         # Running in a bundle (e.g. PyInstaller)
         return sys.executable
     else:
-        # Running as a normal Python script
         return os.path.abspath(__file__)
 
-def create_shortcut(shortcut_name="Movionyx", icon_path=None):
+def create_shortcut(shortcut_name="Movionyx"):
     target_path = get_executable_path()
     desktop = os.path.join(os.environ['USERPROFILE'], 'Desktop')
     shortcut_path = os.path.join(desktop, f"{shortcut_name}.lnk")
+    icon_path = os.path.join(os.getcwd(),"Movionyx.ico")
+
+    print("icon_path : ",icon_path)
+    print("shortcut_path : ", shortcut_path)
+    print("target_path : ", target_path)
+    print("target_path : ", os.getcwd())
+
 
     shell = win32com.client.Dispatch("WScript.Shell")
     shortcut = shell.CreateShortcut(shortcut_path)
     shortcut.TargetPath = target_path
     shortcut.WorkingDirectory = os.path.dirname(target_path)
-    if icon_path:
-        shortcut.IconLocation = icon_path
+    shortcut.IconLocation =F"{icon_path},0"
     shortcut.Save()
 
 def download_app_icon():
@@ -54,7 +85,7 @@ def download_app_icon():
             f.write(response.content)
 
 download_app_icon()
-create_shortcut(icon_path="Movionyx.ico")
+create_shortcut()
 
 def download_app_info():
     url1 = "https://github.com/n-h-e-z-r-o-n/movie-app-website/raw/refs/heads/main/x_local.zip"
