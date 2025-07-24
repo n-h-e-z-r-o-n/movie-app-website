@@ -1,7 +1,12 @@
+document.body.addEventListener("pointermove", (e)=>{
+  const { currentTarget: el, clientX: x, clientY: y } = e;
+  const { top: t, left: l, width: w, height: h } = el.getBoundingClientRect();
+  el.style.setProperty('--posX',  x-l-w/2);
+  el.style.setProperty('--posY',  y-t-h/2);
+})
 
+var Database_location = 'https://movionyx.com/Database/database.php'
 
-
-//http://localhost/movie-app-website/x_local/index?d=mob
 let div_mob = true
 if(!div_mob){
    document.querySelector('.nav_bar_bottom').classList.add('hid_element');
@@ -10,11 +15,9 @@ if(!div_mob){
    document.querySelector('.search_btn').classList.add('hid_element');
 }
 
-
-
 let lastScrollTop = 0;
 const navbar = document.getElementById('navbar');
-const scrollThreshold = 5; // Set the threshold to 300px
+const scrollThreshold = 300; // Set the threshold to 300px
 mobileBreakpoint = 968;
 window.addEventListener('scroll', function() {
     if (window.innerWidth < mobileBreakpoint) {
@@ -141,22 +144,22 @@ const Genre_divT = document.getElementById("Genre_divT");
 const Anime_btnT = document.getElementById("Anime_btnT");
 
 // Add click event listener
-HomeNav_btnT.addEventListener("touchstart", function() {
+HomeNav_btnT.addEventListener("click", function() {
    window.location.href = "Home.html";
 });
-Movie_btnT.addEventListener("touchstart", function() {
+Movie_btnT.addEventListener("click", function() {
    window.location.href = "view-more.html?query=movie";
 });
-TVSeries_btnT.addEventListener("touchstart", function() {
+TVSeries_btnT.addEventListener("click", function() {
    window.location.href = "view-more.html?query=show";
 });
 
-Anime_btnT.addEventListener("touchstart", function() {
+Anime_btnT.addEventListener("click", function() {
    window.location.href = "anime.html";
 });
 
 const Reload_btn = document.getElementById("Reload_btn");
-Reload_btn.addEventListener("touchstart", function() {
+Reload_btn.addEventListener("click", function() {
    window.location.href = "";
 });
 
@@ -167,7 +170,7 @@ Reload_btn.addEventListener("touchstart", function() {
 
 
 let active_Genre_divT = 1;
-Genre_divT.addEventListener("touchstart", function() {
+Genre_divT.addEventListener("click", function() {
     if(active_Genre_divT){
         active_Genre_divT = 0;
         const Genre_divT_container = document.getElementById("Genre_divT_container");
@@ -193,7 +196,7 @@ Genre_divT_container.addEventListener("mouseleave", function () {
 // Add a click event listener to each genre element
 const genreElements = document.querySelectorAll(".genre_each");
 genreElements.forEach((genreElement) => {
-    genreElement.addEventListener("touchstart", function () {
+    genreElement.addEventListener("click", function () {
         const genreId = genreElement.dataset.genre;
         const genreName = genreElement.textContent;
         window.location.href = "genre.html?" + genreName + '-' + genreId
@@ -212,20 +215,20 @@ const Anime_btn = document.getElementById("Anime_btn");
 
 
 // Add click event listener
-HomeNav_btn.addEventListener("touchstart", function() {
+HomeNav_btn.addEventListener("click", function() {
    localStorage.setItem("bottom_nav", 'HomeNav_btn')
    window.location.href = "Home.html";
 });
-Movie_btn.addEventListener("touchstart", function() {
+Movie_btn.addEventListener("click", function() {
    localStorage.setItem("bottom_nav", 'Movie_btn')
    window.location.href = "view-more.html?query=movie";
 });
-TVSeries_btn.addEventListener("touchstart", function() {
+TVSeries_btn.addEventListener("click", function() {
    localStorage.setItem("bottom_nav", 'TVSeries_btn')
    window.location.href = "view-more.html?query=show";
 });
 
-Anime_btn.addEventListener("touchstart", function() {
+Anime_btn.addEventListener("click", function() {
    localStorage.setItem("bottom_nav", 'Anime_btn')
    window.location.href = "anime.html";
 });
@@ -290,7 +293,7 @@ search_btn_bottom_cancel.onclick = function(){
 
 
 
-search_btn_filter.addEventListener("touchstart", function() {
+search_btn_filter.addEventListener("click", function() {
     if(active_Genre_divT){
         active_Genre_divT = 0;
         const genre_filter_bottom_nav = document.getElementById("genre_filter_bottom_nav");
@@ -323,7 +326,7 @@ genre_filter_bottom_nav.addEventListener("touchcancel", function () {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const trailer_div_cancel = document.getElementById("trailer_div_cancel");
-trailer_div_cancel.addEventListener("touchstart", (event) => {
+trailer_div_cancel.addEventListener("click", (event) => {
         const trailer_div = document.getElementById("trailer_div");
         const trailer_div_iframe = document.getElementById("trailer_div_iframe");
         trailer_div_iframe.innerHTML = ''
@@ -415,7 +418,7 @@ async function AddToFav(movie, widget){
     let email = localStorage.getItem('user_email');
     /////////////////////////////////////////////////////////////////////////////////////
 
-    let serverResponse = await fetch('https://movionyx.com/Database/database.php', {
+    let serverResponse = await fetch(Database_location, {
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             body: `action=getWatchlist&email=${encodeURIComponent(email)}`
@@ -435,7 +438,7 @@ async function AddToFav(movie, widget){
 
         let watchlist_new =  JSON.stringify(uniqueMovies);
 
-        let response = await fetch('https://movionyx.com/Database/database.php', {
+        let response = await fetch(Database_location, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -455,7 +458,7 @@ async function AddToFav(movie, widget){
           numbers.push(id)
           //console.log(numbers);
 
-          let serverResponse = await fetch('https://movionyx.com/Database/database.php', {
+          let serverResponse = await fetch(Database_location, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 body: `action=getMessageslist&email=${encodeURIComponent(email)}`
@@ -471,7 +474,7 @@ async function AddToFav(movie, widget){
                    index === self.findIndex(m => m[2] === movie[2])
               );
 
-              let response_note = await fetch('https://movionyx.com/Database/database.php', {
+              let response_note = await fetch(Database_location, {
                     method: 'POST',
                     headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -597,7 +600,7 @@ if (true ){
                   `;
 
         const terms_agree_btn = document.getElementById("terms_agree_btn");
-        terms_agree_btn.addEventListener("touchstart", () => {
+        terms_agree_btn.addEventListener("click", () => {
              Terms_Container.style.display = "none";
              localStorage.setItem("terms_FeedBack", "Terms agreed By User");
         });
@@ -605,13 +608,13 @@ if (true ){
         const terms_Disagree_btn = document.getElementById("terms_Disagree_btn");
         const show_terms_btn = document.getElementById("show_terms");
         const Terms_Box = document.getElementById("Terms_Box");
-        terms_Disagree_btn.addEventListener("touchstart", () => {
+        terms_Disagree_btn.addEventListener("click", () => {
               show_terms_btn.style.display = "flex";
               Terms_Box.classList.add('active')
         });
 
 
-        show_terms_btn.addEventListener("touchstart", () => {
+        show_terms_btn.addEventListener("click", () => {
              //Terms_Box.style.display = "none";
               show_terms_btn.style.display = "none";
               Terms_Box.classList.remove('active');
@@ -665,20 +668,8 @@ var Register_view  = document.getElementById("Register_view");
 var Forgot_password_view  = document.getElementById("Forgot_password_view");
 var Login_view  = document.getElementById("Login_view");
 
-const inputs_ = document.querySelectorAll('.input_form');
-inputs_.forEach(input => {
-    input.addEventListener('focus', () => {
-      Authentication_section.classList.add('lifted');
-    });
 
-    input.addEventListener('blur', () => {
-      Authentication_section.classList.remove('lifted');
-    });
-});
-
-
-
-Register_view.addEventListener("touchstart", function() {
+Register_view.addEventListener("click", function() {
         Register_container.style.display = 'block';
         Login_container.style.display = 'none';
         Forgot_password_container.style.display = 'none';
@@ -689,7 +680,7 @@ Register_view.addEventListener("touchstart", function() {
 });
 
 
-Forgot_password_view.addEventListener("touchstart", function() {
+Forgot_password_view.addEventListener("click", function() {
         Login_container.style.display = 'none';
         Forgot_password_container.style.display = 'block';
         Register_container.style.display = 'none';
@@ -699,7 +690,7 @@ Forgot_password_view.addEventListener("touchstart", function() {
         Login_view.style.opacity ='0.3';
 });
 
-Login_view.addEventListener("touchstart", function() {
+Login_view.addEventListener("click", function() {
         Forgot_password_container.style.display = 'none';
         Login_container.style.display = 'block';
         Register_container.style.display = 'none';
@@ -741,8 +732,10 @@ cancelButtons.forEach(button => {
 const Account_btn = document.getElementById("Account_btn");
 Account_btn.style.display = 'none';
 const Account_btnT = document.getElementById("Account_btnT");
+
 const handle_account = function() {
     let savedState = localStorage.getItem("U_ID");
+    console.log('savedState', savedState)
     if (savedState) {
         window.location.href = "profile.html";
         Authentication_section.style.display = 'none';
@@ -750,8 +743,8 @@ const handle_account = function() {
         Authentication_section.style.display = 'flex';
     }
 };
-Account_btn.addEventListener("touchstart", handle_account)
-Account_btnT.addEventListener("touchstart", handle_account)
+Account_btn.addEventListener("click", handle_account)
+Account_btnT.addEventListener("click", handle_account)
 
 let savedState = localStorage.getItem("U_ID");
 if (savedState) {
@@ -773,16 +766,11 @@ if (savedState) {
      notification_check()
      auto_update_user_info()
      //setInterval(notification_check, 60000);
-} else {
-   Authentication_section.style.display = 'flex';
 }
-
-
-
 async function auto_update_user_info(){
     let email = localStorage.getItem('user_email');
 
-    let serverResponse = await fetch('https://movionyx.com/Database/database.php', {
+    let serverResponse = await fetch(Database_location, {
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             body: `action=getUser&email=${encodeURIComponent(email)}`
@@ -816,16 +804,15 @@ document.getElementById('loginForm').addEventListener('click', async function(e)
             const email = document.getElementById('login_username').value.trim();
             const password = document.getElementById('login_password').value.trim();
             const messageDiv = document.getElementById('login_error_display');
-            messageDiv.innerHTML = '';
 
             messageDiv.classList.add('loading_active');
 
-            const response = await fetch('https://movionyx.com/Database/database.php', {
+            const response = await fetch(Database_location, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
                   },
-            body: `action=login&email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}&device=mobApp`
+            body: `action=login&email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
             });
 
             const data = await response.json();
@@ -881,7 +868,6 @@ document.getElementById('signUpForm').addEventListener('click', async function(e
             const sign_up_password_ = document.getElementById('sign_up_password_').value.trim();
             const sign_up_password_confirm = document.getElementById('sign_up_password_confirm').value.trim();
             const messageDiv = document.getElementById('signup_error_display');
-            messageDiv.innerHTML = '';
 
                 // Clear previous messages
             messageDiv.textContent = '';
@@ -903,12 +889,12 @@ document.getElementById('signUpForm').addEventListener('click', async function(e
                return;
             }
 
-            const response = await fetch('https://movionyx.com/Database/database.php', {
+            const response = await fetch(Database_location, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
                   },
-            body: `action=register&name=${encodeURIComponent(sign_up_Name_)}&email=${encodeURIComponent(sign_up_email_)}&password=${encodeURIComponent(sign_up_password_)}&device=mobApp`
+            body: `action=register&name=${encodeURIComponent(sign_up_Name_)}&email=${encodeURIComponent(sign_up_email_)}&password=${encodeURIComponent(sign_up_password_)}`
             });
 
             const data = await response.json();
@@ -960,7 +946,6 @@ document.getElementById('forget_p_form').addEventListener('click', async functio
              // Get form elements
             const reset_email_ = document.getElementById('reset_email_').value.trim();
             const messageDiv = document.getElementById('Forgot_display');
-            messageDiv.innerHTML = '';
 
             messageDiv.textContent = '';
             messageDiv.className = 'error-message';
@@ -977,7 +962,7 @@ document.getElementById('forget_p_form').addEventListener('click', async functio
             }
             console.log(reset_email_)
 
-            const response = await fetch('https://movionyx.com/Database/database.php', {
+            const response = await fetch(Database_location, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -1062,7 +1047,7 @@ async function notification_check(){
                         </div>
                     `;
                     // Add event listener to open another page when clicked
-                    movieItem.addEventListener("touchstart", () => {
+                    movieItem.addEventListener("click", () => {
                           window.location.href = "watch.html?id=" + id + "&type=tv";
                     });
 
@@ -1091,60 +1076,56 @@ async function notification_check(){
 
 
 async function scrambleToText(el, finalText, speed = 40) {
-      try{
-          const chars = '█▓▒░<>\\/|_‖∆Ω≡≠∑√ΦΞ※Λ⋆+*#?~'
-          const queue = []
-          const length = finalText.length
+      const chars = '█▓▒░<>\\/|_‖∆Ω≡≠∑√ΦΞ※Λ⋆+*#?~'
+      const queue = []
+      const length = finalText.length
 
-          for (let i = 0; i < length; i++) {
-            queue.push({
-              to: finalText[i],
-              char: '',
-              done: false,
-              frame: 0,
-              maxFrames: Math.floor(Math.random() * speed+ speed)
-            })
-          }
-
-          function randomChar() {
-            return chars[Math.floor(Math.random() * chars.length)]
-          }
-
-          function update() {
-            let output = ''
-            let complete = 0
-
-            for (let i = 0; i < length; i++) {
-              const q = queue[i]
-              if (q.done) {
-                output += q.to
-                complete++
-              } else {
-                if (q.frame >= q.maxFrames) {
-                  q.done = true
-                  output += q.to
-                } else {
-                  if (q.frame === 0 || Math.random() < 0.5) {
-                    q.char = randomChar()
-                  }
-                  output += `<span class="dud" style="color: #1B1B1B; opacity: 0.1;">${q.char}</span>`
-                  q.frame++
-                }
-              }
-            }
-
-            el.innerHTML = output
-
-
-            if (complete < length) {
-              requestAnimationFrame(update)
-            }
-          }
-
-          update()
-      }catch{
-
+      for (let i = 0; i < length; i++) {
+        queue.push({
+          to: finalText[i],
+          char: '',
+          done: false,
+          frame: 0,
+          maxFrames: Math.floor(Math.random() * speed+ speed)
+        })
       }
+
+      function randomChar() {
+        return chars[Math.floor(Math.random() * chars.length)]
+      }
+
+      function update() {
+        let output = ''
+        let complete = 0
+
+        for (let i = 0; i < length; i++) {
+          const q = queue[i]
+          if (q.done) {
+            output += q.to
+            complete++
+          } else {
+            if (q.frame >= q.maxFrames) {
+              q.done = true
+              output += q.to
+            } else {
+              if (q.frame === 0 || Math.random() < 0.5) {
+                q.char = randomChar()
+              }
+              output += `<span class="dud" style="color: #1B1B1B; opacity: 0.1;">${q.char}</span>`
+              q.frame++
+            }
+          }
+        }
+
+        el.innerHTML = output
+
+
+        if (complete < length) {
+          requestAnimationFrame(update)
+        }
+      }
+
+      update()
 
     }
 
@@ -1155,8 +1136,8 @@ async function scrambleToText(el, finalText, speed = 40) {
 
 
 ///////////////////////////// Disable Right Click + Inspect Element ////////////////////////////////////////////////////
-
 /*
+
 document.addEventListener("contextmenu", (e) => e.preventDefault());
 document.addEventListener("keydown", (e) => {
   if (e.ctrlKey && (e.key === "u" || e.key === "U")) {

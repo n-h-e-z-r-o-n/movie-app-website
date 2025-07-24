@@ -91,6 +91,9 @@ function Search_Results_SHOW(movies) {
         const badge_type_rating = movieItem.querySelector('.badge-type_rating');
         scrambleToText(badge_type_rating, `&starf;  ${vote_average} `, 20)
     }
+    // Add event listener to open another page when clicked
+    //movieItem.addEventListener("click", () => {
+    //window.location.href = "watch_page.html?id=" + id + "&type="+type;
 
     const boxImg = movieItem.querySelector(".box-img");
     boxImg.addEventListener("click", async (e) => {
@@ -126,7 +129,7 @@ const Select_options = document.querySelectorAll(".Select_option");
 Select_options.forEach((Select_option) => {
   const dropdown_content = Select_option.querySelector(".anime_dropdown_content");
 
-  Select_option.addEventListener("touchstart", function () {
+  Select_option.addEventListener("click", function () {
     if (dropdown_content.style.display === "flex") {
       dropdown_content.style.display = "none";
     } else {
@@ -157,7 +160,7 @@ document.addEventListener("touchcancel", function (event) {
 });
 
 
-document.addEventListener("touchstart", function (event) {
+document.addEventListener("click", function (event) {
 
   Select_options.forEach((Select_option) => {
   const dropdown_content = Select_option.querySelector(".anime_dropdown_content");
@@ -179,7 +182,7 @@ document.addEventListener("touchstart", function (event) {
 const anime_genre_each_ALL = document.querySelectorAll(".anime_genre_each");
 
 anime_genre_each_ALL.forEach((anime_genre_each) => {
-  anime_genre_each.addEventListener("touchstart", function () {
+  anime_genre_each.addEventListener("click", function () {
     // Toggle the 'Selected_G' class
     this.classList.toggle("Selected_G");
   });

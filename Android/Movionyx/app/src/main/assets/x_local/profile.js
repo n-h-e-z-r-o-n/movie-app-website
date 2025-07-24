@@ -1,4 +1,3 @@
-
 const search_R_div = document.getElementById("Watch_List_container");
 const logout_btn = document.getElementById("logout_btn");
 
@@ -7,21 +6,23 @@ const xr2 = document.getElementById("Account_btnT");
 xr.style.pointerEvents = 'none';
 xr2.style.pointerEvents = 'none';
 
+var Database_location = 'https://movionyx.com/Database/database.php'
+
 
 const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
 let U_ID = localStorage.getItem("U_ID");
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-logout_btn.addEventListener("touchstart", function() {
+logout_btn.addEventListener("click", function() {
         sessionStorage.clear();
-        localStorage.clear()
         localStorage.removeItem('U_ID')
         localStorage.removeItem('user_email')
         localStorage.removeItem('user_name')
         localStorage.removeItem('user_watchlist')
         localStorage.removeItem('user_massages')
         localStorage.removeItem('user_profile_img')
+
         window.location.href = "Home.html";
 });
 
@@ -31,13 +32,13 @@ if(U_ID){
       //notification_check(massages_container);
     const watchlistInterval = setInterval(auto_check_watchlist, 5000);
 }else{
-      //logout_btn.click();
+      logout_btn.click();
 }
 
 
 async  function auto_check_watchlist (){
     let email = localStorage.getItem('user_email');
-    let serverResponse = await fetch('Database/database.php', {
+    let serverResponse = await fetch(Database_location, {
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             body: `action=getWatchlist&email=${encodeURIComponent(email)}`
@@ -101,15 +102,15 @@ function switchTab(tabName) {
 
 }
 
-show_profile.addEventListener("touchstart", function() {
+show_profile.addEventListener("click", function() {
   switchTab('profile');
 });
 
-show_messages.addEventListener("touchstart", function() {
+show_messages.addEventListener("click", function() {
   switchTab('messages');
 });
 
-show_watchlist.addEventListener("touchstart", function() {
+show_watchlist.addEventListener("click", function() {
   switchTab('watchlist');
 });
 
@@ -188,7 +189,7 @@ document.getElementById("User_Image_show").style.backgroundPosition = 'center';
 document.getElementById("User_Image_show").style.backgroundRepeat = 'no-repeat';
 
 let Change_password = false;
-document.getElementById("Change_password").addEventListener("touchstart", function() {
+document.getElementById("Change_password").addEventListener("click", function() {
 
    if(Change_password){
        document.getElementById("N_P").style.display = 'none';
@@ -207,7 +208,7 @@ document.getElementById("Change_password").addEventListener("touchstart", functi
 
 });
 
-document.getElementById("C_P_SAVE").addEventListener("touchstart", async function(e)  {
+document.getElementById("C_P_SAVE").addEventListener("click", async function(e)  {
           e.preventDefault();
 
          let p_1 = document.getElementById('N_P_I').value.trim();
@@ -225,7 +226,7 @@ document.getElementById("C_P_SAVE").addEventListener("touchstart", async functio
          }
 
         let user_email =  localStorage.getItem('user_email')
-        const response = await fetch('Database/database.php', {
+        const response = await fetch(Database_location, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -315,7 +316,7 @@ function Search_Results_SHOW(movies) {
        });
 
     const FaveButton = movieItem.querySelector(".remove_fave");
-    FaveButton.addEventListener("touchstart",  function(event) {
+    FaveButton.addEventListener("click",  function(event) {
         event.stopPropagation();
         RemoveFromFav(id, Search_Results_SHOW);
     });
@@ -337,7 +338,7 @@ function Search_Results_SHOW(movies) {
     localStorage.setItem("user_watchlist", JSON.stringify(saved_Favorites_Data));
     let watchlist_new =  JSON.stringify(saved_Favorites_Data);
 
-    let response = await fetch('https://movionyx.com/Database/database.php', {
+    let response = await fetch(Database_location, {
     method: 'POST',
     headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -354,7 +355,7 @@ function Search_Results_SHOW(movies) {
         //console.log(JSON.stringify(notification_track))
 
 
-        let response_note = await fetch('https://movionyx.com/Database/database.php', {
+        let response_note = await fetch(Database_location, {
         method: 'POST',
         headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -389,7 +390,7 @@ document.getElementById("User_Image_input").addEventListener('change', (event) =
         formData.append('email', localStorage.getItem('user_email'));
 
 
-     const response = await fetch('https://movionyx.com/Database/database.php', {
+     const response = await fetch(Database_location, {
         method: 'POST',
         body: formData
      });
@@ -415,6 +416,7 @@ document.getElementById("User_Image_input").addEventListener('change', (event) =
 
 async function download_initiate(name){
 
+
   if(name === "android"){
     let url = "https://github.com/n-h-e-z-r-o-n/movie-app-website/raw/refs/heads/main/APPS/onyx.apk";
     const anchor = document.createElement("a");
@@ -423,13 +425,19 @@ async function download_initiate(name){
     anchor.click();
     document.body.removeChild(anchor);
   }else if(name === "Linux"){
-      window.location.href = "";
+
   }else if(name === "Tv"){
-      window.location.href = "";
+
   }else if(name === "windows"){
-      window.location.href = "";
+        let url = "https://github.com/n-h-e-z-r-o-n/movie-app-website/raw/refs/heads/main/APPS/movionyx.exe";
+        const anchor = document.createElement("a");
+        anchor.href = url;
+        document.body.appendChild(anchor);
+        anchor.click();
+        document.body.removeChild(anchor);
   }
-  alert("Your download has started. Please check your Downloads folder.");
+
+
 }
 
 

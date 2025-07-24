@@ -1,11 +1,13 @@
 /*#1B1B1B*/
 :root {
---global-color-bg:  #050301  !important; /* #050301     #1D2951  #003153  #0F0404;*/
---global-color-fg: white !important;
+--global-color-bg:  black !important; /* #050301     #1D2951  #003153  #0F0404;*/
+--global-color-bg-shade:   #1B1B1B;
+--global-color-fg: white  !important;
 --color_theme:  hsl(186 100% 69%);
 --section_header_color: #020403; /*#1B1B1B;*/
 --Brand_Color:   #00BFFF;
 --Brand_Image:  linear-gradient(to bottom, rgba(0,0,0,0), var(--global-color-bg)), url("./Assets/xr.jpg");
+--Max-width:  1700px;
 }
 
 body , html {
@@ -14,15 +16,16 @@ body , html {
   padding: 0;
   height: 100%;
   width: 100%;
-  background-color : var(--global-color-bg) ;
+  background: var(--global-color-bg) ;
   -webkit-tap-highlight-color: transparent;
   tap-highlight-color: transparent;
   touch-action: manipulation;
   overscroll-behavior: contain;
-  Background:  url("./Amssets/black_bg.png"), #050301;
   background-repeat: no-repeat;
   background-position: center;
-  Background-size:  100% 100%;}
+  Background-size:  100% 100%;
+
+}
 
 
 *{
@@ -40,10 +43,10 @@ body , html {
 
 .no-select{
         height: 100%;
-        width: 90%;
+        width: 80%;
+        max-width: var(--Max-width);
         background-color : var(--global-color-bg);
         margin: auto;
-        background: ;
         overflow: scroll;
         -ms-overflow-style: none;  /* IE and Edge */
         scrollbar-width: none;  /* Firefox */
@@ -65,8 +68,6 @@ body , html {
     margin-top: 10px;
     margin-bottom: 10px;
     float: right;
-
-
 }
 
 .box-img{
@@ -78,7 +79,6 @@ body , html {
     transition: 0.4s all linear;
     position: relative;
     display: flex;
-    image-rendering: auto;
  }
 
  .box-img::after {
@@ -99,7 +99,6 @@ body , html {
     height: 100%;
     object-fit: fill;
     border-radius: inherit;
-
 }
 
 
@@ -108,17 +107,9 @@ body , html {
     opacity: 0.9;
 }
 
-document.documentElement.classList.add('touch');
-
-.box-img:hover, .touch .box-img:active {
-    transform: translateY(-10px);
-    opacity: 0.9;
-}
-
 .box-img:hover .box-img-button   {
   opacity: 1;
 }
-
 
 .box-img-button {
     width: 100%;
@@ -247,6 +238,27 @@ document.documentElement.classList.add('touch');
     justify-content: center;
 }
 
+/*====================================================================================================================*/
+
+.show_more{
+  width: auto;
+  margin: 0 auto;
+  padding: 0px;
+  text-align: center;
+}
+.show_more_1 {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.show_more_1 button {
+  padding: 5px 10px;
+  background-color: transparent;
+  box-shadow: 0 4px 6px gray;
+  border-radius: 10px 10px 10px 10px;
+  cursor: pointer;
+  color: var(--global-color-fg);
+}
 
 /*=========================================    SMALL DEVICES    ======================================================*/
 
@@ -299,7 +311,6 @@ document.documentElement.classList.add('touch');
 
   .container_span{
      margin: 0px;
-     opacity: 0.8;
      position: absolute;
      bottom: 0;
      width: 100%;
@@ -324,7 +335,6 @@ document.documentElement.classList.add('touch');
     font-weight: bold;
     margin-top: auto;
   }
-
 
 
 }
