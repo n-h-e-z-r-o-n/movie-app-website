@@ -118,7 +118,7 @@ function Search_Results_SHOW(movies, display_div) {
 
     `;
     // Add event listener to open another page when clicked
-    //movieItem.addEventListener("touchstart", () => {
+    //movieItem.addEventListener("click", () => {
     //window.location.href = "watch_page.html?id=" + id + "&type="+type;
 
     const boxImg = movieItem.querySelector(".box-img");

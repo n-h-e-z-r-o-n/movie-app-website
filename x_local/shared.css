@@ -24,6 +24,7 @@ body , html {
   background-repeat: no-repeat;
   background-position: center;
   Background-size:  100% 100%;
+
 }
 
 
@@ -310,7 +311,6 @@ body , html {
 
   .container_span{
      margin: 0px;
-     opacity: 0.8;
      position: absolute;
      bottom: 0;
      width: 100%;

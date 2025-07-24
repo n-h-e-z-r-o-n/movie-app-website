@@ -1,4 +1,5 @@
 
+var Database_location = 'https://movionyx.com/Database/database.php'
 
 document.cookie.split(";").forEach(cookie => {
     const eqPos = cookie.indexOf("=");
@@ -206,7 +207,7 @@ async function update_Notification(movie_info){
                 console.log(updatedMovies)
                 localStorage.setItem('user_massages', JSON.stringify(updatedMovies))
 
-                let response_note = await fetch('Database/database.php', {
+                let response_note = await fetch(Database_location, {
                     method: 'POST',
                     headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',

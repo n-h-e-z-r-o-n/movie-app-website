@@ -317,7 +317,7 @@ function AutoScroll_TRENDING() {
         let scrollDirection = scroll_pixel;
 
         // Add event listeners to each right arrow
-        arrowsRight.addEventListener("touchstart", () => {
+        arrowsRight.addEventListener("click", () => {
               //console.log("arrowsRight");
               stopAutoScroll();
               movieLists.scrollBy({
@@ -326,18 +326,21 @@ function AutoScroll_TRENDING() {
                   });
 
               setTimeout(startAutoScroll, 2000);
+              arrowsRight.style.borderColor = "var(--Brand_Color)";
+              arrowsRight.style.borderColor = "transparent";
         });
 
 
         // Add event listeners to each left arrow
-        arrowsLeft.addEventListener("touchstart", () => {
+        arrowsLeft.addEventListener("click", () => {
                 console.log("arrowsLeft");
                 stopAutoScroll();
                 movieLists.scrollBy({
                     left: -scrollAmount,
                     behavior: "smooth",
                 });
-
+                arrowsLeft.style.borderColor = "var(--Brand_Color)";
+                arrowsRight.style.borderColor = "transparent";
                 setTimeout(startAutoScroll, 2000);
         });
 
@@ -353,12 +356,24 @@ function AutoScroll_TRENDING() {
             if (movieLists.scrollLeft + movieLists.clientWidth >= movieLists.scrollWidth) {
                 setTimeout(startAutoScroll, 2000);
                 scrollDirection = -scroll_pixel; // Change direction to left
+                arrowsLeft.style.borderColor = "var(--Brand_Color)";
+                arrowsRight.style.borderColor = "transparent";
             }
 
             // Check if we reached the left end
             if (movieLists.scrollLeft <= 0) {
                 setTimeout(startAutoScroll, 2000);
                 scrollDirection = scroll_pixel; // Change direction to right
+                arrowsRight.style.borderColor = "var(--Brand_Color)";
+                arrowsLeft.style.borderColor = "transparent";
+            }
+
+            if(movieLists.scrollLeft <= 0){
+                arrowsLeft.style.borderColor = "var(--Brand_Color)";
+                arrowsRight.style.borderColor = "transparent";
+            } else{
+                arrowsRight.style.borderColor = "var(--Brand_Color)";
+                arrowsLeft.style.borderColor = "transparent";
             }
           }, 50);
         }
@@ -371,7 +386,9 @@ function AutoScroll_TRENDING() {
         }
 
         movieLists.addEventListener("touchmove", () => {
-            stopAutoScroll(); // Stop auto scroll during touch move
+             arrowsRight.style.borderColor = "transparent";
+             arrowsLeft.style.borderColor = "transparent";
+             stopAutoScroll(); // Stop auto scroll during touch move
         });
 
         movieLists.addEventListener("touchend", () => {
@@ -466,6 +483,9 @@ function Slider_Display(movies, show_type) {
               `;
 
               movieItem2.dataset.redirectUrl_card = `id=${id}&type=${show_type}`;
+              //movieItem2.addEventListener("click", () => { //dblclick
+              //  window.location.href = "watch.html?id=" + id + '&type=' + show_type;
+              //});
               Swiper_div.appendChild(movieItem2);
               count++;
         }
@@ -487,49 +507,44 @@ async function Latest_Movies(event, page, type) {
   let data_json = [];
 
   while (count <= page) {
-      /*
+      
       let res = await fetch(`https://vidsrc.xyz/movies/latest/page-${page}.json`, {"accept": "application/json",});
       let data = await res.json();
-      console.log(data['result']);
+      //console.log(data['result']);
       data_json = data_json.concat(data['result']) ;
-      */
+      
+     /*
         let url = `https://yts.mx/api/v2/list_movies.json?page=${page}&limit=50&sort_by=year`
         let response = await fetch(url);
         let data = await response.json();
         //console.log("Shown data", data.data.movies);
         data_json = data_json.concat(data.data.movies) ;
-
+      */
 
       count++;
       break;
-    }
-
+  }
   let hold = [];
-  //console.log(data_json.length)
   for (let i = 0; i < data_json.length; i++) {
-
-
-     /*
-     medium_cover_image
-     rating
-     runtime
-     small_cover_image
-     title_english
-     */
      let data;
      while(true){
         try{
-             let res = await fetch(`https://api.themoviedb.org/3/movie/${data_json[i]['imdb_code']}/external_ids`, {headers});
-             data = await res.json();
-             //console.log(data.id)
+            
+            //let res = await fetch(`https://api.themoviedb.org/3/movie/${data_json[i]['imdb_code']}/external_ids`, {headers});
+            let res = await fetch(`https://api.themoviedb.org/3/movie/${data_json[i]['imdb_id']}`, {headers});
+            data = await res.json();
+            //console.log(data)
              break
          }catch(error){
             await sleep(1050);
          }
      }
 
-     hold.push({poster_path:data_json[i]['medium_cover_image'], release_date:data_json[i]['year'], vote_average:data_json[i]['rating'], title:data_json[i]['title_english'], id:data.id, runtime:data_json[i]['runtime']});
-     showMovies([{poster_path:data_json[i]['medium_cover_image'], release_date:data_json[i]['year'], vote_average:data_json[i]['rating'], title:data_json[i]['title_english'], id:data.id, runtime:data_json[i]['runtime']}], true);
+    // hold.push({poster_path:data_json[i]['medium_cover_image'], release_date:data_json[i]['year'], vote_average:data_json[i]['rating'], title:data_json[i]['title_english'], id:data.id, runtime:data_json[i]['runtime']});
+    // showMovies([{poster_path:data_json[i]['medium_cover_image'], release_date:data_json[i]['year'], vote_average:data_json[i]['rating'], title:data_json[i]['title_english'], id:data.id, runtime:data_json[i]['runtime']}], true);
+    
+    hold.push({poster_path:IMG_PATH + data['poster_path'], release_date:data['release_date'], vote_average:data['vote_average'], title:data['title'], id:data['id'], runtime:data['runtime']});
+    showMovies([{poster_path:IMG_PATH +data['poster_path'], release_date:data['release_date'], vote_average:data['vote_average'], title:data['title'], id:data['id'], runtime:data['runtime']}]);  
   }
   Let_Movies_CK = hold;
   movie_div.innerHTML = "";
@@ -963,7 +978,7 @@ async function Company_Card(company_show) {
                   let card_each = document.createElement("div");
 
                   card_each.classList.add("company_card");
-                  card_each.style.background = `linear-gradient(to bottom, rgba(0,0,0,0), var(--global-color-bg)), url(${company_backdrop})`;
+                  card_each.style.background = `url(${company_backdrop})`;
 
                   card_each.style.backgroundRepeat = 'no-repeat';
                   card_each.style.backgroundPosition = 'center';

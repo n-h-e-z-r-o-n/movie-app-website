@@ -6,11 +6,12 @@
     margin-left: auto;
     margin-right: auto;
     height: auto;
-    background: #1B1B1B;
+    background: var(--global-color-bg);
     border-radius: 1em;
     box-sizing: border-box;
     padding: 10px;
-
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.4);
+    width: 98%;
 }
 .actor_movies {
     display: flex;

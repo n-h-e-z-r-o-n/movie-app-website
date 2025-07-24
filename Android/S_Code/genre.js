@@ -141,6 +141,9 @@ function Search_Results_SHOW(movies) {
         const badge_type_rating = movieItem.querySelector('.badge-type_rating');
         scrambleToText(badge_type_rating, `&starf;  ${vote_average} `, 20)
     }
+    // Add event listener to open another page when clicked
+    //movieItem.addEventListener("click", () => {
+    //window.location.href = "watch_page.html?id=" + id + "&type="+type;
 
     const boxImg = movieItem.querySelector(".box-img");
     boxImg.addEventListener("click", async (e) => {
@@ -166,7 +169,7 @@ function Search_Results_SHOW(movies) {
 }
 
 
-show_more_g.addEventListener("touchstart", function() {
+show_more_g.addEventListener("click", function() {
      show_more_g.innerHTML = 'LOADING ...';
      C_page = C_page + 1;
      Run_Fetch_Data(C_page)
@@ -239,7 +242,7 @@ async function logSelectedOptions() {
 }
 
 
-gen_filter_btn.addEventListener("touchstart", function() {
+gen_filter_btn.addEventListener("click", function() {
    logSelectedOptions()
 });
 
@@ -253,7 +256,7 @@ const Select_options = document.querySelectorAll(".Select_box");
 Select_options.forEach((Select_option) => {
   const dropdown_content = Select_option.querySelector(".dropdown_content");
 
-  Select_option.addEventListener("touchstart", function () {
+  Select_option.addEventListener("click", function () {
     if (dropdown_content.style.display === "flex") {
       dropdown_content.style.display = "none";
     } else {
@@ -284,7 +287,7 @@ document.addEventListener("touchcancel", function (event) {
 });
 
 
-document.addEventListener("touchstart", function (event) {
+document.addEventListener("click", function (event) {
 
   Select_options.forEach((Select_option) => {
   const dropdown_content = Select_option.querySelector(".dropdown_content");

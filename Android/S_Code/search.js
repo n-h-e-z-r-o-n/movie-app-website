@@ -9,6 +9,9 @@ var headers = {
 "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZjliMmUyN2MxYTZiYzMyMzNhZjE4MzJmNGFjYzg1MCIsIm5iZiI6MTcxOTY3NDUxNy4xOTYsInN1YiI6IjY2ODAyNjk1ZWZhYTI1ZjBhOGE4NGE3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RTms-g8dzOl3WwCeJ7WNLq3i2kXxl3T7gOTa8POcxcw"
 };
 
+
+
+
 const search_R_div = document.getElementById("Search_Results");
 
  // Extract the search term from URL parameters
@@ -123,6 +126,9 @@ function Search_Results_SHOW(movies) {
                <div  class="badge-type_rating">  ${vote_average} </div>
             </div>
     `;
+    // Add event listener to open another page when clicked
+    //movieItem.addEventListener("click", () => {
+    //window.location.href = "watch_page.html?id=" + id + "&type="+type;
 
     if(true){
         const box_title = movieItem.querySelector('.box_title');
@@ -159,6 +165,8 @@ function Search_Results_SHOW(movies) {
         event.stopPropagation();
         PlayTrailer(id , type_r);
     });
+
+
     search_R_div.appendChild(movieItem);
   });
 }

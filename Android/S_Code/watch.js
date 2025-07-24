@@ -1,3 +1,6 @@
+
+var Database_location = 'https://movionyx.com/Database/database.php'
+
 document.cookie.split(";").forEach(cookie => {
     const eqPos = cookie.indexOf("=");
     const name = eqPos > -1 ? cookie.substr(0, eqPos).trim() : cookie.trim();
@@ -20,28 +23,73 @@ const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-let watch_frame_link_eb = 'https://vidsrc.to/embed/'; //https://vidsrc.xyz/embed/   ====  https://vidsrc.dev/embed/tv/ == https://vidsrc.to/embed/
-let C_servers = ['https://vidsrc.to/embed/', 'https://vidsrc.xyz/embed/', 'https://player.vidsrc.co/embed/', 'https://vidsrc.net/embed/']
+let watch_frame_link_eb ;
 
+function All_servers(selected_src_type, url_type, s_no, e_no){
+     if(url_type === "movie"){
+        switch (selected_src_type) {
+            case "1":
+                watch_frame_link_eb = `https://vidsrc.to/embed/movie/${show_id}`;
+                break;
+            case "2":
+                watch_frame_link_eb = `https://player.embed-api.stream/?id=${show_id}&type=movie`
+                break;
+            case "3":
+                watch_frame_link_eb = `https://www.2embed.skin/embed/${show_id}`
+                break;
+            case "4":
+                watch_frame_link_eb = `https://embed.su/embed/movie/${show_id}`
+                break;
+            case "5":
+                watch_frame_link_eb = `https://www.primewire.tf/embed/movie?tmdb=${show_id}`
+                break;
+            default:
+                watch_frame_link_eb = `https://vidsrc.to/embed/movie/${show_id}`;
+                break;
+        }
+     } else {
+          switch (selected_src_type) {
+            case "1":
+                watch_frame_link_eb = `https://vidsrc.to/embed/tv/${show_id}/${s_no}/${e_no}`;
+                break;
+            case "2":
+                watch_frame_link_eb = `"https://player.embed-api.stream/?id=${show_id}&s=${s_no}&e=${e_no}`
+                break;
+            case "3":
+                watch_frame_link_eb = `https://www.2embed.cc/embedtv/${show_id}&s=${s_no}&e=${e_no}`
+                break;
+
+            case "4":
+                watch_frame_link_eb = `https://embed.su/embed/tv/${show_id}/${s_no}/${e_no}`
+                break;
+            case "5":
+                watch_frame_link_eb = `https://www.primewire.tf/embed/tv?tmdb=${show_id}&season=${s_no}&episode=${e_no}`
+                break;
+            default:
+                watch_frame_link_eb = `https://vidsrc.to/embed/tv/${show_id}/${s_no}/${e_no}`;
+                break;
+        }
+     }
+     console.log(watch_frame_link_eb)
+     return watch_frame_link_eb
+}
+
+
+
+let no_of_servers = 5
 let con_severs = ''
-i = 0
-while (i < C_servers.length){
+i = 1
+while (i <= no_of_servers){
      con_severs = con_severs + `<div class="sever_change_select_each "><i class="fa fa-server" aria-hidden="true"></i>&nbsp; HD-${i} </div>`
      i++
 }
 document.getElementById('server_dropdown').innerHTML = con_severs;
 
-let set_server = localStorage.getItem('C_servers');
-if(set_server){
-    set_server = parseInt(set_server)
-    watch_frame_link_eb = C_servers[set_server]
-    const items = document.querySelectorAll('.sever_change_select_each');
-    items[set_server].classList.add('active');
 
-}else{
-    watch_frame_link_eb = C_servers[0];
+let set_server_choice = localStorage.getItem('C_servers') ;
+if(set_server_choice){
     const items = document.querySelectorAll('.sever_change_select_each');
-    items[0].classList.add('active');
+    items[set_server_choice-1].classList.add('active');
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -112,7 +160,6 @@ async function cast_credits (type, id){
              const profile_character = movieItem.querySelector('.cast_credits_each_character');
              scrambleToText(profile_character, character, 60)
 
-
              profileDiv.addEventListener("click", async (e) => {
                  e.stopPropagation();
                  window.location.href = "Actor.html?id=" + cast_id;
@@ -160,7 +207,7 @@ async function update_Notification(movie_info){
                 console.log(updatedMovies)
                 localStorage.setItem('user_massages', JSON.stringify(updatedMovies))
 
-                let response_note = await fetch('Database/database.php', {
+                let response_note = await fetch(Database_location, {
                     method: 'POST',
                     headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -258,10 +305,9 @@ async function SHOW_INFOs(id, type) {
                   let selected_server = item.textContent.trim()
                   let server_number = selected_server.replace(/\D/g, ""); // Remove non-digits
                   console.log("Selected:", selected_server );
-                  console.log("Selected:", parseInt(server_number));
-                  console.log("Selected:", C_servers[server_number]);
+                  console.log("Selected Server number:", server_number);
                   localStorage.setItem('C_servers', `${server_number}` );
-                  watch_frame_link_eb = C_servers[server_number]
+                  set_server_choice = server_number
                   document.getElementById('server_dropdown').classList.remove('active');
                   Watch_IFRAME(id, type, data);
             });
@@ -274,25 +320,25 @@ async function SHOW_INFOs(id, type) {
 
 async function Show_Info(info_data, type){
     console.log(info_data)
-    const no_select = document.getElementById("no_select");
-    no_select.style.background = 'hsl(222, 25%, 10%)';
+    async function handleFaveClick(Favorite_widget) {
+        console.log(type);
+        if (type === 'tv' || type === 'Tv') {
+            try {
+                let SS = info_data.last_episode_to_air.season_number;
+                let ESP = info_data.last_episode_to_air.episode_number;
+                info_data.S_info = `SS ${SS} / ESP ${ESP}`;
+            } catch {
+                info_data.S_info = `SS 1 / ESP 1`;
+            }
+        }
+        AddToFav(info_data, Favorite_widget);
+    }
 
-    const Favorite_btn_watch = document.getElementById('Favorite_btn_watch');
-    Favorite_btn_watch.addEventListener("click",  function(event) {
-        event.stopPropagation();
-         //console.log(type);
-         if(type ==='tv' || type ==='Tv'){
-             //console.log(type);
-             try{
-             let SS = info_data.last_episode_to_air.season_number
-             let ESP = info_data.last_episode_to_air.episode_number
-             info_data.S_info  = `SS ${SS} / ESP ${ESP}`
-             }catch{
-               info_data.S_info  = `SS 1 / ESP 1`
-             }
-         }
-        AddToFav(info_data, Favorite_btn_watch);
-    });
+    const Favorite_btn_watch_1 = document.getElementById('Favorite_btn_watch_1');
+    const Favorite_btn_watch_2 = document.getElementById('Favorite_btn_watch_2');
+
+    Favorite_btn_watch_1.addEventListener('click', () => handleFaveClick(Favorite_btn_watch_1));
+    Favorite_btn_watch_2.addEventListener('click', () => handleFaveClick(Favorite_btn_watch_2));
 
     var show_type = document.getElementById("show_type");
     var show_type_s = document.getElementById("show_type_s");
@@ -322,14 +368,16 @@ async function Show_Info(info_data, type){
     back_img_s.style.background = ` linear-gradient(to bottom, rgba(0, 0, 0, 0) 80%, #050301 98%),
                                   linear-gradient(to right, rgba(0, 0, 0, 0) 40%, #050301 100%),
                                   url("${IMG_PATH}${info_data['backdrop_path']}")`;
-    */
-    back_img_s.style.background =`linear-gradient(to bottom, rgba(0,0,0,0), var(--global-color-bg)), linear-gradient(to top, rgba(0,0,0,0), var(--global-color-bg)),url("${IMG_PATH}${info_data['backdrop_path']}")`;
-
-
+        back_img_s.style.background =`linear-gradient(to bottom, rgba(0,0,0,0), var(--global-color-bg)), linear-gradient(to top, rgba(0,0,0,0), var(--global-color-bg)),url("${IMG_PATH}${info_data['backdrop_path']}")`;
+   */
+    back_img_s.style.background =`url("${IMG_PATH}${info_data['backdrop_path']}")`;
+    //console.log(`${IMG_PATH}${info_data['backdrop_path']}`);
     back_img_s.style.backgroundPosition = 'center';
     back_img_s.style.backgroundRepeat = 'no-repeat';
     back_img_s.style.backgroundSize = 'cover';
     back_img_s.style.imageRendering = 'high-quality';
+
+
 
 
 
@@ -475,30 +523,15 @@ function serverDropdown(){
 
 async function Watch_IFRAME(imdb, type, info_data) {
       if (type==="movie"){
-            try{
-                let url_v = `${Server_S_location}?search=_${imdb}`;
-                const res = await fetch( url_v);
-                const data = await res.json();
-                //console.log(data['data'][0]);
-                //console.log(data['data'][0]['id']);
-                let video_id = data['data'][0]['id'];
 
-                if(video_id){
-                       Watch_iframe_div_content = `<iframe class="iframe_watch"   id="watch-frame" src='https://dna.uns.bio/#${video_id}' width="700px" height="600px" frameborder="0" allowfullscreen></iframe> `;
-                }else{
-                       Watch_iframe_div_content = ` <iframe  class="iframe_watch"   id="watch-frame" onerror="iframeLoadError()" src='${watch_frame_link_eb}${type}/${imdb}'  frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> `;
-                }
-             } catch(error){
-                       Watch_iframe_div_content = ` <iframe  class="iframe_watch"   id="watch-frame" onerror="iframeLoadError()" src='${watch_frame_link_eb}${type}/${imdb}'  frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> `;
-             }
+          All_servers(set_server_choice, "movie")
 
-
-          //watch_Frame.innerHTML = ` <iframe  class="iframe_watch"   id="watch-frame" onerror="iframeLoadError()" src='${watch_frame_link_eb}${type}/${imdb}'  frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> `;
-          //Watch_iframe_div_content = ` <iframe  class="iframe_watch"   id="watch-frame" onerror="iframeLoadError()" src='${watch_frame_link_eb}${type}/${imdb}'  frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> `;
+          watch_Frame.innerHTML =    ` <iframe  class="iframe_watch"   id="watch-frame" onerror="iframeLoadError()" src=${watch_frame_link_eb}  frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> `;
+          Watch_iframe_div_content = ` <iframe  class="iframe_watch"   id="watch-frame" onerror="iframeLoadError()" src=${watch_frame_link_eb}  frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> `;
 
           let savedState = localStorage.getItem(`watch_on_${show_id}`);
           if (savedState) {
-               var watch_Now_btn = document.getElementById('watch_Now_btn');
+               var watch_Now_btn = document.getElementById('watch_Now_btn_1');
                watch_Now_btn.click();
           }
 
@@ -516,7 +549,6 @@ async function Watch_IFRAME(imdb, type, info_data) {
 
               let i = 0;
               let j = 0;
-
 
 
               for (i ; i < se.length; i++) {
@@ -551,16 +583,17 @@ async function Watch_IFRAME(imdb, type, info_data) {
               season_selector1.innerHTML = `${con1}`;
               scroll_allow();
 
-              //console.log(info_data);
               document.querySelectorAll('.season_info_hold_season_container_each').forEach(item => {
-                    item.style.background = `linear-gradient(to bottom, rgba(0,0,0,0), var(--global-color-bg)),  url("${IMG_PATH}${info_data['backdrop_path']}")`;
+                    //item.style.background = `linear-gradient(to bottom, rgba(0,0,0,0), var(--global-color-bg)),  url("${IMG_PATH}${info_data['backdrop_path']}")`;
+                    item.style.background = `url("${IMG_PATH}${info_data['backdrop_path']}")`;
                     item.style.backgroundSize = "100% 100%";       // Ensures the image covers the element
                     item.style.backgroundRepeat = "no-repeat"; // Prevents tiling
                     item.style.backgroundPosition = "center";   // Centers the image
+                    item.style.backdropFilter = "blur(60px)";
+
               });
 
                const savedState = localStorage.getItem(`DisplayEpisode_${info_data["id"]}`);
-               // console.log(savedState)
                if (savedState) {
 
                     const state = JSON.parse(savedState);
@@ -642,7 +675,14 @@ const Selected_Season = document.querySelector('.Selected_Season')
            Selected_Season_img.style.backgroundSize = '100% 100%'; // Stretch to fit the container
            Selected_Season_img.style.imageRendering = 'high-quality'
 
-
+           if(season_image) {
+               var back_img_s = document.getElementById("back_img_s");
+               back_img_s.style.background = ` url("${IMG_PATH}${decodeURIComponent(season_image)}")`;
+               back_img_s.style.backgroundPosition = 'center';
+               back_img_s.style.backgroundRepeat = 'no-repeat';
+               back_img_s.style.backgroundSize = 'cover';
+               back_img_s.style.imageRendering = 'high-quality';
+           }
             const Selected_Season = document.querySelector('.Selected_Season');
             Selected_Season.innerHTML = `  &nbsp; &nbsp; SEASON   ${season_no} &nbsp;&nbsp; `;
 
@@ -670,8 +710,8 @@ const Selected_Season = document.querySelector('.Selected_Season')
             let not_out_class = '';
             while(i <= episodes_count){
                 let index = i - 1;
-                console.log(index)
-                console.log(data_episodes[index])
+                //console.log(index)
+                //console.log(data_episodes[index])
                 let episode_name
                 if(data_episodes[index]){
                    episode_name = data_episodes[index].name || index
@@ -712,16 +752,23 @@ const Selected_Season = document.querySelector('.Selected_Season')
  }
 
  async function WatchEpisodes(season_no,  episode_no, series_id){
+            var info_section_element = document.getElementById('info_section');
+            info_section_element.style.display = 'none';
 
-          document.querySelectorAll('.episodes_each').forEach(item => {
+            var uuux_cover = document.getElementById('uuux_cover');
+            uuux_cover.style.backdropFilter = "blur(10px)";
+
+            var no_select_element = document.getElementById('no_select');
+            no_select_element.classList.add('active');
+
+           document.querySelectorAll('.episodes_each').forEach(item => {
             const seasonTitle = item.dataset.season
             const seasonTitle1 = `S${season_no}E${episode_no}`
 
             item.classList.remove('episodes_each_select');
             if(seasonTitle === seasonTitle1){
-                  console.log("active episod found");
+                  //console.log("active episod found");
                   item.classList.add('episodes_each_select');
-                  console.log(item)
             }
 
           });
@@ -739,27 +786,11 @@ const Selected_Season = document.querySelector('.Selected_Season')
           watch_Frame_element = document.getElementById('watch_Frame');
           watch_Frame_element.style.display = 'block';
 
-          let type = 'tv';
 
-          try{
-              let url_v = `${Server_S_location}?search=${episode_code}`;
-              const res = await fetch( url_v);
-              const data = await res.json();
-              console.log(data['data']);
-              //console.log(data['data'][0]['id']);
-              if(data['data'][0]['id']){
+          All_servers(set_server_choice, url_type="tv", s_no=season_no, e_no=episode_no)
 
-                  watch_Frame.innerHTML = `<iframe class="iframe_watch"   id="watch-frame" src='https://dna.uns.bio/#${data["data"][0]["id"]}' width="700px" height="600px" frameborder="0" allowfullscreen></iframe>`;
-                  Watch_iframe_div_content = `<iframe class="iframe_watch"   id="watch-frame" src='https://dna.uns.bio/#${data["data"][0]["id"]}' width="700px" height="600px" frameborder="0" allowfullscreen></iframe> `;
-
-              }else{
-                    watch_Frame.innerHTML = ` <iframe  class="iframe_watch"   id="watch-frame" onerror="iframeLoadError()" src='${watch_frame_link_eb}${type}/${imdb}'  frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> `;
-                    Watch_iframe_div_content = ` <iframe  class="iframe_watch"   id="watch-frame" onerror="iframeLoadError()" src='${watch_frame_link_eb}${type}/${imdb}'  frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> `;
-              }
-          } catch(error){
-                  watch_Frame.innerHTML = ` <iframe  class="iframe_watch"   id="watch-frame" onerror="iframeLoadError()" src='${watch_frame_link_eb}${type}/${series_id}/${season_no}/${episode_no}'  frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> `;
-                  Watch_iframe_div_content = ` <iframe  class="iframe_watch"   id="watch-frame" onerror="iframeLoadError()" src='${watch_frame_link_eb}${type}/${series_id}/${season_no}/${episode_no}'  frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> `;
-          }
+          watch_Frame.innerHTML = ` <iframe  class="iframe_watch"   id="watch-frame" onerror="iframeLoadError()" src=${watch_frame_link_eb}  frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> `;
+          Watch_iframe_div_content = ` <iframe  class="iframe_watch"   id="watch-frame" onerror="iframeLoadError()" src=${watch_frame_link_eb}  frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> `;
 
           //watch_Frame.innerHTML = ` <iframe  class="iframe_watch"   id="watch-frame" onerror="iframeLoadError()" src='${watch_frame_link_eb}${type}/${series_id}/${season_no}/${episode_no}'  frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> `;
           //Watch_iframe_div_content = ` <iframe  class="iframe_watch"   id="watch-frame" onerror="iframeLoadError()" src='${watch_frame_link_eb}${type}/${series_id}/${season_no}/${episode_no}'  frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> `;
@@ -844,33 +875,48 @@ function Suggestion_Search(movies) {
 // ---------------------------------------------------------------------------------------------------------------------
 // ---------------------------------------------------------------------------------------------------------------------
 
-document.getElementById('watch_Now_btn').addEventListener('click', async function() {
+async function handleWatchNowClick() {
     var cancel_watch_btn = document.getElementById('cancel_watch_btn');
     var Info_container = document.getElementById('Info_container');
-    //console.log("Watch_iframe_div_content", Watch_iframe_div_content)
+    var uuux_cover = document.getElementById('uuux_cover');
+    var info_section_element = document.getElementById('info_section');
+    var no_select_element = document.getElementById('no_select');
+
     if(Watch_iframe_div_content){
         watch_Frame.innerHTML = Watch_iframe_div_content;
-    } else{
-              try{
-                  const firstEpisode = document.querySelector('.episodes_each');
-                  firstEpisode.click();
-                  localStorage.setItem(`watch_on_${show_id}`, 'true');
-              } catch(error){
-                  const first_season = document.querySelector('.season_info_hold_season_container_each');
-                  first_season.click();
-                  await sleep(2000);
-                  const firstEpisode = document.querySelector('.episodes_each');
-                  firstEpisode.click();
-                  localStorage.setItem(`watch_on_${show_id}`, 'true');
-              }
+    } else {
+        try {
+            const firstEpisode = document.querySelector('.episodes_each');
+            firstEpisode.click();
+            localStorage.setItem(`watch_on_${show_id}`, 'true');
+        } catch (error) {
+            try {
+                const first_season = document.querySelector('.season_info_hold_season_container_each');
+                first_season.click();
+                await sleep(2000);
+                const firstEpisode = document.querySelector('.episodes_each');
+                firstEpisode.click();
+                localStorage.setItem(`watch_on_${show_id}`, 'true');
+            } catch {}
+        }
     }
 
+    info_section_element.style.display = "none";
     Info_container.style.display = 'block';
+    uuux_cover.style.backdropFilter = "blur(10px)";
+    //no_select_element.style.transform = "translateY(0px)";
+    no_select_element.classList.add('active');
     watch_Frame.style.display = 'flex';
     cancel_watch_btn.style.display = 'flex';
     localStorage.setItem(`watch_on_${show_id}`, 'true');
-});
+}
 
+// Attach the same function to multiple buttons by ID
+document.getElementById('watch_Now_btn_1').addEventListener('click', handleWatchNowClick);
+document.getElementById('watch_Now_btn_2').addEventListener('click', handleWatchNowClick);
+
+
+//======================================================================================================================
 async function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -878,8 +924,17 @@ async function sleep(ms) {
 document.getElementById('cancel_watch_btn').addEventListener('click', function() {
     var Info_container = document.getElementById('Info_container');
     var cancel_watch_btn = document.getElementById('cancel_watch_btn');
+    var uuux_cover = document.getElementById('uuux_cover');
+    var info_section_element = document.getElementById('info_section');
+    var no_select_element = document.getElementById('no_select');
+
+
     watch_Frame.innerHTML = ``;
     watch_Frame.style.display = 'none';
+    uuux_cover.style.backdropFilter = "blur(0px)";
+    info_section_element.style.display = "flex"
+    //no_select_element.style.transform = "translateY(-200px)";
+    no_select_element.classList.remove('active');
     cancel_watch_btn.style.display = 'none';
     localStorage.removeItem(`watch_on_${show_id}`);
 

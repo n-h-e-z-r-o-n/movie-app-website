@@ -6,6 +6,8 @@ const xr2 = document.getElementById("Account_btnT");
 xr.style.pointerEvents = 'none';
 xr2.style.pointerEvents = 'none';
 
+var Database_location = 'https://movionyx.com/Database/database.php'
+
 
 const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
 let U_ID = localStorage.getItem("U_ID");
@@ -36,7 +38,7 @@ if(U_ID){
 
 async  function auto_check_watchlist (){
     let email = localStorage.getItem('user_email');
-    let serverResponse = await fetch('Database/database.php', {
+    let serverResponse = await fetch(Database_location, {
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             body: `action=getWatchlist&email=${encodeURIComponent(email)}`
@@ -224,7 +226,7 @@ document.getElementById("C_P_SAVE").addEventListener("click", async function(e) 
          }
 
         let user_email =  localStorage.getItem('user_email')
-        const response = await fetch('Database/database.php', {
+        const response = await fetch(Database_location, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -336,7 +338,7 @@ function Search_Results_SHOW(movies) {
     localStorage.setItem("user_watchlist", JSON.stringify(saved_Favorites_Data));
     let watchlist_new =  JSON.stringify(saved_Favorites_Data);
 
-    let response = await fetch('Database/database.php', {
+    let response = await fetch(Database_location, {
     method: 'POST',
     headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -353,7 +355,7 @@ function Search_Results_SHOW(movies) {
         //console.log(JSON.stringify(notification_track))
 
 
-        let response_note = await fetch('Database/database.php', {
+        let response_note = await fetch(Database_location, {
         method: 'POST',
         headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -388,7 +390,7 @@ document.getElementById("User_Image_input").addEventListener('change', (event) =
         formData.append('email', localStorage.getItem('user_email'));
 
 
-     const response = await fetch('Database/database.php', {
+     const response = await fetch(Database_location, {
         method: 'POST',
         body: formData
      });
@@ -423,11 +425,16 @@ async function download_initiate(name){
     anchor.click();
     document.body.removeChild(anchor);
   }else if(name === "Linux"){
-      window.location.href = "";
+
   }else if(name === "Tv"){
-      window.location.href = "";
+
   }else if(name === "windows"){
-      window.location.href = "";
+        let url = "https://github.com/n-h-e-z-r-o-n/movie-app-website/raw/refs/heads/main/APPS/movionyx.exe";
+        const anchor = document.createElement("a");
+        anchor.href = url;
+        document.body.appendChild(anchor);
+        anchor.click();
+        document.body.removeChild(anchor);
   }
 
 

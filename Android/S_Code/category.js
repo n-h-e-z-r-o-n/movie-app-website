@@ -181,7 +181,7 @@ const show_tv =  document.getElementById("show_tv")
 const show_movies2 =  document.getElementById("show_movies2")
 const show_tv2 =  document.getElementById("show_tv2")
 
-show_movies.addEventListener("touchstart", () => { //dblclick
+show_movies.addEventListener("click", () => { //dblclick
             show_Movies(xcode);
             show_movies.classList.add("active");
             show_movies2.classList.add("active");
@@ -190,7 +190,7 @@ show_movies.addEventListener("touchstart", () => { //dblclick
             localStorage.setItem('C_CAT_T', 'mv')
         });
 
- show_movies2.addEventListener("touchstart", () => { //dblclick
+ show_movies2.addEventListener("click", () => { //dblclick
            show_Movies(xcode);
             show_movies.classList.add("active");
             show_movies2.classList.add("active");
@@ -201,7 +201,7 @@ show_movies.addEventListener("touchstart", () => { //dblclick
 
 
 
-show_tv.addEventListener("touchstart", () => { //dblclick
+show_tv.addEventListener("click", () => { //dblclick
            show_Series(xcode);
            show_tv.classList.add("active");
            show_tv2.classList.add("active");
@@ -210,7 +210,7 @@ show_tv.addEventListener("touchstart", () => { //dblclick
            localStorage.setItem('C_CAT_T', 'tv')
 });
 
-show_tv2.addEventListener("touchstart", () => { //dblclick
+show_tv2.addEventListener("click", () => { //dblclick
            show_Series(xcode);
            show_tv.classList.add("active");
            show_tv2.classList.add("active");

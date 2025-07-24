@@ -924,7 +924,9 @@ ul li a:hover{
 }
 
 
-
+.category-grid{
+    display: none;
+}
 
 
   .swiper {

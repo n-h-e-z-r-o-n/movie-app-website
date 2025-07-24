@@ -1,6 +1,13 @@
+document.body.addEventListener("pointermove", (e)=>{
+  const { currentTarget: el, clientX: x, clientY: y } = e;
+  const { top: t, left: l, width: w, height: h } = el.getBoundingClientRect();
+  el.style.setProperty('--posX',  x-l-w/2);
+  el.style.setProperty('--posY',  y-t-h/2);
+})
 
-//http://localhost/movie-app-website/x_local/index?d=mob
-let div_mob = localStorage.getItem("device_type");
+var Database_location = 'https://movionyx.com/Database/database.php'
+
+let div_mob = false
 if(!div_mob){
    document.querySelector('.nav_bar_bottom').classList.add('hid_element');
    document.querySelector('.reload_btn').classList.add('hid_element');
@@ -411,7 +418,7 @@ async function AddToFav(movie, widget){
     let email = localStorage.getItem('user_email');
     /////////////////////////////////////////////////////////////////////////////////////
 
-    let serverResponse = await fetch('Database/database.php', {
+    let serverResponse = await fetch(Database_location, {
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             body: `action=getWatchlist&email=${encodeURIComponent(email)}`
@@ -431,7 +438,7 @@ async function AddToFav(movie, widget){
 
         let watchlist_new =  JSON.stringify(uniqueMovies);
 
-        let response = await fetch('Database/database.php', {
+        let response = await fetch(Database_location, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -451,7 +458,7 @@ async function AddToFav(movie, widget){
           numbers.push(id)
           //console.log(numbers);
 
-          let serverResponse = await fetch('Database/database.php', {
+          let serverResponse = await fetch(Database_location, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 body: `action=getMessageslist&email=${encodeURIComponent(email)}`
@@ -467,7 +474,7 @@ async function AddToFav(movie, widget){
                    index === self.findIndex(m => m[2] === movie[2])
               );
 
-              let response_note = await fetch('Database/database.php', {
+              let response_note = await fetch(Database_location, {
                     method: 'POST',
                     headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -763,7 +770,7 @@ if (savedState) {
 async function auto_update_user_info(){
     let email = localStorage.getItem('user_email');
 
-    let serverResponse = await fetch('Database/database.php', {
+    let serverResponse = await fetch(Database_location, {
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             body: `action=getUser&email=${encodeURIComponent(email)}`
@@ -800,7 +807,7 @@ document.getElementById('loginForm').addEventListener('click', async function(e)
 
             messageDiv.classList.add('loading_active');
 
-            const response = await fetch('Database/database.php', {
+            const response = await fetch(Database_location, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -882,7 +889,7 @@ document.getElementById('signUpForm').addEventListener('click', async function(e
                return;
             }
 
-            const response = await fetch('Database/database.php', {
+            const response = await fetch(Database_location, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -955,7 +962,7 @@ document.getElementById('forget_p_form').addEventListener('click', async functio
             }
             console.log(reset_email_)
 
-            const response = await fetch('Database/database.php', {
+            const response = await fetch(Database_location, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
