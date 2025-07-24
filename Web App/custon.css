@@ -118,6 +118,7 @@
   position: absolute;
   bottom: 43px;
   left: 43px;
+  color: white;
 }
 .details_h2{
   font-family: "Jost", sans-serif;
@@ -125,8 +126,7 @@
   font-weight: 700;
   text-align: left;
   line-height: 44px;
-  text-align: left;
-  color: var(--global-color-fg);
+  color: white;
   text-transform: uppercase;
   transition: 0.7s ease;
   display: none;
@@ -134,17 +134,16 @@
 
 .details_p{
   font-family: "Jost", sans-serif;
-  font-size: 1em;
+  font-size: 14px;
   font-weight: 700;
   text-align: left;
   line-height: 33px;
-  text-align: left;
-  color: var(--global-color-fg);
+  color: white;
   text-transform: uppercase;
   transition: 0.7s ease;
   display: none;
 
-  padding: 7px 18px;
+  padding: 7px;
   border-radius: 20px;
   letter-spacing: 2px;
   box-shadow: inset 2px -2px 20px rgba(214, 214, 214, 0.2),

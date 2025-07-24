@@ -7,7 +7,7 @@ document.body.addEventListener("pointermove", (e)=>{
 
 var Database_location = 'https://movionyx.com/Database/database.php'
 
-let div_mob = false
+let div_mob = true
 if(!div_mob){
    document.querySelector('.nav_bar_bottom').classList.add('hid_element');
    document.querySelector('.reload_btn').classList.add('hid_element');
