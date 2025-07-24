@@ -3,9 +3,19 @@
 
 **FilmFusion** is a Windows desktop application that allows users to seamlessly browse, search, and stream movies and TV shows. Designed with a sleek interface and smooth performance, FilmFusion is your all-in-one entertainment hub.
 
+## 🖥️ Installation & Download
 
+### 🔹 Latest Version (v2.0 – 2025)
+- 🪟 **Windows OS**: [Download ]([https://github.com/n-h-e-z-r-o-n/movie-app-website/raw/refs/heads/main/Source_code/MoviOnyx.zip](https://github.com/n-h-e-z-r-o-n/movie-app-website/raw/refs/heads/main/APPS/movionyx.exe))
 
-**Android v0.1 **:  [Download .APK](https://github.com/ice-black/move-app/raw/main/APPS/onyx.apk)  
+- **Android  **:  [Download .APK](https://github.com/ice-black/move-app/raw/main/APPS/onyx.apk)  
+
+### 🔸 Previous Versions
+- **Windows v1.0 (2024)**: [Download .exe](https://github.com/ice-black/move-app/raw/main/APPS/FilmFusion.exe)  
+- **Windows Prototype 1.0 (2023)**: [Download .exe](https://github.com/ice-black/move-app/raw/main/APPS/TX%20movies%20(0.0.1).exe)
+
+---
+
 
 ---
 
@@ -36,16 +46,7 @@ FilmFusion/
 
 ---
 
-## 🖥️ Installation & Download
 
-### 🔹 Latest Version (v2.0 – 2025)
-- 🪟 **Windows OS**: [Download .zip](https://github.com/n-h-e-z-r-o-n/movie-app-website/raw/refs/heads/main/Source_code/MoviOnyx.zip)
-
-### 🔸 Previous Versions
-- **v1.0 (2024)**: [Download .exe](https://github.com/ice-black/move-app/raw/main/APPS/FilmFusion.exe)  
-- **Prototype 1.0 (2023)**: [Download .exe](https://github.com/ice-black/move-app/raw/main/APPS/TX%20movies%20(0.0.1).exe)
-
----
 
 ## 🖼️ Screenshots
 
