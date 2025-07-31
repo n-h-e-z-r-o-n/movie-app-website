@@ -254,9 +254,10 @@ body , html {
 .show_more_1 button {
   padding: 5px 10px;
   background-color: transparent;
-  box-shadow: 0 4px 6px gray;
+  box-shadow: 0 0 11px rgba(0, 0, 0, .4);
   border-radius: 10px 10px 10px 10px;
   cursor: pointer;
+  border: none;
   color: var(--global-color-fg);
 }
 

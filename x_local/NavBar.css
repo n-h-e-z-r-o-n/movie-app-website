@@ -168,7 +168,7 @@
   transition: 0.6s cubic-bezier(.17,1,.33,1);
   backdrop-filter: blur(201px);
   background-color:  transparent;
-  box-shadow: 0 4px 6px gray;
+   box-shadow: 0 0 11px rgba(0, 0, 0, .4);
 }
 
 .search_btn.active {
@@ -323,6 +323,7 @@
   font-size: 1.5em;
   color: var(--global-color-fg);
   cursor: pointer;
+  box-shadow: 0 0 11px rgba(0, 0, 0, .4);
 }
 
 .notification_picture *{
@@ -465,7 +466,7 @@
   color: var(--global-color-fg);
   cursor: pointer;
   margin-right: 15px;
-  box-shadow: 0 4px 6px gray;
+  box-shadow: 0px 0px 11px rgba(0, 0, 0, .4);
 }
 
 .profile-picture *{
@@ -919,18 +920,84 @@ Terms_Details_content::-webkit-scrollbar {
   box-sizing: border-box;
   display: none;
   margin: 0;
-  --x: calc(var(--posX, 0) * 1px);
-  --y: calc(var(--posY, 0) * 1px);
-  background-image:
-    linear-gradient(115deg, rgb(211 255 215), rgb(0 0 0)),
-    radial-gradient( 90% 100% at calc( 50% + var(--x)) calc( 0% + var(--y)), rgb(200 200 200), rgb(022 000 045)),
-    radial-gradient(100% 100% at calc( 80% - var(--x)) calc( 0% - var(--y)), rgb(250 255 000), rgb(036 000 000)),
-    radial-gradient(150% 210% at calc(100% + var(--x)) calc( 0% + var(--y)), rgb(020 175 125), rgb(000 010 255)),
-    radial-gradient(100% 100% at calc(100% - var(--x)) calc(30% - var(--y)), rgb(255 077 000), rgb(000 200 255)),
-    linear-gradient(60deg, rgb(255 000 000), rgb(120 086 255));
-  background-blend-mode: overlay, overlay, difference, difference, difference, normal;
 }
 
+
+.circle{
+  position: absolute;
+  border-radius: 50%;
+  background: var(--Brand_Color);
+  animation: ripple 15s infinite;
+  box-shadow: 0px 0px 1px 0px #508fb9;
+}
+
+.small{
+  width: 200px;
+  height: 200px;
+  left: -100px;
+  bottom: -100px;
+}
+
+.medium{
+  width: 400px;
+  height: 400px;
+  left: -200px;
+  bottom: -200px;
+}
+
+.large{
+  width: 600px;
+  height: 600px;
+  left: -300px;
+  bottom: -300px;
+}
+
+.xlarge{
+  width: 800px;
+  height: 800px;
+  left: -400px;
+  bottom: -400px;
+}
+
+.xxlarge{
+  width: 1000px;
+  height: 1000px;
+  left: -500px;
+  bottom: -500px;
+}
+
+.shade1{
+  opacity: 0.2;
+}
+.shade2{
+  opacity: 0.5;
+}
+
+.shade3{
+  opacity: 0.7;
+}
+
+.shade4{
+  opacity: 0.8;
+}
+
+.shade5{
+  opacity: 0.9;
+}
+
+@keyframes ripple{
+  0%{
+    transform: scale(0.8);
+  }
+
+  50%{
+    transform: scale(1.2);
+  }
+
+  100%{
+    transform: scale(0.8);
+  }
+}
 
 
 .login_cancel{
@@ -986,19 +1053,19 @@ Terms_Details_content::-webkit-scrollbar {
 }
 
 .input_form::placeholder {
-    font-size: 0.9em;
+    font-size: 12px;
     color: #999;
     opacity: 0.5;
      padding: 20px;
 }
 .input_form::-moz-placeholder { /* Firefox 19+ */
-    font-size: 0.5em;
+    font-size: 12px;
     color: #999;
     opacity: 0.5;
      padding: 20px;
 }
 .input_form:-ms-input-placeholder { /* IE 10+ */
-    font-size: 0.5em;
+    font-size: 12px;
     color: #999;
     opacity: 0.5;
     padding: 20px;
@@ -1023,6 +1090,8 @@ Terms_Details_content::-webkit-scrollbar {
    padding-left: 15px;
    padding-right: 10px;
    box-sizing: border-box;
+     box-shadow: 0 0 11px rgba(0, 0, 0, .4);
+
 }
 
 .input_form:focus {
