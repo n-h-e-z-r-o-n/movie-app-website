@@ -599,7 +599,7 @@
 
 .watch_Frame{
     top: 0;
-    z-index: 20;
+    z-index: 1;
     position: absolute;
     background-color: black;
     color: gray;

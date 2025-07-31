@@ -8,9 +8,8 @@
    justify-content: center; /* Center the filter-radios horizontally */
    background: var(--global-color-bg);
    border-radius: 40px;
-   box-shadow: 0 4px 6px gray; /* Add a subtle shadow */
+   box-shadow: 0 0 11px rgba(0, 0, 0, .4);
    margin:auto;
-
 }
 
 .filter-radios {
@@ -396,9 +395,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 5px 15px 0px rgba(0,0,0,0.1);
     margin: 10px;
-    box-shadow: 0 4px 6px gray;
+    box-shadow: 0 0 11px rgba(0, 0, 0, .4);
     border-radius: 3px;
     mix-blend-mode: normal;
     padding: 10px;

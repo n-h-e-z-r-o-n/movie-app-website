@@ -260,11 +260,13 @@
 
 
 .play_video {
-  background: transparent;
-  margin: 0 auto auto auto;
-  width: 50px;
-  height: 70%;
-  display: flex;
+    background: transparent;
+    margin: 0 auto;
+    width: 50px;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .circle {
@@ -274,8 +276,8 @@
   align-items: center;
   margin: auto;
   background: red;
-    width: 5px;
-    height:  5px;
+  width: 5px;
+  height:  5px;
 }
 
 .circle__btn {
@@ -597,7 +599,7 @@
 
 .watch_Frame{
     top: 0;
-    z-index: 20;
+    z-index: 1;
     position: absolute;
     background-color: black;
     color: gray;
@@ -773,9 +775,8 @@
 .season_info_hold_season_container_each_title{
   width: 100%;
   height:100%;
-  font-size: clamp(0.8rem, 2.5vw, 1.5rem);
-  font-weight:100 ;
-  font-family: 'Times New Roman';
+  font-size: 21px;
+  font-weight: bold ;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -785,7 +786,6 @@
   text-overflow: ellipsis;
   max-width: 100%;
   z-index: 1;
-
 }
 
 
@@ -798,10 +798,9 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 1%;
-    border: none;
     box-sizing: border-box;
     padding: 8px;
-    border: 1px solid rgba(128, 128, 128, 0.1);
+    border: 0px solid rgba(128, 128, 128, 0.1);
     border-radius: 0.4em;
 }
 
@@ -813,6 +812,7 @@
     height: 100%;
     position: relative;
     display: block;
+    display: none;
     flex-wrap: wrap;
 
 }
@@ -822,8 +822,9 @@
 .Selected_Season{
      width: 100%;
      height: 20px;
-     font-size: 1em;
-    font-family: "Calibri", serif;
+     font-size: 18px;
+     font-weight: bold;
+     font-family: "Calibri", serif;
      display: flex;
      align-items: center;
      text-align: center;
@@ -854,7 +855,7 @@
 }
 
 .episodes_container {
-    width: 80%;
+    width: 100%;
     height: 100%;
 }
 
@@ -869,6 +870,7 @@
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
     gap:5px;
+    justify-content:  center;
 }
 
 
@@ -886,8 +888,8 @@
     margin: 5px;
     overflow: hidden;
     white-space: nowrap;
-    text-overflow: ellipsis;
-    box-sizing: border-box;
+    white-space: normal;
+    overflow-wrap: break-word;
     background: rgba(128, 128, 128, 0.1);
 }
 
@@ -921,7 +923,7 @@
    display: flex;
    gap: 25px;
    box-shadow: 0 0 11px rgba(0, 0, 0, .4);
-
+    display: none;
 }
 
 .sever_change{

@@ -753,7 +753,10 @@ const Selected_Season = document.querySelector('.Selected_Season')
 
  async function WatchEpisodes(season_no,  episode_no, series_id){
             var info_section_element = document.getElementById('info_section');
+            var watch_control_element = document.getElementById('watch_control');
             info_section_element.style.display = 'none';
+            watch_control_element.style.display = 'flex';
+
 
             var uuux_cover = document.getElementById('uuux_cover');
             uuux_cover.style.backdropFilter = "blur(10px)";
@@ -881,6 +884,7 @@ async function handleWatchNowClick() {
     var uuux_cover = document.getElementById('uuux_cover');
     var info_section_element = document.getElementById('info_section');
     var no_select_element = document.getElementById('no_select');
+    var watch_control_element = document.getElementById('watch_control');
 
     if(Watch_iframe_div_content){
         watch_Frame.innerHTML = Watch_iframe_div_content;
@@ -902,6 +906,7 @@ async function handleWatchNowClick() {
     }
 
     info_section_element.style.display = "none";
+    watch_control_element.style.display = 'flex';
     Info_container.style.display = 'block';
     uuux_cover.style.backdropFilter = "blur(10px)";
     //no_select_element.style.transform = "translateY(0px)";
@@ -927,10 +932,12 @@ document.getElementById('cancel_watch_btn').addEventListener('click', function()
     var uuux_cover = document.getElementById('uuux_cover');
     var info_section_element = document.getElementById('info_section');
     var no_select_element = document.getElementById('no_select');
+    var watch_control_element = document.getElementById('watch_control');
 
 
     watch_Frame.innerHTML = ``;
     watch_Frame.style.display = 'none';
+    watch_control_element.style.display = 'none';
     uuux_cover.style.backdropFilter = "blur(0px)";
     info_section_element.style.display = "flex"
     //no_select_element.style.transform = "translateY(-200px)";
