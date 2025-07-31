@@ -319,7 +319,6 @@
   align-items: center;
   justify-content: center;
   display: none; /*flex*/
-
   font-size: 1.5em;
   color: var(--global-color-fg);
   cursor: pointer;
@@ -368,7 +367,7 @@
 .notification_container{
   background: var(--global-color-bg);
   border: 17px solid transparent;
-  box-shadow: 0 4px 6px gray; /* Add a subtle shadow */
+  box-shadow: 0 0 11px rgba(0, 0, 0, .4);
   border-radius: 0.8em;
   display: none;
   flex-wrap: wrap;
@@ -396,7 +395,7 @@
 }
 .notification_container_each:hover{
     opacity: 0.8;
-    background: rgba(57, 89, 116, 0.1);
+    background: rgba(57, 89, 116, 0.2);
 }
 
 .notification_container_each_img{

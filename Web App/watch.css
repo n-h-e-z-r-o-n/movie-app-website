@@ -148,7 +148,7 @@
     padding-right: 0px;
     display: block;
     margin-top: 20px;
-    box-shadow: 2px 3px 11px rgba(0, 0, 0, .4);
+    box-shadow: 0px 0px 11px rgba(0, 0, 0, .4);
 }
 
 .cast_credits{
@@ -271,7 +271,6 @@
   justify-self: center;
   display: flex;
   justify-content: center;
-
   align-items: center;
   margin: auto;
   background: red;
@@ -291,7 +290,7 @@
   color: var(--Brand_Color);
   z-index: 3;
   background: var(--global-color-bg);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px 1px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   position: relative;
 }
@@ -360,16 +359,18 @@
 
 /* =========================================================================================================== */
 .info_section {
-   width: 100%;
-   height: auto;
-   margin: auto;
-   display: flex;
-   padding: 40px;
-   box-sizing: border-box;
-   background: var(--global-color-bg);
-   border-top-left-radius: 1em;
-   border-top-right-radius: 1em;
-   overflow: hidden;
+    width: 100%;
+    height: auto;
+    margin: auto;
+    display: flex;
+    padding: 40px;
+    box-sizing: border-box;
+    background: var(--global-color-bg);
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+    overflow: hidden;
+    box-shadow: 0 -4px 5px rgba(0, 0, 0, 0.1); /* top shadow */
+    box-shadow: 0 -7px 11px -4px rgba(0, 0, 0, .4);
 }
 
 .info_section_1 {
@@ -919,7 +920,8 @@
    margin-top: 10px;
    display: flex;
    gap: 25px;
-   box-shadow: 2px 3px 11px gray;
+   box-shadow: 0 0 11px rgba(0, 0, 0, .4);
+
 }
 
 .sever_change{
