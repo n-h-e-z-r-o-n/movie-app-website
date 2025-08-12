@@ -229,7 +229,6 @@
     position: absolute;
     backdrop-filter: blur(0px) ;
     background : linear-gradient(to bottom, transparent 70%, white 90%);
-
     top: 0;
     left: 0;
 }

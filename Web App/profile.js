@@ -32,7 +32,7 @@ if(U_ID){
       //notification_check(massages_container);
     const watchlistInterval = setInterval(auto_check_watchlist, 5000);
 }else{
-      logout_btn.click();
+     logout_btn.click();
 }
 
 

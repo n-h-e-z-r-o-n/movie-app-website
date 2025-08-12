@@ -2,9 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   padding-top: 90px;
-  padding-bottom: 4px;
   width: 100%;
-  gap:auto;
   justify-content: center;
   align-items: center;
   margin-bottom: 15px;
@@ -25,13 +23,11 @@
 
 .Favorites_Container{
     width:  100%;
-    height: 95%;
+    height: 92%;
     background: transparent;
     display: flex;
     flex-wrap: wrap;
-    flex-grow: 1;
-    flex: 1;
-
+    overflow: scroll;
 }
 
 
@@ -40,10 +36,9 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    height: auto;
+    height: 100%;
     gap: 20px; /* Changed from 'auto' - gap needs specific value */
     background: transparent;
-    flex: 1 1 1; /* Added missing third value */
     padding: 20px; /* Recommended for container spacing */
     box-sizing: border-box; /* Ensures padding doesn't affect width */
 }
@@ -52,11 +47,9 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    height: auto;
+    height: 100%;
     gap: 20px; /* Changed from 'auto' - gap needs specific value */
     background: transparent;
-    flex: 1 1 1; /* Added missing third value */
-    padding: 20px; /* Recommended for container spacing */
     box-sizing: border-box; /* Ensures padding doesn't affect width */
 }
 .profile_section_1{
@@ -256,4 +249,11 @@
     transform: scale(1.1);
     text-shadow: 0 0 12px rgba(255, 0, 0, 1);
   }
+
+}
+
+@media (max-width: 968px) {
+    .Favorites_Container {
+        padding-bottom: 60px;
+    }
 }
