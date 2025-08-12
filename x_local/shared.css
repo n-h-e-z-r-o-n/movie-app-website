@@ -18,7 +18,6 @@ body , html {
   width: 100%;
   background: var(--global-color-bg) ;
   -webkit-tap-highlight-color: transparent;
-  tap-highlight-color: transparent;
   touch-action: manipulation;
   overscroll-behavior: contain;
   background-repeat: no-repeat;
@@ -47,7 +46,6 @@ body , html {
         max-width: var(--Max-width);
         background-color : var(--global-color-bg);
         margin: auto;
-        overflow: scroll;
         -ms-overflow-style: none;  /* IE and Edge */
         scrollbar-width: none;  /* Firefox */
 }
