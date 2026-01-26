@@ -650,7 +650,7 @@ async function Latest_episode(event, page) {
   let id_prev = 0;
 
   while (count <= page) {
-      let res = await fetch(`https://vidsrc.xyz/episodes/latest/page-${page}.json`, {"accept": "application/json",});
+      let res = await fetch(`https://corsproxy.io/https://vidsrc.xyz/episodes/latest/page-${page}.json`, {"accept": "application/json",});
 
       let data = await res.json();
       if(Array.isArray(data['result'])){
