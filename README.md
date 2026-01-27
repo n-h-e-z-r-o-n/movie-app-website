@@ -51,8 +51,7 @@ FilmFusion/
 ## 🖼️ Screenshots
 
 ### 🌟 Version 2.0
-![Screenshot 2025-05-21 at 21-30-0]("https://github.com/user-attachments/assets/494b628b-99ec-49c5-934f-b311b6010f34)
-
+<img width="1305" height="11409" alt="Screenshot 2026-01-28 at 01-11-56 Movionyx" src="https://github.com/user-attachments/assets/b309ce60-153c-4aa0-8161-599d5ec95e26" />
 
 
 ---
