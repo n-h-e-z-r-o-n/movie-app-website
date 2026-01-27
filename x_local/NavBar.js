@@ -10,7 +10,7 @@ document.body.addEventListener("pointermove", (e) => {
 // Local Server Database Implementation
 class ServerDatabase {
   constructor() {
-    this.serverUrl = 'http://127.0.0.1:5000';
+    this.serverUrl = 'http://127.0.0.1:8668';
   }
 
   async _fetch(endpoint, body) {
