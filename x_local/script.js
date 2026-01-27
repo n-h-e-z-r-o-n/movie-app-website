@@ -13,16 +13,16 @@ loadCSS("./NavBar.css");
 */
 //========================Access Details ==================================================================
 
-let  Movies_API_URL =   "https://api.themoviedb.org/3/discover/movie?";
+let  Movies_API_URL =   "https://corsproxy.io/https://api.themoviedb.org/3/discover/movie?";
 
 
-let Trending_API_URL =   "https://api.themoviedb.org/3/trending/all/day?primary_release_year=2025"
-const popular = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1'
-const top_rated  =  'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1'
-const upcoming  = 'https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1'
+let Trending_API_URL =   "https://corsproxy.io/https://api.themoviedb.org/3/trending/all/day?primary_release_year=2025"
+const popular = 'https://corsproxy.io/https://api.themoviedb.org/3/movie/popular?language=en-US&page=1'
+const top_rated  =  'https://corsproxy.io/https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1'
+const upcoming  = 'https://corsproxy.io/https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1'
 
 
-const IMG_PATH = "https://image.tmdb.org/t/p/original";
+const IMG_PATH = "https://corsproxy.io/https://image.tmdb.org/t/p/original";
 
 
 
@@ -43,26 +43,26 @@ const  Latest_Movies_List_link =  "https://corsproxy.io/https://vidsrc.to/vapi/e
 const  Latest_episode_List_link = "https://corsproxy.io/https://vidsrc.to/vapi/episode/latest";
 
 const company_show = {
-                       "Marvel Studios" : [420, 'https://image.tmdb.org/t/p/w1280/hUzeosd33nzE5MCNsZxCGEKTXaQ.png'] ,
-                       "Marvel Animation" : [13252, "https://image.tmdb.org/t/p/w1280/1gKwYyTDNhumwBKUlKqoxXRUdpC.png" ],
-                       "DC Films" : [128064,  "https://image.tmdb.org/t/p/w1280/13F3Jf7EFAcREU0xzZqJnVnyGXu.png"],
-                       "Walt Disney Pictures" : [2,  "https://image.tmdb.org/t/p/w1280/wdrCwmRnLFJhEoH8GSfymY85KHT.png"],
-                       "Walt Disney Television" : [670,  "https://image.tmdb.org/t/p/w1280/rRGi5UkwvdOPSfr5Xf42RZUsYgd.png"],
-                        "Warner Bros. Pictures" : [174,  "https://image.tmdb.org/t/p/w1280/zhD3hhtKB5qyv7ZeL4uLpNxgMVU.png"],
-                        "Universal Pictures" : [33,  "https://image.tmdb.org/t/p/w1280/3wwjVpkZtnog6lSKzWDjvw2Yi00.png"],
-                        "Paramount Pictures" : [4,  "https://image.tmdb.org/t/p/w1280/gz66EfNoYPqHTYI4q9UEN4CbHRc.png"],
-                        "Sony Pictures Entertainment" : [34,  "https://image.tmdb.org/t/p/w1280/mtp1fvZbe4H991Ka1HOORl572VH.png"],
-                        "Lionsgate " : [1632,  "https://image.tmdb.org/t/p/w1280/cisLn1YAUuptXVBa0xjq7ST9cH0.png"],
-                        "DreamWorks Animation " : [521,  "https://image.tmdb.org/t/p/w1280/3BPX5VGBov8SDqTV7wC1L1xShAS.png"],
-                        "Netflix Animation " : [171251,  "https://image.tmdb.org/t/p/w1280/AqUAfMC270bGGK09Nh3mycwT1hY.png"],
-                        "Netflix" : [178464,  "https://image.tmdb.org/t/p/w1280/tyHnxjQJLH6h4iDQKhN5iqebWmX.png"],
-                        "Pixar" : [3,  "https://image.tmdb.org/t/p/w1280/1TjvGVDMYsj6JBxOAkUHpPEwLf7.png"],
-                        "Illumination" : [6704,  "https://image.tmdb.org/t/p/w1280/fOG2oY4m1YuYTQh4bMqqZkmgOAI.png"],
-                        "Blue Sky Studios" : [9383,  "https://image.tmdb.org/t/p/w1280/ppeMh4iZJQUMm1nAjRALeNhWDfU.png"],
-                        "Laika" : [11537,  "https://image.tmdb.org/t/p/w1280/AgCkAk8EpUG9fTmK6mWcaJA2Zwh.png"],
-                        "Amazon Studios" : [20580,  "https://image.tmdb.org/t/p/w1280/oRR9EXVoKP9szDkVKlze5HVJS7g.png"],
-                        "HBO" : [3268,  "https://image.tmdb.org/t/p/w1280/tuomPhY2UtuPTqqFnKMVHvSb724.png"],
-                         "Apple" : [14801,  "https://image.tmdb.org/t/p/w1280/bnlD5KJ5oSzBYbEpDkwi6w8SoBO.png"],
+                       "Marvel Studios" : [420, 'https://corsproxy.io/https://image.tmdb.org/t/p/w1280/hUzeosd33nzE5MCNsZxCGEKTXaQ.png'] ,
+                       "Marvel Animation" : [13252, "https://corsproxy.io/https://image.tmdb.org/t/p/w1280/1gKwYyTDNhumwBKUlKqoxXRUdpC.png" ],
+                       "DC Films" : [128064,  "https://corsproxy.io/https://image.tmdb.org/t/p/w1280/13F3Jf7EFAcREU0xzZqJnVnyGXu.png"],
+                       "Walt Disney Pictures" : [2,  "https://corsproxy.io/https://image.tmdb.org/t/p/w1280/wdrCwmRnLFJhEoH8GSfymY85KHT.png"],
+                       "Walt Disney Television" : [670,  "https://corsproxy.io/https://image.tmdb.org/t/p/w1280/rRGi5UkwvdOPSfr5Xf42RZUsYgd.png"],
+                        "Warner Bros. Pictures" : [174,  "https://corsproxy.io/https://image.tmdb.org/t/p/w1280/zhD3hhtKB5qyv7ZeL4uLpNxgMVU.png"],
+                        "Universal Pictures" : [33,  "https://corsproxy.io/https://image.tmdb.org/t/p/w1280/3wwjVpkZtnog6lSKzWDjvw2Yi00.png"],
+                        "Paramount Pictures" : [4,  "https://corsproxy.io/https://image.tmdb.org/t/p/w1280/gz66EfNoYPqHTYI4q9UEN4CbHRc.png"],
+                        "Sony Pictures Entertainment" : [34,  "https://corsproxy.io/https://image.tmdb.org/t/p/w1280/mtp1fvZbe4H991Ka1HOORl572VH.png"],
+                        "Lionsgate " : [1632,  "https://corsproxy.io/https://image.tmdb.org/t/p/w1280/cisLn1YAUuptXVBa0xjq7ST9cH0.png"],
+                        "DreamWorks Animation " : [521,  "https://corsproxy.io/https://image.tmdb.org/t/p/w1280/3BPX5VGBov8SDqTV7wC1L1xShAS.png"],
+                        "Netflix Animation " : [171251,  "https://corsproxy.io/https://image.tmdb.org/t/p/w1280/AqUAfMC270bGGK09Nh3mycwT1hY.png"],
+                        "Netflix" : [178464,  "https://corsproxy.io/https://image.tmdb.org/t/p/w1280/tyHnxjQJLH6h4iDQKhN5iqebWmX.png"],
+                        "Pixar" : [3,  "https://corsproxy.io/https://image.tmdb.org/t/p/w1280/1TjvGVDMYsj6JBxOAkUHpPEwLf7.png"],
+                        "Illumination" : [6704,  "https://corsproxy.io/https://image.tmdb.org/t/p/w1280/fOG2oY4m1YuYTQh4bMqqZkmgOAI.png"],
+                        "Blue Sky Studios" : [9383,  "https://corsproxy.io/https://image.tmdb.org/t/p/w1280/ppeMh4iZJQUMm1nAjRALeNhWDfU.png"],
+                        "Laika" : [11537,  "https://corsproxy.io/https://image.tmdb.org/t/p/w1280/AgCkAk8EpUG9fTmK6mWcaJA2Zwh.png"],
+                        "Amazon Studios" : [20580,  "https://corsproxy.io/https://image.tmdb.org/t/p/w1280/oRR9EXVoKP9szDkVKlze5HVJS7g.png"],
+                        "HBO" : [3268,  "https://corsproxy.io/https://image.tmdb.org/t/p/w1280/tuomPhY2UtuPTqqFnKMVHvSb724.png"],
+                         "Apple" : [14801,  "https://corsproxy.io/https://image.tmdb.org/t/p/w1280/bnlD5KJ5oSzBYbEpDkwi6w8SoBO.png"],
                      }
 
 const page_count = 1;
