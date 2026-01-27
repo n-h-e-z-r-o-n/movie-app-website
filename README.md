@@ -51,6 +51,8 @@ FilmFusion/
 ## 🖼️ Screenshots
 
 ### 🌟 Version 2.0
+<img width="1305" height="5389" alt="image" src="https://github.com/user-attachments/assets/494b628b-99ec-49c5-934f-b311b6010f34" />
+
 ![Screenshot 2025-05-21 at 21-30-0](https://github.com/user-attachments/assets/ba657dbc-5cdd-4755-9464-c5ef93f23d6d)
 
 
