@@ -248,45 +248,45 @@
 
 
 .card:nth-last-child(n + 7) {
-  --x: calc(-50% + 32%);
+  --x: calc(-15%);
   transform: translate(var(--x), -50%) scale(0.7);
   z-index: 0;
 }
 
 .card:nth-last-child(6) {
-  --x: calc(-50% + 28%);
+  --x: calc(-14%);
   transform: translate(var(--x), -50%) scale(0.75);
   z-index: 0;
 }
 
 .card:nth-last-child(5) {
-  --x: calc(-50% + 21%);
-  transform: translate(var(--x), -50%) scale(0.8);
+  --x: calc(-20%);
+  transform: translate(var(--x), -50%) scale(0.80);
   z-index: 0;
 }
 
 .card:nth-last-child(4) {
-  --x: calc(-50% + 14%);
+  --x: calc(-26%);
   transform: translate(var(--x), -50%) scale(0.85);
   z-index: 1;
 }
 
 .card:nth-last-child(3) {
-  --x: calc(-50% + 7%);
-  transform: translate(var(--x), -50%) scale(0.9);
+  --x: calc(-31%);
+  transform: translate(var(--x), -50%) scale(0.90);
   z-index: 2;
 }
 
 .card:nth-last-child(2) {
-  --x: calc(-50%);
+  --x: calc(-36%);
   transform: translate(var(--x), -50%) scale(0.95);
   z-index: 3;
 }
 
 .card:nth-last-child(1) {
-  width: 115%;
+  width: 130%;
   height: 100%;
-  --x: calc(-50% - 10%);
+  --x: calc(-55% - 0%);
   transform: translate(var(--x), -50%) scale(1);
   z-index: 4;
 }
@@ -294,7 +294,7 @@
 
 .card:nth-last-child(1) img { /* Apply a box shadow to highlight the topmost card */
 
-  box-shadow: 0 0 5px 5px rgba(255, 193, 111, 0.5);
+  box-shadow: 0 0 5px 5px var(--Brand_Color);
 }
 
 

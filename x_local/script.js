@@ -22,7 +22,7 @@ const top_rated  =  'https://api.themoviedb.org/3/movie/top_rated?language=en-US
 const upcoming  = 'https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1'
 
 
-const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
+const IMG_PATH = "https://image.tmdb.org/t/p/original";
 
 
 
@@ -39,8 +39,8 @@ const movie_div = document.getElementById("movieUl");
 const series_div = document.getElementById("seriesUl");
 const Trending_div = document.getElementById("TrendingUl");
 
-const  Latest_Movies_List_link =  "https://vidsrc.to/vapi/episode/latest/" ;
-const  Latest_episode_List_link = "https://vidsrc.to/vapi/episode/latest";
+const  Latest_Movies_List_link =  "https://corsproxy.io/https://vidsrc.to/vapi/episode/latest/" ;
+const  Latest_episode_List_link = "https://corsproxy.io/https://vidsrc.to/vapi/episode/latest";
 
 const company_show = {
                        "Marvel Studios" : [420, 'https://image.tmdb.org/t/p/w1280/hUzeosd33nzE5MCNsZxCGEKTXaQ.png'] ,
@@ -508,7 +508,7 @@ async function Latest_Movies(event, page, type) {
 
   while (count <= page) {
       
-      let res = await fetch(`https://vidsrc.xyz/movies/latest/page-${page}.json`, {"accept": "application/json",});
+      let res = await fetch(`https://corsproxy.io/https://vidsrc.xyz/movies/latest/page-${page}.json`, {"accept": "application/json",});
       let data = await res.json();
       //console.log(data['result']);
       data_json = data_json.concat(data['result']) ;
@@ -913,7 +913,7 @@ async function more_series(){
             let data_json = [];
             let id_prev = 0;
 
-            let res = await fetch(`https://vidsrc.xyz/episodes/latest/page-${series_currentPage}.json`,  {"accept": "application/json",});
+            let res = await fetch(`https://corsproxy.io/https://vidsrc.xyz/episodes/latest/page-${series_currentPage}.json`,  {"accept": "application/json",});
             let data = await res.json();
             if(Array.isArray(data['result'])){
                  data_json = data_json.concat(data['result']) ;

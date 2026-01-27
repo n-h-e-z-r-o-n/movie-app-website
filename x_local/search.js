@@ -1,8 +1,8 @@
-const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
-//const SEARCH_MOVIE_API = "https://api.themoviedb.org/3/search/movie?include_adult=true&query=";
-const SEARCH_MOVIE_API ='https://api.themoviedb.org/3/search/multi?include_adult=true&query=' ;
+const IMG_PATH = "https://image.tmdb.org/t/p/original";
 
-const SEARCH_TV_API = "https://api.themoviedb.org/3/search/tv?&query=";
+//const SEARCH_MOVIE_API = "https://api.themoviedb.org/3/search/movie?include_adult=true&query=";
+
+const SEARCH_MOVIE_API ='https://api.themoviedb.org/3/search/multi?include_adult=true&query=' ;
 
 var headers = {
 "accept": "application/json",

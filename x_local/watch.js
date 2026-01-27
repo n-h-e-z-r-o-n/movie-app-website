@@ -18,7 +18,8 @@ const watch_Frame = document.getElementById("watch_Frame");
 let Watch_iframe_div_content;
 
 let Show_Data_Json;
-const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
+const IMG_PATH = "https://image.tmdb.org/t/p/original";
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -552,7 +553,6 @@ async function Watch_IFRAME(imdb, type, info_data) {
 
 
               for (i ; i < se.length; i++) {
-
                    if(new Date() > new Date(se[i]['air_date'])){
                        let season_no = se[i]['season_number']
                        let total_episodes = se[i]['episode_count']

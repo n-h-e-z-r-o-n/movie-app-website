@@ -1,11 +1,11 @@
 /*#1B1B1B*/
 :root {
---global-color-bg:  white !important; /* #050301     #1D2951  #003153  #0F0404;*/
---global-color-bg-shade:   #1B1B1B;
---global-color-fg: black !important;
+--global-color-bg:  #191311 !important; /* #050301     #1D2951  #003153  #0F0404;*/
+--global-color-bg-shade:   white;
+--global-color-fg: #d7b89c !important;
 --color_theme:  hsl(186 100% 69%);
 --section_header_color: #020403; /*#1B1B1B;*/
---Brand_Color:   #00BFFF;
+--Brand_Color:   #d7b89c;
 --Brand_Image:  linear-gradient(to bottom, rgba(0,0,0,0), var(--global-color-bg)), url("./Assets/xr.jpg");
 --Max-width:  1700px;
 }
@@ -42,7 +42,7 @@ body , html {
 
 .no-select{
         height: 100%;
-        width: 80%;
+        width: 95%;
         max-width: var(--Max-width);
         background-color : var(--global-color-bg);
         margin: auto;
@@ -57,8 +57,8 @@ body , html {
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 .box {
-    width:  200px;
-    height: 350px;
+    width:  270px;
+    height: 400px;
     backdrop-filter: blur(10px); /* Applies blur to the background */
     box-shadow: 1px 12px 25px rgb(128 128 128 / 9%);
     border-radius:5px 5px 0px 0px;

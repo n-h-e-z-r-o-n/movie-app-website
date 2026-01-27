@@ -228,7 +228,7 @@
     height: 100%;
     position: absolute;
     backdrop-filter: blur(0px) ;
-    background : linear-gradient(to bottom, transparent 70%, white 90%);
+    background : linear-gradient(to bottom, transparent 70%,var(--global-color-bg) 90%);
     top: 0;
     left: 0;
 }
@@ -308,13 +308,13 @@
 }
 .circle__back-1 {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background: linear-gradient(to bottom right, #c8d0e7 0%, var(--global-color-bg) 100%);
+  background: linear-gradient(to bottom right, var(--global-color-fg) 0%, var(--global-color-bg) 100%);
   -webkit-animation: waves 4s linear infinite;
           animation: waves 4s linear infinite;
 }
 
 .circle__back-2 {
-  box-shadow: 0.4rem 0.4rem 0.8rem #c8d0e7, -0.4rem -0.4rem 0.8rem var(--global-color-bg);
+  box-shadow: 0.4rem 0.4rem 0.8rem var(--global-color-fg), -0.4rem -0.4rem 0.8rem var(--global-color-bg);
   -webkit-animation: waves 4s linear 2s infinite;
           animation: waves 4s linear 2s infinite;
 }
@@ -413,7 +413,7 @@
   }
 
 .watch_Now_btn{
-  border: 1px solid white;
+  border: 1px solid var(--Brand_Color);
   border-radius: 0.4em;
   color: var(--global-color-fg);
   height: 100%;
@@ -508,8 +508,8 @@
 }
 .show_pg {
    border-radius: 5%;
-   background-color: var(--Brand_Color);
-   color: var(--global-color-fg);
+   background-color: var(--global-color-fg);
+   color: var(--global-color-bg);
    padding: 5px;
    text-align: center;
    display: flex;
@@ -523,7 +523,7 @@
 .show_HD{
    border-radius: 5%;
    background-color: gray;
-   color: var(--global-color-bg);
+   color: var(--Brand_Color);
    padding: 5px;
    text-align: center;
    display: flex;
@@ -551,7 +551,7 @@
 .show_rating{
    border-radius: 5%;
    background-color: #FFD700;
-   color: black;
+   color: var(--global-color-bg);;
    padding: 5px;
    text-align: center;
    display: flex;
@@ -564,8 +564,8 @@
 
 .show_Premiered{
    border-radius: 5%;
-   border: 1px solid gray;
-   color: gray;
+   border: 1px solid var(--global-color-fg);
+   color: var(--global-color-fg);
    padding: 5px;
    text-align: center;
    display: flex;
