@@ -20,7 +20,8 @@ from System.Windows.Forms import Control
 from System.Threading import  ApartmentState, ThreadStart, SynchronizationContext, SendOrPostCallback
 from System.Threading import Thread as System_Thread
 import sqlite3
-
+import random
+import string
 
 shutdown_event = threading.Event()
 
@@ -131,21 +132,29 @@ def init_database():
     conn = sqlite3.connect(DB_LOCATION)
     cursor = conn.cursor()
 
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS users (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL,
-        email TEXT NOT NULL UNIQUE,
-        password TEXT NOT NULL,
-        watchlist TEXT,
-        Messages TEXT,
-        ProfileIMG TEXT
-    )
-    """)
+    # Users table
+    conn.execute('''
+                CREATE TABLE IF NOT EXISTS users (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    name TEXT NOT NULL,
+                    email TEXT NOT NULL UNIQUE,
+                    password TEXT NOT NULL,
+                    watchlist TEXT,
+                    Messages TEXT,
+                    ProfileIMG TEXT
+                )
+            ''')
+
+    # Session table to strictly maintain active user
+    conn.execute('''
+                CREATE TABLE IF NOT EXISTS current_session (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    user_id INTEGER
+                )
+            ''')
 
     conn.commit()
     conn.close()
-
 
 
 
@@ -153,6 +162,16 @@ def get_db_connection():
     conn = sqlite3.connect(DB_LOCATION)
     conn.row_factory = sqlite3.Row
     return conn
+
+
+# Helper to ensure unique email for dummy profiles
+def generate_dummy_email(name):
+    random_suffix = ''.join(random.choices(string.ascii_lowercase + string.digits, k=4))
+    return f"{name.replace(' ', '_').lower()}_{random_suffix}@local.com"
+
+
+
+
 
 
 def ensure_c_drive_location():
@@ -357,6 +376,144 @@ def dynamic_handler(requested):
 ########################################################################################################################
 
 
+@app.route('/getProfiles', methods=['GET'])
+def get_profiles():
+    try:
+        conn = get_db_connection()
+        profiles = conn.execute('SELECT id, name, ProfileIMG FROM users').fetchall()
+        conn.close()
+        return jsonify({'massage': [dict(row) for row in profiles]})
+    except Exception as e:
+        return jsonify({'massage': str(e)})
+
+
+@app.route('/createProfile', methods=['POST'])
+def create_profile():
+    try:
+        data = request.form
+        name = data.get('name')
+        profile_img = data.get('ProfileIMG', '/Assets/account.png')
+
+        # Generate dummy credentials
+        email = generate_dummy_email(name)
+        password = "dummy_password"
+        watchlist = '[]'
+        messages = '[]'
+
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        cursor.execute(
+            'INSERT INTO users (name, email, password, watchlist, Messages, ProfileIMG) VALUES (?, ?, ?, ?, ?, ?)',
+            (name, email, password, watchlist, messages, profile_img))
+        user_id = cursor.lastrowid
+        conn.commit()
+
+        # Determine strict user dict to return
+        user_dict = {
+            'id': user_id,
+            'name': name,
+            'email': email,
+            'watchlist': watchlist,
+            'Messages': messages,
+            'ProfileIMG': profile_img
+        }
+
+        # Automatically set as active user for seamless flow (optional, but good UX)
+        cursor.execute('DELETE FROM current_session')
+        cursor.execute('INSERT INTO current_session (user_id) VALUES (?)', (user_id,))
+        conn.commit()
+        conn.close()
+
+        return jsonify({'massage': user_dict})
+    except Exception as e:
+        return jsonify({'massage': str(e)})
+
+
+@app.route('/loginProfile', methods=['POST'])
+def login_profile():
+    try:
+        user_id = request.form.get('id')
+        conn = get_db_connection()
+        user = conn.execute('SELECT * FROM users WHERE id = ?', (user_id,)).fetchone()
+
+        if user:
+            # Set as active user in DB
+            conn.execute('DELETE FROM current_session')
+            conn.execute('INSERT INTO current_session (user_id) VALUES (?)', (user_id,))
+            conn.commit()
+
+            user_dict = dict(user)
+            del user_dict['password']
+            conn.close()
+            return jsonify({'massage': user_dict})
+        else:
+            conn.close()
+            return jsonify({'massage': 'User not found'})
+    except Exception as e:
+        return jsonify({'massage': str(e)})
+
+
+@app.route('/updateProfile', methods=['POST'])
+def update_profile():
+    try:
+        data = request.form
+        user_id = data.get('id')
+        name = data.get('name')
+        profile_img = data.get('ProfileIMG')
+
+        conn = get_db_connection()
+        # Update name and image. If argument is missing, keep existing (optional logic, but here we expect both or handle in frontend)
+        # Simplified: Update both provided.
+        conn.execute('UPDATE users SET name = ?, ProfileIMG = ? WHERE id = ?', (name, profile_img, user_id))
+        conn.commit()
+
+        # Fetch updated user to return
+        user = conn.execute('SELECT * FROM users WHERE id = ?', (user_id,)).fetchone()
+        conn.close()
+
+        if user:
+            user_dict = dict(user)
+            del user_dict['password']
+            return jsonify({'massage': user_dict})
+        else:
+            return jsonify({'massage': 'User not found after update'})
+
+    except Exception as e:
+        return jsonify({'massage': str(e)})
+
+
+@app.route('/getActiveUser', methods=['GET'])
+def get_active_user():
+    try:
+        conn = get_db_connection()
+        session = conn.execute('SELECT user_id FROM current_session LIMIT 1').fetchone()
+
+        if session:
+            user_id = session['user_id']
+            user = conn.execute('SELECT * FROM users WHERE id = ?', (user_id,)).fetchone()
+            conn.close()
+            if user:
+                user_dict = dict(user)
+                del user_dict['password']
+                return jsonify({'massage': user_dict})
+
+        conn.close()
+        return jsonify({'massage': None})
+    except Exception as e:
+        return jsonify({'massage': str(e)})
+
+
+@app.route('/logout', methods=['POST'])
+def logout():
+    try:
+        conn = get_db_connection()
+        conn.execute('DELETE FROM current_session')
+        conn.commit()
+        conn.close()
+        return jsonify({'massage': 'Logged out successfully'})
+    except Exception as e:
+        return jsonify({'massage': str(e)})
 
 
 @app.route('/login', methods=['POST'])
