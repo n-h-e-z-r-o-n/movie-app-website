@@ -261,7 +261,7 @@ body , html {
 
 /*=========================================    SMALL DEVICES    ======================================================*/
 
-
+/*
 @media (max-width: 968px) {
 
 
@@ -286,7 +286,7 @@ body , html {
   }
 
   .box-img::after {
-      background: transparent;/* Ensure the overlay doesn't interfere with clicks */
+      background: transparent;
  }
  .box-img-button {
      bottom: 40%;
@@ -337,3 +337,4 @@ body , html {
 
 
 }
+*/

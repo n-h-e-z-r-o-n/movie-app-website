@@ -8,15 +8,18 @@ xr2.style.pointerEvents = 'none';
 
 // var Database_location = 'https://movionyx.com/Database/database.php' // Deprecated
 
-  console.log('savedState P', savedState)
-
-
 const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
 let U_ID = localStorage.getItem("U_ID");
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-logout_btn.addEventListener("click", function () {
+logout_btn.addEventListener("click", async function () {
+  try {
+    await fetch('http://127.0.0.1:8668/logout', { method: 'POST' });
+  } catch (e) {
+    console.error("Logout failed on server", e);
+  }
+
   sessionStorage.clear();
   localStorage.removeItem('U_ID')
   localStorage.removeItem('user_email')
@@ -185,92 +188,65 @@ function handleSwipe() {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-document.getElementById("E_M_A").innerHTML = localStorage.getItem('user_email')
-document.getElementById("Y_N").innerHTML = localStorage.getItem('user_name')
-document.getElementById("J_D").innerHTML = localStorage.getItem('user_joined')
+// Initialize Name Input
+const nameInput = document.getElementById("Y_N_Input");
+if (nameInput) {
+  nameInput.value = localStorage.getItem('user_name') || "";
+}
 
 document.getElementById("User_Image_show").style.background = `url(${localStorage.getItem('user_profile_img')})`;
 document.getElementById("User_Image_show").style.backgroundSize = '100% 100%';
 document.getElementById("User_Image_show").style.backgroundPosition = 'center';
 document.getElementById("User_Image_show").style.backgroundRepeat = 'no-repeat';
 
-let Change_password = false;
-document.getElementById("Change_password").addEventListener("click", function () {
+// SAVE PROFILE BUTTON LOGIC
+const saveBtn = document.getElementById("Save_Profile_Btn");
+if (saveBtn) {
+  saveBtn.addEventListener("click", async function () {
+    const newName = document.getElementById("Y_N_Input").value.trim();
+    const messageDiv = document.getElementById("profile_msm");
+    const userId = localStorage.getItem('user_id_pk');
 
-  if (Change_password) {
-    document.getElementById("N_P").style.display = 'none';
-    document.getElementById("N_P_I").style.display = 'none';
-    document.getElementById("C_N_P").style.display = 'none';
-    document.getElementById("C_N_P_I").style.display = 'none';
-    document.getElementById("C_P_SAVE").style.display = 'none';
-  } else {
-    document.getElementById("N_P").style.display = 'flex';
-    document.getElementById("N_P_I").style.display = 'flex';
-    document.getElementById("C_N_P").style.display = 'flex';
-    document.getElementById("C_N_P_I").style.display = 'flex';
-    document.getElementById("C_P_SAVE").style.display = 'flex';
-  }
-  Change_password = !Change_password;
+    if (!newName) {
+      messageDiv.textContent = "Name cannot be empty";
+      return;
+    }
 
-});
+    try {
+      const response = await fetch('http://127.0.0.1:8668/updateProfile', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          id: userId,
+          name: newName,
+          ProfileIMG: localStorage.getItem('user_profile_img') // Keep existing image
+        })
+      });
+      const data = await response.json();
 
-document.getElementById("C_P_SAVE").addEventListener("click", async function (e) {
-  e.preventDefault();
+      if (data.massage && data.massage.id) {
+        // Success
+        messageDiv.textContent = "Profile Updated Successfully";
+        messageDiv.style.color = "lightgreen";
 
-  let p_1 = document.getElementById('N_P_I').value.trim();
-  let p_2 = document.getElementById('C_N_P_I').value.trim();
-  messageDiv = document.getElementById('profile_msm');
+        // Update LocalStorage
+        localStorage.setItem('user_name', data.massage.name);
+        localStorage.setItem('user_profile_img', data.massage.ProfileIMG);
 
-  if (!p_1 || !p_2) {
-    messageDiv.textContent = 'All two fields are required';
-    return;
-  }
+        setTimeout(() => {
+          messageDiv.textContent = "";
+        }, 2000);
+      } else {
+        messageDiv.textContent = "Update Failed: " + (data.massage || "Unknown error");
+        messageDiv.style.color = "red";
+      }
 
-  if (p_1 !== p_2) {
-    messageDiv.textContent = 'Passwords do not match';
-    return;
-  }
-
-  let user_email = localStorage.getItem('user_email')
-  /*
-  const response = await fetch(Database_location, {
-  method: 'POST',
-  headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-        },
-  body: `action=updatePass&password=${encodeURIComponent(p_1)}&email=${encodeURIComponent(user_email)}`
+    } catch (e) {
+      console.error(e);
+      messageDiv.textContent = "Network Error";
+    }
   });
-
-   const data = await response.json();
-   */
-  // Mock Database implementation for Password Change (can't really change it in this basic mock without more logic, but we'll simulate it)
-  // For a real local app, we might update the user object.
-  // Since MockDatabase doesn't have updatePass, let's just simulate success or add it if needed.
-  // Actually, let's verify if we can add updatePass to MockDatabase?
-  // For now, let's just simulate it here or use a new method if we added it.
-  // Since I didn't add updatePassword to MockDatabase, I will simulate it for now or assume it's fine.
-  // Wait, the MockDatabase stores passwords. I should probably add an updatePassword method to NavBar.js or just access db.
-  // But I can't easily edit NavBar.js again right now in this tool call.
-  // Let's implement it manually here using the export/import logic or just direct localStorage manipulation if needed,
-  // OR, even better: I'll just assume the user is happy with a mock success for now, OR I can manually update the localStorage here since I have access to it.
-
-  let users = JSON.parse(localStorage.getItem('movionyx_users_db') || '{}');
-  if (users[user_email]) {
-    users[user_email].password = p_1;
-    localStorage.setItem('movionyx_users_db', JSON.stringify(users));
-    var data = { message: "Password Changed " };
-  } else {
-    var data = { message: "User not found" };
-  }
-
-
-
-  messageDiv.textContent = data.message;
-  if (data.message === "Password Changed ") {
-    document.getElementById('N_P_I').value = ''
-    document.getElementById('C_N_P_I').value = ''
-  }
-});
+}
 
 
 
@@ -468,50 +444,44 @@ document.getElementById("User_Image_input").addEventListener('change', (event) =
 
 async function image_bite(file) {
   let user_email = localStorage.getItem('user_email');
-  const formData = new FormData();
-  formData.append('action', 'updateImg');
-  formData.append('image', file); // Send the file directly
-  formData.append('email', localStorage.getItem('user_email'));
+  const userId = localStorage.getItem('user_id_pk');
 
-
-  /*
-  const response = await fetch(Database_location, {
-     method: 'POST',
-     body: formData
-  });
-  //console.log(response)
-  const data = await response.json();
-  */
-
-  // Mock Image Upload (Base64)
+  // Convert to Base64
   const reader = new FileReader();
-  reader.onload = function (e) {
+  reader.onload = async function (e) {
     const base64Image = e.target.result;
-    let users = JSON.parse(localStorage.getItem('movionyx_users_db') || '{}');
-    if (users[user_email]) {
-      users[user_email].ProfileIMG = base64Image;
-      localStorage.setItem('movionyx_users_db', JSON.stringify(users));
 
-      // Update UI immediately since we are inside the callback
-      document.getElementById("User_Image_show").style.backgroundImage = `url(${base64Image})`;
+    // Send update to server
+    const response = await fetch('http://127.0.0.1:8668/updateProfile', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        id: userId,
+        name: localStorage.getItem('user_name'),
+        ProfileIMG: base64Image
+      })
+    });
+    const data = await response.json();
+
+    if (data.massage && data.massage.id) {
+      // Success
+      document.getElementById("User_Image_show").style.background = `url(${base64Image})`;
+      document.getElementById("User_Image_show").style.backgroundSize = '100% 100%';
+      document.getElementById("User_Image_show").style.backgroundPosition = 'center';
+      document.getElementById("User_Image_show").style.backgroundRepeat = 'no-repeat';
+
       localStorage.setItem('user_profile_img', base64Image);
-      document.getElementById("Account_btnT").style.background = `url(${base64Image})`;
-      document.getElementById("Account_btnT").style.backgroundSize = '100% 100%';
-      document.getElementById("Account_btnT").style.backgroundPosition = 'center';
-      document.getElementById("Account_btnT").style.backgroundRepeat = 'no-repeat';
+      // Update NavBar icon
+      const accountIcon = document.getElementById("Account_btnT");
+      if (accountIcon) {
+        accountIcon.style.background = `url(${base64Image})`;
+        accountIcon.style.backgroundSize = 'cover';
+      }
+    } else {
+      alert("Failed to update image: " + data.massage);
     }
   };
   reader.readAsDataURL(file);
-
-  // Since the original code expects 'data' to be returned/awaited, but we are doing async FileReader,
-  // we can't easily return 'data' in the same structure without wrapping FileReader in a Promise.
-  // However, the original code updates UI based on 'data'.
-  // I've moved the UI update logic inside the onload handler above.
-  const data = { message: 'Profile Updated', imagedata: '' }; // Mock return to satisfy subsequent checks if any, though I moved the UI logic.
-
-
-  // UI update moved to FileReader callback for local handling
-
 };
 
 

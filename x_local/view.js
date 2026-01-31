@@ -64,7 +64,7 @@ async function Latest_Movies(event, type) {
   let count = 1
   let data_json = []
 
-    let url = `https://yts.mx/api/v2/list_movies.json?page=${count}&limit=50&sort_by=year`
+    let url = `https://corsproxy.io/https://yts.mx/api/v2/list_movies.json?page=${count}&limit=50&sort_by=year`
     let response = await fetch(url);
     let data = await response.json();
     console.log("Shown data", data.data.movies);
@@ -260,7 +260,7 @@ async function Latest_episode(event) {
   let id_prev = 0;
 
   while (count <= 1) {
-      let res = await fetch(`https://vidsrc.xyz/episodes/latest/page-${count}.json`, {"accept": "application/json",});
+      let res = await fetch(`https://corsproxy.io/https://vidsrc.xyz/episodes/latest/page-${count}.json`, {"accept": "application/json",});
 
       let data = await res.json();
       if(Array.isArray(data['result'])){
@@ -400,7 +400,7 @@ async function more_series(){
             let data_json = [];
             let id_prev = 0;
 
-            let res = await fetch(`https://vidsrc.xyz/episodes/latest/page-${currentPage_tv}.json`,  {"accept": "application/json",});
+            let res = await fetch(`https://corsproxy.io/https://vidsrc.xyz/episodes/latest/page-${currentPage_tv}.json`,  {"accept": "application/json",});
             let data = await res.json();
             if(Array.isArray(data['result'])){
                  data_json = data_json.concat(data['result']) ;

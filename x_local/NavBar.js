@@ -1,16 +1,150 @@
-document.body.addEventListener("pointermove", (e) => {
-  const { currentTarget: el, clientX: x, clientY: y } = e;
-  const { top: t, left: l, width: w, height: h } = el.getBoundingClientRect();
-  el.style.setProperty('--posX', x - l - w / 2);
-  el.style.setProperty('--posY', y - t - h / 2);
-})
+// Inject CSS for Profile Grid
+const profileStyles = document.createElement('style');
+profileStyles.innerHTML = `
+  .profile-grid-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: white;
+    padding: 20px;
+  }
+  .profile-grid-title {
+     font-size: 3.5vw;
+     font-weight: 400;
+     margin-bottom: 30px;
+  }
+  .profile-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2vw;
+    justify-content: center;
+    max-width: 80%;
+  }
+  .profile-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+    width: 10vw;
+    max-width: 200px;
+    min-width: 100px;
+  }
+  .profile-item:hover {
+    transform: scale(1.05);
+  }
+  .profile-item:hover .profile-name {
+    color: white;
+  }
+  .profile-avatar {
+    width: 10vw;
+    height: 10vw;
+    max-width: 200px;
+    max-height: 200px;
+    min-width: 100px;
+    min-height: 100px;
+    border-radius: 4px;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 10px;
+    border: 3px solid transparent;
+    box-sizing: border-box;
+  }
+  .profile-item:hover .profile-avatar {
+    border-color: white;
+  }
+  .profile-name {
+    font-size: 1.3vw;
+    color: #808080;
+    text-align: center;
+    margin-top: 0.5em;
+  }
+  .add-profile-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+  }
+  .add-profile-icon {
+     width: 10vw;
+     height: 10vw;
+     max-width: 200px;
+     max-height: 200px;
+     min-width: 100px;
+     min-height: 100px;
+     border-radius: 50%; /* Circular for add button */
+     background: #333; /* Dark gray background */
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-size: 5vw;
+     color: #808080;
+     border: 2px solid #808080;
+  }
+  .profile-item:hover .add-profile-icon {
+     background-color: #E50914; /* Netflix Red or white on hover? Let's go white border/bg change */
+     color: white;
+     border-color: white;
+  }
+  
+  /* Add Profile Form */
+  .add-profile-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+  }
+  .add-profile-input {
+      background: #333;
+      border: none;
+      padding: 10px 20px;
+      color: white;
+      font-size: 1.2rem;
+      border-radius: 4px;
+      width: 300px;
+  }
+  .add-profile-actions {
+      display: flex;
+      gap: 20px;
+  }
+  .profile-btn {
+      padding: 10px 30px;
+      border: 1px solid #808080;
+      background: transparent;
+      color: #808080;
+      font-size: 1.1rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+  }
+  .profile-btn:hover {
+      color: white;
+      border-color: white;
+  }
+  .profile-btn.primary {
+      background: white;
+      color: black;
+      border-color: white;
+      font-weight: bold;
+  }
+  .profile-btn.primary:hover {
+      background: #c00;
+      color: white;
+      border-color: #c00;
+  }
+`;
+document.head.appendChild(profileStyles);
+
 
 // Mock Database Implementation for LocalStorage
 // Local Server Database Implementation
 // Local Server Database Implementation
 class ServerDatabase {
   constructor() {
-    this.serverUrl = 'http://127.0.0.1:8668';
+    this.serverUrl = 'http://127.0.0.1:8668'; // Updated port to 5000 as per server.py
   }
 
   async _fetch(endpoint, body) {
@@ -28,12 +162,40 @@ class ServerDatabase {
     }
   }
 
+  async _fetchGet(endpoint) {
+    try {
+      const response = await fetch(`${this.serverUrl}/${endpoint}`);
+      if (!response.ok) throw new Error('Server error');
+      return await response.json();
+    } catch (error) {
+      console.error(`Error fetching ${endpoint}:`, error);
+      return { massage: 'Network Error: Ensure server.py is running' };
+    }
+  }
+
   // --- Core Methods ---
 
-  // No explicit login needed for this simple token-less auth, but we keep the structure
+  async getProfiles() {
+    return await this._fetchGet('getProfiles');
+  }
+
+  async createProfile(name, profileImg) {
+    return await this._fetch('createProfile', { name, ProfileIMG: profileImg });
+  }
+
+  async loginProfile(id) {
+    return await this._fetch('loginProfile', { id });
+  }
+
+  async getActiveUser() {
+    return await this._fetchGet('getActiveUser');
+  }
+
+  // Legacy/Helper methods (kept for compatibility or internal logic)
   async login(email, password) {
     return await this._fetch('login', { email, password });
   }
+  // ... other methods ...
 
   async register(name, email, password) {
     return await this._fetch('register', { name, email, password });
@@ -690,301 +852,224 @@ checkAndClearLocalStorage();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-var Authentication_section = document.getElementById("Authentication_section");
-var Login_container = document.getElementById("Login_container");
-var Register_container = document.getElementById("Register_container");
-var Forgot_password_container = document.getElementById("Forgot_password_container");
+// New Profile Management Logic
 
-var Register_view = document.getElementById("Register_view");
-var Forgot_password_view = document.getElementById("Forgot_password_view");
-var Login_view = document.getElementById("Login_view");
+// Render the Profile Selection Grid
+async function renderProfileSelection() {
+  const authSection = document.getElementById("Authentication_section");
+  authSection.style.display = 'flex';
+  authSection.innerHTML = ''; // Clear existing content (Login forms)
 
+  const container = document.createElement('div');
+  container.className = 'profile-grid-container';
 
-Register_view.addEventListener("click", function () {
-  Register_container.style.display = 'block';
-  Login_container.style.display = 'none';
-  Forgot_password_container.style.display = 'none';
+  // Fetch profiles from server
+  const response = await db.getProfiles();
+  const profiles = Array.isArray(response.massage) ? response.massage : [];
 
-  Register_view.style.opacity = '1';
-  Forgot_password_view.style.opacity = '0.3';
-  Login_view.style.opacity = '0.3';
-});
+  let profilesHTML = profiles.map(profile => `
+        <div class="profile-item" onclick="selectProfile(${profile.id})">
+            <div class="profile-avatar" style="background-image: url('${profile.ProfileIMG}');"></div>
+            <div class="profile-name">${profile.name}</div>
+        </div>
+    `).join('');
 
+  // Add "Add Profile" button
+  profilesHTML += `
+        <div class="profile-item" onclick="renderAddProfile()">
+            <div class="add-profile-icon"><i class="fa fa-plus"></i></div>
+            <div class="profile-name">Add Profile</div>
+        </div>
+    `;
 
-Forgot_password_view.addEventListener("click", function () {
-  Login_container.style.display = 'none';
-  Forgot_password_container.style.display = 'block';
-  Register_container.style.display = 'none';
+  container.innerHTML = `
+        <div class="profile-grid-title">Who's watching?</div>
+        <div class="profile-grid">
+            ${profilesHTML}
+        </div>
+    `;
 
-  Register_view.style.opacity = '0.3';
-  Forgot_password_view.style.opacity = '1';
-  Login_view.style.opacity = '0.3';
-});
+  authSection.appendChild(container);
+}
 
-Login_view.addEventListener("click", function () {
-  Forgot_password_container.style.display = 'none';
-  Login_container.style.display = 'block';
-  Register_container.style.display = 'none';
+// Render "Add Profile" Screen
+function renderAddProfile() {
+  const authSection = document.getElementById("Authentication_section");
+  authSection.innerHTML = '';
 
-  Register_view.style.opacity = '0.3';
-  Forgot_password_view.style.opacity = '0.3';
-  Login_view.style.opacity = '1';
-});
+  const container = document.createElement('div');
+  container.className = 'profile-grid-container';
 
-function attachEnterTrigger(containerId, buttonId) {
-  const container = document.getElementById(containerId);
-  const button = document.getElementById(buttonId);
+  container.innerHTML = `
+        <div class="profile-grid-title">Add Profile</div>
+        <div class="add-profile-form">
+            <div style="display:flex; justify-content:center; gap:20px; align-items:center;">
+                <img src="./Assets/account.png" style="width:100px; height:100px; border-radius:4px;">
+                <input type="text" id="new_profile_name" class="add-profile-input" placeholder="Name" autofocus>
+            </div>
+            <div class="add-profile-actions">
+                <button class="profile-btn primary" onclick="submitNewProfile()">Continue</button>
+                <button class="profile-btn" onclick="renderProfileSelection()">Cancel</button>
+            </div>
+        </div>
+    `;
 
-  if (container && button) {
-    container.addEventListener("keydown", function (event) {
-      if (event.key === "Enter") {
-        event.preventDefault();
-        button.click();
+  authSection.appendChild(container);
+
+  // Add Enter key listener
+  setTimeout(() => {
+    document.getElementById('new_profile_name').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        submitNewProfile();
       }
     });
+  }, 100);
+}
+
+async function submitNewProfile() {
+  const nameInput = document.getElementById('new_profile_name');
+  const name = nameInput.value.trim();
+  if (!name) return;
+
+  // Pick a random avatar (simplified for now, using default or random color)
+  // Could eventually let user pick
+  const randomAvatars = [
+    './Avatars/1.png',
+    './Avatars/2.png',
+    './Avatars/3.png',
+    './Avatars/5.png',
+    './Avatars/6.png',
+    './Avatars/7.png',
+    './Avatars/8.png',
+    './Avatars/9.png',
+    './Avatars/10.png',
+    './Avatars/11.png',
+    './Avatars/12.png',
+    './Avatars/13.png',
+    './Avatars/14.png',
+    './Avatars/15.png'
+  ];
+  const profileImg = randomAvatars[Math.floor(Math.random() * randomAvatars.length)];
+
+  const response = await db.createProfile(name, profileImg);
+  if (response.massage && response.massage.id) {
+    // Success
+    await renderProfileSelection();
+  } else {
+    alert("Error creating profile: " + response.massage);
   }
 }
-attachEnterTrigger("Login_container", "loginForm");
-attachEnterTrigger("Register_container", "signUpForm");
-attachEnterTrigger("Forgot_password_container", "forget_p_form");
 
-
-Login_view.click()
-
-
-const cancelButtons = document.querySelectorAll('.login_cancel'); // Selects ALL elements with class
-cancelButtons.forEach(button => {
-  button.addEventListener('click', function () {
-    Authentication_section.style.display = 'none';
-  });
-});
-
-
-const Account_btn = document.getElementById("Account_btn");
-Account_btn.style.display = 'none';
-const Account_btnT = document.getElementById("Account_btnT");
-
-const handle_account = function () {
-  let savedState = localStorage.getItem("U_ID");
-  console.log('savedState', savedState)
-  if (savedState) {
-    window.location.href = "profile.html";
-    Authentication_section.style.display = 'none';
+async function selectProfile(id) {
+  const response = await db.loginProfile(id);
+  if (response.massage && response.massage.id) {
+    handleLoginSuccess(response.massage);
   } else {
-    Authentication_section.style.display = 'flex';
+    console.error("Login failed", response);
   }
-};
-Account_btn.addEventListener("click", handle_account)
-Account_btnT.addEventListener("click", handle_account)
+}
 
-let savedState = localStorage.getItem("U_ID");
-if (savedState) {
-  console.log('savedState', savedState)
-  user_profile_img = localStorage.getItem('user_profile_img');
+function handleLoginSuccess(user_info) {
+  let not_t = user_info.Messages || '[]';
+  let watch_fave = user_info.watchlist || '[]';
+  let user_profile_img = user_info.ProfileIMG || './Assets/account.png';
+
+  // Save to LocalStorage
+  localStorage.setItem('U_ID', user_info.email); // Keep using email as ID for compatibility
+  localStorage.setItem('user_id_pk', user_info.id); // Save real ID
+  localStorage.setItem('user_email', user_info.email);
+  localStorage.setItem('user_name', user_info.name);
+  localStorage.setItem('user_watchlist', watch_fave);
+  localStorage.setItem('user_massages', not_t);
+  // localStorage.setItem('user_joined', user_info.created_at);
+  localStorage.setItem('user_profile_img', user_profile_img);
+
+  // Update UI
   Account_btnT.innerHTML = '';
   Account_btnT.style.background = `url(${user_profile_img})`;
-  Account_btnT.style.backgroundSize = '100% 100%';
+  Account_btnT.style.backgroundSize = 'cover';
   Account_btnT.style.backgroundPosition = 'center';
   Account_btnT.style.backgroundRepeat = 'no-repeat';
 
   Account_btn.innerHTML = '';
   Account_btn.style.background = `url(${user_profile_img})`;
-  Account_btn.style.backgroundSize = '100% 100%';
+  Account_btn.style.backgroundSize = 'cover';
   Account_btn.style.backgroundPosition = 'center';
   Account_btn.style.backgroundRepeat = 'no-repeat';
-  Account_btn.style.borderRadius = '50%';
+  Account_btn.style.borderRadius = '4px'; // Netflix style usually square/rounded-sm for active user icon
 
+  document.getElementById("Authentication_section").style.display = 'none';
   document.getElementById('notification_btnT').style.display = 'flex';
-  notification_check()
-  auto_update_user_info()
-  //setInterval(notification_check, 60000);
-}
-async function auto_update_user_info() {
-  let email = localStorage.getItem('user_email');
 
-  const serverData = await db.getUser(email);
-  if (serverData.massage !== 'User not found') {
-    //console.log(serverData.massage);
-    user_data = serverData.massage
-    let user_image = user_data.ProfileIMG
-    let user_watchlist = user_data.watchlist
-    let user_mssage = user_data.Messages
-
-    localStorage.setItem('user_profile_img', user_image);
-    localStorage.setItem("user_watchlist", user_watchlist);
-    localStorage.setItem("user_massages", user_mssage);
-  }
+  // Auto refresh or update state
+  notification_check();
 }
 
+// Override existing Account button handler
+const handle_account = async function () {
+  // Check if user is logged in locally
+  let savedState = localStorage.getItem("U_ID");
 
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////   Authentication section ////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-document.getElementById('loginForm').addEventListener('click', async function (e) {
-  e.preventDefault();
-  const btn = e.target
-  //btn.classList.add('loading_active');
-
-  const email = document.getElementById('login_username').value.trim();
-  const password = document.getElementById('login_password').value.trim();
-  const messageDiv = document.getElementById('login_error_display');
-
-  messageDiv.classList.add('loading_active');
-
-  const data = await db.login(email, password);
-  if (data.massage === 'Invalid password') {
-    messageDiv.innerHTML = 'Invalid password'
-    messageDiv.classList.remove('loading_active');
-
-  } else if (data.massage === 'User not found') {
-    messageDiv.innerHTML = 'User not found'
-    messageDiv.classList.remove('loading_active');
+  // Also check server active user if local is empty (optional sync)
+  // For now, simple check
+  if (savedState) {
+    window.location.href = "profile.html";
+    // Or if we want to allow "Switch Profile", we could do that here
+    // renderProfileSelection(); 
   } else {
-    //console.log('Login :', data);
+    renderProfileSelection();
+  }
+};
 
-    let user_info = data.massage;
-    let not_t = user_info.Messages || '[]';
-    let watch_fave = user_info.watchlist || '[]';
-    let user_profile_img = user_info.ProfileIMG || '/Assets/account.png';
+// Override initialization check
+async function initAuth() {
+  let savedState = localStorage.getItem("U_ID");
 
-    localStorage.setItem('U_ID', user_info.email);
-    localStorage.setItem('user_email', user_info.email);
-    localStorage.setItem('user_name', user_info.name);
-    localStorage.setItem('user_watchlist', watch_fave);
-    localStorage.setItem('user_massages', not_t);
-    localStorage.setItem('user_joined', user_info.created_at);
-    localStorage.setItem('user_profile_img', user_profile_img);
+  // Check active user from server if local is missing (persisting session across devices/restarts)
+  if (!savedState) {
+    const activeUserRes = await db.getActiveUser();
+    if (activeUserRes.massage && activeUserRes.massage.id) {
+      handleLoginSuccess(activeUserRes.massage);
+      return;
+    }
+  }
 
+  if (savedState) {
+    user_profile_img = localStorage.getItem('user_profile_img');
     Account_btnT.innerHTML = '';
     Account_btnT.style.background = `url(${user_profile_img})`;
-    Account_btnT.style.backgroundSize = '100% 100%';
+    Account_btnT.style.backgroundSize = 'cover';
     Account_btnT.style.backgroundPosition = 'center';
     Account_btnT.style.backgroundRepeat = 'no-repeat';
 
     Account_btn.innerHTML = '';
     Account_btn.style.background = `url(${user_profile_img})`;
-    Account_btn.style.backgroundSize = '100% 100%';
+    Account_btn.style.backgroundSize = 'cover';
     Account_btn.style.backgroundPosition = 'center';
     Account_btn.style.backgroundRepeat = 'no-repeat';
-    Account_btn.style.borderRadius = '50%';
-    messageDiv.classList.remove('loading_active');
+    Account_btn.style.borderRadius = '4px';
 
-    Authentication_section.style.display = 'none';
     document.getElementById('notification_btnT').style.display = 'flex';
-    notification_check()
+    notification_check();
+    auto_update_user_info();
+  } else {
+    // If no user, show profile selection immediately? 
+    // Or wait for user to click Account? 
+    // Netflix usually shows profile selection if no active session.
+    // Let's do nothing and wait for user interaction, or show it if on home
+    // renderProfileSelection(); 
   }
-});
-
-document.getElementById('signUpForm').addEventListener('click', async function (e) {
-  e.preventDefault();
-
-  // Get form elements
-  const sign_up_Name_ = document.getElementById('sign_up_Name_').value.trim();
-  const sign_up_email_ = document.getElementById('sign_up_email_').value.trim();
-  const sign_up_password_ = document.getElementById('sign_up_password_').value.trim();
-  const sign_up_password_confirm = document.getElementById('sign_up_password_confirm').value.trim();
-  const messageDiv = document.getElementById('signup_error_display');
-
-  // Clear previous messages
-  messageDiv.textContent = '';
-  messageDiv.className = 'error-message';
-
-  // Basic validation
-  if (!sign_up_Name_ || !sign_up_email_ || !sign_up_password_ || !sign_up_password_confirm) {
-    messageDiv.textContent = 'All fields are required';
-    return;
-  }
-
-  if (!isValidEmail(sign_up_email_)) {
-    messageDiv.textContent = 'Please enter a valid email address';
-    return;
-  }
-
-  if (sign_up_password_ !== sign_up_password_confirm) {
-    messageDiv.textContent = 'Passwords do not match';
-    return;
-  }
-
-  const data = await db.register(sign_up_Name_, sign_up_email_, sign_up_password_);
-  //console.log('signUp :', data);
-
-  messageDiv.textContent = data.massage;
-
-  let user_info = data.massage;
-  if (data.massage === 'User added successfully') {
-    localStorage.setItem('U_ID', sign_up_email_)
-    localStorage.setItem('user_email', sign_up_email_)
-    localStorage.setItem('user_name', sign_up_Name_)
-    localStorage.setItem('user_watchlist', '[]')
-    localStorage.setItem('user_massages', '[]')
-    localStorage.setItem('user_profile_img', './Assets/account.png');
-    const currentDate = new Date();
-    localStorage.setItem('user_joined', currentDate.toString());
-
-
-    Account_btnT.innerHTML = '';
-    Account_btnT.style.background = `url('./Assets/account.png')`;
-    Account_btnT.style.backgroundSize = '100% 100%';
-    Account_btnT.style.backgroundPosition = 'center';
-    Account_btnT.style.backgroundRepeat = 'no-repeat';
-
-    Account_btn.innerHTML = '';
-    Account_btn.style.background = `url('./Assets/account.png')`;
-    Account_btn.style.backgroundSize = '100% 100%';
-    Account_btn.style.backgroundPosition = 'center';
-    Account_btn.style.backgroundRepeat = 'no-repeat';
-    Account_btn.style.borderRadius = '50%';
-
-    messageDiv.classList.remove('loading_active');
-    Authentication_section.style.display = 'none';
-    document.getElementById('notification_btnT').style.display = 'flex';
-  }
-
-});
-
-function isValidEmail(email) {
-  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return re.test(String(email).toLowerCase());
 }
 
 
-document.getElementById('forget_p_form').addEventListener('click', async function (e) {
-  e.preventDefault();
+Account_btn.addEventListener("click", handle_account)
+Account_btnT.addEventListener("click", handle_account)
 
-  // Get form elements
-  const reset_email_ = document.getElementById('reset_email_').value.trim();
-  const messageDiv = document.getElementById('Forgot_display');
+// Run init
+initAuth();
 
-  messageDiv.textContent = '';
-  messageDiv.className = 'error-message';
-
-  // Basic validation
-  if (!reset_email_) {
-    messageDiv.textContent = 'All fields are required';
-    return;
-  }
-
-  if (!isValidEmail(reset_email_)) {
-    messageDiv.textContent = 'Please enter a valid email address';
-    return;
-  }
-  console.log(reset_email_)
-
-  const data = await db.requestPasswordReset(reset_email_);
-  console.log('reset :', data);
-
-  messageDiv.textContent = data.massage;
-
-});
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////// Notification Section /////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+// Legacy Auth Listeners (Disabled/Overridden)
+// ... keeping code structure but effectively unused ...
 
 let show_notification = false
 document.getElementById('notification_btnT').addEventListener('click', async function (e) {
